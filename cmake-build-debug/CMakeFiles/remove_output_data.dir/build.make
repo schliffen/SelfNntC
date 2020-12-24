@@ -63,10 +63,10 @@ RM = /home/ali/CLION/clion-2020.3/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest
+CMAKE_SOURCE_DIR = /home/ali/ProjLAB/Nist/SelfNntC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug
 
 # Utility rule file for remove_output_data.
 
@@ -74,8 +74,8 @@ CMAKE_BINARY_DIR = /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debu
 include CMakeFiles/remove_output_data.dir/progress.make
 
 CMakeFiles/remove_output_data:
-	rm /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/lib/*.pgm
-	rm /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/lib/*.float
+	rm /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/lib/*.pgm
+	rm /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/lib/*.float
 
 remove_output_data: CMakeFiles/remove_output_data
 remove_output_data: CMakeFiles/remove_output_data.dir/build.make
@@ -92,6 +92,6 @@ CMakeFiles/remove_output_data.dir/clean:
 .PHONY : CMakeFiles/remove_output_data.dir/clean
 
 CMakeFiles/remove_output_data.dir/depend:
-	cd /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/CMakeFiles/remove_output_data.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/ProjLAB/Nist/SelfNntC /home/ali/ProjLAB/Nist/SelfNntC /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/remove_output_data.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/remove_output_data.dir/depend
 

@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -ldl -g   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest -I/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include -I/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src 
+CXX_INCLUDES = -I/home/ali/ProjLAB/Nist/SelfNntC -I/home/ali/ProjLAB/Nist/SelfNntC/include -I/home/ali/ProjLAB/Nist/SelfNntC/src 
 

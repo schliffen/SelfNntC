@@ -1,6 +1,6 @@
-/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/CMakeFiles/libpico-cnn.dir
-/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/CMakeFiles/testlibs.dir
-/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/CMakeFiles/newLayerTest.dir
-/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/CMakeFiles/remove_output_data.dir
+/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/libpico-cnn.dir
+/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/testlibs.dir
+/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/newLayerTest.dir
+/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/remove_output_data.dir

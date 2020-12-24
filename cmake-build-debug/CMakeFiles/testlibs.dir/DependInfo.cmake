@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/test_activation_function.c" "/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/CMakeFiles/testlibs.dir/include/test_activation_function.c.o"
-  "/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/tutils.c" "/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/CMakeFiles/testlibs.dir/include/tutils.c.o"
-  "/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/utility_functions.c" "/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/CMakeFiles/testlibs.dir/include/utility_functions.c.o"
+  "/home/ali/ProjLAB/Nist/SelfNntC/include/test_activation_function.c" "/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/testlibs.dir/include/test_activation_function.c.o"
+  "/home/ali/ProjLAB/Nist/SelfNntC/include/tutils.c" "/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/testlibs.dir/include/tutils.c.o"
+  "/home/ali/ProjLAB/Nist/SelfNntC/include/utility_functions.c" "/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/testlibs.dir/include/utility_functions.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

@@ -2,8 +2,8 @@
 //
 
 extern "C" {
-    #include "include/tutils.h"
-    #include "include/test_activation_function.h"
+#include "include/tutils.h"
+#include "include/test_activation_function.h"
 };
 
 int main() {

@@ -6,5 +6,5 @@ C_FLAGS = -g
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest -I/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include -I/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src 
+C_INCLUDES = -I/home/ali/ProjLAB/Nist/SelfNntC -I/home/ali/ProjLAB/Nist/SelfNntC/include -I/home/ali/ProjLAB/Nist/SelfNntC/src 
 

@@ -7,9 +7,11 @@ from pico_cnn import *
 from compute_graph import *
 from backend import Backend
 
-__author__ = "Christoph Gerum, Alexander Jung (University of Tuebingen, Chair for Embedded Systems)"
+__author__ = "Ali M.N."
 
 
+default_save_dir = "/home/ali/ProjLAB/Nist/ConversionOutputs/"
+default_model_dir = "/home/ali/ProjLAB/Nist/Models/OnnxModels/"
 def onnx_to_pico_cnn(onnx_model, model_name):
 
     # print(onnx_model.graph)
@@ -36,12 +38,12 @@ def onnx_to_pico_cnn(onnx_model, model_name):
     optimized_model = utils.polish_model(optimized_model)
 
     try:
-        os.makedirs("./polished_models")
+        os.makedirs( default_save_dir + "polished_models")
         print("Created directory for polished models.")
     except FileExistsError:
         pass
 
-    onnx.save(optimized_model, os.path.join("./polished_models", "{}_polished.onnx".format(model_name)))
+    onnx.save(optimized_model, os.path.join(default_save_dir + "polished_models", "{}_polished.onnx".format(model_name)))
 
     backend_model = Backend.prepare(optimized_model, model_name)
 
@@ -52,12 +54,12 @@ def main():
     parser = argparse.ArgumentParser(description="Tool for converting ONNX models into pico-cnn networks.")
     parser.add_argument(
         "--input",
-        type=Text, required=True,
+        type=Text, default="super_sampmodel.onnx",
         help="Path to the model.onnx input file.",
     )
     args = parser.parse_args()
 
-    onnx_model = onnx.load(args.input)
+    onnx_model = onnx.load(default_model_dir + args.input)
 
     file_name = args.input.split("/")[-1]
     model_name = file_name.split(".")[0]
@@ -69,4 +71,6 @@ def main():
 
 
 if __name__ == '__main__':
+
+
     main()

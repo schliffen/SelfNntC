@@ -1,4 +1,4 @@
-/home/ali/CLION/clion-2020.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest
+/home/ali/CLION/clion-2020.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/ali/ProjLAB/Nist/SelfNntC
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug
+-- Build files have been written to: /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug

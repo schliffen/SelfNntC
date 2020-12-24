@@ -8,45 +8,45 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug"/>
+				<Option working_dir="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug"/>
+				<Option working_dir="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug"/>
+				<Option working_dir="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="libpico-cnn">
-				<Option output="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/lib/liblibpico-cnn.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug"/>
+				<Option output="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/lib/liblibpico-cnn.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/include"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/src"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -56,22 +56,22 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 libpico-cnn"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 libpico-cnn"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="libpico-cnn/fast">
-				<Option output="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/lib/liblibpico-cnn.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug"/>
+				<Option output="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/lib/liblibpico-cnn.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/include"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/src"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -81,22 +81,22 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 libpico-cnn/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 libpico-cnn/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="testlibs">
-				<Option output="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/lib/libtestlibs.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug"/>
+				<Option output="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/lib/libtestlibs.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/include"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/src"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -106,22 +106,22 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlibs"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlibs"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="testlibs/fast">
-				<Option output="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/lib/libtestlibs.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug"/>
+				<Option output="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/lib/libtestlibs.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/include"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/src"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -131,22 +131,22 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlibs/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlibs/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="newLayerTest">
-				<Option output="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/lib/newLayerTest" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/lib"/>
+				<Option output="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/lib/newLayerTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/lib"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/include"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/src"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -156,22 +156,22 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 newLayerTest"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 newLayerTest"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="newLayerTest/fast">
-				<Option output="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/lib/newLayerTest" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/lib"/>
+				<Option output="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/lib/newLayerTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/lib"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include"/>
-					<Add directory="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/include"/>
+					<Add directory="/home/ali/ProjLAB/Nist/SelfNntC/src"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -181,135 +181,135 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 newLayerTest/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 newLayerTest/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="remove_output_data">
-				<Option working_dir="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug"/>
+				<Option working_dir="/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 remove_output_data"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 remove_output_data"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/test_activation_function.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/include/test_activation_function.c">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/test_activation_function.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/include/test_activation_function.h">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/tutils.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/include/tutils.c">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/tutils.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/include/tutils.h">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/utility_functions.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/include/utility_functions.c">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/utility_functions.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/include/utility_functions.h">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/main.cpp">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/main.cpp">
 			<Option target="newLayerTest"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_binary_reference_data.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_binary_reference_data.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_binary_reference_data.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_binary_reference_data.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_binary_weights.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_binary_weights.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_binary_weights.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_binary_weights.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_imagenet_labels.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_imagenet_labels.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_imagenet_labels.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_imagenet_labels.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_jpeg.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_jpeg.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_jpeg.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_jpeg.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_means.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_means.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_means.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_means.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_pgm.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_pgm.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/read_pgm.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/read_pgm.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/write_float.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/write_float.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/write_float.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/write_float.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/write_pgm.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/write_pgm.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/io/write_pgm.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/io/write_pgm.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/activation_function.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/activation_function.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/activation_function.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/activation_function.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/batch_normalization.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/batch_normalization.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/batch_normalization.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/batch_normalization.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/concatenate.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/concatenate.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/concatenate.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/concatenate.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/convolution.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/convolution.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/convolution.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/convolution.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/fully_connected.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/fully_connected.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/fully_connected.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/fully_connected.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/pooling.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/pooling.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/layers/pooling.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/layers/pooling.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/utils.c">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/utils.c">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/src/utils.h">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/src/utils.h">
 			<Option target="libpico-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/CMakeLists.txt">
+		<Unit filename="/home/ali/ProjLAB/Nist/SelfNntC/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
