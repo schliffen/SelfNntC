@@ -4,3 +4,53 @@
 *.tar
 *.zip
 *.sbp
+*.bin
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+.DS_STORE
+build
+*.weights
+.*.swp
+*ubyte
+.vscode
+.idea
+__pycache__
+data/imagenet_dataset
+onnx_import/venv
+onnx_import/.idea
+onnx_import/generated_code
+*.onnx
+*.pb
+*.pbtxt
+*.o
+*.a
