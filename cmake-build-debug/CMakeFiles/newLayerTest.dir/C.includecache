@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/tutils.c
+tutils.h
+/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/tutils.h
+stdio.h
+-
+
+/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/include/tutils.h
+

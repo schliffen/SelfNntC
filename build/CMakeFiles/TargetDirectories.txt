@@ -1,0 +1,5 @@
+/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/build/CMakeFiles/rebuild_cache.dir
+/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/build/CMakeFiles/edit_cache.dir
+/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/build/CMakeFiles/newLayerTest.dir
+/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/build/CMakeFiles/libpico-cnn.dir
+/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/build/CMakeFiles/testlibs.dir
