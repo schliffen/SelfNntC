@@ -108,7 +108,7 @@ class BackendRep(backend_base.BackendRep):
         # Generate Node Parameters
         parameter_header = "#ifndef NETWORK_PARAMETERS_H\n"
         parameter_header += "#define NETWORK_PARAMETERS_H\n"
-        parameter_header += "#include \"pico-cnn/parameters.h\"\n\n"
+        parameter_header += "#include \"ai-cnn/parameters.h\"\n\n"
         parameter_code = "#include \"network_parameters.h\"\n\n"
         for node in graph.nodes:
             for num, input in enumerate(node.input_tensors):
@@ -134,7 +134,7 @@ class BackendRep(backend_base.BackendRep):
     def _generate_weights_file(self, graph):
         """
         Generate a binary file containing all kernel and bias values.
-        This generated file can then be read by the pico-cnn function in io/read_binary_weights.h
+        This generated file can then be read by the ai-cnn function in io/read_binary_weights.h
         :param graph: ComputeGraph of the parsed onnx model.
         :return:
         """
@@ -152,7 +152,7 @@ class BackendRep(backend_base.BackendRep):
         num_layers = 0
 
         for node in graph.nodes:
-            if len(node.input_tensors) > 0 and node.op_type not in ops_to_ignore:
+            if len(node.input_tensors) > 0 and node.op_type not in ops_to_ignore: # check if there is weight
                 num_layers += 1
 
         packed_file.append(struct.pack('i', num_layers))
@@ -160,7 +160,7 @@ class BackendRep(backend_base.BackendRep):
         weights_packed = list(bytes())
 
         for node in graph.nodes:
-            if len(node.input_tensors) > 0 and node.op_type not in ops_to_ignore:
+            if len(node.input_tensors) > 0 and node.op_type not in ops_to_ignore: # check if there is weight
                 layer_name = bytes(node.name + "\n", "ascii")
                 weights_packed.append(struct.pack('{}s'.format(len(layer_name)), layer_name))
                 layer_type = bytes(node.op_type + "\n", "ascii")
@@ -178,7 +178,7 @@ class BackendRep(backend_base.BackendRep):
 
                 data = node.input_tensors[input]
 
-                if node.op_type == "Gemm":
+                if node.op_type == "Gemm": # controlling type name
                     data = data.transpose()
 
                 if len(data.shape) == 4:
@@ -287,7 +287,7 @@ class BackendRep(backend_base.BackendRep):
         initialization_header += "#define NETWORK_INITIALIZATION_H\n"
         initialization_header += "#include <stdlib.h>\n"
         initialization_header += "#include <stdint.h>\n"
-        initialization_header += "#include \"pico-cnn/parameters.h\"\n\n"
+        initialization_header += "#include \"ai-cnn/parameters.h\"\n\n"
         initialization_header += "void initialize_network();\n\n"
         initialization_header += "fp_t*** kernels;\n"
         initialization_header += "fp_t** biases;\n"
@@ -413,7 +413,7 @@ class BackendRep(backend_base.BackendRep):
         cleanup_header += "#define NETWORK_CLEANUP_H\n"
         cleanup_header += "#include <stdlib.h>\n"
         cleanup_header += "#include <stdint.h>\n"
-        cleanup_header += "#include \"pico-cnn/parameters.h\"\n"
+        cleanup_header += "#include \"ai-cnn/parameters.h\"\n"
         cleanup_header += "#include \"network_initialization.h\" \n\n"
         cleanup_header += "void cleanup_network(); \n\n"
         cleanup_header += "#endif //NETWORK_CLEANUP_H\n"
@@ -516,7 +516,7 @@ class BackendRep(backend_base.BackendRep):
     def _export_model(self):
         """
         Parses the onnx model to be represented as a ComputeGraph and then calls all
-        functions needed for generating the pico-cnn code.
+        functions needed for generating the ai-cnn code.
         :return:
         """
         graph = ComputeGraph.from_onnx(self.onnx_model.graph)
@@ -553,15 +553,15 @@ class BackendRep(backend_base.BackendRep):
                                                                           ",".join(output_shapes)))
 
         memory_manager = MemoryManager()
-
+        # buffering the parameters
         self._generate_weights_file(graph)
-
+        # dummy input
         self.dummy_input = generate_dummy_main(graph)
-
+        #
         self.reference_input = generate_reference_main(graph)
-
+        #
         self._generate_network_initialization(graph, memory_manager)
-
+        #
         self._generate_network_cleanup(graph, memory_manager)
 
         implementations = self._select_implementations(graph, memory_manager)
@@ -627,7 +627,7 @@ class BackendRep(backend_base.BackendRep):
 
         implementation_code = ""
 
-        """Iterate over all tasks in the schedule, put some debug info in the code and the pico-cnn implementation."""
+        """Iterate over all tasks in the schedule, put some debug info in the code and the ai-cnn implementation."""
         for task in schedule:
             num, node, impl = task
             implementation_code += "    //Layer " + str(num) + " " + node.name + " " + node.op_type + "\n"
@@ -665,10 +665,10 @@ class BackendRep(backend_base.BackendRep):
 
         network_header = "#ifndef NETWORK_H\n"
         network_header += "#define NETWORK_H\n\n"
-        network_header += "#include \"pico-cnn/parameters.h\"\n"
+        network_header += "#include \"ai-cnn/parameters.h\"\n"
         network_header += "#include \"network_initialization.h\"\n"
         network_header += "#include \"network_cleanup.h\"\n"
-        network_header += "#include \"pico-cnn/pico-cnn.h\"\n\n"
+        network_header += "#include \"ai-cnn/ai-cnn.h\"\n\n"
         network_header += network_def + "; \n\n"
         network_header += "#endif //NETWORK_H\n"
 
@@ -682,23 +682,23 @@ class BackendRep(backend_base.BackendRep):
         # TODO: Does this need to be more sophisticated?
         self.makefile = "CC = gcc\n"
         self.makefile += "CFLAGS = -Wall -flto -O3 -march=native -DINFO\n"
-        self.makefile += "LDFLAGS = -L../../../pico-cnn\n"
-        self.makefile += "LD_LIBS = -lpico-cnn -lm\n\n"
+        self.makefile += "LDFLAGS = -L../../../ai-cnn\n"
+        self.makefile += "LD_LIBS = -ai-cnn -lm\n\n"
         self.makefile += "# list of all generated .c files.\n"
         self.makefile += "NETWORK_LIST = network_initialization.c network_cleanup.c network.c"
-        self.makefile += "\n\ndummy_input: dummy_input.c $(NETWORK_LIST) libpico-cnn.a\n\t"
+        self.makefile += "\n\ndummy_input: dummy_input.c $(NETWORK_LIST) libai-cnn.a\n\t"
         self.makefile += "$(CC) dummy_input.c $(NETWORK_LIST) -I../../.. $(CFLAGS) $(LDFLAGS) $(LD_LIBS) -o dummy_input"
-        self.makefile += "\n\nreference_input: reference_input.c $(NETWORK_LIST) libpico-cnn.a\n\t"
+        self.makefile += "\n\nreference_input: reference_input.c $(NETWORK_LIST) libai-cnn.a\n\t"
         self.makefile += "$(CC) reference_input.c $(NETWORK_LIST) -I../../.. $(CFLAGS) " \
                          "$(LDFLAGS) $(LD_LIBS) -o reference_input"
-        self.makefile += "\n\n{}: {}.c $(NETWORK_LIST) libpico-cnn.a\n\t".format(self.model_name, self.model_name)
+        self.makefile += "\n\n{}: {}.c $(NETWORK_LIST) libai-cnn.a\n\t".format(self.model_name, self.model_name)
         self.makefile += "$(CC) {}.c $(NETWORK_LIST) -I../../.. $(CFLAGS) " \
                          "$(LDFLAGS) $(LD_LIBS) -o {}".format(self.model_name, self.model_name)
         self.makefile += "\n\nall: dummy_input reference_input {}".format(self.model_name)
         self.makefile += "\n\n.PHONY: clean\n"
         self.makefile += "clean:\n\trm -rf {} dummy_input reference_input\n".format(self.model_name)
-        self.makefile += "\n\n.PHONY: libpico-cnn.a\n"
-        self.makefile += "libpico-cnn.a:\n\t$(MAKE) -C ../../../pico-cnn"
+        self.makefile += "\n\n.PHONY: libai-cnn.a\n"
+        self.makefile += "libai-cnn.a:\n\t$(MAKE) -C ../../../ai-cnn"
 
         self.save("./generated_code/{}".format(self.model_name))
 

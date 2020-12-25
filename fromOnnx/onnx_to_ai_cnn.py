@@ -2,17 +2,18 @@ import argparse
 
 import onnx
 from onnx import optimizer, utils
-
-from pico_cnn import *
+from onnxsim import simplify
+from ai_cnn import *
 from compute_graph import *
 from backend import Backend
 
-__author__ = "Ali M.N."
+__author__ = "Extended by Ali M.N."
 
 
 default_save_dir = "/home/ali/ProjLAB/Nist/ConversionOutputs/"
 default_model_dir = "/home/ali/ProjLAB/Nist/Models/OnnxModels/"
-def onnx_to_pico_cnn(onnx_model, model_name):
+
+def onnx_to_ai_cnn(onnx_model, model_name):
 
     # print(onnx_model.graph)
     # Set input batch size to 1
@@ -34,8 +35,9 @@ def onnx_to_pico_cnn(onnx_model, model_name):
 
     print("Running model optimization")
     # TODO: There are more optimizations available
-    optimized_model = optimizer.optimize(onnx_model, ["eliminate_nop_dropout"])
-    optimized_model = utils.polish_model(optimized_model)
+    # optimized_model = optimizer.optimize(onnx_model, ["eliminate_nop_dropout"])
+    # optimized_model = utils.polish_model(optimized_model)
+    simp_model, check = simplify(onnx_model)
 
     try:
         os.makedirs( default_save_dir + "polished_models")
@@ -43,18 +45,18 @@ def onnx_to_pico_cnn(onnx_model, model_name):
     except FileExistsError:
         pass
 
-    onnx.save(optimized_model, os.path.join(default_save_dir + "polished_models", "{}_polished.onnx".format(model_name)))
+    onnx.save(simp_model, os.path.join(default_save_dir + "polished_models", "{}_polished.onnx".format(model_name)))
 
-    backend_model = Backend.prepare(optimized_model, model_name)
+    backend_model = Backend.prepare(simp_model, model_name)
 
     return 0
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Tool for converting ONNX models into pico-cnn networks.")
+    parser = argparse.ArgumentParser(description="Tool for converting ONNX models into ai-cnn networks.")
     parser.add_argument(
         "--input",
-        type=Text, default="super_sampmodel.onnx",
+        type=Text, default="sub_lenet_001.onnx",
         help="Path to the model.onnx input file.",
     )
     args = parser.parse_args()
@@ -63,9 +65,9 @@ def main():
 
     file_name = args.input.split("/")[-1]
     model_name = file_name.split(".")[0]
-    print("Generating Pico-CNN Code for model: {}".format(model_name))
+    print("Generating Ai-CNN Code for model: {}".format(model_name))
 
-    onnx_to_pico_cnn(onnx_model, model_name)
+    onnx_to_ai_cnn(onnx_model, model_name)
 
     return 0
 

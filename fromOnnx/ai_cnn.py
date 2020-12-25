@@ -11,7 +11,7 @@ template_dir = os.path.join(base_dir, "code_templates")
 
 template_env = Environment(loader=FileSystemLoader(template_dir))
 
-__author__ = "Christoph Gerum, Alexander Jung (University of Tuebingen, Chair for Embedded Systems)"
+__author__ = "Most of this Code is modified"
 
 
 class BaseLayer(object):
@@ -37,9 +37,9 @@ class Conv2DLegacy(BaseLayer):
     """
     2-dimensional convolution layer.
     """
-    name = "PicoCNNConv2D"
+    name = "aiCNNConv2DLegacy"
     operator = "Conv"
-    template_file = "pico_cnn_conv2d_legacy.c"
+    template_file = "ai_cnn_conv2d_legacy.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -84,7 +84,7 @@ class Conv2DLegacy(BaseLayer):
         pads = attrs.get("pads", (0, 0, 0, 0))
 
         if (kernel_size % 2) == 0:
-            print("PicoCNN only supports odd kernel sizes in 2D convolution")
+            print("aiCNN only supports odd kernel sizes in 2D convolution")
             exit(1)
 
         padding = pads[0]
@@ -118,9 +118,9 @@ class Conv2D(BaseLayer):
     """
     2-dimensional convolution layer.
     """
-    name = "PicoCNNConv2D"
+    name = "aiCNNConv2D"
     operator = "Conv"
-    template_file = "pico_cnn_conv2d.c"
+    template_file = "ai_cnn_conv2d.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -165,7 +165,7 @@ class Conv2D(BaseLayer):
         padding = attrs.get("pads", [0, 0, 0, 0])
 
         if (kernel_shape[0] % 2) == 0 or (kernel_shape[1] % 2) == 0:
-            print("PicoCNN only supports odd kernel sizes in 2D convolution")
+            print("aiCNN only supports odd kernel sizes in 2D convolution")
             exit(1)
 
         padding_needed = False
@@ -206,9 +206,9 @@ OperationRegistry.register(Conv2D)
 
 
 class Conv1D(BaseLayer):
-    name = "PicoCNNConv1D"
+    name = "aiCNNConv1D"
     operator = "Conv"
-    template_file = "pico_cnn_conv1d.c"
+    template_file = "ai_cnn_conv1d.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -243,11 +243,11 @@ class Conv1D(BaseLayer):
         pads = (attrs["pads"][0], attrs["pads"][1]) if len(attrs["pads"]) == 2 else (attrs["pads"][0], attrs["pads"][2])
 
         if pads[0] != pads[1]:
-            print("PicoCNN only supports same padding in all directions")
+            print("aiCNN only supports same padding in all directions")
             exit(1)
 
         if (kernel_size % 2) == 0:
-            print("PicoCNN only supports odd kernel sizes in 1D convolution")
+            print("aiCNN only supports odd kernel sizes in 1D convolution")
             exit(1)
 
         padding = pads[0]
@@ -279,9 +279,9 @@ class FullyConnected(BaseLayer):
     Fully-connected layer. The corresponding operator in an onnx model is "Gemm".
     Basically this is a simple matrix x matrix multiplication.
     """
-    name = "PicoCNNFullyConnected"
+    name = "aiCNNFullyConnected"
     operator = "Gemm"
-    template_file = "pico_cnn_fc.c"
+    template_file = "ai_cnn_fc.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -334,9 +334,9 @@ class MaxPool2D(BaseLayer):
     2-dimensional max-pooling operation.
     Kernel size defines the amount of entries from which the maximum will be chosen.
     """
-    name = "PicoCNNMaxPool2D"
+    name = "aiCNNMaxPool2D"
     operator = "MaxPool"
-    template_file = "pico_cnn_max_pool2d.c"
+    template_file = "ai_cnn_max_pool2d.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -398,9 +398,9 @@ OperationRegistry.register(MaxPool2D)
 
 
 class MaxPool1D(BaseLayer):
-    name = "PicoCNNMaxPool1D"
+    name = "aiCNNMaxPool1D"
     operator = "MaxPool"
-    template_file = "pico_cnn_max_pool1d.c"
+    template_file = "ai_cnn_max_pool1d.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -463,9 +463,9 @@ class Relu(BaseLayer):
     """
     Rectified linear unit activation function.
     """
-    name = "PicoCNNRelu"
+    name = "aiCNNRelu"
     operator = "Relu"
-    template_file = "pico_cnn_relu.c"
+    template_file = "ai_cnn_relu.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -513,10 +513,65 @@ class Relu(BaseLayer):
 OperationRegistry.register(Relu)
 
 
+class PRelu(BaseLayer):
+    """
+    Parametric Rectified linear unit activation function.
+    """
+    name = "alCNNRelu"
+    operator = "PRelu"
+    template_file = "acnn_prelu.c"
+
+    @classmethod
+    def create(cls, node, graph, memory_manager):
+        """
+        Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
+        :param node: ComputeNode object of a CNN layer
+        :param graph: ComputeGraph object of the CNN
+        :param memory_manager: MemoryManager object containing information about input and output buffers.
+        :return:
+        """
+        print("generating prelu layer")
+
+        input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
+        output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
+
+        input_shape = input_buffer.shape
+
+        if len(input_shape) == 2:
+            num_input_channels = 1
+            input_height = input_shape[0]
+            input_width = input_shape[1]
+        elif len(input_shape) == 3:
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = input_shape[2]
+        elif len(input_shape) == 4:
+            num_input_channels = input_shape[1]
+            input_height = input_shape[2]
+            input_width = input_shape[3]
+        else:
+            print("ERROR: Unsupported input shape for prelu layer: {}".format(input_shape))
+            return None
+
+        operation = cls(node, graph)
+
+        operation.attributes['num_input_channels'] = num_input_channels
+        operation.attributes['input_buffer'] = input_buffer
+        operation.attributes['input_height'] = input_height
+        operation.attributes['input_width'] = input_width
+        operation.attributes['output_buffer'] = output_buffer
+
+        return operation
+
+
+OperationRegistry.register(PRelu)
+
+
+
 class BatchNorm(BaseLayer):
-    name = "PicoCNNBatchNorm"
+    name = "aiCNNBatchNorm"
     operator = "BatchNormalization"
-    template_file = "pico_cnn_batchnorm.c"
+    template_file = "ai_cnn_batchnorm.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -556,9 +611,9 @@ OperationRegistry.register(BatchNorm)
 
 
 class Clip(BaseLayer):
-    name = "PicoCNNClip"
+    name = "aiCNNClip"
     operator = "Clip"
-    template_file = "pico_cnn_clip.c"
+    template_file = "ai_cnn_clip.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -594,9 +649,9 @@ OperationRegistry.register(Clip)
 
 
 class MatMul(BaseLayer):
-    name = "PicoCNNMatMul"
+    name = "aiCNNMatMul"
     operator = "MatMul"
-    template_file = "pico_cnn_matmul.c"
+    template_file = "ai_cnn_matmul.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -624,7 +679,7 @@ OperationRegistry.register(MatMul)
 
 
 class Mul(BaseLayer):
-    name = "PicoCNNMul"
+    name = "aiCNNMul"
     operator = "Mul"
     template_file = "mul.c"
 
@@ -664,9 +719,9 @@ OperationRegistry.register(Mul)
 
 
 class AveragePool2D(BaseLayer):
-    name = "PicoCNNAveragePool"
+    name = "aiCNNAveragePool"
     operator = "AveragePool"
-    template_file = "pico_cnn_average_pool2d.c"
+    template_file = "ai_cnn_average_pool2d.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -726,9 +781,9 @@ OperationRegistry.register(AveragePool2D)
 
 
 class AveragePool1D(BaseLayer):
-    name = "PicoCNNAveragePool"
+    name = "aiCNNAveragePool"
     operator = "AveragePool"
-    template_file = "pico_cnn_average_pool1d.c"
+    template_file = "ai_cnn_average_pool1d.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -788,9 +843,9 @@ OperationRegistry.register(AveragePool1D)
 
 
 class GlobalMaxPool2D(BaseLayer):
-    name = "PicoCNNGlobalMaxPool2D"
+    name = "aiCNNGlobalMaxPool2D"
     operator = "GlobalMaxPool"
-    template_file = "pico_cnn_global_max_pool2d.c"
+    template_file = "ai_cnn_global_max_pool2d.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -823,9 +878,9 @@ OperationRegistry.register(GlobalMaxPool2D)
 
 
 class GlobalAveragePool2D(BaseLayer):
-    name = "PicoCNNGlobalAveragePool"
+    name = "aiCNNGlobalAveragePool"
     operator = "GlobalAveragePool"
-    template_file = "pico_cnn_global_average_pool2d.c"
+    template_file = "ai_cnn_global_average_pool2d.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -930,7 +985,7 @@ class Concat(BaseLayer):
     """
     name = "ConcatGeneric"
     operator = "Concat"
-    template_file = "pico_cnn_concat.c"
+    template_file = "ai_cnn_concat.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -1134,7 +1189,7 @@ OperationRegistry.register(Flatten)
 class Add(BaseLayer):
     name = "AddGeneric"
     operator = "Add"
-    template_file = "pico_cnn_add.c"
+    template_file = "ai_cnn_add.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -1189,7 +1244,7 @@ OperationRegistry.register(Add)
 # class Sum(Add):
 #     name = "SumGeneric"
 #     operator = "Sum"
-#     template_file = "pico_cnn_add.c"
+#     template_file = "ai_cnn_add.c"
 #
 #
 # OperationRegistry.register(Sum)
@@ -1201,7 +1256,7 @@ class Softmax(BaseLayer):
     """
     name = "SoftmaxGeneric"
     operator = "Softmax"
-    template_file = "pico_cnn_softmax.c"
+    template_file = "ai_cnn_softmax.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -1238,7 +1293,7 @@ class LocalResponseNormalization(BaseLayer):
     """
     name = "LocalResponseNormalizationGeneric"
     operator = "LRN"
-    template_file = "pico_cnn_lrn.c"
+    template_file = "ai_cnn_lrn.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -1325,9 +1380,9 @@ OperationRegistry.register(Squeeze)
 
 
 class Pad(BaseLayer):
-    name = "PicoCNNPad"
+    name = "aiCNNPad"
     operator = "Pad"
-    template_file = "pico_cnn_pad.c"
+    template_file = "ai_cnn_pad.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
