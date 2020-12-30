@@ -45,7 +45,7 @@ void relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t
     }
 }
 
-void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, fp_t weight) {
+void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, const fp_t *weight) {
 
 #ifdef BIG_LOOPS
     uint64_t i;
@@ -54,7 +54,7 @@ void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t widt
 #endif
 
     for(i = 0; i < height*width; i++) {
-        output_channel[i] = (input_channel[i] < 0.0) ? weight * input_channel[i] : input_channel[i];
+        output_channel[i] = (input_channel[i] < 0.0) ? weight[0] * input_channel[i] : input_channel[i];
     }
 }
 

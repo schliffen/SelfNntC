@@ -2,7 +2,7 @@
 
 void initialize_network() {
 
-kernels = (fp_t***) malloc(1 * sizeof(fp_t**));
+kernels = (fp_t***) malloc(2 * sizeof(fp_t**));
 biases = (fp_t**) malloc(1 * sizeof(fp_t*));
 
 // Layer: Conv_0, Operation: Conv
@@ -29,22 +29,34 @@ biases[0] = buffer_conv_bias;
 
 // Outputs
 // (1, 6, 108, 108)
-buffer_3 = (fp_t**) malloc(6 * sizeof(fp_t*));
-
-for(uint32_t output = 0; output < 6; output++){
-    buffer_3[output] = (fp_t*) malloc(108*108 * sizeof(fp_t));
-}
-
-
-
-// Layer: Relu_1, Operation: Relu
-// Inputs
-// Outputs
-// (1, 6, 108, 108)
 buffer_4 = (fp_t**) malloc(6 * sizeof(fp_t*));
 
 for(uint32_t output = 0; output < 6; output++){
     buffer_4[output] = (fp_t*) malloc(108*108 * sizeof(fp_t));
+}
+
+
+
+// Layer: PRelu_1, Operation: PRelu
+// Inputs
+// (1, 1, 1)
+buffer_15 = (fp_t**) malloc(1 * sizeof(fp_t*));
+
+for(uint32_t kernel = 0; kernel < 1; kernel++){
+    buffer_15[kernel] = (fp_t*) malloc(1*1 * sizeof(fp_t));
+}
+
+
+
+kernels[1] = buffer_15;
+
+
+// Outputs
+// (1, 6, 108, 108)
+buffer_6 = (fp_t**) malloc(6 * sizeof(fp_t*));
+
+for(uint32_t output = 0; output < 6; output++){
+    buffer_6[output] = (fp_t*) malloc(108*108 * sizeof(fp_t));
 }
 
 

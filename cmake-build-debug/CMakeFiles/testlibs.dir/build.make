@@ -54,19 +54,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/ali/CLION/clion-2020.3/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/ali/clion-20/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/ali/CLION/clion-2020.3/bin/cmake/linux/bin/cmake -E rm -f
+RM = /home/ali/clion-20/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ali/ProjLAB/Nist/SelfNntC
+CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/testlibs.dir/depend.make
@@ -79,42 +79,42 @@ include CMakeFiles/testlibs.dir/flags.make
 
 CMakeFiles/testlibs.dir/include/test_activation_function.c.o: CMakeFiles/testlibs.dir/flags.make
 CMakeFiles/testlibs.dir/include/test_activation_function.c.o: ../include/test_activation_function.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/testlibs.dir/include/test_activation_function.c.o"
-	/usr/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/include/test_activation_function.c.o   -c /home/ali/ProjLAB/Nist/SelfNntC/include/test_activation_function.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/testlibs.dir/include/test_activation_function.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/include/test_activation_function.c.o   -c /home/ali/Projlab/Nist/SelfNntC/include/test_activation_function.c
 
 CMakeFiles/testlibs.dir/include/test_activation_function.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/testlibs.dir/include/test_activation_function.c.i"
-	/usr/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/ProjLAB/Nist/SelfNntC/include/test_activation_function.c > CMakeFiles/testlibs.dir/include/test_activation_function.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/include/test_activation_function.c > CMakeFiles/testlibs.dir/include/test_activation_function.c.i
 
 CMakeFiles/testlibs.dir/include/test_activation_function.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/testlibs.dir/include/test_activation_function.c.s"
-	/usr/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/ProjLAB/Nist/SelfNntC/include/test_activation_function.c -o CMakeFiles/testlibs.dir/include/test_activation_function.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/include/test_activation_function.c -o CMakeFiles/testlibs.dir/include/test_activation_function.c.s
 
 CMakeFiles/testlibs.dir/include/utility_functions.c.o: CMakeFiles/testlibs.dir/flags.make
 CMakeFiles/testlibs.dir/include/utility_functions.c.o: ../include/utility_functions.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/testlibs.dir/include/utility_functions.c.o"
-	/usr/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/include/utility_functions.c.o   -c /home/ali/ProjLAB/Nist/SelfNntC/include/utility_functions.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/testlibs.dir/include/utility_functions.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/include/utility_functions.c.o   -c /home/ali/Projlab/Nist/SelfNntC/include/utility_functions.c
 
 CMakeFiles/testlibs.dir/include/utility_functions.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/testlibs.dir/include/utility_functions.c.i"
-	/usr/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/ProjLAB/Nist/SelfNntC/include/utility_functions.c > CMakeFiles/testlibs.dir/include/utility_functions.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/include/utility_functions.c > CMakeFiles/testlibs.dir/include/utility_functions.c.i
 
 CMakeFiles/testlibs.dir/include/utility_functions.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/testlibs.dir/include/utility_functions.c.s"
-	/usr/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/ProjLAB/Nist/SelfNntC/include/utility_functions.c -o CMakeFiles/testlibs.dir/include/utility_functions.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/include/utility_functions.c -o CMakeFiles/testlibs.dir/include/utility_functions.c.s
 
 CMakeFiles/testlibs.dir/include/tutils.c.o: CMakeFiles/testlibs.dir/flags.make
 CMakeFiles/testlibs.dir/include/tutils.c.o: ../include/tutils.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/testlibs.dir/include/tutils.c.o"
-	/usr/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/include/tutils.c.o   -c /home/ali/ProjLAB/Nist/SelfNntC/include/tutils.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/testlibs.dir/include/tutils.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/include/tutils.c.o   -c /home/ali/Projlab/Nist/SelfNntC/include/tutils.c
 
 CMakeFiles/testlibs.dir/include/tutils.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/testlibs.dir/include/tutils.c.i"
-	/usr/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/ProjLAB/Nist/SelfNntC/include/tutils.c > CMakeFiles/testlibs.dir/include/tutils.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/include/tutils.c > CMakeFiles/testlibs.dir/include/tutils.c.i
 
 CMakeFiles/testlibs.dir/include/tutils.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/testlibs.dir/include/tutils.c.s"
-	/usr/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/ProjLAB/Nist/SelfNntC/include/tutils.c -o CMakeFiles/testlibs.dir/include/tutils.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/include/tutils.c -o CMakeFiles/testlibs.dir/include/tutils.c.s
 
 # Object files for target testlibs
 testlibs_OBJECTS = \
@@ -130,7 +130,7 @@ lib/libtestlibs.so: CMakeFiles/testlibs.dir/include/utility_functions.c.o
 lib/libtestlibs.so: CMakeFiles/testlibs.dir/include/tutils.c.o
 lib/libtestlibs.so: CMakeFiles/testlibs.dir/build.make
 lib/libtestlibs.so: CMakeFiles/testlibs.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C shared library lib/libtestlibs.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C shared library lib/libtestlibs.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/testlibs.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -143,6 +143,6 @@ CMakeFiles/testlibs.dir/clean:
 .PHONY : CMakeFiles/testlibs.dir/clean
 
 CMakeFiles/testlibs.dir/depend:
-	cd /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/ProjLAB/Nist/SelfNntC /home/ali/ProjLAB/Nist/SelfNntC /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug /home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/testlibs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/Projlab/Nist/SelfNntC /home/ali/Projlab/Nist/SelfNntC /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles/testlibs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/testlibs.dir/depend
 

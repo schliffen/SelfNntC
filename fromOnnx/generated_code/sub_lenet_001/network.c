@@ -10,19 +10,19 @@ void network(fp_t **input_data, fp_t *output_output){
     //  strides: [1, 1]
     //Parameters
     //Inputs: data,conv.weight,conv.bias
-    //Outputs: 3
+    //Outputs: 4
     //Shape:
     //    data: (1, 3, 112, 112)
     //    conv.weight: (6, 3, 5, 5)
     //    conv.bias: (6,)
-    //    3: (1, 6, 108, 108)
+    //    4: (1, 6, 108, 108)
 
 for(uint32_t g = 0; g < 1; g++) {
     for(uint32_t i = g*6/1; i < (g+1)*6/1; i+=1){
         convolution2d_naive(input_data[g*3/1],
                             112,
                             112,
-                            buffer_3[i],
+                            buffer_4[i],
                             buffer_conv_weight[i*3/1],
                             5,
                             5,
@@ -46,7 +46,7 @@ for(uint32_t g = 0; g < 1; g++) {
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_3[i],
+            add_channel2d_naive(buffer_4[i],
                                 temp_buffer,
                                 108,
                                 108);
@@ -56,35 +56,37 @@ for(uint32_t g = 0; g < 1; g++) {
     }
 }
 
-    //Layer 1 Relu_1 Relu
+    //Layer 1 PRelu_1 PRelu
     //Attributes
     //Parameters
-    //Inputs: 3
-    //Outputs: 4
+    //Inputs: 4,15
+    //Outputs: 6
     //Shape:
-    //    3: (1, 6, 108, 108)
     //    4: (1, 6, 108, 108)
+    //    15: (1, 1, 1)
+    //    6: (1, 6, 108, 108)
 
 for (uint32_t i = 0; i < 6; i++) {
-    relu_naive(buffer_3[i],
+    prelu(buffer_4[i],
                108,
                108,
-               buffer_4[i]);
+               buffer_6[i],
+               0.25);
 }
 
     //Layer 2 Reshape_7 Reshape
     //Attributes
     //Parameters
-    //Inputs: 4,11
+    //Inputs: 6,13
     //Outputs: output
     //Shape:
-    //    4: (1, 6, 108, 108)
-    //    11: (2,)
+    //    6: (1, 6, 108, 108)
+    //    13: (2,)
     //    output: (1, 69984)
 
 for(uint32_t i = 0; i < 6; i++){
     memcpy(&output_output[i*108*108],
-           buffer_4[i],
+           buffer_6[i],
            108*108*sizeof(fp_t));
 }
 

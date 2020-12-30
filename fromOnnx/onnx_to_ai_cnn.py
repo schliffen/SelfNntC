@@ -10,8 +10,8 @@ from backend import Backend
 __author__ = "Extended by Ali M.N."
 
 
-default_save_dir = "/home/ali/ProjLAB/Nist/ConversionOutputs/"
-default_model_dir = "/home/ali/ProjLAB/Nist/Models/OnnxModels/"
+default_save_dir = "/home/ali/Projlab/Nist/ConversionOutputs/"
+default_model_dir = "/home/ali/Projlab/Nist/Models/OnnxModels/"
 
 def onnx_to_ai_cnn(onnx_model, model_name):
 
@@ -37,7 +37,7 @@ def onnx_to_ai_cnn(onnx_model, model_name):
     # TODO: There are more optimizations available
     # optimized_model = optimizer.optimize(onnx_model, ["eliminate_nop_dropout"])
     # optimized_model = utils.polish_model(optimized_model)
-    simp_model, check = simplify(onnx_model)
+    # simp_model, check = simplify(onnx_model)
 
     try:
         os.makedirs( default_save_dir + "polished_models")
@@ -45,9 +45,9 @@ def onnx_to_ai_cnn(onnx_model, model_name):
     except FileExistsError:
         pass
 
-    onnx.save(simp_model, os.path.join(default_save_dir + "polished_models", "{}_polished.onnx".format(model_name)))
+    onnx.save(onnx_model, os.path.join(default_save_dir + "polished_models", "{}_polished.onnx".format(model_name)))
 
-    backend_model = Backend.prepare(simp_model, model_name)
+    backend_model = Backend.prepare(onnx_model, model_name)
 
     return 0
 
@@ -56,7 +56,7 @@ def main():
     parser = argparse.ArgumentParser(description="Tool for converting ONNX models into ai-cnn networks.")
     parser.add_argument(
         "--input",
-        type=Text, default="sub_lenet_001.onnx",
+        type=Text, default="sub_mobilefacenet_1.onnx",
         help="Path to the model.onnx input file.",
     )
     args = parser.parse_args()

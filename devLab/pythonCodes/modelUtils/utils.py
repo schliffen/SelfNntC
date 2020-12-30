@@ -5,8 +5,8 @@ import torch
 import torch.onnx
 
 
-def convert_to_onnx(detect_model, modelName, w=112,h=112):
-    dummy_input = torch.randn(1, 3, w, h, requires_grad=True)
+def convert_to_onnx(detect_model, modelName, w=112,h=112, ch=3):
+    dummy_input = torch.randn(1, ch, w, h, requires_grad=True)
     torch.onnx.export(detect_model.cpu(),  # model being run
                       dummy_input,  # model input (or a tuple for multiple inputs)
                       modelName,

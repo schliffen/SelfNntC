@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ali/ProjLAB/Nist/SelfNntC/main.cpp" "/home/ali/ProjLAB/Nist/SelfNntC/cmake-build-debug/CMakeFiles/SelfNntC.dir/main.cpp.o"
+  "/home/ali/Projlab/Nist/SelfNntC/main.cpp" "/home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles/SelfNntC.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -26,6 +26,8 @@ set(PICO_CNN_LIBRARY_SRCS
         ${PROJECT_SOURCE_DIR}/src/layers/concatenate.h
         ${PROJECT_SOURCE_DIR}/src/layers/batch_normalization.c
         ${PROJECT_SOURCE_DIR}/src/layers/batch_normalization.h
+        ${PROJECT_SOURCE_DIR}/src/layers/math_operations.c
+        ${PROJECT_SOURCE_DIR}/src/layers/math_operations.h
         ${PROJECT_SOURCE_DIR}/src//io/read_binary_reference_data.c
         ${PROJECT_SOURCE_DIR}/src/io/read_binary_reference_data.h
         ${PROJECT_SOURCE_DIR}/src/io/read_binary_weights.c
@@ -52,7 +54,7 @@ include_directories(
         ${PROJECT_SOURCE_DIR}/src
 )
 
-add_library(libpico-cnn
+add_library(libai-cnn
         ${PICO_CNN_LIBRARY_SRCS})
 
 add_library( testlibs
@@ -67,7 +69,7 @@ add_library( testlibs
 
 
 add_executable(newLayerTest ${PROJECT_SOURCE_DIR}/main.cpp )
-target_link_libraries(newLayerTest testlibs  libpico-cnn ${LINK_LIBS} )
+target_link_libraries(newLayerTest testlibs  libai-cnn ${LINK_LIBS} )
 
 # removes pgm and float files
 add_custom_target(remove_output_data

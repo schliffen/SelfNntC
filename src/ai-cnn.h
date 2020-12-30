@@ -1,12 +1,12 @@
 /** 
  * @brief provides all includes to construct a CNN
  *
- * @author Konstantin Luebeck (University of Tuebingen, Chair for Embedded Systems)
- * @author Alexander Jung (University of Tuebingen, Chair for Embedded Systems)
+ *
+ *
  */
 
-#ifndef PICO_CNN_H
-#define PICO_CNN_H
+#ifndef AI_CNN_H
+#define AI_CNN_H
 
 #include "parameters.h"
 
@@ -16,7 +16,7 @@
 #include "layers/fully_connected.h"
 #include "layers/batch_normalization.h"
 #include "layers/concatenate.h"
-
+#include "layers/math_operations.h"
 #include "io/read_binary_weights.h"
 #include "io/read_binary_reference_data.h"
 #include "io/read_pgm.h"
@@ -43,4 +43,4 @@
 #include <stdio.h>
 #endif
 
-#endif // PICO_CNN_H
+#endif // AI_CNN_H

@@ -1,1 +1,1 @@
-/usr/bin/g++-7  -g   CMakeFiles/SelfNntC.dir/main.cpp.o  -o SelfNntC 
+/usr/bin/c++  -g   CMakeFiles/SelfNntC.dir/main.cpp.o  -o SelfNntC 

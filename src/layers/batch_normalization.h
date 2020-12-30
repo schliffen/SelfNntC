@@ -1,11 +1,11 @@
 /**
  * @brief contains batch normalization operation
  *
- * @author Alexander Jung (University of Tuebingen, Chair for Embedded Systems)
+ * @author Ali
  */
 
-#ifndef PICO_CNN_BATCH_NORMALIZATION_H
-#define PICO_CNN_BATCH_NORMALIZATION_H
+#ifndef AI_CNN_BATCH_NORMALIZATION_H
+#define AI_CNN_BATCH_NORMALIZATION_H
 
 #include "../parameters.h"
 #include <stdint.h>
@@ -29,4 +29,8 @@ void batch_normalization_naive(const fp_t* input_channel, const uint16_t height,
                                fp_t* output_channel, const fp_t gamma, const fp_t beta, const fp_t mean,
                                const fp_t variance, const fp_t epsilon);
 
-#endif //PICO_CNN_BATCH_NORMALIZATION_H
+void batch_normalization_naive_1d(const fp_t* input_channel, fp_t * output_channel, const fp_t gamma, const fp_t beta, const fp_t mean,
+                                  const fp_t variance, const fp_t epsilon);
+
+
+#endif //AI_CNN_BATCH_NORMALIZATION_H

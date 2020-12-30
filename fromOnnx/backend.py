@@ -139,7 +139,7 @@ class BackendRep(backend_base.BackendRep):
         :return:
         """
 
-        ops_to_ignore = ['Reshape', 'Mul']
+        ops_to_ignore = ['Reshape', 'Mul' ]
 
         buffers_written = []
 
@@ -281,6 +281,8 @@ class BackendRep(backend_base.BackendRep):
 
         ops_to_ignore = ['Reshape', 'Mul']
 
+        # ops_to_ignore_shape = ['ReduceL2']
+
         buffers_allocated = []
 
         initialization_header = "#ifndef NETWORK_INITIALIZATION_H\n"
@@ -354,6 +356,8 @@ class BackendRep(backend_base.BackendRep):
 
                     buffer = memory_manager.get_buffer(graph, input)
 
+                    # buffer.shape  = (1,1) if len( buffer.shape) ==0 else buffer.shape
+
                     initialization_header += "// " + str(buffer.shape) + "\n"
                     data_type = "fp_t "
                     for i in range(buffer.buffer_depth):
@@ -374,6 +378,10 @@ class BackendRep(backend_base.BackendRep):
             initialization_code += "// Outputs\n"
             for num, output in enumerate(node.outputs):
                 buffer = memory_manager.get_buffer(graph, output)
+
+                # some operators have not shape (cause are scalar) e.g. norm
+
+                # buffer.shape  = (1,1) if len( buffer.shape) ==0 else buffer.shape
 
                 initialization_header += "// " + str(buffer.shape) + "\n"
 
@@ -539,9 +547,20 @@ class BackendRep(backend_base.BackendRep):
             elif res.shape is not None:
                 graph.shape_dict[var] = res.shape
 
+
+
         print("Inference graph:")
-        for node in graph.nodes:
+        for indx, node in enumerate(graph.nodes):
             inputs = node.inputs
+
+            # revising layer names in case it was loss during the prev processes
+            if node.op_type == "BatchNormalization":
+                for inp in inputs:
+                    if not inp in node.input_tensors.keys():
+                        if len(graph.shape_dict[inp]) == 2:
+                            graph.nodes[indx].op_type = "BatchNormalization1d"
+
+            # printing the network
             input_shapes = (str(graph.shape_dict[i]) for i in node.inputs if i in graph.shape_dict)
             outputs = node.outputs
             output_shapes = (str(graph.shape_dict[o]) for o in node.outputs if o in graph.shape_dict)

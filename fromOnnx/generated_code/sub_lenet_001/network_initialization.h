@@ -16,14 +16,16 @@ fp_t **buffer_conv_weight;
 fp_t *buffer_conv_bias;
 // Outputs
 // (1, 6, 108, 108)
-fp_t **buffer_3;
+fp_t **buffer_4;
 
 
-// Layer: Relu_1, Operation: Relu
+// Layer: PRelu_1, Operation: PRelu
 // Inputs
+// (1, 1, 1)
+fp_t **buffer_15;
 // Outputs
 // (1, 6, 108, 108)
-fp_t **buffer_4;
+fp_t **buffer_6;
 
 
 // Layer: Reshape_7, Operation: Reshape

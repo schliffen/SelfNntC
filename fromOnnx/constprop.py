@@ -187,6 +187,11 @@ def constant_propagation(graph):
                     input_states.append(ConstPropState(None, tensor_shape))
                 else:
                     input_states.append(state_dict[input])
+                    #
+                    if node.op_type == "BatchNormalization":
+                        if len(state_dict[node.inputs[0]].shape) ==2:
+                            node.op_type == "BatchNormalization1d"
+
             outputs = const_impls[node.op_type](node, input_states)
 
             changed = False
@@ -194,6 +199,9 @@ def constant_propagation(graph):
                 if state_dict[output] != outputs[output]:
                     state_dict[output] = outputs[output]
                     changed = True
+
+
+
         elif node.op_type == 'Shape':
             input = node.inputs[0]
             input_value, input_shape = state_dict[input]
@@ -374,7 +382,7 @@ def constant_propagation(graph):
             # raise Exception ("ConstProp: Unhandled op {}".format(node.op_type))
             print("ConstProp: Unhandled op {} (layer: {}) using shape "
                   "information from onnx shape_dict".format(node.op_type, node.name))
-            
+
             changed = False
             for o in node.outputs:
                 out = ConstPropState(None, None)

@@ -517,9 +517,9 @@ class PRelu(BaseLayer):
     """
     Parametric Rectified linear unit activation function.
     """
-    name = "alCNNRelu"
+    name = "alCNNPRelu"
     operator = "PRelu"
-    template_file = "acnn_prelu.c"
+    template_file = "ai_cnn_prelu.c"
 
     @classmethod
     def create(cls, node, graph, memory_manager):
@@ -531,16 +531,34 @@ class PRelu(BaseLayer):
         :return:
         """
         print("generating prelu layer")
+        slop_tensor = node.input_tensors
 
-        input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
+        input_buffers = [memory_manager.get_buffer(graph, id) for id in node.inputs]
         output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
 
-        input_shape = input_buffer.shape
+
+        # processing the slope weight
+        #
+        for i, item in enumerate(input_buffers):
+            if item.id in slop_tensor.keys():
+                kernel_buffer = input_buffers[i]
+            else:
+                input_shape = input_buffers[i].shape
+                input_buffer = input_buffers[i]
+
+        # if len(slop_weight.shape) == 3:
+        #     slop_weight = slop_weight[0][0][0]
+        # elif len(slop_weight.shape) == 2:
+        #     slop_weight = slop_weight[0][0]
+        # elif len(slop_weight.shape) == 1:
+        #     slop_weight = slop_weight[0]
+        # processing the input tensor
+
 
         if len(input_shape) == 2:
-            num_input_channels = 1
-            input_height = input_shape[0]
-            input_width = input_shape[1]
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = 1
         elif len(input_shape) == 3:
             num_input_channels = input_shape[1]
             input_height = 1
@@ -560,6 +578,7 @@ class PRelu(BaseLayer):
         operation.attributes['input_height'] = input_height
         operation.attributes['input_width'] = input_width
         operation.attributes['output_buffer'] = output_buffer
+        operation.attributes['kernel_buffer'] = kernel_buffer
 
         return operation
 
@@ -586,10 +605,17 @@ class BatchNorm(BaseLayer):
         output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
 
         input_shape = input_buffer.shape
-        num_input_channels = input_shape[1]
-        input_height = input_shape[2]
-        input_width = 1
+        if len(input_shape) == 2:
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = 1
+        elif len(input_shape) == 3:
+            num_input_channels = input_shape[1]
+            input_height = input_shape[2]
+            input_width = 1
         if len(input_shape) >= 4:
+            num_input_channels = input_shape[1]
+            input_height = input_shape[2]
             input_width = input_shape[3]
 
         operation = cls(node, graph)
@@ -603,11 +629,159 @@ class BatchNorm(BaseLayer):
         operation.attributes['mean_buffer'] = mean_buffer
         operation.attributes['variance_buffer'] = variance_buffer
         operation.attributes['eps'] = attrs['epsilon']
+        # operation.attributes['momentum'] = attrs['momentum'] # momentum is used during training for calculating moving average and not used here
 
         return operation
 
 
 OperationRegistry.register(BatchNorm)
+
+
+class BatchNorm_1d(BaseLayer):
+
+    name = "aiCNNBatchNorm1d"
+    operator = "BatchNormalization1d"
+    template_file = "ai_cnn_batchnorm_1d.c"
+
+    @classmethod
+    def create(cls, node, graph, memory_manager):
+        attrs = node.attrs
+
+        input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
+        gamma_buffer = memory_manager.get_buffer(graph, node.inputs[1])
+        bias_buffer = memory_manager.get_buffer(graph, node.inputs[2])
+        mean_buffer = memory_manager.get_buffer(graph, node.inputs[3])
+        variance_buffer = memory_manager.get_buffer(graph, node.inputs[4])
+
+        output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
+
+        input_shape = input_buffer.shape
+        if len(input_shape) == 2:
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = 1
+        elif len(input_shape) == 3:
+            num_input_channels = input_shape[1]
+            input_height = input_shape[2]
+            input_width = 1
+        if len(input_shape) >= 4:
+            num_input_channels = input_shape[1]
+            input_height = input_shape[2]
+            input_width = input_shape[3]
+
+        operation = cls(node, graph)
+        operation.attributes['num_input_channels'] = num_input_channels
+        operation.attributes['input_buffer'] = input_buffer
+        operation.attributes['input_height'] = input_height
+        operation.attributes['input_width'] = input_width
+        operation.attributes['output_buffer'] = output_buffer
+        operation.attributes['gamma_buffer'] = gamma_buffer
+        operation.attributes['bias_buffer'] = bias_buffer
+        operation.attributes['mean_buffer'] = mean_buffer
+        operation.attributes['variance_buffer'] = variance_buffer
+        operation.attributes['eps'] = attrs['epsilon']
+        # operation.attributes['momentum'] = attrs['momentum'] # momentum is used during training for calculating moving average and not used here
+
+        return operation
+
+
+OperationRegistry.register(BatchNorm_1d)
+
+
+class Norm_l2(BaseLayer):
+    name = "aiCNNNorm"
+    operator = "ReduceL2"
+    template_file = "ai_cnn_norm_l2.c"
+
+    @classmethod
+    def create(cls, node, graph, memory_manager):
+
+        input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
+        output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
+        input_shape = input_buffer.shape
+
+        if len(input_shape) == 2:
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = 1
+        elif len(input_shape) == 3:
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = input_shape[2]
+        elif len(input_shape) == 4:
+            num_input_channels = input_shape[1]
+            input_height = input_shape[2]
+            input_width = input_shape[3]
+        else:
+            print("ERROR: Unsupported input shape for prelu layer: {}".format(input_shape))
+            return None
+
+        operation = cls(node, graph)
+
+        operation.attributes['num_input_channels'] = num_input_channels
+        operation.attributes['input_buffer'] = input_buffer
+        operation.attributes['input_height'] = input_height
+        operation.attributes['input_width'] = input_width
+        operation.attributes['output_buffer'] = output_buffer
+        operation.attributes['parameter'] = 2
+
+
+        return operation
+
+OperationRegistry.register(Norm_l2)
+
+class div_by_scalar(BaseLayer):
+    name = "aiCNNdiv_by_scalar"
+    operator = "Div"
+    template_file = "ai_cnn_div_by_scalar.c"
+
+    @classmethod
+    def create(cls, node, graph, memory_manager):
+
+
+        input_buffers = [memory_manager.get_buffer(graph, id) for id in node.inputs]
+        output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
+
+
+        # processing the slope weight
+        #
+        for i, item in enumerate(input_buffers):
+            if len(item.shape) ==0:
+                denomenator = input_buffers[i]
+            else:
+                input_shape = input_buffers[i].shape
+                input_buffer = input_buffers[i]
+
+
+        if len(input_shape) <= 2:
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = 1
+        elif len(input_shape) == 3:
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = input_shape[2]
+        elif len(input_shape) == 4:
+            num_input_channels = input_shape[1]
+            input_height = input_shape[2]
+            input_width = input_shape[3]
+        else:
+            print("ERROR: Unsupported input shape for Div layer: {}".format(input_shape))
+            return None
+
+        operation = cls(node, graph)
+
+        operation.attributes['num_input_channels'] = num_input_channels
+        operation.attributes['input_buffer'] = input_buffer
+        operation.attributes['input_height'] = input_height
+        operation.attributes['input_width'] = input_width
+        operation.attributes['output_buffer'] = output_buffer
+        operation.attributes['denominator'] = denomenator
+
+
+        return operation
+
+OperationRegistry.register(div_by_scalar)
 
 
 class Clip(BaseLayer):

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/CCppCodes.dir/main.cpp.o  -o CCppCodes 

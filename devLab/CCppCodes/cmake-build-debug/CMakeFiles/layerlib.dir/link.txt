@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC -g  -shared -Wl,-soname,liblayerlib.so -o liblayerlib.so CMakeFiles/layerlib.dir/layers/batch_normalization.c.o CMakeFiles/layerlib.dir/layers/math_operations.c.o CMakeFiles/layerlib.dir/testsrc/utility_functions.c.o 

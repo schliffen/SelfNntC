@@ -11,16 +11,22 @@ free(buffer_conv_weight);
 free(buffer_conv_bias);
 
 for(uint32_t i = 0; i < 6; i++){
-    free(buffer_3[i]);
-}
-
-free(buffer_3);
-
-for(uint32_t i = 0; i < 6; i++){
     free(buffer_4[i]);
 }
 
 free(buffer_4);
+
+for(uint32_t i = 0; i < 1; i++){
+    free(buffer_15[i]);
+}
+
+free(buffer_15);
+
+for(uint32_t i = 0; i < 6; i++){
+    free(buffer_6[i]);
+}
+
+free(buffer_6);
 
 free(output_output);
 
