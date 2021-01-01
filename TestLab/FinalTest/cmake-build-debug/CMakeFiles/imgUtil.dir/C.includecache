@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ali/Projlab/Nist/TestLab/ai-cnn/parameters.h
+
+/home/ali/Projlab/Nist/TestLab/image_tools/read_binary_ref.c
+read_binary_ref.h
+/home/ali/Projlab/Nist/TestLab/image_tools/read_binary_ref.h
+
+/home/ali/Projlab/Nist/TestLab/image_tools/read_binary_ref.h
+../ai-cnn/parameters.h
+/home/ali/Projlab/Nist/TestLab/ai-cnn/parameters.h
+stdint.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+

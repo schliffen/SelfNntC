@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ali/Projlab/Nist/TestLab/image_tools/imgUtils.cpp
+imgUtils.h
+/home/ali/Projlab/Nist/TestLab/image_tools/imgUtils.h
+
+/home/ali/Projlab/Nist/TestLab/image_tools/imgUtils.h
+iostream
+-
+algorithm
+-
+limits
+-
+fstream
+-
+cstdint
+-
+memory
+-
+string
+-
+utility
+-
+vector
+-
+math.h
+-
+
