@@ -34,6 +34,10 @@ CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o: ../ai-cnn/layers/fully_
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o: ../ai-cnn/layers/fully_connected.h
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o: ../ai-cnn/parameters.h
 
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o: ../ai-cnn/layers/math_operations.c
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o: ../ai-cnn/layers/math_operations.h
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o: ../ai-cnn/parameters.h
+
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o: ../ai-cnn/layers/pooling.c
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o: ../ai-cnn/layers/pooling.h
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o: ../ai-cnn/parameters.h

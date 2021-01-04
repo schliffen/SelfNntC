@@ -63,10 +63,10 @@ RM = /home/ali/clion-20/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/TestLab
+CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/TestLab/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/imgUtil.dir/depend.make
@@ -79,29 +79,29 @@ include CMakeFiles/imgUtil.dir/flags.make
 
 CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.o: CMakeFiles/imgUtil.dir/flags.make
 CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.o: ../image_tools/imgUtils.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.o -c /home/ali/Projlab/Nist/TestLab/image_tools/imgUtils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.o -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/imgUtils.cpp
 
 CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ali/Projlab/Nist/TestLab/image_tools/imgUtils.cpp > CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/imgUtils.cpp > CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.i
 
 CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ali/Projlab/Nist/TestLab/image_tools/imgUtils.cpp -o CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/imgUtils.cpp -o CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.s
 
 CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.o: CMakeFiles/imgUtil.dir/flags.make
 CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.o: ../image_tools/read_binary_ref.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.o   -c /home/ali/Projlab/Nist/TestLab/image_tools/read_binary_ref.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/read_binary_ref.c
 
 CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/image_tools/read_binary_ref.c > CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/read_binary_ref.c > CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.i
 
 CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/image_tools/read_binary_ref.c -o CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/read_binary_ref.c -o CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.s
 
 # Object files for target imgUtil
 imgUtil_OBJECTS = \
@@ -115,7 +115,7 @@ lib/libimgUtil.so: CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.o
 lib/libimgUtil.so: CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.o
 lib/libimgUtil.so: CMakeFiles/imgUtil.dir/build.make
 lib/libimgUtil.so: CMakeFiles/imgUtil.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library lib/libimgUtil.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library lib/libimgUtil.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/imgUtil.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -128,6 +128,6 @@ CMakeFiles/imgUtil.dir/clean:
 .PHONY : CMakeFiles/imgUtil.dir/clean
 
 CMakeFiles/imgUtil.dir/depend:
-	cd /home/ali/Projlab/Nist/TestLab/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/Projlab/Nist/TestLab /home/ali/Projlab/Nist/TestLab /home/ali/Projlab/Nist/TestLab/cmake-build-debug /home/ali/Projlab/Nist/TestLab/cmake-build-debug /home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles/imgUtil.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/imgUtil.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/imgUtil.dir/depend
 

@@ -64,18 +64,16 @@ RM = /home/ali/clion-20/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC
+CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC/devLab
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/devLab/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/testlibs.dir/all
-all: CMakeFiles/libai-cnn.dir/all
-all: CMakeFiles/newLayerTest.dir/all
+all: CMakeFiles/devLab.dir/all
 
 .PHONY : all
 
@@ -85,121 +83,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/testlibs.dir/clean
-clean: CMakeFiles/libai-cnn.dir/clean
-clean: CMakeFiles/newLayerTest.dir/clean
-clean: CMakeFiles/remove_output_data.dir/clean
+clean: CMakeFiles/devLab.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/testlibs.dir
+# Target rules for target CMakeFiles/devLab.dir
 
 # All Build rule for target.
-CMakeFiles/testlibs.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=20,21,22,23 "Built target testlibs"
-.PHONY : CMakeFiles/testlibs.dir/all
+CMakeFiles/devLab.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/devLab.dir/build.make CMakeFiles/devLab.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/devLab.dir/build.make CMakeFiles/devLab.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ali/Projlab/Nist/SelfNntC/devLab/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target devLab"
+.PHONY : CMakeFiles/devLab.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/testlibs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/testlibs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/testlibs.dir/rule
+CMakeFiles/devLab.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/devLab/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/devLab.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/devLab/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/devLab.dir/rule
 
 # Convenience name for target.
-testlibs: CMakeFiles/testlibs.dir/rule
+devLab: CMakeFiles/devLab.dir/rule
 
-.PHONY : testlibs
-
-# clean rule for target.
-CMakeFiles/testlibs.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/clean
-.PHONY : CMakeFiles/testlibs.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/libai-cnn.dir
-
-# All Build rule for target.
-CMakeFiles/libai-cnn.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target libai-cnn"
-.PHONY : CMakeFiles/libai-cnn.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/libai-cnn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles 17
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/libai-cnn.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/libai-cnn.dir/rule
-
-# Convenience name for target.
-libai-cnn: CMakeFiles/libai-cnn.dir/rule
-
-.PHONY : libai-cnn
+.PHONY : devLab
 
 # clean rule for target.
-CMakeFiles/libai-cnn.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/clean
-.PHONY : CMakeFiles/libai-cnn.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/newLayerTest.dir
-
-# All Build rule for target.
-CMakeFiles/newLayerTest.dir/all: CMakeFiles/testlibs.dir/all
-CMakeFiles/newLayerTest.dir/all: CMakeFiles/libai-cnn.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/newLayerTest.dir/build.make CMakeFiles/newLayerTest.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/newLayerTest.dir/build.make CMakeFiles/newLayerTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num=18,19 "Built target newLayerTest"
-.PHONY : CMakeFiles/newLayerTest.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/newLayerTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles 23
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/newLayerTest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/newLayerTest.dir/rule
-
-# Convenience name for target.
-newLayerTest: CMakeFiles/newLayerTest.dir/rule
-
-.PHONY : newLayerTest
-
-# clean rule for target.
-CMakeFiles/newLayerTest.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/newLayerTest.dir/build.make CMakeFiles/newLayerTest.dir/clean
-.PHONY : CMakeFiles/newLayerTest.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/remove_output_data.dir
-
-# All Build rule for target.
-CMakeFiles/remove_output_data.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/remove_output_data.dir/build.make CMakeFiles/remove_output_data.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/remove_output_data.dir/build.make CMakeFiles/remove_output_data.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles --progress-num= "Built target remove_output_data"
-.PHONY : CMakeFiles/remove_output_data.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/remove_output_data.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/remove_output_data.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/remove_output_data.dir/rule
-
-# Convenience name for target.
-remove_output_data: CMakeFiles/remove_output_data.dir/rule
-
-.PHONY : remove_output_data
-
-# clean rule for target.
-CMakeFiles/remove_output_data.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/remove_output_data.dir/build.make CMakeFiles/remove_output_data.dir/clean
-.PHONY : CMakeFiles/remove_output_data.dir/clean
+CMakeFiles/devLab.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/devLab.dir/build.make CMakeFiles/devLab.dir/clean
+.PHONY : CMakeFiles/devLab.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

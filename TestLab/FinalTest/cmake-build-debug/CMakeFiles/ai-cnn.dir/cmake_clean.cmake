@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o"
   "CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.o"
   "CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o"
+  "CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o"
   "CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o"
   "CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o"
   "lib/libai-cnn.pdb"

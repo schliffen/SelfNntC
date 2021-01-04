@@ -63,10 +63,10 @@ RM = /home/ali/clion-20/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/TestLab
+CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/TestLab/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ai-cnn.dir/depend.make
@@ -79,133 +79,146 @@ include CMakeFiles/ai-cnn.dir/flags.make
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.o: ../ai-cnn/layers/convolution.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.o   -c /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/convolution.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/convolution.c
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/convolution.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/convolution.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.i
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/convolution.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/convolution.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.s
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o: ../ai-cnn/layers/pooling.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o   -c /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/pooling.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/pooling.c
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/pooling.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/pooling.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.i
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/pooling.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/pooling.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.s
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.o: ../ai-cnn/layers/activation_function.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.o   -c /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/activation_function.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/activation_function.c
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/activation_function.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/activation_function.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.i
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/activation_function.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/activation_function.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.s
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o: ../ai-cnn/layers/fully_connected.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o   -c /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/fully_connected.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/fully_connected.c
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/fully_connected.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/fully_connected.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.i
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/fully_connected.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/fully_connected.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.s
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o: ../ai-cnn/layers/concatenate.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o   -c /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/concatenate.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/concatenate.c
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/concatenate.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/concatenate.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.i
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/concatenate.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/concatenate.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.s
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.o: ../ai-cnn/layers/batch_normalization.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.o   -c /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/batch_normalization.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/batch_normalization.c
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/batch_normalization.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/batch_normalization.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.i
 
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/ai-cnn/layers/batch_normalization.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/batch_normalization.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.s
+
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o: CMakeFiles/ai-cnn.dir/flags.make
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o: ../ai-cnn/layers/math_operations.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/math_operations.c
+
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/math_operations.c > CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.i
+
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/math_operations.c -o CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.s
 
 CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.o: ../ai-cnn/io/read_binary_reference_data.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.o   -c /home/ali/Projlab/Nist/TestLab/ai-cnn/io/read_binary_reference_data.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/read_binary_reference_data.c
 
 CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/ai-cnn/io/read_binary_reference_data.c > CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/read_binary_reference_data.c > CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.i
 
 CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/ai-cnn/io/read_binary_reference_data.c -o CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/read_binary_reference_data.c -o CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.s
 
 CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.o: ../ai-cnn/io/read_binary_weights.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.o   -c /home/ali/Projlab/Nist/TestLab/ai-cnn/io/read_binary_weights.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/read_binary_weights.c
 
 CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/ai-cnn/io/read_binary_weights.c > CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/read_binary_weights.c > CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.i
 
 CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/ai-cnn/io/read_binary_weights.c -o CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/read_binary_weights.c -o CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.s
 
 CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.o: ../ai-cnn/io/write_float.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.o   -c /home/ali/Projlab/Nist/TestLab/ai-cnn/io/write_float.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/write_float.c
 
 CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/ai-cnn/io/write_float.c > CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/write_float.c > CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.i
 
 CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/ai-cnn/io/write_float.c -o CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/write_float.c -o CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.s
 
 CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o: ../ai-cnn/utils.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o   -c /home/ali/Projlab/Nist/TestLab/ai-cnn/utils.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/utils.c
 
 CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/ai-cnn/utils.c > CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/utils.c > CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.i
 
 CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/ai-cnn/utils.c -o CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/utils.c -o CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.s
 
 # Object files for target ai-cnn
 ai__cnn_OBJECTS = \
@@ -215,6 +228,7 @@ ai__cnn_OBJECTS = \
 "CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o" \
 "CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o" \
 "CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.o" \
+"CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o" \
 "CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.o" \
 "CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.o" \
 "CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.o" \
@@ -229,13 +243,14 @@ lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.o
+lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/build.make
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking C shared library lib/libai-cnn.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking C shared library lib/libai-cnn.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ai-cnn.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -248,6 +263,6 @@ CMakeFiles/ai-cnn.dir/clean:
 .PHONY : CMakeFiles/ai-cnn.dir/clean
 
 CMakeFiles/ai-cnn.dir/depend:
-	cd /home/ali/Projlab/Nist/TestLab/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/Projlab/Nist/TestLab /home/ali/Projlab/Nist/TestLab /home/ali/Projlab/Nist/TestLab/cmake-build-debug /home/ali/Projlab/Nist/TestLab/cmake-build-debug /home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles/ai-cnn.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ai-cnn.dir/depend
 

@@ -10,10 +10,10 @@
 #include <fstream>
 
 extern "C" {
-#include "sub_mobilefacenet_1/network.h"
-#include "sub_mobilefacenet_1/network_initialization.h"
-#include "sub_mobilefacenet_1/network_cleanup.h"
-#include "ai-cnn/ai-cnn.h"
+#include "model_to_Test/network.h"
+#include "model_to_Test/network_initialization.h"
+#include "model_to_Test/network_cleanup.h"
+//#include "ai-cnn/ai-cnn.h"
 #include "image_tools/read_binary_ref.h"
 //#include "ai-cnn/utils.h"
 }
@@ -41,7 +41,7 @@ int main() {
     inp_h = 112;
     inp_ch = 3; // working on color images
     int outputSize = 512;
-    char weights_path[1024] = "/home/ali/Projlab/Nist/SelfNntC/fromOnnx/generated_code/sub_mobilefacenet_1/network.weights.bin";
+    char weights_path[1024] = "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network.weights.bin";
     char reference_output_path[1024] = "/home/ali/Projlab/Nist/ConversionOutputs/reference_output.bin";
     char reference_input_path[1024] = "/home/ali/Projlab/Nist/ConversionOutputs/refInput_112_112.bin";
 

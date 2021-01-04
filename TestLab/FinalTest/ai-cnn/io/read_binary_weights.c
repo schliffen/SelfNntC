@@ -35,6 +35,7 @@ int32_t read_binary_weights(const char* path_to_weights_file, fp_t**** kernels, 
             }
             buffer[i] = c;
         }
+
         buffer[i-1] = '\0'; //terminate string correctly
 
         DEBUG_MSG("%s\n", buffer);

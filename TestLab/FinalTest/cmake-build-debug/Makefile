@@ -68,10 +68,10 @@ RM = /home/ali/clion-20/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/TestLab
+CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/TestLab/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles /home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -398,6 +398,33 @@ ai-cnn/layers/fully_connected.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.s
 .PHONY : ai-cnn/layers/fully_connected.c.s
 
+ai-cnn/layers/math_operations.o: ai-cnn/layers/math_operations.c.o
+
+.PHONY : ai-cnn/layers/math_operations.o
+
+# target to build an object file
+ai-cnn/layers/math_operations.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o
+.PHONY : ai-cnn/layers/math_operations.c.o
+
+ai-cnn/layers/math_operations.i: ai-cnn/layers/math_operations.c.i
+
+.PHONY : ai-cnn/layers/math_operations.i
+
+# target to preprocess a source file
+ai-cnn/layers/math_operations.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.i
+.PHONY : ai-cnn/layers/math_operations.c.i
+
+ai-cnn/layers/math_operations.s: ai-cnn/layers/math_operations.c.s
+
+.PHONY : ai-cnn/layers/math_operations.s
+
+# target to generate assembly for a file
+ai-cnn/layers/math_operations.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.s
+.PHONY : ai-cnn/layers/math_operations.c.s
+
 ai-cnn/layers/pooling.o: ai-cnn/layers/pooling.c.o
 
 .PHONY : ai-cnn/layers/pooling.o
@@ -533,86 +560,86 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sublenet.dir/build.make CMakeFiles/sublenet.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-sub_mobilefacenet_1/network.o: sub_mobilefacenet_1/network.c.o
+model_to_Test/network.o: model_to_Test/network.c.o
 
-.PHONY : sub_mobilefacenet_1/network.o
-
-# target to build an object file
-sub_mobilefacenet_1/network.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.o
-.PHONY : sub_mobilefacenet_1/network.c.o
-
-sub_mobilefacenet_1/network.i: sub_mobilefacenet_1/network.c.i
-
-.PHONY : sub_mobilefacenet_1/network.i
-
-# target to preprocess a source file
-sub_mobilefacenet_1/network.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.i
-.PHONY : sub_mobilefacenet_1/network.c.i
-
-sub_mobilefacenet_1/network.s: sub_mobilefacenet_1/network.c.s
-
-.PHONY : sub_mobilefacenet_1/network.s
-
-# target to generate assembly for a file
-sub_mobilefacenet_1/network.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.s
-.PHONY : sub_mobilefacenet_1/network.c.s
-
-sub_mobilefacenet_1/network_cleanup.o: sub_mobilefacenet_1/network_cleanup.c.o
-
-.PHONY : sub_mobilefacenet_1/network_cleanup.o
+.PHONY : model_to_Test/network.o
 
 # target to build an object file
-sub_mobilefacenet_1/network_cleanup.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.o
-.PHONY : sub_mobilefacenet_1/network_cleanup.c.o
+model_to_Test/network.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/model_to_Test/network.c.o
+.PHONY : model_to_Test/network.c.o
 
-sub_mobilefacenet_1/network_cleanup.i: sub_mobilefacenet_1/network_cleanup.c.i
+model_to_Test/network.i: model_to_Test/network.c.i
 
-.PHONY : sub_mobilefacenet_1/network_cleanup.i
+.PHONY : model_to_Test/network.i
 
 # target to preprocess a source file
-sub_mobilefacenet_1/network_cleanup.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.i
-.PHONY : sub_mobilefacenet_1/network_cleanup.c.i
+model_to_Test/network.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/model_to_Test/network.c.i
+.PHONY : model_to_Test/network.c.i
 
-sub_mobilefacenet_1/network_cleanup.s: sub_mobilefacenet_1/network_cleanup.c.s
+model_to_Test/network.s: model_to_Test/network.c.s
 
-.PHONY : sub_mobilefacenet_1/network_cleanup.s
+.PHONY : model_to_Test/network.s
 
 # target to generate assembly for a file
-sub_mobilefacenet_1/network_cleanup.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.s
-.PHONY : sub_mobilefacenet_1/network_cleanup.c.s
+model_to_Test/network.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/model_to_Test/network.c.s
+.PHONY : model_to_Test/network.c.s
 
-sub_mobilefacenet_1/network_initialization.o: sub_mobilefacenet_1/network_initialization.c.o
+model_to_Test/network_cleanup.o: model_to_Test/network_cleanup.c.o
 
-.PHONY : sub_mobilefacenet_1/network_initialization.o
+.PHONY : model_to_Test/network_cleanup.o
 
 # target to build an object file
-sub_mobilefacenet_1/network_initialization.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.o
-.PHONY : sub_mobilefacenet_1/network_initialization.c.o
+model_to_Test/network_cleanup.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.o
+.PHONY : model_to_Test/network_cleanup.c.o
 
-sub_mobilefacenet_1/network_initialization.i: sub_mobilefacenet_1/network_initialization.c.i
+model_to_Test/network_cleanup.i: model_to_Test/network_cleanup.c.i
 
-.PHONY : sub_mobilefacenet_1/network_initialization.i
+.PHONY : model_to_Test/network_cleanup.i
 
 # target to preprocess a source file
-sub_mobilefacenet_1/network_initialization.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.i
-.PHONY : sub_mobilefacenet_1/network_initialization.c.i
+model_to_Test/network_cleanup.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.i
+.PHONY : model_to_Test/network_cleanup.c.i
 
-sub_mobilefacenet_1/network_initialization.s: sub_mobilefacenet_1/network_initialization.c.s
+model_to_Test/network_cleanup.s: model_to_Test/network_cleanup.c.s
 
-.PHONY : sub_mobilefacenet_1/network_initialization.s
+.PHONY : model_to_Test/network_cleanup.s
 
 # target to generate assembly for a file
-sub_mobilefacenet_1/network_initialization.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.s
-.PHONY : sub_mobilefacenet_1/network_initialization.c.s
+model_to_Test/network_cleanup.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.s
+.PHONY : model_to_Test/network_cleanup.c.s
+
+model_to_Test/network_initialization.o: model_to_Test/network_initialization.c.o
+
+.PHONY : model_to_Test/network_initialization.o
+
+# target to build an object file
+model_to_Test/network_initialization.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.o
+.PHONY : model_to_Test/network_initialization.c.o
+
+model_to_Test/network_initialization.i: model_to_Test/network_initialization.c.i
+
+.PHONY : model_to_Test/network_initialization.i
+
+# target to preprocess a source file
+model_to_Test/network_initialization.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.i
+.PHONY : model_to_Test/network_initialization.c.i
+
+model_to_Test/network_initialization.s: model_to_Test/network_initialization.c.s
+
+.PHONY : model_to_Test/network_initialization.s
+
+# target to generate assembly for a file
+model_to_Test/network_initialization.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/netlib.dir/build.make CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.s
+.PHONY : model_to_Test/network_initialization.c.s
 
 # Help Target
 help:
@@ -650,6 +677,9 @@ help:
 	@echo "... ai-cnn/layers/fully_connected.o"
 	@echo "... ai-cnn/layers/fully_connected.i"
 	@echo "... ai-cnn/layers/fully_connected.s"
+	@echo "... ai-cnn/layers/math_operations.o"
+	@echo "... ai-cnn/layers/math_operations.i"
+	@echo "... ai-cnn/layers/math_operations.s"
 	@echo "... ai-cnn/layers/pooling.o"
 	@echo "... ai-cnn/layers/pooling.i"
 	@echo "... ai-cnn/layers/pooling.s"
@@ -665,15 +695,15 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... sub_mobilefacenet_1/network.o"
-	@echo "... sub_mobilefacenet_1/network.i"
-	@echo "... sub_mobilefacenet_1/network.s"
-	@echo "... sub_mobilefacenet_1/network_cleanup.o"
-	@echo "... sub_mobilefacenet_1/network_cleanup.i"
-	@echo "... sub_mobilefacenet_1/network_cleanup.s"
-	@echo "... sub_mobilefacenet_1/network_initialization.o"
-	@echo "... sub_mobilefacenet_1/network_initialization.i"
-	@echo "... sub_mobilefacenet_1/network_initialization.s"
+	@echo "... model_to_Test/network.o"
+	@echo "... model_to_Test/network.i"
+	@echo "... model_to_Test/network.s"
+	@echo "... model_to_Test/network_cleanup.o"
+	@echo "... model_to_Test/network_cleanup.i"
+	@echo "... model_to_Test/network_cleanup.s"
+	@echo "... model_to_Test/network_initialization.o"
+	@echo "... model_to_Test/network_initialization.i"
+	@echo "... model_to_Test/network_initialization.s"
 .PHONY : help
 
 

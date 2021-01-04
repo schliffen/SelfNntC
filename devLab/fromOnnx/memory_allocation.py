@@ -8,7 +8,7 @@ template_dir = os.path.join(base_dir, "code_templates")
 
 template_env = Environment(loader=FileSystemLoader(template_dir))
 
-__author__ = "Alexander Jung (University of Tuebingen, Chair for Embedded Systems)"
+__author__ = ""
 
 
 class BaseCode(object):
@@ -144,11 +144,11 @@ class OutputAllocation(BaseCode):
             output_width = buffer_shape[2]
             output_height = 1
 
-        elif buffer.buffer_depth==0 and len(buffer_shape) == 0: # this should be norm layer
-            num_outputs = 1
-            operation.attributes['one_dimensional'] = 1
-            output_height = 1
-            output_width = 1
+        # elif buffer.buffer_depth==0 and len(buffer_shape) == 0: # this should be norm layer
+        #     num_outputs = 1
+        #     operation.attributes['one_dimensional'] = 1
+        #     output_height = 1
+        #     output_width = 1
 
 
 

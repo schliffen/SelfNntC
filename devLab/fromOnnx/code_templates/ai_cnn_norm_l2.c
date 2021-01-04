@@ -6,5 +6,5 @@
 //&{{output_buffer.name}});
 //}
 {% else %}
-norm_naive_l2({{input_buffer.name}}, {{num_input_channels}},{{parameter}}, &{{output_buffer.name}});
+norm_naive_l2({{input_buffer.name}}, {{num_input_channels}},{{parameter}}, {{output_buffer.name}});
 {% endif %}

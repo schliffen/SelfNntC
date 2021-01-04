@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ali/Projlab/Nist/TestLab/image_tools/read_binary_ref.c" "/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/read_binary_ref.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -17,10 +17,10 @@ set(CMAKE_TARGET_DEFINITIONS_C
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../"
-  "../sub_mobilefacenet_1"
+  "../model_to_Test"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ali/Projlab/Nist/TestLab/image_tools/imgUtils.cpp" "/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/imgUtils.cpp" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -32,7 +32,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../"
-  "../sub_mobilefacenet_1"
+  "../model_to_Test"
   )
 
 # Targets to which this target links.

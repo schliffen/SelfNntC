@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -ldl -g   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ali/Projlab/Nist/TestLab -I/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1 
+CXX_INCLUDES = -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test 
 

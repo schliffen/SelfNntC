@@ -31,10 +31,13 @@ set(PICO_CNN_LIBRARY_SRCS
         ${PROJECT_SOURCE_DIR}/ai-cnn/layers/concatenate.h
         ${PROJECT_SOURCE_DIR}/ai-cnn/layers/batch_normalization.c
         ${PROJECT_SOURCE_DIR}/ai-cnn/layers/batch_normalization.h
+        ${PROJECT_SOURCE_DIR}/ai-cnn/layers/math_operations.c
+        ${PROJECT_SOURCE_DIR}/ai-cnn/layers/math_operations.h
         ${PROJECT_SOURCE_DIR}/ai-cnn//io/read_binary_reference_data.c
         ${PROJECT_SOURCE_DIR}/ai-cnn/io/read_binary_reference_data.h
         ${PROJECT_SOURCE_DIR}/ai-cnn/io/read_binary_weights.c
         ${PROJECT_SOURCE_DIR}/ai-cnn/io/read_binary_weights.h
+
         # TODO: resolve handling jpeg ..
 #        ${PROJECT_SOURCE_DIR}/ai-cnn/io/read_imagenet_labels.c
 #        ${PROJECT_SOURCE_DIR}/ai-cnn/io/read_imagenet_labels.h
@@ -65,16 +68,16 @@ add_library(imgUtil
 
 add_library( netlib
         SHARED
-        ${PROJECT_SOURCE_DIR}/sub_mobilefacenet_1/network_initialization.c
-        ${PROJECT_SOURCE_DIR}/sub_mobilefacenet_1/network_initialization.h
-        ${PROJECT_SOURCE_DIR}/sub_mobilefacenet_1/network_cleanup.c
-        ${PROJECT_SOURCE_DIR}/sub_mobilefacenet_1/network_cleanup.h
-        ${PROJECT_SOURCE_DIR}/sub_mobilefacenet_1/network.c
-        ${PROJECT_SOURCE_DIR}/sub_mobilefacenet_1/network.h
+        ${PROJECT_SOURCE_DIR}/model_to_Test/network_initialization.c
+        ${PROJECT_SOURCE_DIR}/model_to_Test/network_initialization.h
+        ${PROJECT_SOURCE_DIR}/model_to_Test/network_cleanup.c
+        ${PROJECT_SOURCE_DIR}/model_to_Test/network_cleanup.h
+        ${PROJECT_SOURCE_DIR}/model_to_Test/network.c
+        ${PROJECT_SOURCE_DIR}/model_to_Test/network.h
 )
 
 include_directories(
-        ${PROJECT_SOURCE_DIR}/sub_mobilefacenet_1
+        ${PROJECT_SOURCE_DIR}/model_to_Test
 #        ${PROJECT_SOURCE_DIR}/src
 )
 

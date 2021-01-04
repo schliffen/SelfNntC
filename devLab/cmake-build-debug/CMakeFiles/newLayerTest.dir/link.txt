@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++11 -ldl -g   CMakeFiles/newLayerTest.dir/main.cpp.o  -o lib/newLayerTest  -Wl,-rpath,/home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/lib lib/libtestlibs.so lib/liblibai-cnn.a -lm 

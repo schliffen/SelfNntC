@@ -7,7 +7,7 @@ void div_by_scalar(const fp_t *input_channel, const int32_t num_channels, const 
 
     // a division by scalar layer
     for (int i=0; i<num_channels; i++)
-        output_channel[i] = input_channel[i] / denominator;
+        output_channel[i] = input_channel[i] / *denominator;
 };
 
 void norm_naive_l2(const fp_t *input_channel, const int32_t num_channels, const int32_t parameter, fp_t* output_channel){

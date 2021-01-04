@@ -7,11 +7,11 @@ C_FLAGS = -g -fPIC
 
 C_DEFINES = -DimgUtil_EXPORTS
 
-C_INCLUDES = -I/home/ali/Projlab/Nist/TestLab -I/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1 
+C_INCLUDES = -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test 
 
 CXX_FLAGS =  -std=c++11 -ldl -g -fPIC   -std=gnu++11
 
 CXX_DEFINES = -DimgUtil_EXPORTS
 
-CXX_INCLUDES = -I/home/ali/Projlab/Nist/TestLab -I/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1 
+CXX_INCLUDES = -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test 
 

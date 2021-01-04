@@ -68,10 +68,10 @@ RM = /home/ali/clion-20/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC
+CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC/devLab
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/devLab/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/devLab/cmake-build-debug/CMakeFiles /home/ali/Projlab/Nist/SelfNntC/devLab/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/devLab/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -131,137 +131,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named testlibs
+# Target rules for targets named devLab
 
 # Build rule for target.
-testlibs: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testlibs
-.PHONY : testlibs
+devLab: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 devLab
+.PHONY : devLab
 
 # fast build rule for target.
-testlibs/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/build
-.PHONY : testlibs/fast
-
-#=============================================================================
-# Target rules for targets named libai-cnn
-
-# Build rule for target.
-libai-cnn: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libai-cnn
-.PHONY : libai-cnn
-
-# fast build rule for target.
-libai-cnn/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/build
-.PHONY : libai-cnn/fast
-
-#=============================================================================
-# Target rules for targets named newLayerTest
-
-# Build rule for target.
-newLayerTest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 newLayerTest
-.PHONY : newLayerTest
-
-# fast build rule for target.
-newLayerTest/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/newLayerTest.dir/build.make CMakeFiles/newLayerTest.dir/build
-.PHONY : newLayerTest/fast
-
-#=============================================================================
-# Target rules for targets named remove_output_data
-
-# Build rule for target.
-remove_output_data: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 remove_output_data
-.PHONY : remove_output_data
-
-# fast build rule for target.
-remove_output_data/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/remove_output_data.dir/build.make CMakeFiles/remove_output_data.dir/build
-.PHONY : remove_output_data/fast
-
-include/test_activation_function.o: include/test_activation_function.c.o
-
-.PHONY : include/test_activation_function.o
-
-# target to build an object file
-include/test_activation_function.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/include/test_activation_function.c.o
-.PHONY : include/test_activation_function.c.o
-
-include/test_activation_function.i: include/test_activation_function.c.i
-
-.PHONY : include/test_activation_function.i
-
-# target to preprocess a source file
-include/test_activation_function.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/include/test_activation_function.c.i
-.PHONY : include/test_activation_function.c.i
-
-include/test_activation_function.s: include/test_activation_function.c.s
-
-.PHONY : include/test_activation_function.s
-
-# target to generate assembly for a file
-include/test_activation_function.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/include/test_activation_function.c.s
-.PHONY : include/test_activation_function.c.s
-
-include/tutils.o: include/tutils.c.o
-
-.PHONY : include/tutils.o
-
-# target to build an object file
-include/tutils.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/include/tutils.c.o
-.PHONY : include/tutils.c.o
-
-include/tutils.i: include/tutils.c.i
-
-.PHONY : include/tutils.i
-
-# target to preprocess a source file
-include/tutils.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/include/tutils.c.i
-.PHONY : include/tutils.c.i
-
-include/tutils.s: include/tutils.c.s
-
-.PHONY : include/tutils.s
-
-# target to generate assembly for a file
-include/tutils.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/include/tutils.c.s
-.PHONY : include/tutils.c.s
-
-include/utility_functions.o: include/utility_functions.c.o
-
-.PHONY : include/utility_functions.o
-
-# target to build an object file
-include/utility_functions.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/include/utility_functions.c.o
-.PHONY : include/utility_functions.c.o
-
-include/utility_functions.i: include/utility_functions.c.i
-
-.PHONY : include/utility_functions.i
-
-# target to preprocess a source file
-include/utility_functions.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/include/utility_functions.c.i
-.PHONY : include/utility_functions.c.i
-
-include/utility_functions.s: include/utility_functions.c.s
-
-.PHONY : include/utility_functions.s
-
-# target to generate assembly for a file
-include/utility_functions.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/include/utility_functions.c.s
-.PHONY : include/utility_functions.c.s
+devLab/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/devLab.dir/build.make CMakeFiles/devLab.dir/build
+.PHONY : devLab/fast
 
 main.o: main.cpp.o
 
@@ -269,7 +149,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/newLayerTest.dir/build.make CMakeFiles/newLayerTest.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/devLab.dir/build.make CMakeFiles/devLab.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -278,7 +158,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/newLayerTest.dir/build.make CMakeFiles/newLayerTest.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/devLab.dir/build.make CMakeFiles/devLab.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -287,440 +167,8 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/newLayerTest.dir/build.make CMakeFiles/newLayerTest.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/devLab.dir/build.make CMakeFiles/devLab.dir/main.cpp.s
 .PHONY : main.cpp.s
-
-src/io/read_binary_reference_data.o: src/io/read_binary_reference_data.c.o
-
-.PHONY : src/io/read_binary_reference_data.o
-
-# target to build an object file
-src/io/read_binary_reference_data.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_binary_reference_data.c.o
-.PHONY : src/io/read_binary_reference_data.c.o
-
-src/io/read_binary_reference_data.i: src/io/read_binary_reference_data.c.i
-
-.PHONY : src/io/read_binary_reference_data.i
-
-# target to preprocess a source file
-src/io/read_binary_reference_data.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_binary_reference_data.c.i
-.PHONY : src/io/read_binary_reference_data.c.i
-
-src/io/read_binary_reference_data.s: src/io/read_binary_reference_data.c.s
-
-.PHONY : src/io/read_binary_reference_data.s
-
-# target to generate assembly for a file
-src/io/read_binary_reference_data.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_binary_reference_data.c.s
-.PHONY : src/io/read_binary_reference_data.c.s
-
-src/io/read_binary_weights.o: src/io/read_binary_weights.c.o
-
-.PHONY : src/io/read_binary_weights.o
-
-# target to build an object file
-src/io/read_binary_weights.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_binary_weights.c.o
-.PHONY : src/io/read_binary_weights.c.o
-
-src/io/read_binary_weights.i: src/io/read_binary_weights.c.i
-
-.PHONY : src/io/read_binary_weights.i
-
-# target to preprocess a source file
-src/io/read_binary_weights.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_binary_weights.c.i
-.PHONY : src/io/read_binary_weights.c.i
-
-src/io/read_binary_weights.s: src/io/read_binary_weights.c.s
-
-.PHONY : src/io/read_binary_weights.s
-
-# target to generate assembly for a file
-src/io/read_binary_weights.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_binary_weights.c.s
-.PHONY : src/io/read_binary_weights.c.s
-
-src/io/read_imagenet_labels.o: src/io/read_imagenet_labels.c.o
-
-.PHONY : src/io/read_imagenet_labels.o
-
-# target to build an object file
-src/io/read_imagenet_labels.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_imagenet_labels.c.o
-.PHONY : src/io/read_imagenet_labels.c.o
-
-src/io/read_imagenet_labels.i: src/io/read_imagenet_labels.c.i
-
-.PHONY : src/io/read_imagenet_labels.i
-
-# target to preprocess a source file
-src/io/read_imagenet_labels.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_imagenet_labels.c.i
-.PHONY : src/io/read_imagenet_labels.c.i
-
-src/io/read_imagenet_labels.s: src/io/read_imagenet_labels.c.s
-
-.PHONY : src/io/read_imagenet_labels.s
-
-# target to generate assembly for a file
-src/io/read_imagenet_labels.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_imagenet_labels.c.s
-.PHONY : src/io/read_imagenet_labels.c.s
-
-src/io/read_jpeg.o: src/io/read_jpeg.c.o
-
-.PHONY : src/io/read_jpeg.o
-
-# target to build an object file
-src/io/read_jpeg.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_jpeg.c.o
-.PHONY : src/io/read_jpeg.c.o
-
-src/io/read_jpeg.i: src/io/read_jpeg.c.i
-
-.PHONY : src/io/read_jpeg.i
-
-# target to preprocess a source file
-src/io/read_jpeg.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_jpeg.c.i
-.PHONY : src/io/read_jpeg.c.i
-
-src/io/read_jpeg.s: src/io/read_jpeg.c.s
-
-.PHONY : src/io/read_jpeg.s
-
-# target to generate assembly for a file
-src/io/read_jpeg.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_jpeg.c.s
-.PHONY : src/io/read_jpeg.c.s
-
-src/io/read_means.o: src/io/read_means.c.o
-
-.PHONY : src/io/read_means.o
-
-# target to build an object file
-src/io/read_means.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_means.c.o
-.PHONY : src/io/read_means.c.o
-
-src/io/read_means.i: src/io/read_means.c.i
-
-.PHONY : src/io/read_means.i
-
-# target to preprocess a source file
-src/io/read_means.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_means.c.i
-.PHONY : src/io/read_means.c.i
-
-src/io/read_means.s: src/io/read_means.c.s
-
-.PHONY : src/io/read_means.s
-
-# target to generate assembly for a file
-src/io/read_means.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_means.c.s
-.PHONY : src/io/read_means.c.s
-
-src/io/read_pgm.o: src/io/read_pgm.c.o
-
-.PHONY : src/io/read_pgm.o
-
-# target to build an object file
-src/io/read_pgm.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_pgm.c.o
-.PHONY : src/io/read_pgm.c.o
-
-src/io/read_pgm.i: src/io/read_pgm.c.i
-
-.PHONY : src/io/read_pgm.i
-
-# target to preprocess a source file
-src/io/read_pgm.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_pgm.c.i
-.PHONY : src/io/read_pgm.c.i
-
-src/io/read_pgm.s: src/io/read_pgm.c.s
-
-.PHONY : src/io/read_pgm.s
-
-# target to generate assembly for a file
-src/io/read_pgm.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/read_pgm.c.s
-.PHONY : src/io/read_pgm.c.s
-
-src/io/write_float.o: src/io/write_float.c.o
-
-.PHONY : src/io/write_float.o
-
-# target to build an object file
-src/io/write_float.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/write_float.c.o
-.PHONY : src/io/write_float.c.o
-
-src/io/write_float.i: src/io/write_float.c.i
-
-.PHONY : src/io/write_float.i
-
-# target to preprocess a source file
-src/io/write_float.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/write_float.c.i
-.PHONY : src/io/write_float.c.i
-
-src/io/write_float.s: src/io/write_float.c.s
-
-.PHONY : src/io/write_float.s
-
-# target to generate assembly for a file
-src/io/write_float.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/write_float.c.s
-.PHONY : src/io/write_float.c.s
-
-src/io/write_pgm.o: src/io/write_pgm.c.o
-
-.PHONY : src/io/write_pgm.o
-
-# target to build an object file
-src/io/write_pgm.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/write_pgm.c.o
-.PHONY : src/io/write_pgm.c.o
-
-src/io/write_pgm.i: src/io/write_pgm.c.i
-
-.PHONY : src/io/write_pgm.i
-
-# target to preprocess a source file
-src/io/write_pgm.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/write_pgm.c.i
-.PHONY : src/io/write_pgm.c.i
-
-src/io/write_pgm.s: src/io/write_pgm.c.s
-
-.PHONY : src/io/write_pgm.s
-
-# target to generate assembly for a file
-src/io/write_pgm.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/io/write_pgm.c.s
-.PHONY : src/io/write_pgm.c.s
-
-src/layers/activation_function.o: src/layers/activation_function.c.o
-
-.PHONY : src/layers/activation_function.o
-
-# target to build an object file
-src/layers/activation_function.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/activation_function.c.o
-.PHONY : src/layers/activation_function.c.o
-
-src/layers/activation_function.i: src/layers/activation_function.c.i
-
-.PHONY : src/layers/activation_function.i
-
-# target to preprocess a source file
-src/layers/activation_function.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/activation_function.c.i
-.PHONY : src/layers/activation_function.c.i
-
-src/layers/activation_function.s: src/layers/activation_function.c.s
-
-.PHONY : src/layers/activation_function.s
-
-# target to generate assembly for a file
-src/layers/activation_function.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/activation_function.c.s
-.PHONY : src/layers/activation_function.c.s
-
-src/layers/batch_normalization.o: src/layers/batch_normalization.c.o
-
-.PHONY : src/layers/batch_normalization.o
-
-# target to build an object file
-src/layers/batch_normalization.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/batch_normalization.c.o
-.PHONY : src/layers/batch_normalization.c.o
-
-src/layers/batch_normalization.i: src/layers/batch_normalization.c.i
-
-.PHONY : src/layers/batch_normalization.i
-
-# target to preprocess a source file
-src/layers/batch_normalization.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/batch_normalization.c.i
-.PHONY : src/layers/batch_normalization.c.i
-
-src/layers/batch_normalization.s: src/layers/batch_normalization.c.s
-
-.PHONY : src/layers/batch_normalization.s
-
-# target to generate assembly for a file
-src/layers/batch_normalization.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/batch_normalization.c.s
-.PHONY : src/layers/batch_normalization.c.s
-
-src/layers/concatenate.o: src/layers/concatenate.c.o
-
-.PHONY : src/layers/concatenate.o
-
-# target to build an object file
-src/layers/concatenate.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/concatenate.c.o
-.PHONY : src/layers/concatenate.c.o
-
-src/layers/concatenate.i: src/layers/concatenate.c.i
-
-.PHONY : src/layers/concatenate.i
-
-# target to preprocess a source file
-src/layers/concatenate.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/concatenate.c.i
-.PHONY : src/layers/concatenate.c.i
-
-src/layers/concatenate.s: src/layers/concatenate.c.s
-
-.PHONY : src/layers/concatenate.s
-
-# target to generate assembly for a file
-src/layers/concatenate.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/concatenate.c.s
-.PHONY : src/layers/concatenate.c.s
-
-src/layers/convolution.o: src/layers/convolution.c.o
-
-.PHONY : src/layers/convolution.o
-
-# target to build an object file
-src/layers/convolution.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/convolution.c.o
-.PHONY : src/layers/convolution.c.o
-
-src/layers/convolution.i: src/layers/convolution.c.i
-
-.PHONY : src/layers/convolution.i
-
-# target to preprocess a source file
-src/layers/convolution.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/convolution.c.i
-.PHONY : src/layers/convolution.c.i
-
-src/layers/convolution.s: src/layers/convolution.c.s
-
-.PHONY : src/layers/convolution.s
-
-# target to generate assembly for a file
-src/layers/convolution.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/convolution.c.s
-.PHONY : src/layers/convolution.c.s
-
-src/layers/fully_connected.o: src/layers/fully_connected.c.o
-
-.PHONY : src/layers/fully_connected.o
-
-# target to build an object file
-src/layers/fully_connected.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/fully_connected.c.o
-.PHONY : src/layers/fully_connected.c.o
-
-src/layers/fully_connected.i: src/layers/fully_connected.c.i
-
-.PHONY : src/layers/fully_connected.i
-
-# target to preprocess a source file
-src/layers/fully_connected.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/fully_connected.c.i
-.PHONY : src/layers/fully_connected.c.i
-
-src/layers/fully_connected.s: src/layers/fully_connected.c.s
-
-.PHONY : src/layers/fully_connected.s
-
-# target to generate assembly for a file
-src/layers/fully_connected.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/fully_connected.c.s
-.PHONY : src/layers/fully_connected.c.s
-
-src/layers/math_operations.o: src/layers/math_operations.c.o
-
-.PHONY : src/layers/math_operations.o
-
-# target to build an object file
-src/layers/math_operations.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/math_operations.c.o
-.PHONY : src/layers/math_operations.c.o
-
-src/layers/math_operations.i: src/layers/math_operations.c.i
-
-.PHONY : src/layers/math_operations.i
-
-# target to preprocess a source file
-src/layers/math_operations.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/math_operations.c.i
-.PHONY : src/layers/math_operations.c.i
-
-src/layers/math_operations.s: src/layers/math_operations.c.s
-
-.PHONY : src/layers/math_operations.s
-
-# target to generate assembly for a file
-src/layers/math_operations.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/math_operations.c.s
-.PHONY : src/layers/math_operations.c.s
-
-src/layers/pooling.o: src/layers/pooling.c.o
-
-.PHONY : src/layers/pooling.o
-
-# target to build an object file
-src/layers/pooling.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/pooling.c.o
-.PHONY : src/layers/pooling.c.o
-
-src/layers/pooling.i: src/layers/pooling.c.i
-
-.PHONY : src/layers/pooling.i
-
-# target to preprocess a source file
-src/layers/pooling.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/pooling.c.i
-.PHONY : src/layers/pooling.c.i
-
-src/layers/pooling.s: src/layers/pooling.c.s
-
-.PHONY : src/layers/pooling.s
-
-# target to generate assembly for a file
-src/layers/pooling.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/layers/pooling.c.s
-.PHONY : src/layers/pooling.c.s
-
-src/utils.o: src/utils.c.o
-
-.PHONY : src/utils.o
-
-# target to build an object file
-src/utils.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/utils.c.o
-.PHONY : src/utils.c.o
-
-src/utils.i: src/utils.c.i
-
-.PHONY : src/utils.i
-
-# target to preprocess a source file
-src/utils.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/utils.c.i
-.PHONY : src/utils.c.i
-
-src/utils.s: src/utils.c.s
-
-.PHONY : src/utils.s
-
-# target to generate assembly for a file
-src/utils.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/libai-cnn.dir/build.make CMakeFiles/libai-cnn.dir/src/utils.c.s
-.PHONY : src/utils.c.s
 
 # Help Target
 help:
@@ -730,70 +178,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... remove_output_data"
-	@echo "... libai-cnn"
-	@echo "... newLayerTest"
-	@echo "... testlibs"
-	@echo "... include/test_activation_function.o"
-	@echo "... include/test_activation_function.i"
-	@echo "... include/test_activation_function.s"
-	@echo "... include/tutils.o"
-	@echo "... include/tutils.i"
-	@echo "... include/tutils.s"
-	@echo "... include/utility_functions.o"
-	@echo "... include/utility_functions.i"
-	@echo "... include/utility_functions.s"
+	@echo "... devLab"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... src/io/read_binary_reference_data.o"
-	@echo "... src/io/read_binary_reference_data.i"
-	@echo "... src/io/read_binary_reference_data.s"
-	@echo "... src/io/read_binary_weights.o"
-	@echo "... src/io/read_binary_weights.i"
-	@echo "... src/io/read_binary_weights.s"
-	@echo "... src/io/read_imagenet_labels.o"
-	@echo "... src/io/read_imagenet_labels.i"
-	@echo "... src/io/read_imagenet_labels.s"
-	@echo "... src/io/read_jpeg.o"
-	@echo "... src/io/read_jpeg.i"
-	@echo "... src/io/read_jpeg.s"
-	@echo "... src/io/read_means.o"
-	@echo "... src/io/read_means.i"
-	@echo "... src/io/read_means.s"
-	@echo "... src/io/read_pgm.o"
-	@echo "... src/io/read_pgm.i"
-	@echo "... src/io/read_pgm.s"
-	@echo "... src/io/write_float.o"
-	@echo "... src/io/write_float.i"
-	@echo "... src/io/write_float.s"
-	@echo "... src/io/write_pgm.o"
-	@echo "... src/io/write_pgm.i"
-	@echo "... src/io/write_pgm.s"
-	@echo "... src/layers/activation_function.o"
-	@echo "... src/layers/activation_function.i"
-	@echo "... src/layers/activation_function.s"
-	@echo "... src/layers/batch_normalization.o"
-	@echo "... src/layers/batch_normalization.i"
-	@echo "... src/layers/batch_normalization.s"
-	@echo "... src/layers/concatenate.o"
-	@echo "... src/layers/concatenate.i"
-	@echo "... src/layers/concatenate.s"
-	@echo "... src/layers/convolution.o"
-	@echo "... src/layers/convolution.i"
-	@echo "... src/layers/convolution.s"
-	@echo "... src/layers/fully_connected.o"
-	@echo "... src/layers/fully_connected.i"
-	@echo "... src/layers/fully_connected.s"
-	@echo "... src/layers/math_operations.o"
-	@echo "... src/layers/math_operations.i"
-	@echo "... src/layers/math_operations.s"
-	@echo "... src/layers/pooling.o"
-	@echo "... src/layers/pooling.i"
-	@echo "... src/layers/pooling.s"
-	@echo "... src/utils.o"
-	@echo "... src/utils.i"
-	@echo "... src/utils.s"
 .PHONY : help
 
 

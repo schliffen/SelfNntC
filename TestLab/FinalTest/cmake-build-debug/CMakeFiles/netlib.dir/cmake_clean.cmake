@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.o"
-  "CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.o"
-  "CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.o"
+  "CMakeFiles/netlib.dir/model_to_Test/network.c.o"
+  "CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.o"
+  "CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.o"
   "lib/libnetlib.pdb"
   "lib/libnetlib.so"
 )

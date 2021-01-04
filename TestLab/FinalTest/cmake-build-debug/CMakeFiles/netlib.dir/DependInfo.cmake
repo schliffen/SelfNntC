@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network.c" "/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.o"
-  "/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_cleanup.c" "/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.o"
-  "/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_initialization.c" "/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/netlib.dir/model_to_Test/network.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_cleanup.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_initialization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -18,7 +18,7 @@ set(CMAKE_TARGET_DEFINITIONS_C
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../"
-  "../sub_mobilefacenet_1"
+  "../model_to_Test"
   )
 
 # Targets to which this target links.

@@ -128,43 +128,43 @@ stdlib.h
 string.h
 -
 
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network.c
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network.c
 network.h
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network.h
 
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network.h
 ai-cnn/parameters.h
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/ai-cnn/parameters.h
 network_initialization.h
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_initialization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_initialization.h
 network_cleanup.h
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_cleanup.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_cleanup.h
 ai-cnn/ai-cnn.h
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/ai-cnn/ai-cnn.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/ai-cnn/ai-cnn.h
 
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_cleanup.c
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_cleanup.c
 network_cleanup.h
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_cleanup.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_cleanup.h
 
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_cleanup.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_cleanup.h
 stdlib.h
 -
 stdint.h
 -
 ai-cnn/parameters.h
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/ai-cnn/parameters.h
 network_initialization.h
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_initialization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_initialization.h
 
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_initialization.c
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_initialization.c
 network_initialization.h
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_initialization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_initialization.h
 
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_initialization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_initialization.h
 stdlib.h
 -
 stdint.h
 -
 ai-cnn/parameters.h
-/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/ai-cnn/parameters.h
 

@@ -6,5 +6,5 @@ C_FLAGS = -g -fPIC
 
 C_DEFINES = -Dnetlib_EXPORTS
 
-C_INCLUDES = -I/home/ali/Projlab/Nist/TestLab -I/home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1 
+C_INCLUDES = -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test 
 

@@ -63,10 +63,10 @@ RM = /home/ali/clion-20/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/TestLab
+CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/TestLab/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/netlib.dir/depend.make
@@ -77,60 +77,60 @@ include CMakeFiles/netlib.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/netlib.dir/flags.make
 
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.o: CMakeFiles/netlib.dir/flags.make
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.o: ../sub_mobilefacenet_1/network_initialization.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.o   -c /home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_initialization.c
+CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.o: CMakeFiles/netlib.dir/flags.make
+CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.o: ../model_to_Test/network_initialization.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_initialization.c
 
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_initialization.c > CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.i
+CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_initialization.c > CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.i
 
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_initialization.c -o CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.s
+CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_initialization.c -o CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.s
 
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.o: CMakeFiles/netlib.dir/flags.make
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.o: ../sub_mobilefacenet_1/network_cleanup.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.o   -c /home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_cleanup.c
+CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.o: CMakeFiles/netlib.dir/flags.make
+CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.o: ../model_to_Test/network_cleanup.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_cleanup.c
 
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_cleanup.c > CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.i
+CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_cleanup.c > CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.i
 
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network_cleanup.c -o CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.s
+CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network_cleanup.c -o CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.s
 
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.o: CMakeFiles/netlib.dir/flags.make
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.o: ../sub_mobilefacenet_1/network.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.o   -c /home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network.c
+CMakeFiles/netlib.dir/model_to_Test/network.c.o: CMakeFiles/netlib.dir/flags.make
+CMakeFiles/netlib.dir/model_to_Test/network.c.o: ../model_to_Test/network.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/netlib.dir/model_to_Test/network.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/netlib.dir/model_to_Test/network.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network.c
 
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network.c > CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.i
+CMakeFiles/netlib.dir/model_to_Test/network.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/netlib.dir/model_to_Test/network.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network.c > CMakeFiles/netlib.dir/model_to_Test/network.c.i
 
-CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/TestLab/sub_mobilefacenet_1/network.c -o CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.s
+CMakeFiles/netlib.dir/model_to_Test/network.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/netlib.dir/model_to_Test/network.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network.c -o CMakeFiles/netlib.dir/model_to_Test/network.c.s
 
 # Object files for target netlib
 netlib_OBJECTS = \
-"CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.o" \
-"CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.o" \
-"CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.o"
+"CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.o" \
+"CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.o" \
+"CMakeFiles/netlib.dir/model_to_Test/network.c.o"
 
 # External object files for target netlib
 netlib_EXTERNAL_OBJECTS =
 
-lib/libnetlib.so: CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_initialization.c.o
-lib/libnetlib.so: CMakeFiles/netlib.dir/sub_mobilefacenet_1/network_cleanup.c.o
-lib/libnetlib.so: CMakeFiles/netlib.dir/sub_mobilefacenet_1/network.c.o
+lib/libnetlib.so: CMakeFiles/netlib.dir/model_to_Test/network_initialization.c.o
+lib/libnetlib.so: CMakeFiles/netlib.dir/model_to_Test/network_cleanup.c.o
+lib/libnetlib.so: CMakeFiles/netlib.dir/model_to_Test/network.c.o
 lib/libnetlib.so: CMakeFiles/netlib.dir/build.make
 lib/libnetlib.so: CMakeFiles/netlib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C shared library lib/libnetlib.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C shared library lib/libnetlib.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/netlib.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -143,6 +143,6 @@ CMakeFiles/netlib.dir/clean:
 .PHONY : CMakeFiles/netlib.dir/clean
 
 CMakeFiles/netlib.dir/depend:
-	cd /home/ali/Projlab/Nist/TestLab/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/Projlab/Nist/TestLab /home/ali/Projlab/Nist/TestLab /home/ali/Projlab/Nist/TestLab/cmake-build-debug /home/ali/Projlab/Nist/TestLab/cmake-build-debug /home/ali/Projlab/Nist/TestLab/cmake-build-debug/CMakeFiles/netlib.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/netlib.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/netlib.dir/depend
 
