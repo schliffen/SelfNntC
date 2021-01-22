@@ -45,6 +45,26 @@ void relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t
     }
 }
 
+void relu6_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel) {
+
+#ifdef BIG_LOOPS
+    uint64_t i;
+#else
+    uint32_t i;
+#endif
+
+    for(i = 0; i < height*width; i++) {
+        if (input_channel[i] < 0.0)
+            output_channel[i] = 0.0;
+        else if (input_channel[i] > 6.0)
+            output_channel[i] = 6.0;
+        else
+            output_channel[i] = input_channel[i];
+
+//        output_channel[i] = (input_channel[i] < 0.0) ? 0.0 : input_channel[i]
+    }
+}
+
 void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, fp_t weight) {
 
 #ifdef BIG_LOOPS

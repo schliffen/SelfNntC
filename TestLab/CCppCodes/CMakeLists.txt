@@ -10,6 +10,8 @@ add_library(layerlib
         layers/batch_normalization.h
         layers/math_operations.c
         layers/math_operations.h
+#        layers/upsampling.c
+#        layers/upsampling.h
         testsrc/parameters.h
         testsrc/utility_functions.c
         testsrc/utility_functions.h
@@ -22,7 +24,10 @@ add_library( testlibs
         testinclude/normtest.c
         testinclude/normtest.h
         testinclude/divtest.c
-        testinclude/divtest.h)
+        testinclude/divtest.h
+        testinclude/nearestNtest.c
+        testinclude/nearestNtest.h
+        )
 
 
 

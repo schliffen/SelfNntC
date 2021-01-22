@@ -50,6 +50,16 @@ void tanh_naive(const fp_t* input_channel, const uint16_t height, const uint16_t
  */
 void relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel);
 
+/**
+ * @brief applies relu6(x) to all pixel of input_channel and stores it in
+ * output_channel
+ *
+ * @param input_channel (height x width)
+ * @param height
+ * @param width
+ * @param output_channel (height x width)
+ */
+void relu6_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel);
 
 /**
  * @brief applies prelu(x) to all pixel of input_channel and stores it in
@@ -60,7 +70,7 @@ void relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t
  * @param width
  * @param output_channel (height x width)
  */
-void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, const fp_t *weight);
+void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, fp_t weight);
 
 
 /**

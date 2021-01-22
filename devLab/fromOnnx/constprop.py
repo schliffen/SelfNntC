@@ -8,6 +8,12 @@ __author__ = ""
 class ConstPropState(object):
     def __init__(self, value=None, shape=None):
         assert type(shape) == tuple or shape is None
+        if not (shape is None):
+            if len(shape)>0:
+                if shape[0] == 0:
+                    shape = list(shape)
+                    shape[0] = 1
+                    shape = tuple(shape)
         self.value = value
         self.shape = shape
         
@@ -55,6 +61,25 @@ class PoolImpl(ConstImpl):
                 out = ConstPropState(None, tuple(output_shape))
 
         return {node.outputs[0]: out}
+
+
+class UpsampleImpl(ConstImpl):
+    def __call__(self, node, input_states, output_states):
+
+        input_value, input_shape = input_states[0]
+        output_value, output_shape = output_states[0]
+
+        attrs = node.attrs
+        mode = attrs["mode"].decode('ascii')
+
+        scale = int(output_shape[2]/ input_shape[2])
+
+        # todo: only supporintg nearset neighbour for the moment
+        out = ConstPropState(None, tuple(output_shape))
+
+        return {node.outputs[0]: out}
+
+
 
 
 class TransposeImpl(ConstImpl):
@@ -149,6 +174,18 @@ class BNKeepDimsImpl(ConstImpl):
 
         return {node.outputs[0]: out}
 
+def calc_conv_out_shape(node, state_dict ):
+
+    inshape = state_dict[node.inputs[0]].shape
+    filter_size = state_dict[node.inputs[-1]].shape[0]
+    # considering dilation
+    h = inshape[2] * node.attrs['dilations'][0] + (node.attrs['dilations'][0] - 1)
+    w = inshape[3] * node.attrs['dilations'][1] + (node.attrs['dilations'][1] - 1)
+    outh = (h - node.attrs['kernel_shape'][0] + node.attrs['pads'][0] + node.attrs['pads'][2])/node.attrs['strides'][0] + 1
+    outw = (w - node.attrs['kernel_shape'][1] + node.attrs['pads'][1] + node.attrs['pads'][3])/node.attrs['strides'][1] + 1
+
+    out_shape =(1, filter_size, int(outh), int(outw))
+    return out_shape
 
     
 const_impls = {
@@ -160,6 +197,11 @@ const_impls = {
     "Squeeze": SqueezeImpl(),
     "Unsqueeze": UnsqueezeImpl(),
     "Softmax": KeepDimsImpl()
+}
+
+distributed_impls = {
+    "Upsample": UpsampleImpl(),
+    "Resize": UpsampleImpl(),
 }
 
 
@@ -181,7 +223,29 @@ def constant_propagation(graph):
         worklist = worklist[1:]
         attrs = node.attrs
         changed = False
-        
+        print( "op: ", node.op_type )
+        # -------------------------------------------------------------------------------
+        # cheking the input and and putput an corressponding shapes in the shapedict
+        # as some shapes may missing form  the graph shape dictionary
+        for inp in node.inputs:
+            if inp == 'data':
+                continue
+            if not inp in graph.shape_dict.keys():
+                # compute the inp shape and add it to the dictionary
+                print( state_dict[inp])
+                pass
+            else:
+                pass
+                # calculate and add the shape to the dictionary
+                # adding the input shape
+        for ot in node.outputs:
+            if ot == 'output':
+                continue
+
+            if not ot in graph.shape_dict.keys():
+                # compute the out shape and add it to the dictionary
+                print( state_dict[ot] )
+
         if node.op_type in const_impls:
             input_states = []
             for input in node.inputs:
@@ -199,12 +263,10 @@ def constant_propagation(graph):
                     input_states.append(ConstPropState(None, tensor_shape))
                 else:
                     input_states.append(state_dict[input])
+                    # if len(state_dict[input].shape) ==0:
+
             #
             outputs = const_impls[node.op_type](node, input_states)
-
-            # BN 1-d type name is as same as batch normalization but operations are different!
-            # if node.op_type == "BatchNormalization" and len(state_dict[node.inputs[0]].shape) ==2:
-            #     node.op_type == "BatchNormalization1d"
 
             changed = False
             for output in node.outputs:
@@ -212,6 +274,39 @@ def constant_propagation(graph):
                     state_dict[output] = outputs[output]
                     changed = True
 
+        elif node.op_type in distributed_impls:
+            input_states = []
+            output_states = []
+            for input in node.inputs:
+                found = False
+                for inp in graph.inputs:
+                    if inp.name == input:
+                        tensor_shape = inp.shape
+                        input_states.append(ConstPropState(None, tensor_shape))
+                        found = True
+                if found:
+                    continue
+
+                if input in node.input_tensors:
+                    tensor_shape = tuple(node.input_tensors[input].shape)
+                    input_states.append(ConstPropState(None, tensor_shape))
+                else:
+                    input_states.append(state_dict[input])
+            #
+            for outpt in node.outputs:
+                for input in node.children[0].inputs:
+                    # todo: develop this operation to be more general
+                    if outpt != input:
+                        output_states.append( state_dict[input] )
+
+
+            outputs = distributed_impls[node.op_type](node, input_states, output_states)
+
+            changed = False
+            for output in node.outputs:
+                if state_dict[output] != outputs[output]:
+                    state_dict[output] = outputs[output]
+                    changed = True
 
 
         elif node.op_type == 'Shape':
@@ -236,7 +331,7 @@ def constant_propagation(graph):
                 changed = True
                 state_dict[output] = output_state
 
-        elif node.op_type == 'MatMul':
+        elif node.op_type in ['MatMul']:
             _, input_shape1 = state_dict[node.inputs[0]]
             _, input_shape2 = state_dict[node.inputs[1]]
             out = ConstPropState(None, None)
@@ -252,6 +347,23 @@ def constant_propagation(graph):
             if state_dict[output] != out:
                 changed = True
                 state_dict[output] = out
+
+        elif node.op_type in ['Mul']:
+            _, input_shape1 = state_dict[node.inputs[0]]
+            _, input_shape2 = state_dict[node.inputs[1]]
+            out = ConstPropState(None, None)
+
+            if input_shape1 is not None and input_shape2 is not None:
+                if input_shape1[2]>1:
+                    out = ConstPropState(None, input_shape1)
+                else:
+                    out = ConstPropState(None, input_shape2)
+
+            output = node.outputs[0]
+            if state_dict[output] != out:
+                changed = True
+                state_dict[output] = out
+
 
         elif node.op_type == 'Add':
             out = ConstPropState(None, None)
@@ -315,16 +427,35 @@ def constant_propagation(graph):
 
             input_states = []
             input_shapes = []
+            noneinputs = []
+
             for i in node.inputs:
-                input_states.append(state_dict[i].value)
                 input_shapes.append(state_dict[i].shape)
-        
+                try:
+                    len(list(state_dict[i].value))
+                    len(list(state_dict[i].shape))
+                    # not none
+                    if  len(list(state_dict[i].value))>0 and len(list(state_dict[i].shape))>0:
+                        input_states.append(state_dict[i].value)
+
+                    else:
+                        noneinputs.append(state_dict[i].value)
+                        # noneinputs.append(state_dict[i].shape)
+                except:
+                    noneinputs.append(state_dict[i].value)
+                    # noneinputs.append(state_dict[i].shape)
+
+
             out = ConstPropState(None, input_shapes[0] if None not in input_shapes else None)
 
             # TODO: Is this first case even possible? If not, remove it!
-            if None not in input_states:
+
+            if len(noneinputs) == 0:
                 res = np.concatenate(input_states, axis=axis)
                 out = ConstPropState(res, res.shape)
+            elif None in input_shapes:
+                out = ConstPropState(None, None)
+
             else:
                 dummy_inputs = [np.zeros(shape) for shape in input_shapes]
                 res = np.concatenate(dummy_inputs, axis=axis)
@@ -338,18 +469,40 @@ def constant_propagation(graph):
         elif node.op_type == 'Reshape':
             input_data_shape = state_dict[node.inputs[0]].shape
             new_shape = state_dict[node.inputs[1]].value
+            # correcting input and output shape
+            # for ot in node.outputs:
+            #     if not ot in graph.shape_dict.keys():
+            ##         compute the out shape and add it to the dictionary
+                    # for inp in node.inputs:
+                    #     if inp in graph.shape_dict.keys():
+                    ##         compute the inp shape and add it to the dictionary
+                            # graph.shape_dict.update({ot: input_data_shape })
+                        # else:
+                        #     pass
 
             out = ConstPropState(None, None)
 
             if input_data_shape is not None and new_shape is not None:
+
+                # control input shape which may become zero as a result of wrong read by onnx
+                if input_data_shape[0] == 0:
+                    input_data_shape = list(input_data_shape)
+                    input_data_shape[0] == 1
+                    input_data_shape = tuple(input_data_shape)
+
+
                 new_shape_tmp = np.copy(new_shape)
                 zeros_index = np.where(new_shape == 0)
                 new_shape_tmp[zeros_index] = np.array(input_data_shape)[zeros_index]
 
+
+
                 data = np.zeros(input_data_shape)
                 res = np.reshape(data, new_shape_tmp)
+
+
                 out = ConstPropState(None, res.shape)
-            
+
             if state_dict[node.outputs[0]] != out:
                 state_dict[node.outputs[0]] = out
                 changed = True
@@ -367,14 +520,23 @@ def constant_propagation(graph):
                 state_dict[node.outputs[0]] = out
                 changed = True
                 
-        elif node.op_type == "Relu":
+        elif node.op_type in ["Relu", "LeakyRelu", "PRelu"]:
             input_shape = state_dict[node.inputs[0]].shape
             out = ConstPropState(None, input_shape)
 
             if state_dict[node.outputs[0]] != out:
                 state_dict[node.outputs[0]] = out
                 changed = True
-    
+
+        elif node.op_type == "Sigmoid":
+            input_shape = state_dict[node.inputs[0]].shape
+            out = ConstPropState(None, input_shape)
+
+            if state_dict[node.outputs[0]] != out:
+                state_dict[node.outputs[0]] = out
+                changed = True
+
+
         elif node.op_type == "Transpose":
 
             input_shape = state_dict[node.inputs[0]].shape
@@ -414,6 +576,15 @@ def constant_propagation(graph):
                 state_dict[node.outputs[0]] = out
                 changed = True
 
+        elif node.op_type == "Slice":
+            # this is the division of vector by an scalar
+            input_shape = state_dict[node.inputs[0]].shape
+            out = ConstPropState(None, input_shape)
+            #
+            if state_dict[node.outputs[0]] != out:
+                state_dict[node.outputs[0]] = out
+                changed = True
+
         else:
             # raise Exception ("ConstProp: Unhandled op {}".format(node.op_type))
             print("ConstProp: Unhandled op {} (layer: {}) using shape "
@@ -424,6 +595,15 @@ def constant_propagation(graph):
                 out = ConstPropState(None, None)
                 if o in graph.shape_dict:
                     out = ConstPropState(None, graph.shape_dict[o])
+                elif node.op_type == 'Conv':
+                    # calculate outputshape
+                    conv_outshape = calc_conv_out_shape(node, state_dict)
+                    out = ConstPropState(None, conv_outshape)
+                elif node.op_type == 'GlobalAveragePool':
+                    osh = list(state_dict[node.inputs[0]].shape)
+                    osh[2] = 1; osh[3] = 1
+                    out = ConstPropState(None, tuple(osh))
+
                 if out != state_dict[o]:
                     changed = True
                     state_dict[o] = out

@@ -6,37 +6,39 @@
 
 #IncludeRegexTransform: 
 
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/layers/batch_normalization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/layers/batch_normalization.h
 ../testsrc/parameters.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h
 stdint.h
 -
 math.h
 -
 
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/main.cpp
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/main.cpp
 stdio.h
 -
 testinclude/BN1dtest.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/BN1dtest.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/BN1dtest.h
 testinclude/normtest.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/normtest.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/normtest.h
 testinclude/divtest.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/divtest.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/divtest.h
+testinclude/nearestNtest.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.h
 
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/BN1dtest.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/BN1dtest.h
 memory.h
 -
 stdlib.h
 -
 ../testsrc/parameters.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h
 ../layers/batch_normalization.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/layers/batch_normalization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/layers/batch_normalization.h
 ../testsrc/utility_functions.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/utility_functions.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/utility_functions.h
 
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/divtest.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/divtest.h
 memory.h
 -
 stdlib.h
@@ -44,25 +46,35 @@ stdlib.h
 stdint.h
 -
 ../testsrc/parameters.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h
 ../testsrc/utility_functions.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/utility_functions.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/utility_functions.h
 
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/normtest.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.h
 memory.h
 -
 stdlib.h
 -
 ../testsrc/parameters.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h
 ../testsrc/utility_functions.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/utility_functions.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/utility_functions.h
 
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/parameters.h
-
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/utility_functions.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/normtest.h
+memory.h
+-
+stdlib.h
+-
 ../testsrc/parameters.h
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h
+../testsrc/utility_functions.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/utility_functions.h
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/utility_functions.h
+../testsrc/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h
 math.h
 -
 stdio.h

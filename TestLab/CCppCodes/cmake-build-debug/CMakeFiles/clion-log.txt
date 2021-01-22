@@ -1,4 +1,4 @@
-/home/ali/clion-20/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes
+/home/ali/clion-20/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug
+-- Build files have been written to: /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug

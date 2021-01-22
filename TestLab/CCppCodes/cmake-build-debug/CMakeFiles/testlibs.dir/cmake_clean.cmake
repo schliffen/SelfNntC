@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o"
   "CMakeFiles/testlibs.dir/testinclude/divtest.c.o"
+  "CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.o"
   "CMakeFiles/testlibs.dir/testinclude/normtest.c.o"
   "libtestlibs.pdb"
   "libtestlibs.so"

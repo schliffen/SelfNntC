@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -ldl -g   CMakeFiles/sublenet.dir/main.cpp.o  -o lib/sublenet  -Wl,-rpath,/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/lib lib/libai-cnn.so lib/libimgUtil.so 

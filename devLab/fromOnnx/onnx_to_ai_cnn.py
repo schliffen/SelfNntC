@@ -56,7 +56,7 @@ def main():
     parser = argparse.ArgumentParser(description="Tool for converting ONNX models into ai-cnn networks.")
     parser.add_argument(
         "--input",
-        type=Text, default="super_resolution.onnx",
+        type=Text, default="insight-face-v3.onnx",
         help="Path to the model.onnx input file.",
     )
     args = parser.parse_args()

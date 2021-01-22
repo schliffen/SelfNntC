@@ -11,6 +11,7 @@ CMakeFiles/netlib.dir/model_to_Test/network.c.o: ../ai-cnn/layers/convolution.h
 CMakeFiles/netlib.dir/model_to_Test/network.c.o: ../ai-cnn/layers/fully_connected.h
 CMakeFiles/netlib.dir/model_to_Test/network.c.o: ../ai-cnn/layers/math_operations.h
 CMakeFiles/netlib.dir/model_to_Test/network.c.o: ../ai-cnn/layers/pooling.h
+CMakeFiles/netlib.dir/model_to_Test/network.c.o: ../ai-cnn/layers/upsampling.h
 CMakeFiles/netlib.dir/model_to_Test/network.c.o: ../ai-cnn/parameters.h
 CMakeFiles/netlib.dir/model_to_Test/network.c.o: ../ai-cnn/utils.h
 CMakeFiles/netlib.dir/model_to_Test/network.c.o: ../model_to_Test/network.c

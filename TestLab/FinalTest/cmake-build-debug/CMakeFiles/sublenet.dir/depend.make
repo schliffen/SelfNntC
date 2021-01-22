@@ -11,6 +11,7 @@ CMakeFiles/sublenet.dir/main.cpp.o: ../ai-cnn/layers/convolution.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../ai-cnn/layers/fully_connected.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../ai-cnn/layers/math_operations.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../ai-cnn/layers/pooling.h
+CMakeFiles/sublenet.dir/main.cpp.o: ../ai-cnn/layers/upsampling.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../ai-cnn/parameters.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../ai-cnn/utils.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../ai-cnn/parameters.h

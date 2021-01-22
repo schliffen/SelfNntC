@@ -1,5 +1,5 @@
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/layerlib.dir
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/testlayers.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/layerlib.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/testlayers.dir

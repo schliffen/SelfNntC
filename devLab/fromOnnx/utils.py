@@ -1,7 +1,7 @@
 from typing import Iterable
 from functools import reduce
 
-__author__ = "Christoph Gerum (University of Tuebingen, Chair for Embedded Systems)"
+__author__ = ""
 
 
 def reduce_mult(data: Iterable[int]) -> int:

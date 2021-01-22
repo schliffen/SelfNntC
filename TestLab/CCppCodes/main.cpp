@@ -4,6 +4,7 @@ extern "C" {
     #include "testinclude/BN1dtest.h"
     #include "testinclude/normtest.h"
     #include "testinclude/divtest.h"
+    #include "testinclude/nearestNtest.h"
 }
 
 int main() {
@@ -12,12 +13,12 @@ int main() {
 
 //    float normerror = test_norm_naive_1();
 
-    int32_t bn1derror = test_batch_normalization_naive_1();
+//    int32_t bn1derror = test_batch_normalization_naive_1();
 
 //    int32_t diverror = test_div_by_scalar();
 
-
-    printf("BN 1d div test result: %d \n ", bn1derror);
+    float nnerror = test_nearest_neighbour();
+    printf(" test result: %f \n ", nnerror);
 
 
     printf("Finished ... !\n");

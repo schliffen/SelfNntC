@@ -4,9 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/BN1dtest.c" "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/divtest.c" "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir/testinclude/divtest.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/normtest.c" "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir/testinclude/normtest.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/BN1dtest.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/divtest.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir/testinclude/divtest.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/normtest.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir/testinclude/normtest.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

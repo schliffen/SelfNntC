@@ -37,13 +37,14 @@ int main() {
     imgUtils IMU;
     // network details
     int inp_w, inp_h, inp_ch;
-    inp_w = 112;
-    inp_h = 112;
+    inp_w = 640;
+    inp_h = 640;
     inp_ch = 3; // working on color images
-    int outputSize = 512;
+    int outputSize = 16800;
+    int out_0 = 4, out_1=2, out_2=10;
     char weights_path[1024] = "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/network.weights.bin";
-    char reference_output_path[1024] = "/home/ali/Projlab/Nist/ConversionOutputs/reference_output.bin";
-    char reference_input_path[1024] = "/home/ali/Projlab/Nist/ConversionOutputs/refInput_112_112.bin";
+    char reference_output_path[1024] = "/home/ali/Projlab/Nist/ConversionOutputs/reference_detection_output.bin";
+    char reference_input_path[1024] = "/home/ali/Projlab/Nist/ConversionOutputs/oefInput_640_640.bin";
 
 //    strcpy(weights_path, argv[1]);
 
@@ -72,12 +73,20 @@ int main() {
     */
     // preparing image data for inference ...
     fp_t** input = (fp_t**) malloc(inp_ch*sizeof(fp_t*));
-    // output
-    fp_t* output = (fp_t*) malloc(outputSize*sizeof(fp_t));
-
     for(uint32_t i = 0; i < inp_ch; i++){
         input[i] = (fp_t*) malloc(inp_w*inp_h*sizeof(fp_t));
     }
+    // output
+//    fp_t** output_0 = (fp_t**) malloc(outputSize*sizeof(fp_t));
+//    fp_t** output_1 = (fp_t**) malloc(outputSize*sizeof(fp_t));
+//    fp_t** output_2 = (fp_t**) malloc(outputSize*sizeof(fp_t));
+
+//    for (int i=0; i<outputSize; i++){
+//        output_0[i] = (fp_t *) malloc( out_0 * sizeof (fp_t));
+//        output_1[i] = (fp_t *) malloc( out_1 * sizeof (fp_t));
+//        output_2[i] = (fp_t *) malloc( out_2 * sizeof (fp_t));
+//    }
+
 
 
 //    unsigned char *image_data = model_input.data.get();
@@ -94,11 +103,11 @@ int main() {
 
 
     // comparing results with the reference output
-    fp_t* ref_output = (fp_t*) malloc(outputSize*sizeof(fp_t));
+//    fp_t* ref_output = (fp_t*) malloc(outputSize*sizeof(fp_t));
 
     //     reading reference output from binary file
-    if(read_binary_reference_output(reference_output_path, &ref_output) != 0)
-        return -1;
+//    if(read_binary_reference_output(reference_output_path, &ref_output) != 0)
+//        return -1;
 
 
 //    for (int i =0; i<12; i++)
@@ -115,37 +124,67 @@ int main() {
         return 1;
     }
 
+//    for(int i=0; i<10; i++)
+//        std::cout<< buffer_297[i][0] << std::endl;
 
-    network(input, output);
+
+//    fp_t** outputs_Concat_176 = (fp_t**) malloc(3 * sizeof(fp_t*));
+    fp_t** output_Concat_151 = (fp_t**) malloc(3 * sizeof(fp_t*));
+    fp_t** outputs_Concat_201 = (fp_t**) malloc(3 * sizeof(fp_t*));
+    fp_t* outputs_Conf = (fp_t*) malloc( outputSize  * sizeof(fp_t*));
+
+    network(input, output_Concat_151, outputs_Concat_201, outputs_Conf);
 
 //    for (int i=0; i<512;i++)
 
 
     // comparing network output and reference output
     float error = 0;
-    for (int i=0; i<outputSize; i++){
-        error += almost_equal( ref_output[i], *output++, EPSILON);
-        std::cout<< i <<" ref <--> model: "<< ref_output[i] << " <--> " << *(output-1)<< " deifference: "<< sqrt(error) << std::endl;
+    int32_t gind=0;
+    int out_shape[3] = {12800, 3200, 800};
+    fp_t max_score=0;
+    for (int i=0; i<3; i++){
+        for (int j=0; j< out_shape[i]; j++) {
+//            std:: cout << "conf:  "<<  outputs_Concat_176[i][2*j] << " ,  "<< outputs_Concat_176[i][2*j + 1] << std::endl;
+            std:: cout << "box:  "<<  output_Concat_151[i][4*j] << " ,  "<< output_Concat_151[i][4*j + 1] << std::endl;
+            std:: cout << "lnd:  "<<  outputs_Concat_201[i][10*j] << " ,  "<< outputs_Concat_201[i][10*j + 1] << std::endl;
+            std::cout << gind << " : " << outputs_Conf[gind] << std::endl;
+            if (max_score < outputs_Conf[gind] )
+                max_score =  outputs_Conf[gind];
+            if ( max_score > 0.8)
+                std::cout << "************************* max index: " << gind << std::endl;
+            gind++;
+        }
+//        error += almost_equal( ref_output[i], *output_0[0]++, EPSILON);
+//        std::cout<< i <<" ref <--> model: "<< ref_output[i] << " <--> " << *(output[0][i]-1)<< " deifference: "<< sqrt(error) << std::endl;
         }
 
 
-    std::cout<< "Model Differences: "<< sqrt(error) << std::endl;
+    std::cout<< "Finished ! max score: " << max_score << std::endl;
 
     INFO_MSG("After CNN\n");
 
     cleanup_network();
 
-    free(ref_output);
+//    free(ref_output);
 
 
     for(uint32_t i = 0; i < 3; i++) {
         free(input[i]);
     }
 
-
     free(input);
+    free( outputs_Conf);
 
+    for (int i=0; i<3; i++){
+        free(outputs_Concat_201[i]);
+        free(output_Concat_151[i]);
+//        free(outputs_Concat_201[i]);
+    }
 
+    free(outputs_Concat_201);
+    free(output_Concat_151);
+//    free(output_2);
 
     return 0;
 }

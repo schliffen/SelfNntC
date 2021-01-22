@@ -4,7 +4,7 @@ from onnx.tools import net_drawer
 import argparse
 from typing import Text
 
-__author__ = "Alexander Jung (University of Tuebingen, Chair for Embedded Systems)"
+__author__ = ""
 
 
 def import_model(model_path):  # type: (Text) -> onnx.ModelProto

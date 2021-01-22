@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.10)
 project(sublenet)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -33,10 +33,15 @@ set(PICO_CNN_LIBRARY_SRCS
         ${PROJECT_SOURCE_DIR}/ai-cnn/layers/batch_normalization.h
         ${PROJECT_SOURCE_DIR}/ai-cnn/layers/math_operations.c
         ${PROJECT_SOURCE_DIR}/ai-cnn/layers/math_operations.h
+        ${PROJECT_SOURCE_DIR}/ai-cnn/layers/upsampling.h
+        ${PROJECT_SOURCE_DIR}/ai-cnn/layers/upsampling.c
+
         ${PROJECT_SOURCE_DIR}/ai-cnn//io/read_binary_reference_data.c
         ${PROJECT_SOURCE_DIR}/ai-cnn/io/read_binary_reference_data.h
         ${PROJECT_SOURCE_DIR}/ai-cnn/io/read_binary_weights.c
         ${PROJECT_SOURCE_DIR}/ai-cnn/io/read_binary_weights.h
+
+
 
         # TODO: resolve handling jpeg ..
 #        ${PROJECT_SOURCE_DIR}/ai-cnn/io/read_imagenet_labels.c

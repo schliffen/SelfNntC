@@ -68,10 +68,10 @@ RM = /home/ali/clion-20/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes
+CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -304,6 +304,33 @@ testinclude/divtest.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/testinclude/divtest.c.s
 .PHONY : testinclude/divtest.c.s
 
+testinclude/nearestNtest.o: testinclude/nearestNtest.c.o
+
+.PHONY : testinclude/nearestNtest.o
+
+# target to build an object file
+testinclude/nearestNtest.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.o
+.PHONY : testinclude/nearestNtest.c.o
+
+testinclude/nearestNtest.i: testinclude/nearestNtest.c.i
+
+.PHONY : testinclude/nearestNtest.i
+
+# target to preprocess a source file
+testinclude/nearestNtest.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.i
+.PHONY : testinclude/nearestNtest.c.i
+
+testinclude/nearestNtest.s: testinclude/nearestNtest.c.s
+
+.PHONY : testinclude/nearestNtest.s
+
+# target to generate assembly for a file
+testinclude/nearestNtest.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testlibs.dir/build.make CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.s
+.PHONY : testinclude/nearestNtest.c.s
+
 testinclude/normtest.o: testinclude/normtest.c.o
 
 .PHONY : testinclude/normtest.o
@@ -384,6 +411,9 @@ help:
 	@echo "... testinclude/divtest.o"
 	@echo "... testinclude/divtest.i"
 	@echo "... testinclude/divtest.s"
+	@echo "... testinclude/nearestNtest.o"
+	@echo "... testinclude/nearestNtest.i"
+	@echo "... testinclude/nearestNtest.s"
 	@echo "... testinclude/normtest.o"
 	@echo "... testinclude/normtest.i"
 	@echo "... testinclude/normtest.s"

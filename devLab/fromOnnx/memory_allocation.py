@@ -144,11 +144,11 @@ class OutputAllocation(BaseCode):
             output_width = buffer_shape[2]
             output_height = 1
 
-        # elif buffer.buffer_depth==0 and len(buffer_shape) == 0: # this should be norm layer
-        #     num_outputs = 1
-        #     operation.attributes['one_dimensional'] = 1
-        #     output_height = 1
-        #     output_width = 1
+        elif buffer.buffer_depth==0 and len(buffer_shape) == 0: # this should be norm layer
+            num_outputs = 1
+            operation.attributes['one_dimensional'] = 1
+            output_height = 1
+            output_width = 1
 
 
 

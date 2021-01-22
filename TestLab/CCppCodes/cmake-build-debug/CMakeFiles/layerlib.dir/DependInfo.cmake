@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/layers/batch_normalization.c" "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/layerlib.dir/layers/batch_normalization.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/layers/math_operations.c" "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/layerlib.dir/layers/math_operations.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/utility_functions.c" "/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/layerlib.dir/testsrc/utility_functions.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/layers/batch_normalization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/layerlib.dir/layers/batch_normalization.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/layers/math_operations.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/layerlib.dir/layers/math_operations.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/utility_functions.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/layerlib.dir/testsrc/utility_functions.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

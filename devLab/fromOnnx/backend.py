@@ -13,7 +13,7 @@ from onnx import ModelProto
 import os
 import struct
 
-__author__ = "Christoph Gerum, Alexander Jung (University of Tuebingen, Chair for Embedded Systems)"
+__author__ = ""
 
 
 class BackendRep(backend_base.BackendRep):
@@ -40,6 +40,9 @@ class BackendRep(backend_base.BackendRep):
         # Remove nodes with constant values
         for node in list(graph.nodes):
             is_constant = True
+            print(node.name)
+            if node.op_type == 'Gather' or node.op_type == 'Shape':
+                print('gather shape')
             for output in node.outputs:
 
                 if constant_states[output].value is None:
@@ -66,8 +69,14 @@ class BackendRep(backend_base.BackendRep):
             if node.op_type == "Reshape":
                 input_state = constant_states[node.inputs[0]]
                 reshape_state = constant_states[node.inputs[1]]
+
+                # controlling the input not to be none
                 is_nop = False
-                if reshape_state.value is not None:
+
+                if input_state.value is None:
+                    is_nop = True
+                elif reshape_state.value is not None:
+
                     for i, dim in enumerate(reshape_state.value):
                         if dim == -1 and i == len(reshape_state.value):
                             is_nop = True
@@ -97,6 +106,203 @@ class BackendRep(backend_base.BackendRep):
                                 print("node", node.name, "replacing input",
                                       input, "with", removed_input)
                                 node.inputs[num] = removed_input
+
+            if node.op_type == "Shape":
+                    input_state = constant_states[node.inputs[0]]
+
+                    # controlling the input not to be none
+                    is_nop = False
+
+                    if input_state.value is None or input_state.shape is None:
+                        is_nop = True
+
+                    if is_nop:
+                        removed_input = node.inputs[0]
+                        removed_output = node.outputs[0]
+
+                        print("Removing nop", node.name)
+                        graph.nodes.remove(node)
+
+                        for num, output in enumerate(graph.outputs):
+                            if output.name == removed_output:
+                                edge_type = output.type
+                                shape = graph.shape_dict[removed_input]
+                                new_output = EdgeInfo(removed_input, edge_type, shape)
+                                graph.outputs[num] = new_output
+
+                        for node in graph.nodes:
+                            for num, input in enumerate(node.inputs):
+                                if input == removed_output:
+                                    print("node", node.name, "replacing input",
+                                          input, "with", removed_input)
+                                    node.inputs[num] = removed_input
+
+
+            if node.op_type == "Gather":
+                    input_state = constant_states[node.inputs[0]]
+                    reshape_state = constant_states[node.inputs[1]]
+
+                    # controlling the input not to be none
+                    is_nop = False
+
+                    if input_state.value is None or len(reshape_state.shape) ==0:
+                        is_nop = True
+
+                    if is_nop:
+                        removed_input = node.inputs[0]
+                        removed_output = node.outputs[0]
+
+                        print("Removing nop", node.name)
+                        graph.nodes.remove(node)
+
+                        for num, output in enumerate(graph.outputs):
+                            if output.name == removed_output:
+                                edge_type = output.type
+                                shape = graph.shape_dict[removed_input]
+                                new_output = EdgeInfo(removed_input, edge_type, shape)
+                                graph.outputs[num] = new_output
+
+                        for node in graph.nodes:
+                            for num, input in enumerate(node.inputs):
+                                if input == removed_output:
+                                    print("node", node.name, "replacing input",
+                                          input, "with", removed_input)
+                                    node.inputs[num] = removed_input
+
+
+            if node.op_type == "Slice":
+                input_state = constant_states[node.inputs[0]]
+                # reshape_state = constant_states[node.inputs[1]]
+                is_nop = True
+                # todo: update this part for different slices
+                # if reshape_state.value is not None:
+                #     for i, dim in enumerate(reshape_state.value):
+                #         if dim == -1 and i == len(reshape_state.value):
+                #             is_nop = True
+                #         elif i < len(input_state.shape) and dim == input_state.shape[i]:
+                #             is_nop = True
+                #         else:
+                #             is_nop = False
+                #             break
+
+                if is_nop:
+                    removed_input = node.inputs[0]
+                    removed_output = node.outputs[0]
+
+                    print("Removing nop", node.name)
+                    graph.nodes.remove(node)
+
+                    for num, output in enumerate(graph.outputs):
+                        if output.name == removed_output:
+                            edge_type = output.type
+                            shape = graph.shape_dict[removed_input]
+                            new_output = EdgeInfo(removed_input, edge_type, shape)
+                            graph.outputs[num] = new_output
+
+                    for node in graph.nodes:
+                        for num, input in enumerate(node.inputs):
+                            if input == removed_output:
+                                print("node", node.name, "replacing input",
+                                      input, "with", removed_input)
+                                node.inputs[num] = removed_input
+            if node.op_type == "Cast":
+                input_state = constant_states[node.inputs[0]]
+                # reshape_state = constant_states[node.inputs[1]]
+                is_nop = True
+                # todo: update this part for different casts
+                # if reshape_state.value is not None:
+                #     for i, dim in enumerate(reshape_state.value):
+                #         if dim == -1 and i == len(reshape_state.value):
+                #             is_nop = True
+                #         elif i < len(input_state.shape) and dim == input_state.shape[i]:
+                #             is_nop = True
+                #         else:
+                #             is_nop = False
+                #             break
+
+                if is_nop:
+                    removed_input = node.inputs[0]
+                    removed_output = node.outputs[0]
+
+                    print("Removing nop", node.name)
+                    graph.nodes.remove(node)
+
+                    for num, output in enumerate(graph.outputs):
+                        if output.name == removed_output:
+                            edge_type = output.type
+                            shape = graph.shape_dict[removed_input]
+                            new_output = EdgeInfo(removed_input, edge_type, shape)
+                            graph.outputs[num] = new_output
+
+                    for node in graph.nodes:
+                        for num, input in enumerate(node.inputs):
+                            if input == removed_output:
+                                print("node", node.name, "replacing input",
+                                      input, "with", removed_input)
+                                node.inputs[num] = removed_input
+
+
+            if node.op_type == "Div":
+                nomin_state = constant_states[node.inputs[0]]
+                denom_state = constant_states[node.inputs[1]]
+                is_nop = False
+                # todo: update this part for different casts
+                if nomin_state.shape[0] == denom_state.shape[0] or denom_state.shape[0]>1:
+                    is_nop = True
+
+                if is_nop:
+                    removed_input = node.inputs[0]
+                    removed_output = node.outputs[0]
+
+                    print("Removing nop", node.name)
+                    graph.nodes.remove(node)
+
+                    for num, output in enumerate(graph.outputs):
+                        if output.name == removed_output:
+                            edge_type = output.type
+                            shape = graph.shape_dict[removed_input]
+                            new_output = EdgeInfo(removed_input, edge_type, shape)
+                            graph.outputs[num] = new_output
+
+                    for node in graph.nodes:
+                        for num, input in enumerate(node.inputs):
+                            if input == removed_output:
+                                print("node", node.name, "replacing input",
+                                      input, "with", removed_input)
+                                node.inputs[num] = removed_input
+
+
+            if node.op_type == "Concat":
+                nomin_state = constant_states[node.inputs[0]]
+                denom_state = constant_states[node.inputs[1]]
+                is_nop = False
+                # todo: update this part for different casts
+                if node.attrs['axis'] == 0 or nomin_state.value is None or nomin_state.shape is None or denom_state.value is None or denom_state.shape is None:
+                    is_nop = True
+
+                if is_nop:
+                    removed_input = node.inputs[0]
+                    removed_output = node.outputs[0]
+
+                    print("Removing nop", node.name)
+                    graph.nodes.remove(node)
+
+                    for num, output in enumerate(graph.outputs):
+                        if output.name == removed_output:
+                            edge_type = output.type
+                            shape = graph.shape_dict[removed_input]
+                            new_output = EdgeInfo(removed_input, edge_type, shape)
+                            graph.outputs[num] = new_output
+
+                    for node in graph.nodes:
+                        for num, input in enumerate(node.inputs):
+                            if input == removed_output:
+                                print("node", node.name, "replacing input",
+                                      input, "with", removed_input)
+                                node.inputs[num] = removed_input
+
+
+
 
     def _generate_parameters(self, graph, memory_manager):
         """
@@ -279,7 +485,7 @@ class BackendRep(backend_base.BackendRep):
         :return:
         """
 
-        ops_to_ignore = ['Reshape', 'Mul']
+        ops_to_ignore = ['Reshape', 'Mul', 'Slice']
 
         # ops_to_ignore_shape = ['ReduceL2']
 
@@ -451,7 +657,7 @@ class BackendRep(backend_base.BackendRep):
         self.cleanup_header = cleanup_header
         self.cleanup_code = cleanup_code
 
-    def _select_implementations(self, graph, memory_manager):
+    def _select_implementations(self, graph, constant_states, memory_manager):
         """
         Function to select the first of possibly multiple implementation candidates
         for a each operation in the ComputeGraph.
@@ -464,7 +670,7 @@ class BackendRep(backend_base.BackendRep):
         for node in graph.nodes:
             choices = []
             for op in OperationRegistry.get_ops(node.op_type):
-                candidate = op.create(node, graph, memory_manager)
+                candidate = op.create(node, graph, constant_states, memory_manager)
                 if candidate is not None:
                     choices.append(candidate)
 
@@ -558,12 +764,28 @@ class BackendRep(backend_base.BackendRep):
         for indx, node in enumerate(graph.nodes):
             inputs = node.inputs
 
+            print( node.op_type )
+
             # revising layer names in case it was loss during the prev processes
             if node.op_type == "BatchNormalization":
                 for inp in inputs:
                     if not inp in node.input_tensors.keys():
-                        if len(graph.shape_dict[inp]) == 2:
-                            graph.nodes[indx].op_type = "BatchNormalization1d"
+                        if inp in graph.shape_dict:
+                            if len(graph.shape_dict[inp]) == 2: # todo : to handle this issue use  constant_states
+                                graph.nodes[indx].op_type = "BatchNormalization1d"
+                        # elif inp in constant_states.keys():
+                        #     if len(graph.shape_dict[inp]) == 2: # todo : to handle this issue use  constant_states
+                        #         graph.nodes[indx].op_type = "BatchNormalization1d"
+
+            # modifying concatonation
+            elif node.op_type == "Concat":
+                for inp in inputs:
+                    print(graph.shape_dict[inp] )
+                    if len(graph.shape_dict [inp]  ) ==3:
+                        graph.nodes[indx].op_type = "Concat2d"
+
+
+
 
             # printing the network
             input_shapes = (str(graph.shape_dict[i]) for i in node.inputs if i in graph.shape_dict)
@@ -588,13 +810,13 @@ class BackendRep(backend_base.BackendRep):
         #
         self._generate_network_cleanup(graph, memory_manager)
 
-        implementations = self._select_implementations(graph, memory_manager)
+        implementations = self._select_implementations(graph, constant_states, memory_manager)
         schedule = self._get_schedule(graph, implementations)
         # self._print_live_ranges(schedule)
 
         input_names = ["input_"+name.replace('.', '_').replace(':', '_').replace('/', '_')
                        for name, type, shape in graph.inputs]
-        output_names = ["output_"+name.replace('.', '_').replace(':', '_').replace('/', '_')
+        output_names = [ "output_" + name.replace('.', '_').replace(':', '_').replace('/', '_')
                         for name, type, shape in graph.outputs]
 
         """Currently we only allow single input (no batch processing) to the CNN, but this may be multi-channel input"""
@@ -625,19 +847,24 @@ class BackendRep(backend_base.BackendRep):
                 input_defs = ["fp_t *"+n for n in input_names]
 
         outputs = graph.outputs
-        if len(outputs) > 1:
-            print("ERROR: Multiple outputs not supported")
-            exit(1)
-        else:
-            output_shape = graph.shape_dict[outputs[0].name]
+        # if len(outputs) > 1:
+        #     print("ERROR: Multiple outputs not supported")
+        #     exit(1)
+        output_defs = []
+        for output in outputs:
+            output_shape = graph.shape_dict[output.name]
             print("Output shape: {}".format(output_shape))
+            print("Output name: {}".format(output.name))
 
             if len(output_shape) == 2:
                 print("Output is one-dimensional (batch_size = 1 and num_input_channels = 1)")
-                output_defs = ["fp_t *" + n for n in output_names]
+                output_defs = ["fp_t *" + "output_" + output.name]
             elif len(output_shape) == 3:
-                print("ERROR: Unknown output shape of network: {}".format(output_shape))
-                exit(1)
+                print("Output is two-dimensional (batch_size = 1 and num_input_channels = 1)")
+
+                output_defs += ["fp_t **" + "output_" + output.name]
+
+
             elif len(output_shape) == 4:
                 print("ERROR: Multi-dimensional output is currently not supported.")
                 exit(1)

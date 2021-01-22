@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="layerlib">
-				<Option output="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/liblayerlib.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug"/>
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/liblayerlib.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
@@ -44,15 +44,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 layerlib"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 layerlib"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="layerlib/fast">
-				<Option output="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/liblayerlib.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug"/>
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/liblayerlib.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
@@ -67,15 +67,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 layerlib/fast"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 layerlib/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="testlibs">
-				<Option output="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/libtestlibs.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug"/>
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/libtestlibs.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
@@ -90,15 +90,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlibs"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlibs"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="testlibs/fast">
-				<Option output="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/libtestlibs.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug"/>
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/libtestlibs.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
@@ -113,25 +113,25 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlibs/fast"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlibs/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="testlayers">
-				<Option output="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/testlayers" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug"/>
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/testlayers" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -146,15 +146,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlayers"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlayers"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="testlayers/fast">
-				<Option output="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/testlayers" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug"/>
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/testlayers" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -169,56 +169,62 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlayers/fast"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlayers/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/layers/batch_normalization.c">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/layers/batch_normalization.c">
 			<Option target="layerlib"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/layers/batch_normalization.h">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/layers/batch_normalization.h">
 			<Option target="layerlib"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/layers/math_operations.c">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/layers/math_operations.c">
 			<Option target="layerlib"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/layers/math_operations.h">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/layers/math_operations.h">
 			<Option target="layerlib"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/main.cpp">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/main.cpp">
 			<Option target="testlayers"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/BN1dtest.c">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/BN1dtest.c">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/BN1dtest.h">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/BN1dtest.h">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/divtest.c">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/divtest.c">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/divtest.h">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/divtest.h">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/normtest.c">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.c">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/normtest.h">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.h">
 			<Option target="testlibs"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/parameters.h">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/normtest.c">
+			<Option target="testlibs"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/normtest.h">
+			<Option target="testlibs"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h">
 			<Option target="layerlib"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/utility_functions.c">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/utility_functions.c">
 			<Option target="layerlib"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testsrc/utility_functions.h">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/utility_functions.h">
 			<Option target="layerlib"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/CMakeLists.txt">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

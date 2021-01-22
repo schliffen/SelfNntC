@@ -63,10 +63,10 @@ RM = /home/ali/clion-20/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes
+CMAKE_SOURCE_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/testlibs.dir/depend.make
@@ -79,48 +79,62 @@ include CMakeFiles/testlibs.dir/flags.make
 
 CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o: CMakeFiles/testlibs.dir/flags.make
 CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o: ../testinclude/BN1dtest.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o   -c /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/BN1dtest.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/BN1dtest.c
 
 CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/BN1dtest.c > CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/BN1dtest.c > CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.i
 
 CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/BN1dtest.c -o CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/BN1dtest.c -o CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.s
 
 CMakeFiles/testlibs.dir/testinclude/normtest.c.o: CMakeFiles/testlibs.dir/flags.make
 CMakeFiles/testlibs.dir/testinclude/normtest.c.o: ../testinclude/normtest.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/testlibs.dir/testinclude/normtest.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/testinclude/normtest.c.o   -c /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/normtest.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/testlibs.dir/testinclude/normtest.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/testinclude/normtest.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/normtest.c
 
 CMakeFiles/testlibs.dir/testinclude/normtest.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/testlibs.dir/testinclude/normtest.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/normtest.c > CMakeFiles/testlibs.dir/testinclude/normtest.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/normtest.c > CMakeFiles/testlibs.dir/testinclude/normtest.c.i
 
 CMakeFiles/testlibs.dir/testinclude/normtest.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/testlibs.dir/testinclude/normtest.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/normtest.c -o CMakeFiles/testlibs.dir/testinclude/normtest.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/normtest.c -o CMakeFiles/testlibs.dir/testinclude/normtest.c.s
 
 CMakeFiles/testlibs.dir/testinclude/divtest.c.o: CMakeFiles/testlibs.dir/flags.make
 CMakeFiles/testlibs.dir/testinclude/divtest.c.o: ../testinclude/divtest.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/testlibs.dir/testinclude/divtest.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/testinclude/divtest.c.o   -c /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/divtest.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/testlibs.dir/testinclude/divtest.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/testinclude/divtest.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/divtest.c
 
 CMakeFiles/testlibs.dir/testinclude/divtest.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/testlibs.dir/testinclude/divtest.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/divtest.c > CMakeFiles/testlibs.dir/testinclude/divtest.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/divtest.c > CMakeFiles/testlibs.dir/testinclude/divtest.c.i
 
 CMakeFiles/testlibs.dir/testinclude/divtest.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/testlibs.dir/testinclude/divtest.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/testinclude/divtest.c -o CMakeFiles/testlibs.dir/testinclude/divtest.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/divtest.c -o CMakeFiles/testlibs.dir/testinclude/divtest.c.s
+
+CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.o: CMakeFiles/testlibs.dir/flags.make
+CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.o: ../testinclude/nearestNtest.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.c
+
+CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.c > CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.i
+
+CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.c -o CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.s
 
 # Object files for target testlibs
 testlibs_OBJECTS = \
 "CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o" \
 "CMakeFiles/testlibs.dir/testinclude/normtest.c.o" \
-"CMakeFiles/testlibs.dir/testinclude/divtest.c.o"
+"CMakeFiles/testlibs.dir/testinclude/divtest.c.o" \
+"CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.o"
 
 # External object files for target testlibs
 testlibs_EXTERNAL_OBJECTS =
@@ -128,9 +142,10 @@ testlibs_EXTERNAL_OBJECTS =
 libtestlibs.so: CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o
 libtestlibs.so: CMakeFiles/testlibs.dir/testinclude/normtest.c.o
 libtestlibs.so: CMakeFiles/testlibs.dir/testinclude/divtest.c.o
+libtestlibs.so: CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.o
 libtestlibs.so: CMakeFiles/testlibs.dir/build.make
 libtestlibs.so: CMakeFiles/testlibs.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C shared library libtestlibs.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C shared library libtestlibs.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/testlibs.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -143,6 +158,6 @@ CMakeFiles/testlibs.dir/clean:
 .PHONY : CMakeFiles/testlibs.dir/clean
 
 CMakeFiles/testlibs.dir/depend:
-	cd /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/devLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug /home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug/CMakeFiles/testlibs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/testlibs.dir/depend
 

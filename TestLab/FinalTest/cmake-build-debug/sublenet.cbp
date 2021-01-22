@@ -298,6 +298,12 @@
 		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/pooling.h">
 			<Option target="ai-cnn"/>
 		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/upsampling.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/upsampling.h">
+			<Option target="ai-cnn"/>
+		</Unit>
 		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/utils.c">
 			<Option target="ai-cnn"/>
 		</Unit>

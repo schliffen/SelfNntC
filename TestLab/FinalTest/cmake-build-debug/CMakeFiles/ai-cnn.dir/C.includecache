@@ -6,3 +6,17 @@
 
 #IncludeRegexTransform: 
 
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/activation_function.c
+activation_function.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/activation_function.h
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/activation_function.h
+../parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h
+stdint.h
+-
+math.h
+-
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h
+

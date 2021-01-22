@@ -452,6 +452,33 @@ ai-cnn/layers/pooling.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.s
 .PHONY : ai-cnn/layers/pooling.c.s
 
+ai-cnn/layers/upsampling.o: ai-cnn/layers/upsampling.c.o
+
+.PHONY : ai-cnn/layers/upsampling.o
+
+# target to build an object file
+ai-cnn/layers/upsampling.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.o
+.PHONY : ai-cnn/layers/upsampling.c.o
+
+ai-cnn/layers/upsampling.i: ai-cnn/layers/upsampling.c.i
+
+.PHONY : ai-cnn/layers/upsampling.i
+
+# target to preprocess a source file
+ai-cnn/layers/upsampling.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.i
+.PHONY : ai-cnn/layers/upsampling.c.i
+
+ai-cnn/layers/upsampling.s: ai-cnn/layers/upsampling.c.s
+
+.PHONY : ai-cnn/layers/upsampling.s
+
+# target to generate assembly for a file
+ai-cnn/layers/upsampling.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.s
+.PHONY : ai-cnn/layers/upsampling.c.s
+
 ai-cnn/utils.o: ai-cnn/utils.c.o
 
 .PHONY : ai-cnn/utils.o
@@ -683,6 +710,9 @@ help:
 	@echo "... ai-cnn/layers/pooling.o"
 	@echo "... ai-cnn/layers/pooling.i"
 	@echo "... ai-cnn/layers/pooling.s"
+	@echo "... ai-cnn/layers/upsampling.o"
+	@echo "... ai-cnn/layers/upsampling.i"
+	@echo "... ai-cnn/layers/upsampling.s"
 	@echo "... ai-cnn/utils.o"
 	@echo "... ai-cnn/utils.i"
 	@echo "... ai-cnn/utils.s"

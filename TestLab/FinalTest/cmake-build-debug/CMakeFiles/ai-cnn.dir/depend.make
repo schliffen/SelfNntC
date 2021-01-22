@@ -43,6 +43,11 @@ CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o: ../ai-cnn/layers/pooling.h
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o: ../ai-cnn/parameters.h
 CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o: ../ai-cnn/utils.h
 
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.o: ../ai-cnn/layers/upsampling.c
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.o: ../ai-cnn/layers/upsampling.h
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.o: ../ai-cnn/parameters.h
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.o: ../ai-cnn/utils.h
+
 CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o: ../ai-cnn/parameters.h
 CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o: ../ai-cnn/utils.c
 CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o: ../ai-cnn/utils.h

@@ -6,6 +6,6 @@
 #include "network_cleanup.h"
 #include "ai-cnn/ai-cnn.h"
 
-void network(fp_t **input_data, fp_t *output_output); 
+void network(fp_t ** input_input0, fp_t ** inputs_Concat_151, fp_t ** outputs_Concat_201, fp_t *outputs_Conf);
 
 #endif //NETWORK_H

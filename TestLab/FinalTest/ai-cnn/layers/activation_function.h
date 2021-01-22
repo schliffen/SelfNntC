@@ -50,6 +50,16 @@ void tanh_naive(const fp_t* input_channel, const uint16_t height, const uint16_t
  */
 void relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel);
 
+/**
+ * @brief applies relu6(x) to all pixel of input_channel and stores it in
+ * output_channel
+ *
+ * @param input_channel (height x width)
+ * @param height
+ * @param width
+ * @param output_channel (height x width)
+ */
+void relu6_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel);
 
 /**
  * @brief applies prelu(x) to all pixel of input_channel and stores it in
@@ -60,7 +70,7 @@ void relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t
  * @param width
  * @param output_channel (height x width)
  */
-void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, const fp_t* weight);
+void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, fp_t weight);
 
 
 /**
@@ -118,7 +128,7 @@ void sigmoid_naive(const fp_t* input_channel, const uint16_t height, const uint1
  * @param output_channel (height x width)
  * @param leak
  */
-//void leaky_relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, const fp_t leak);
+void leaky_relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, const fp_t leak);
 
 
 /**
@@ -134,7 +144,7 @@ void sigmoid_naive(const fp_t* input_channel, const uint16_t height, const uint1
  * @param output_channel (height x width)
  * @param kernel parameters
  */
-//void parametrized_relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, const fp_t* kernel);
+void parametrized_relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, fp_t* kernel);
 
 
 /**
@@ -147,7 +157,19 @@ void sigmoid_naive(const fp_t* input_channel, const uint16_t height, const uint1
   * @param width
   * @param output_channel (height x width)
 */
-//void sigmoid_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width,  fp_t* output_channel);
+void sigmoid_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width,  fp_t* output_channel);
+
+/**
+  * @brief applies a special sigmoid function, the logistic function
+  *  to all values of input_channel and stores it in
+  *  output_channel
+  *
+  * @param input_channel (height x width)
+  * @param height
+  * @param width
+  * @param output_channel (height x width)
+*/
+void softmax_naive_mbnet(const fp_t** input_channel, const uint16_t num_inputs, fp_t* output_channel);
 
 /**
  * @brief applies softmax to all pixel of input_channel and stores it in
@@ -158,7 +180,7 @@ void sigmoid_naive(const fp_t* input_channel, const uint16_t height, const uint1
  * @param width
  * @param output_channel (height x width)
  */
-//void softmax_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel);
+void softmax_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel);
 
 /**
  * @brief performs a local response normalization (across channels) on

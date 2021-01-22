@@ -43,6 +43,11 @@ CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o
  /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/pooling.h
  /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h
  /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/utils.h
+CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.o
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/upsampling.c
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/upsampling.h
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/utils.h
 CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o
  /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h
  /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/utils.c

@@ -45,8 +45,7 @@ void relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t
     }
 }
 
-
-void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, const fp_t* weight) {
+void relu6_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel) {
 
 #ifdef BIG_LOOPS
     uint64_t i;
@@ -55,10 +54,29 @@ void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t widt
 #endif
 
     for(i = 0; i < height*width; i++) {
-        output_channel[i] = (input_channel[i] < 0.0) ? weight[0] * input_channel[i] : input_channel[i];
+        if (input_channel[i] < 0.0)
+            output_channel[i] = 0.0;
+        else if (input_channel[i] > 6.0)
+            output_channel[i] = 6.0;
+        else
+            output_channel[i] = input_channel[i];
+
+//        output_channel[i] = (input_channel[i] < 0.0) ? 0.0 : input_channel[i]
     }
 }
 
+void prelu(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, fp_t weight) {
+
+#ifdef BIG_LOOPS
+    uint64_t i;
+#else
+    uint32_t i;
+#endif
+
+    for(i = 0; i < height*width; i++) {
+        output_channel[i] = (input_channel[i] < 0.0) ? weight * input_channel[i] : input_channel[i];
+    }
+}
 
 
 
@@ -80,7 +98,6 @@ void leaky_relu_naive(const fp_t* input_channel, const uint16_t height, const ui
 
 // TODO: check whether kernel size (multiple parameters) makes sense
 // TODO: rename kernel?
-//#include <stdio.h>
 void parametrized_relu_naive(const fp_t* input_channel, const uint16_t height, const uint16_t width, fp_t* output_channel, fp_t* kernel) {
 
     #ifdef BIG_LOOPS
@@ -91,7 +108,6 @@ void parametrized_relu_naive(const fp_t* input_channel, const uint16_t height, c
 
     for(i = 0; i < height*width; i++) {
         output_channel[i] = (input_channel[i] < 0.0) ? (kernel[i] * input_channel[i]) : input_channel[i];
-//        printf(" prelu out: %f", output_channel[i]);
     }
 
 }
@@ -130,6 +146,39 @@ void softmax_naive(const fp_t* input_channel, const uint16_t height, const uint1
     for(i = 0; i < height*width; i++) {
         output_channel[i] = (fp_t)(expl((long double)input_channel[i]) / denominator);
     }
+}
+
+void softmax_naive_mbnet(const fp_t** input_channel, const uint16_t num_inputs, fp_t* output_channel) {
+
+#ifdef BIG_LOOPS
+    uint64_t i;
+#else
+    uint32_t i;
+#endif
+
+    int input_shape[3] = {12800, 3200, 800};
+    //
+    fp_t denom;
+    long double denominator = 0.0;
+    uint32_t gind = 0;
+    for (int n_in = 0; n_in < num_inputs; n_in++) {
+
+        for (i = 0; i < input_shape[n_in]; i++) {
+            denom =  expl((long double) input_channel[n_in][2 * i  +1]) /(expl((long double) input_channel[n_in][2 * i  ]) +  expl((long double) input_channel[n_in][2 * i  +1]));
+//            denominator =exponent_nom; //expl((long double) input_channel[n_in][2 * i 1]);
+            output_channel[gind] =  denom;
+            gind++;
+        }
+
+
+//        for (i = 0; i < input_shape[n_in]/2; i++) {
+//            output_channel[gind] = (fp_t) (expl((long double) input_channel[n_in][2 * i + 1]) / denominator);
+//            gind++;
+//        }
+    }
+
+//    output_channel[gind] = denominator;
+
 }
 
 void local_response_normalization_naive(fp_t** input_channels, const uint16_t height, const uint16_t width, const uint16_t depth, fp_t** output_channels, const fp_t alpha, const fp_t beta, const uint16_t n) {

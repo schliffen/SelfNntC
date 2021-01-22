@@ -1,1 +1,1 @@
-/usr/bin/cc -fPIC -g  -shared -Wl,-soname,libtestlibs.so -o libtestlibs.so CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o CMakeFiles/testlibs.dir/testinclude/normtest.c.o CMakeFiles/testlibs.dir/testinclude/divtest.c.o 
+/usr/bin/cc -fPIC -g  -shared -Wl,-soname,libtestlibs.so -o libtestlibs.so CMakeFiles/testlibs.dir/testinclude/BN1dtest.c.o CMakeFiles/testlibs.dir/testinclude/normtest.c.o CMakeFiles/testlibs.dir/testinclude/divtest.c.o CMakeFiles/testlibs.dir/testinclude/nearestNtest.c.o 

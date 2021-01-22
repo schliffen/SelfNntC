@@ -23,6 +23,8 @@ layers/concatenate.h
 ../ai-cnn/layers/concatenate.h
 layers/math_operations.h
 ../ai-cnn/layers/math_operations.h
+layers/upsampling.h
+../ai-cnn/layers/upsampling.h
 io/read_binary_weights.h
 ../ai-cnn/io/read_binary_weights.h
 io/read_binary_reference_data.h
@@ -116,6 +118,18 @@ stdint.h
 stdio.h
 -
 
+../ai-cnn/layers/upsampling.h
+stdint.h
+-
+stdio.h
+-
+math.h
+-
+../parameters.h
+../ai-cnn/parameters.h
+../utils.h
+../ai-cnn/utils.h
+
 ../ai-cnn/parameters.h
 
 ../ai-cnn/utils.h
@@ -126,6 +140,8 @@ stdint.h
 stdlib.h
 -
 string.h
+-
+math.h
 -
 
 /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h

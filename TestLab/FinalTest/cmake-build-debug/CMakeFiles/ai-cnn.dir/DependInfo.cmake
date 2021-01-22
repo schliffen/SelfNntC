@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/fully_connected.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o"
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/math_operations.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o"
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/pooling.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/upsampling.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.o"
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/utils.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

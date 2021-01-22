@@ -57,16 +57,21 @@ def generate_dummy_main(graph):
             print("ERROR: Creation of dummy input not supported for this input shape: {}".format(input_shape))
             return 1
 
-    if len(outputs) > 1:
-        print("ERROR: Multiple outputs not supported!")
-        return 1
-    else:
-        output_shape = graph.shape_dict[outputs[0].name]
+    # if len(outputs) > 1:
+    #     print("ERROR: Multiple outputs not supported!")
+    #     return 1
+
+    for oi in range(len(outputs)):
+        output_shape = graph.shape_dict[outputs[oi].name]
 
         if len(output_shape) == 2:
             num_output_channels = 1
             output_channel_height = 1
             output_channel_width = output_shape[1]
+        elif len(output_shape) == 3:
+            num_output_channels = output_shape[0]
+            output_channel_height = output_shape[1]
+            output_channel_width = output_shape[2]
         elif len(output_shape) == 4:
             assert output_shape[0] == 1
             num_output_channels = output_shape[1]
@@ -76,15 +81,17 @@ def generate_dummy_main(graph):
             print("ERROR: Unsupported output shape: {}".format(output_shape))
             exit(1)
 
-    attributes["input_shape_len"] = len(input_shape)
-    attributes["num_input_channels"] = num_input_channels
-    attributes["input_channel_height"] = input_channel_height
-    attributes["input_channel_width"] = input_channel_width
 
-    attributes["output_shape_len"] = len(output_shape)
-    attributes["num_output_channels"] = num_output_channels
-    attributes["output_channel_height"] = output_channel_height
-    attributes["output_channel_width"] = output_channel_width
+
+        attributes["input_shape_len_" + str(oi)] = len(input_shape)
+        attributes["num_input_channels_" + str(oi)] = num_input_channels
+        attributes["input_channel_height_" + str(oi)] = input_channel_height
+        attributes["input_channel_width_" + str(oi)] = input_channel_width
+
+        attributes["output_shape_len_" + str(oi)] = len(output_shape)
+        attributes["num_output_channels_" + str(oi)] = num_output_channels
+        attributes["output_channel_height_" + str(oi)] = output_channel_height
+        attributes["output_channel_width_" + str(oi)] = output_channel_width
 
     return template.render(**attributes)
 
@@ -137,16 +144,21 @@ def generate_reference_main(graph):
             print("ERROR: Creation of dummy input not supported for this input shape: {}".format(input_shape))
             return 1
 
-    if len(outputs) > 1:
-        print("ERROR: Multiple outputs not supported!")
-        exit(1)
-    else:
-        output_shape = graph.shape_dict[outputs[0].name]
+    # if len(outputs) > 1:
+    #     print("ERROR: Multiple outputs not supported!")
+    #     exit(1)
+    for oi in range(len(outputs)):
+        output_shape = graph.shape_dict[outputs[oi].name]
 
         if len(output_shape) == 2:
             num_output_channels = 1
             output_channel_height = 1
             output_channel_width = output_shape[1]
+        elif len(output_shape) == 3:
+            num_output_channels = output_shape[0]
+            output_channel_height = output_shape[1]
+            output_channel_width = output_shape[2]
+
         elif len(output_shape) == 4:
             assert output_shape[0] == 1
             num_output_channels = output_shape[1]
@@ -156,14 +168,26 @@ def generate_reference_main(graph):
             print("ERROR: Unsupported output shape: {}".format(output_shape))
             exit(1)
 
-    attributes["input_shape_len"] = len(input_shape)
-    attributes["num_input_channels"] = num_input_channels
-    attributes["input_channel_height"] = input_channel_height
-    attributes["input_channel_width"] = input_channel_width
+    # attributes["input_shape_len"] = len(input_shape)
+    # attributes["num_input_channels"] = num_input_channels
+    # attributes["input_channel_height"] = input_channel_height
+    # attributes["input_channel_width"] = input_channel_width
+    #
+    # attributes["output_shape_len"] = len(output_shape)
+    # attributes["num_output_channels"] = num_output_channels
+    # attributes["output_channel_height"] = output_channel_height
+    # attributes["output_channel_width"] = output_channel_width
 
-    attributes["output_shape_len"] = len(output_shape)
-    attributes["num_output_channels"] = num_output_channels
-    attributes["output_channel_height"] = output_channel_height
-    attributes["output_channel_width"] = output_channel_width
+
+    attributes["input_shape_len_" + str(oi)] = len(input_shape)
+    attributes["num_input_channels_" + str(oi)] = num_input_channels
+    attributes["input_channel_height_" + str(oi)] = input_channel_height
+    attributes["input_channel_width_" + str(oi)] = input_channel_width
+
+    attributes["output_shape_len_" + str(oi)] = len(output_shape)
+    attributes["num_output_channels_" + str(oi)] = num_output_channels
+    attributes["output_channel_height_" + str(oi)] = output_channel_height
+    attributes["output_channel_width_" + str(oi)] = output_channel_width
+
 
     return template.render(**attributes)

@@ -29,7 +29,7 @@ class BaseLayer(object):
         return template.render(**self.attributes)
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states,  memory_manager):
         pass
 
 
@@ -42,7 +42,7 @@ class Conv2DLegacy(BaseLayer):
     template_file = "ai_cnn_conv2d_legacy.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -123,7 +123,7 @@ class Conv2D(BaseLayer):
     template_file = "ai_cnn_conv2d.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -131,6 +131,9 @@ class Conv2D(BaseLayer):
         :param memory_manager: MemoryManager object containing information about input and output buffers.
         :return:
         """
+        # if node.name == 'Conv_185':
+        #     print('stop')
+
         operation = cls(node, graph)
 
         attrs = node.attrs
@@ -211,7 +214,7 @@ class Conv1D(BaseLayer):
     template_file = "ai_cnn_conv1d.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         operation = cls(node, graph)
 
         attrs = node.attrs
@@ -284,7 +287,7 @@ class FullyConnected(BaseLayer):
     template_file = "ai_cnn_fc.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -339,7 +342,7 @@ class MaxPool2D(BaseLayer):
     template_file = "ai_cnn_max_pool2d.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -403,7 +406,7 @@ class MaxPool1D(BaseLayer):
     template_file = "ai_cnn_max_pool1d.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
 
         # assert tuple(attrs["pads"]) == (0, 0)
@@ -458,6 +461,89 @@ class MaxPool1D(BaseLayer):
 
 OperationRegistry.register(MaxPool1D)
 
+class InterpolateNN(BaseLayer):
+    """
+    Rectified linear unit activation function.
+    """
+    name = "aiCNNNearstNeighbour"
+    operator = "Upsample"
+    template_file = "ai_cnn_nearest_neighbour.c"
+
+    @classmethod
+    def create(cls, node, graph, constant_states, memory_manager):
+        """
+        Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
+        :param node: ComputeNode object of a CNN layer
+        :param graph: ComputeGraph object of the CNN
+        :param memory_manager: MemoryManager object containing information about input and output buffers.
+        :return:
+        """
+        print("generating nearest neighbour upsampling layer layer")
+
+        input_buffers = [memory_manager.get_buffer(graph, node.inputs[i]) for i in range(len(node.inputs) )]
+        output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
+
+
+        # get output info
+        output_shape = output_buffer.shape
+
+        inindex = 0
+        for i, input in enumerate(input_buffers):
+            if len(input.shape) == len( output_shape ):
+                input_shape = input_buffers[i].shape
+                inindex = i
+
+
+        # get input info
+        if len(input_shape) == 2:
+            # num_input_channels = 1
+            # input_height = input_shape[0]
+            # input_width = input_shape[1]
+            print('not supporting nearest neighbout for 1 dim')
+            exit(1)
+
+
+        elif len(input_shape) == 3:
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = input_shape[2]
+            num_output_channels = output_shape[1]
+            output_height = 1
+            output_width = output_shape[2]
+
+        elif len(input_shape) == 4:
+            num_input_channels = input_shape[1]
+            input_height = input_shape[2]
+            input_width = input_shape[3]
+            #
+            num_output_channels = output_shape[1]
+            output_height = output_shape[2]
+            output_width = output_shape[3]
+
+        else:
+            print("ERROR: Unsupported input shape for relu layer: {}".format(input_shape))
+            return None
+
+        # get scale
+        scale = output_width/input_width
+
+
+        operation = cls(node, graph)
+
+        operation.attributes['num_input_channels'] = num_input_channels
+        operation.attributes['input_buffer'] = input_buffers[inindex]
+        # operation.attributes['input_height'] = input_height
+        # operation.attributes['input_width'] = input_width
+        operation.attributes['output_buffer'] = output_buffer
+        operation.attributes['target_height'] = output_height
+        operation.attributes['target_width'] = output_width
+        operation.attributes['scale'] = scale
+        return operation
+
+
+OperationRegistry.register(InterpolateNN)
+
+
 
 class Relu(BaseLayer):
     """
@@ -468,7 +554,7 @@ class Relu(BaseLayer):
     template_file = "ai_cnn_relu.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -513,6 +599,128 @@ class Relu(BaseLayer):
 OperationRegistry.register(Relu)
 
 
+class Sigmoid(BaseLayer):
+    """
+    Rectified linear unit activation function.
+    """
+    name = "aiCNNSigmoid"
+    operator = "Sigmoid"
+    template_file = "ai_cnn_sigmoid_naive.c"
+
+    @classmethod
+    def create(cls, node, graph, constant_states, memory_manager):
+        """
+        Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
+        :param node: ComputeNode object of a CNN layer
+        :param graph: ComputeGraph object of the CNN
+        :param memory_manager: MemoryManager object containing information about input and output buffers.
+        :return:
+        """
+        print("generating sigmoid layer")
+
+        input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
+        output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
+
+        input_shape = input_buffer.shape
+
+        if len(input_shape) == 2:
+            num_input_channels = 1
+            input_height = input_shape[0]
+            input_width = input_shape[1]
+        elif len(input_shape) == 3:
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = input_shape[2]
+        elif len(input_shape) == 4:
+            num_input_channels = input_shape[1]
+            input_height = input_shape[2]
+            input_width = input_shape[3]
+        elif node.parents[0].op_type == 'Gemm':
+            # in case that input shape is missing
+            # this is for resnet100 feature extraction and fir sigmoid after gemm layer
+            num_input_channels = 1
+            input_height = 1
+            input_width = graph.shape_dict[node.parents[0].inputs[-1]][0]
+
+
+
+
+
+            # print("ERROR: Unsupported input shape for sigmoid layer: {}".format(input_shape))
+            # return None
+
+        operation = cls(node, graph)
+
+        operation.attributes['num_input_channels'] = num_input_channels
+        operation.attributes['input_buffer'] = input_buffer
+        operation.attributes['input_height'] = input_height
+        operation.attributes['input_width'] = input_width
+        operation.attributes['output_buffer'] = output_buffer
+
+        return operation
+
+
+OperationRegistry.register(Sigmoid)
+
+
+class LeakyRelu(BaseLayer):
+    """
+    Rectified leaky linear unit activation function.
+    """
+    name = "aiCNNLeakyRelu"
+    operator = "LeakyRelu"
+    template_file = "ai_cnn_leakyrelu.c"
+
+    @classmethod
+    def create(cls, node, graph, constant_states, memory_manager):
+        """
+        Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
+        :param node: ComputeNode object of a CNN layer
+        :param graph: ComputeGraph object of the CNN
+        :param memory_manager: MemoryManager object containing information about input and output buffers.
+        :return:
+        """
+        print("generating leaky relu layer")
+
+        input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
+        output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
+
+        leaky_weight = node.attrs['alpha']
+
+        input_shape = input_buffer.shape
+
+        if len(input_shape) == 2:
+            num_input_channels = 1
+            input_height = input_shape[0]
+            input_width = input_shape[1]
+        elif len(input_shape) == 3:
+            num_input_channels = input_shape[1]
+            input_height = 1
+            input_width = input_shape[2]
+        elif len(input_shape) == 4:
+            num_input_channels = input_shape[1]
+            input_height = input_shape[2]
+            input_width = input_shape[3]
+        else:
+            print("ERROR: Unsupported input shape for relu layer: {}".format(input_shape))
+            return None
+
+        operation = cls(node, graph)
+
+        operation.attributes['num_input_channels'] = num_input_channels
+        operation.attributes['input_buffer'] = input_buffer
+        operation.attributes['input_height'] = input_height
+        operation.attributes['input_width'] = input_width
+        operation.attributes['output_buffer'] = output_buffer
+        operation.attributes['leaky_weight'] = leaky_weight
+
+        return operation
+
+
+OperationRegistry.register(LeakyRelu)
+
+
+
 class PRelu(BaseLayer):
     """
     Parametric Rectified linear unit activation function.
@@ -522,7 +730,7 @@ class PRelu(BaseLayer):
     template_file = "ai_cnn_prelu.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -545,13 +753,18 @@ class PRelu(BaseLayer):
             else:
                 input_shape = input_buffers[i].shape
                 input_buffer = input_buffers[i]
-
-        # if len(slop_weight.shape) == 3:
-        #     slop_weight = slop_weight[0][0][0]
-        # elif len(slop_weight.shape) == 2:
-        #     slop_weight = slop_weight[0][0]
-        # elif len(slop_weight.shape) == 1:
-        #     slop_weight = slop_weight[0]
+        changed = False
+        if len(kernel_buffer.shape) == 3:
+            if kernel_buffer.shape[1] == 1 and kernel_buffer.shape[2] == 1:
+                slop_weight = slop_tensor[list(slop_tensor.keys())[0]][0][0][0]
+                changed = True
+        elif len(kernel_buffer.shape) == 2:
+            if kernel_buffer.shape[1] == 1:
+                slop_weight = slop_tensor[list(slop_tensor.keys())[0]][0][0]
+                changed = True
+        elif len(kernel_buffer.shape) == 1:
+            slop_weight = slop_tensor[list(slop_tensor.keys())[0]][0]
+            changed = True
         # processing the input tensor
 
 
@@ -578,8 +791,10 @@ class PRelu(BaseLayer):
         operation.attributes['input_height'] = input_height
         operation.attributes['input_width'] = input_width
         operation.attributes['output_buffer'] = output_buffer
-        operation.attributes['kernel_buffer'] = kernel_buffer
-
+        if changed:
+            operation.attributes['kernel_buffer'] = slop_weight
+        else:
+            operation.attributes['kernel_buffer'] = kernel_buffer
         return operation
 
 
@@ -593,7 +808,7 @@ class BatchNorm(BaseLayer):
     template_file = "ai_cnn_batchnorm.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
 
         input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
@@ -613,10 +828,20 @@ class BatchNorm(BaseLayer):
             num_input_channels = input_shape[1]
             input_height = input_shape[2]
             input_width = 1
-        if len(input_shape) >= 4:
+        elif len(input_shape) >= 4:
             num_input_channels = input_shape[1]
             input_height = input_shape[2]
             input_width = input_shape[3]
+
+        else:
+            print('bn shape undefined ...')
+            # in case that input shape is not readible
+            num_input_channels = graph.shape_dict[node.inputs[1]][0]
+            for inp in node.inputs:
+                if not inp in graph.shape_dict.keys():
+                    input_shape = constant_states[inp]
+
+
 
         operation = cls(node, graph)
         operation.attributes['num_input_channels'] = num_input_channels
@@ -644,7 +869,7 @@ class BatchNorm_1d(BaseLayer):
     template_file = "ai_cnn_batchnorm_1d.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
 
         input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
@@ -694,7 +919,7 @@ class Norm_l2(BaseLayer):
     template_file = "ai_cnn_norm_l2.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
 
         input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
         output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
@@ -745,6 +970,9 @@ class div_by_scalar(BaseLayer):
 
         # processing the slope weight
         #
+        if len(input_buffers[0].shape) <2 and len(input_buffers[1].shape)<2:
+            return None
+
         for i, item in enumerate(input_buffers):
             if item.shape[1] == 1:
                 denomenator = input_buffers[i]
@@ -790,7 +1018,7 @@ class Clip(BaseLayer):
     template_file = "ai_cnn_clip.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
 
         attrs = node.attrs
         input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
@@ -828,7 +1056,7 @@ class MatMul(BaseLayer):
     template_file = "ai_cnn_matmul.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
 
         input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
@@ -858,27 +1086,52 @@ class Mul(BaseLayer):
     template_file = "mul.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
 
         input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
         output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
 
-        factor = node.input_tensors[node.inputs[1]]
 
-        input_shape = input_buffer.shape
-        output_shape = output_buffer.shape
 
-        assert(input_shape == output_shape)
+        # todo: correcting the output shape
+        if not node.input_tensors:
+            # todo no access to output shape
 
-        mul_code = ""
-        mul_code += "for(uint32_t i = 0; i < {}; i++)\n".format(input_shape[1])
-        mul_code += "    for(uint32_t j = 0; j < {}*{}; j++)\n".format(input_shape[2], input_shape[3])
-        mul_code += "        {}[i][j] = {}[i][j] * {};\n".format(output_buffer.name, input_buffer.name, factor)
+            # input_1_channels = constant_states[node.inputs[1]].shape[1]
 
-        operation = cls(node, graph)
+            factor = memory_manager.get_buffer(graph, node.inputs[1])
+            # factor = node.input_tensors[node.inputs[1]]
+            input_shape = input_buffer.shape
+            # output_shape = output_buffer.shape
 
-        operation.attributes['mul_code'] = mul_code
+
+            mul_code = ""
+            mul_code += "for(uint32_t i = 0; i < {}; i++)\n".format(input_shape[1])
+            mul_code += "    for(uint32_t j = 0; j < {}*{}; j++)\n".format(input_shape[2], input_shape[3])
+            mul_code += "        {}[i][j] = {}[i][j] * {};\n".format(output_buffer.name, input_buffer.name, factor)
+
+            operation = cls(node, graph)
+
+            operation.attributes['mul_code'] = mul_code
+
+
+        else:
+
+            factor = node.input_tensors[node.inputs[1]]
+            input_shape = input_buffer.shape
+            output_shape = output_buffer.shape
+
+            assert(input_shape == output_shape)
+
+            mul_code = ""
+            mul_code += "for(uint32_t i = 0; i < {}; i++)\n".format(input_shape[1])
+            mul_code += "    for(uint32_t j = 0; j < {}*{}; j++)\n".format(input_shape[2], input_shape[3])
+            mul_code += "        {}[i][j] = {}[i][j] * {};\n".format(output_buffer.name, input_buffer.name, factor)
+
+            operation = cls(node, graph)
+
+            operation.attributes['mul_code'] = mul_code
 
         # operation.attributes['input_buffer'] = input_buffer
         # operation.attributes['input_size'] = input_size
@@ -898,7 +1151,7 @@ class AveragePool2D(BaseLayer):
     template_file = "ai_cnn_average_pool2d.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
 
         kernel_shape = attrs['kernel_shape']
@@ -960,7 +1213,7 @@ class AveragePool1D(BaseLayer):
     template_file = "ai_cnn_average_pool1d.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
 
         kernel_shape = attrs["kernel_shape"]
@@ -1022,7 +1275,7 @@ class GlobalMaxPool2D(BaseLayer):
     template_file = "ai_cnn_global_max_pool2d.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
 
         # if not len(kernel_shape) == 2:
@@ -1057,7 +1310,7 @@ class GlobalAveragePool2D(BaseLayer):
     template_file = "ai_cnn_global_average_pool2d.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
 
         # if not len(kernel_shape) == 2:
@@ -1092,7 +1345,7 @@ class Transpose(BaseLayer):
     template_file = "transpose.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
         input_buffer = memory_manager.get_buffer(graph, node.inputs[0])
         output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
@@ -1162,7 +1415,7 @@ class Concat(BaseLayer):
     template_file = "ai_cnn_concat.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -1174,7 +1427,7 @@ class Concat(BaseLayer):
 
         if attrs['axis'] != 1:
             print("ERROR: Currently only concatenation along channels is supported!")
-            exit(1)
+            return None
 
         input_buffers = []
         for input in node.inputs:
@@ -1225,8 +1478,86 @@ class Concat(BaseLayer):
 
         return operation
 
-
 OperationRegistry.register(Concat)
+
+
+
+
+
+class Concat_2d(BaseLayer):
+    """
+    for mobilenet last layers
+    """
+    name = "Concat2d"
+    operator = "Concat2d"
+    template_file = "ai_cnn_concat_2d.c"
+
+    @classmethod
+    def create(cls, node, graph, constant_states, memory_manager):
+        """
+        Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
+        :param node: ComputeNode object of a CNN layer
+        :param graph: ComputeGraph object of the CNN
+        :param memory_manager: MemoryManager object containing information about input and output buffers.
+        :return:
+        """
+        attrs = node.attrs
+
+        if attrs['axis'] != 1:
+            print("ERROR: Currently only concatenation along channels is supported!")
+            return None
+
+        input_buffers = []
+        for input in node.inputs:
+            input_buffers.append(memory_manager.get_buffer(graph, input))
+
+        output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
+
+        input_shapes = [graph.get_shape(input_id) for input_id in node.inputs]
+        num_input_shapes = len(input_shapes)
+        output_shape = graph.get_shape(node.outputs[0])
+
+        for input_shape in input_shapes:
+            assert(len(input_shape) == len(output_shape))
+            for i, s in enumerate(input_shape):
+                if i != attrs['axis']:
+                    assert (s == output_shape[i])
+
+        identifier = node.name.replace('.', '_').replace(':', '_').replace('/', '_')
+
+
+        input_declaration = "fp_t** inputs_{} = (fp_t**) malloc({} * sizeof(fp_t*));\n".format(identifier, str(num_input_shapes))
+        for idx in range(num_input_shapes):
+            input_declaration += "    inputs_{}[{}] = {};\n".format(identifier, str(idx), input_buffers[idx].name)
+
+        cleanup_input = "free(inputs_{});\n".format(identifier)
+
+        input_shape_code = ""
+        input_shape_code += "const uint16_t* input_shape_{}[{}];\n".format(identifier, len(input_shapes))
+        for num, input_shape in enumerate(input_shapes):
+            input_shape_code += "    uint16_t input_shape_{}_{}[2] = {{ {}, {} }};\n".format(identifier, str(num),
+                                                                                             input_shape[1],
+                                                                                             input_shape[2])
+            input_shape_code += "    input_shape_{}[{}] = input_shape_{}_{};\n".format(identifier, str(num),
+                                                                                   identifier, str(num))
+
+
+
+        dimension = attrs['axis'] - 1
+
+        operation = cls(node, graph)
+        operation.attributes['input_declaration'] = input_declaration
+        operation.attributes['input_shape_code'] = input_shape_code
+        operation.attributes['inputs'] = "inputs_{}".format(identifier)
+        operation.attributes['input_shape'] = "input_shape_{}".format(identifier)
+        operation.attributes['dimension'] = dimension
+        operation.attributes['num_inputs'] = len(input_buffers)
+        operation.attributes['output_buffer'] = output_buffer
+        operation.attributes['cleanup_input'] = cleanup_input
+
+        return operation
+
+OperationRegistry.register(Concat_2d)
 
 
 class Reshape(BaseLayer):
@@ -1238,7 +1569,7 @@ class Reshape(BaseLayer):
     template_file = "reshape.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -1310,7 +1641,7 @@ class Flatten(BaseLayer):
     template_file = "flatten.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -1366,7 +1697,7 @@ class Add(BaseLayer):
     template_file = "ai_cnn_add.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
         input_buffers = [memory_manager.get_buffer(graph, i) for i in node.inputs]
         output_buffer = memory_manager.get_buffer(graph, node.outputs[0])
@@ -1433,7 +1764,7 @@ class Softmax(BaseLayer):
     template_file = "ai_cnn_softmax.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -1470,7 +1801,7 @@ class LocalResponseNormalization(BaseLayer):
     template_file = "ai_cnn_lrn.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -1513,7 +1844,7 @@ class Squeeze(BaseLayer):
     template_file = "squeeze.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         """
         Derive necessary information from ComputeNode, ComputeGraph and MemoryManager to generate the layer code.
         :param node: ComputeNode object of a CNN layer
@@ -1559,7 +1890,7 @@ class Pad(BaseLayer):
     template_file = "ai_cnn_pad.c"
 
     @classmethod
-    def create(cls, node, graph, memory_manager):
+    def create(cls, node, graph, constant_states, memory_manager):
         attrs = node.attrs
 
         input_buffer = memory_manager.get_buffer(graph, node.inputs[0])

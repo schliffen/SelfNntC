@@ -1,6 +1,6 @@
 #include "network.h"
 
-void network(fp_t **input_data, fp_t *output_output){
+void network(fp_t **input_input0, fp_t** output_Concat_151, fp_t ** outputs_Concat_201, fp_t *outputs_Conf){
     //Layer 0 Conv_0 Conv
     //Attributes
     //  dilations: [1, 1]
@@ -9,38 +9,39 @@ void network(fp_t **input_data, fp_t *output_output){
     //  pads: [1, 1, 1, 1]
     //  strides: [2, 2]
     //Parameters
-    //Inputs: data,conv1.conv.weight
-    //Outputs: 334
+    //Inputs: input0,588,589
+    //Outputs: 587
     //Shape:
-    //    data: (1, 3, 112, 112)
-    //    conv1.conv.weight: (64, 3, 3, 3)
-    //    334: (1, 64, 56, 56)
+    //    input0: (1, 3, 640, 640)
+    //    588: (8, 3, 3, 3)
+    //    589: (8,)
+    //    587: (1, 8, 320, 320)
 
 const uint16_t Conv_0_padding[4] = { 1, 1, 1, 1 };
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
-        convolution2d_padding_naive(input_data[g*3/1],
-                                    112,
-                                    112,
-                                    buffer_334[i],
-                                    buffer_conv1_conv_weight[i*3/1],
+    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
+        convolution2d_padding_naive(input_input0[g*3/1],
+                                    640,
+                                    640,
+                                    buffer_587[i],
+                                    buffer_588[i*3/1],
                                     3,
                                     3,
                                     2,
                                     2,
                                     Conv_0_padding,
                                     
-                                    0
+                                    buffer_589[i]
                                     );
         
         uint32_t cnt = 1;
         for(uint32_t j = g*3/1+1; j < (g+1)*3/1; j+=1){
-            static fp_t temp_buffer[56*56];
-            convolution2d_padding_naive(input_data[j],
-                                        112,
-                                        112,
+            static fp_t temp_buffer[320*320];
+            convolution2d_padding_naive(input_input0[j],
+                                        640,
+                                        640,
                                         temp_buffer,
-                                        buffer_conv1_conv_weight[i*3/1+cnt],
+                                        buffer_588[i*3/1+cnt],
                                         3,
                                         3,
                                         2,
@@ -48,138 +49,97 @@ for(uint32_t g = 0; g < 1; g++) {
                                         Conv_0_padding,
                                         0.0);
 
-            add_channel2d_naive(buffer_334[i],
+            add_channel2d_naive(buffer_587[i],
                                 temp_buffer,
-                                56,
-                                56);
+                                320,
+                                320);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 1 BatchNormalization_1 BatchNormalization
+    //Layer 1 LeakyRelu_1 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 334,conv1.bn.weight,conv1.bn.bias,conv1.bn.running_mean,conv1.bn.running_var
-    //Outputs: 335
+    //Inputs: 587
+    //Outputs: 303
     //Shape:
-    //    334: (1, 64, 56, 56)
-    //    conv1.bn.weight: (64,)
-    //    conv1.bn.bias: (64,)
-    //    conv1.bn.running_mean: (64,)
-    //    conv1.bn.running_var: (64,)
-    //    335: (1, 64, 56, 56)
-for (uint32_t i = 0; i < 64; i++) {
-    batch_normalization_naive(buffer_334[i],
-                              56,
-                              56,
-                              buffer_335[i],
-                              buffer_conv1_bn_weight[i],
-                              buffer_conv1_bn_bias[i],
-                              buffer_conv1_bn_running_mean[i],
-                              buffer_conv1_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 2 PRelu_2 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 335,523
-    //Outputs: 337
-    //Shape:
-    //    335: (1, 64, 56, 56)
-    //    523: (64, 1, 1)
-    //    337: (1, 64, 56, 56)
+    //    587: (1, 8, 320, 320)
+    //    303: (1, 8, 320, 320)
+//
+// Created by ali on 15.01.2021.
+//
 
-for (uint32_t i = 0; i < 64; i++) {
-    prelu(buffer_335[i],
-               56,
-               56,
-               buffer_337[i],
-               buffer_523[i]);
+
+for (uint32_t i = 0; i < 8; i++) {
+leaky_relu_naive(buffer_587[i],
+320,
+320,
+buffer_303[i],
+0.10000000149011612);
 }
 
-    //Layer 3 Conv_3 Conv
+    //Layer 2 Conv_2 Conv
     //Attributes
     //  dilations: [1, 1]
-    //  group: 64
+    //  group: 8
     //  kernel_shape: [3, 3]
     //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 337,conv2_dw.conv.weight
-    //Outputs: 338
+    //Inputs: 303,591,592
+    //Outputs: 590
     //Shape:
-    //    337: (1, 64, 56, 56)
-    //    conv2_dw.conv.weight: (64, 1, 3, 3)
-    //    338: (1, 64, 56, 56)
+    //    303: (1, 8, 320, 320)
+    //    591: (8, 1, 3, 3)
+    //    592: (8,)
+    //    590: (1, 8, 320, 320)
 
-const uint16_t Conv_3_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 64; g++) {
-    for(uint32_t i = g*64/64; i < (g+1)*64/64; i+=1){
-        convolution2d_padding_naive(buffer_337[g*64/64],
-                                    56,
-                                    56,
-                                    buffer_338[i],
-                                    buffer_conv2_dw_conv_weight[i*64/64],
+const uint16_t Conv_2_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 8; g++) {
+    for(uint32_t i = g*8/8; i < (g+1)*8/8; i+=1){
+        convolution2d_padding_naive(buffer_303[g*8/8],
+                                    320,
+                                    320,
+                                    buffer_590[i],
+                                    buffer_591[i*8/8],
                                     3,
                                     3,
                                     1,
                                     1,
-                                    Conv_3_padding,
+                                    Conv_2_padding,
                                     
-                                    0
+                                    buffer_592[i]
                                     );
         
     }
 }
 
-    //Layer 4 BatchNormalization_4 BatchNormalization
+    //Layer 3 LeakyRelu_3 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 338,conv2_dw.bn.weight,conv2_dw.bn.bias,conv2_dw.bn.running_mean,conv2_dw.bn.running_var
-    //Outputs: 339
+    //Inputs: 590
+    //Outputs: 306
     //Shape:
-    //    338: (1, 64, 56, 56)
-    //    conv2_dw.bn.weight: (64,)
-    //    conv2_dw.bn.bias: (64,)
-    //    conv2_dw.bn.running_mean: (64,)
-    //    conv2_dw.bn.running_var: (64,)
-    //    339: (1, 64, 56, 56)
-for (uint32_t i = 0; i < 64; i++) {
-    batch_normalization_naive(buffer_338[i],
-                              56,
-                              56,
-                              buffer_339[i],
-                              buffer_conv2_dw_bn_weight[i],
-                              buffer_conv2_dw_bn_bias[i],
-                              buffer_conv2_dw_bn_running_mean[i],
-                              buffer_conv2_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 5 PRelu_5 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 339,524
-    //Outputs: 341
-    //Shape:
-    //    339: (1, 64, 56, 56)
-    //    524: (64, 1, 1)
-    //    341: (1, 64, 56, 56)
+    //    590: (1, 8, 320, 320)
+    //    306: (1, 8, 320, 320)
+//
+// Created by ali on 15.01.2021.
+//
 
-for (uint32_t i = 0; i < 64; i++) {
-    prelu(buffer_339[i],
-               56,
-               56,
-               buffer_341[i],
-               buffer_524[i]);
+
+for (uint32_t i = 0; i < 8; i++) {
+leaky_relu_naive(buffer_590[i],
+320,
+320,
+buffer_306[i],
+0.10000000149011612);
 }
 
-    //Layer 6 Conv_6 Conv
+    //Layer 4 Conv_4 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
@@ -187,171 +147,266 @@ for (uint32_t i = 0; i < 64; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 341,conv_23.conv.conv.weight
-    //Outputs: 342
+    //Inputs: 306,594,595
+    //Outputs: 593
     //Shape:
-    //    341: (1, 64, 56, 56)
-    //    conv_23.conv.conv.weight: (128, 64, 1, 1)
-    //    342: (1, 128, 56, 56)
+    //    306: (1, 8, 320, 320)
+    //    594: (16, 8, 1, 1)
+    //    595: (16,)
+    //    593: (1, 16, 320, 320)
 
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_341[g*64/1],
-                            56,
-                            56,
-                            buffer_342[i],
-                            buffer_conv_23_conv_conv_weight[i*64/1],
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_naive(buffer_306[g*8/1],
+                            320,
+                            320,
+                            buffer_593[i],
+                            buffer_594[i*8/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_595[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
-            static fp_t temp_buffer[56*56];
-            convolution2d_naive(buffer_341[j],
-                                56,
-                                56,
+        for(uint32_t j = g*8/1+1; j < (g+1)*8/1; j+=1){
+            static fp_t temp_buffer[320*320];
+            convolution2d_naive(buffer_306[j],
+                                320,
+                                320,
                                 temp_buffer,
-                                buffer_conv_23_conv_conv_weight[i*64/1+cnt],
+                                buffer_594[i*8/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_342[i],
+            add_channel2d_naive(buffer_593[i],
                                 temp_buffer,
-                                56,
-                                56);
+                                320,
+                                320);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 7 BatchNormalization_7 BatchNormalization
+    //Layer 5 LeakyRelu_5 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 342,conv_23.conv.bn.weight,conv_23.conv.bn.bias,conv_23.conv.bn.running_mean,conv_23.conv.bn.running_var
-    //Outputs: 343
+    //Inputs: 593
+    //Outputs: 309
     //Shape:
-    //    342: (1, 128, 56, 56)
-    //    conv_23.conv.bn.weight: (128,)
-    //    conv_23.conv.bn.bias: (128,)
-    //    conv_23.conv.bn.running_mean: (128,)
-    //    conv_23.conv.bn.running_var: (128,)
-    //    343: (1, 128, 56, 56)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_342[i],
-                              56,
-                              56,
-                              buffer_343[i],
-                              buffer_conv_23_conv_bn_weight[i],
-                              buffer_conv_23_conv_bn_bias[i],
-                              buffer_conv_23_conv_bn_running_mean[i],
-                              buffer_conv_23_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 8 PRelu_8 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 343,525
-    //Outputs: 345
-    //Shape:
-    //    343: (1, 128, 56, 56)
-    //    525: (128, 1, 1)
-    //    345: (1, 128, 56, 56)
+    //    593: (1, 16, 320, 320)
+    //    309: (1, 16, 320, 320)
+//
+// Created by ali on 15.01.2021.
+//
 
-for (uint32_t i = 0; i < 128; i++) {
-    prelu(buffer_343[i],
-               56,
-               56,
-               buffer_345[i],
-               buffer_525[i]);
+
+for (uint32_t i = 0; i < 16; i++) {
+leaky_relu_naive(buffer_593[i],
+320,
+320,
+buffer_309[i],
+0.10000000149011612);
 }
 
-    //Layer 9 Conv_9 Conv
+    //Layer 6 Conv_6 Conv
     //Attributes
     //  dilations: [1, 1]
-    //  group: 128
+    //  group: 16
     //  kernel_shape: [3, 3]
     //  pads: [1, 1, 1, 1]
     //  strides: [2, 2]
     //Parameters
-    //Inputs: 345,conv_23.conv_dw.conv.weight
-    //Outputs: 346
+    //Inputs: 309,597,598
+    //Outputs: 596
     //Shape:
-    //    345: (1, 128, 56, 56)
-    //    conv_23.conv_dw.conv.weight: (128, 1, 3, 3)
-    //    346: (1, 128, 28, 28)
+    //    309: (1, 16, 320, 320)
+    //    597: (16, 1, 3, 3)
+    //    598: (16,)
+    //    596: (1, 16, 160, 160)
 
-const uint16_t Conv_9_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 128; g++) {
-    for(uint32_t i = g*128/128; i < (g+1)*128/128; i+=1){
-        convolution2d_padding_naive(buffer_345[g*128/128],
-                                    56,
-                                    56,
-                                    buffer_346[i],
-                                    buffer_conv_23_conv_dw_conv_weight[i*128/128],
+const uint16_t Conv_6_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 16; g++) {
+    for(uint32_t i = g*16/16; i < (g+1)*16/16; i+=1){
+        convolution2d_padding_naive(buffer_309[g*16/16],
+                                    320,
+                                    320,
+                                    buffer_596[i],
+                                    buffer_597[i*16/16],
                                     3,
                                     3,
                                     2,
                                     2,
-                                    Conv_9_padding,
+                                    Conv_6_padding,
                                     
-                                    0
+                                    buffer_598[i]
                                     );
         
     }
 }
 
-    //Layer 10 BatchNormalization_10 BatchNormalization
+    //Layer 7 LeakyRelu_7 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 346,conv_23.conv_dw.bn.weight,conv_23.conv_dw.bn.bias,conv_23.conv_dw.bn.running_mean,conv_23.conv_dw.bn.running_var
-    //Outputs: 347
+    //Inputs: 596
+    //Outputs: 312
     //Shape:
-    //    346: (1, 128, 28, 28)
-    //    conv_23.conv_dw.bn.weight: (128,)
-    //    conv_23.conv_dw.bn.bias: (128,)
-    //    conv_23.conv_dw.bn.running_mean: (128,)
-    //    conv_23.conv_dw.bn.running_var: (128,)
-    //    347: (1, 128, 28, 28)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_346[i],
-                              28,
-                              28,
-                              buffer_347[i],
-                              buffer_conv_23_conv_dw_bn_weight[i],
-                              buffer_conv_23_conv_dw_bn_bias[i],
-                              buffer_conv_23_conv_dw_bn_running_mean[i],
-                              buffer_conv_23_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 11 PRelu_11 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 347,526
-    //Outputs: 349
-    //Shape:
-    //    347: (1, 128, 28, 28)
-    //    526: (128, 1, 1)
-    //    349: (1, 128, 28, 28)
+    //    596: (1, 16, 160, 160)
+    //    312: (1, 16, 160, 160)
+//
+// Created by ali on 15.01.2021.
+//
 
-for (uint32_t i = 0; i < 128; i++) {
-    prelu(buffer_347[i],
-               28,
-               28,
-               buffer_349[i],
-               buffer_526[i]);
+
+for (uint32_t i = 0; i < 16; i++) {
+leaky_relu_naive(buffer_596[i],
+160,
+160,
+buffer_312[i],
+0.10000000149011612);
+}
+
+    //Layer 8 Conv_8 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [1, 1]
+    //  pads: [0, 0, 0, 0]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 312,600,601
+    //Outputs: 599
+    //Shape:
+    //    312: (1, 16, 160, 160)
+    //    600: (32, 16, 1, 1)
+    //    601: (32,)
+    //    599: (1, 32, 160, 160)
+
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*32/1; i < (g+1)*32/1; i+=1){
+        convolution2d_naive(buffer_312[g*16/1],
+                            160,
+                            160,
+                            buffer_599[i],
+                            buffer_600[i*16/1],
+                            1,
+                            1,
+                            1,
+                            1,
+                            
+                            buffer_601[i]
+                            );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
+            static fp_t temp_buffer[160*160];
+            convolution2d_naive(buffer_312[j],
+                                160,
+                                160,
+                                temp_buffer,
+                                buffer_600[i*16/1+cnt],
+                                1,
+                                1,
+                                1,
+                                1,
+                                0.0);
+
+            add_channel2d_naive(buffer_599[i],
+                                temp_buffer,
+                                160,
+                                160);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 9 LeakyRelu_9 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 599
+    //Outputs: 315
+    //Shape:
+    //    599: (1, 32, 160, 160)
+    //    315: (1, 32, 160, 160)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 32; i++) {
+leaky_relu_naive(buffer_599[i],
+160,
+160,
+buffer_315[i],
+0.10000000149011612);
+}
+
+    //Layer 10 Conv_10 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 32
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 315,603,604
+    //Outputs: 602
+    //Shape:
+    //    315: (1, 32, 160, 160)
+    //    603: (32, 1, 3, 3)
+    //    604: (32,)
+    //    602: (1, 32, 160, 160)
+
+const uint16_t Conv_10_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 32; g++) {
+    for(uint32_t i = g*32/32; i < (g+1)*32/32; i+=1){
+        convolution2d_padding_naive(buffer_315[g*32/32],
+                                    160,
+                                    160,
+                                    buffer_602[i],
+                                    buffer_603[i*32/32],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_10_padding,
+                                    
+                                    buffer_604[i]
+                                    );
+        
+    }
+}
+
+    //Layer 11 LeakyRelu_11 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 602
+    //Outputs: 318
+    //Shape:
+    //    602: (1, 32, 160, 160)
+    //    318: (1, 32, 160, 160)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 32; i++) {
+leaky_relu_naive(buffer_602[i],
+160,
+160,
+buffer_318[i],
+0.10000000149011612);
 }
 
     //Layer 12 Conv_12 Conv
@@ -362,78 +417,134 @@ for (uint32_t i = 0; i < 128; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 349,conv_23.project.conv.weight
-    //Outputs: 350
+    //Inputs: 318,606,607
+    //Outputs: 605
     //Shape:
-    //    349: (1, 128, 28, 28)
-    //    conv_23.project.conv.weight: (64, 128, 1, 1)
-    //    350: (1, 64, 28, 28)
+    //    318: (1, 32, 160, 160)
+    //    606: (32, 32, 1, 1)
+    //    607: (32,)
+    //    605: (1, 32, 160, 160)
 
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
-        convolution2d_naive(buffer_349[g*128/1],
-                            28,
-                            28,
-                            buffer_350[i],
-                            buffer_conv_23_project_conv_weight[i*128/1],
+    for(uint32_t i = g*32/1; i < (g+1)*32/1; i+=1){
+        convolution2d_naive(buffer_318[g*32/1],
+                            160,
+                            160,
+                            buffer_605[i],
+                            buffer_606[i*32/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_607[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[28*28];
-            convolution2d_naive(buffer_349[j],
-                                28,
-                                28,
+        for(uint32_t j = g*32/1+1; j < (g+1)*32/1; j+=1){
+            static fp_t temp_buffer[160*160];
+            convolution2d_naive(buffer_318[j],
+                                160,
+                                160,
                                 temp_buffer,
-                                buffer_conv_23_project_conv_weight[i*128/1+cnt],
+                                buffer_606[i*32/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_350[i],
+            add_channel2d_naive(buffer_605[i],
                                 temp_buffer,
-                                28,
-                                28);
+                                160,
+                                160);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 13 BatchNormalization_13 BatchNormalization
+    //Layer 13 LeakyRelu_13 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 350,conv_23.project.bn.weight,conv_23.project.bn.bias,conv_23.project.bn.running_mean,conv_23.project.bn.running_var
-    //Outputs: 351
+    //Inputs: 605
+    //Outputs: 321
     //Shape:
-    //    350: (1, 64, 28, 28)
-    //    conv_23.project.bn.weight: (64,)
-    //    conv_23.project.bn.bias: (64,)
-    //    conv_23.project.bn.running_mean: (64,)
-    //    conv_23.project.bn.running_var: (64,)
-    //    351: (1, 64, 28, 28)
-for (uint32_t i = 0; i < 64; i++) {
-    batch_normalization_naive(buffer_350[i],
-                              28,
-                              28,
-                              buffer_351[i],
-                              buffer_conv_23_project_bn_weight[i],
-                              buffer_conv_23_project_bn_bias[i],
-                              buffer_conv_23_project_bn_running_mean[i],
-                              buffer_conv_23_project_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    605: (1, 32, 160, 160)
+    //    321: (1, 32, 160, 160)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 32; i++) {
+leaky_relu_naive(buffer_605[i],
+160,
+160,
+buffer_321[i],
+0.10000000149011612);
 }
+
     //Layer 14 Conv_14 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 32
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [2, 2]
+    //Parameters
+    //Inputs: 321,609,610
+    //Outputs: 608
+    //Shape:
+    //    321: (1, 32, 160, 160)
+    //    609: (32, 1, 3, 3)
+    //    610: (32,)
+    //    608: (1, 32, 80, 80)
+
+const uint16_t Conv_14_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 32; g++) {
+    for(uint32_t i = g*32/32; i < (g+1)*32/32; i+=1){
+        convolution2d_padding_naive(buffer_321[g*32/32],
+                                    160,
+                                    160,
+                                    buffer_608[i],
+                                    buffer_609[i*32/32],
+                                    3,
+                                    3,
+                                    2,
+                                    2,
+                                    Conv_14_padding,
+                                    
+                                    buffer_610[i]
+                                    );
+        
+    }
+}
+
+    //Layer 15 LeakyRelu_15 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 608
+    //Outputs: 324
+    //Shape:
+    //    608: (1, 32, 80, 80)
+    //    324: (1, 32, 80, 80)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 32; i++) {
+leaky_relu_naive(buffer_608[i],
+80,
+80,
+buffer_324[i],
+0.10000000149011612);
+}
+
+    //Layer 16 Conv_16 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
@@ -441,171 +552,131 @@ for (uint32_t i = 0; i < 64; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 351,conv_3.model.0.conv.conv.weight
-    //Outputs: 352
+    //Inputs: 324,612,613
+    //Outputs: 611
     //Shape:
-    //    351: (1, 64, 28, 28)
-    //    conv_3.model.0.conv.conv.weight: (128, 64, 1, 1)
-    //    352: (1, 128, 28, 28)
+    //    324: (1, 32, 80, 80)
+    //    612: (64, 32, 1, 1)
+    //    613: (64,)
+    //    611: (1, 64, 80, 80)
 
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_351[g*64/1],
-                            28,
-                            28,
-                            buffer_352[i],
-                            buffer_conv_3_model_0_conv_conv_weight[i*64/1],
+    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
+        convolution2d_naive(buffer_324[g*32/1],
+                            80,
+                            80,
+                            buffer_611[i],
+                            buffer_612[i*32/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_613[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
-            static fp_t temp_buffer[28*28];
-            convolution2d_naive(buffer_351[j],
-                                28,
-                                28,
+        for(uint32_t j = g*32/1+1; j < (g+1)*32/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_naive(buffer_324[j],
+                                80,
+                                80,
                                 temp_buffer,
-                                buffer_conv_3_model_0_conv_conv_weight[i*64/1+cnt],
+                                buffer_612[i*32/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_352[i],
+            add_channel2d_naive(buffer_611[i],
                                 temp_buffer,
-                                28,
-                                28);
+                                80,
+                                80);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 15 BatchNormalization_15 BatchNormalization
+    //Layer 17 LeakyRelu_17 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 352,conv_3.model.0.conv.bn.weight,conv_3.model.0.conv.bn.bias,conv_3.model.0.conv.bn.running_mean,conv_3.model.0.conv.bn.running_var
-    //Outputs: 353
+    //Inputs: 611
+    //Outputs: 327
     //Shape:
-    //    352: (1, 128, 28, 28)
-    //    conv_3.model.0.conv.bn.weight: (128,)
-    //    conv_3.model.0.conv.bn.bias: (128,)
-    //    conv_3.model.0.conv.bn.running_mean: (128,)
-    //    conv_3.model.0.conv.bn.running_var: (128,)
-    //    353: (1, 128, 28, 28)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_352[i],
-                              28,
-                              28,
-                              buffer_353[i],
-                              buffer_conv_3_model_0_conv_bn_weight[i],
-                              buffer_conv_3_model_0_conv_bn_bias[i],
-                              buffer_conv_3_model_0_conv_bn_running_mean[i],
-                              buffer_conv_3_model_0_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 16 PRelu_16 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 353,527
-    //Outputs: 355
-    //Shape:
-    //    353: (1, 128, 28, 28)
-    //    527: (128, 1, 1)
-    //    355: (1, 128, 28, 28)
+    //    611: (1, 64, 80, 80)
+    //    327: (1, 64, 80, 80)
+//
+// Created by ali on 15.01.2021.
+//
 
-for (uint32_t i = 0; i < 128; i++) {
-    prelu(buffer_353[i],
-               28,
-               28,
-               buffer_355[i],
-               buffer_527[i]);
+
+for (uint32_t i = 0; i < 64; i++) {
+leaky_relu_naive(buffer_611[i],
+80,
+80,
+buffer_327[i],
+0.10000000149011612);
 }
 
-    //Layer 17 Conv_17 Conv
+    //Layer 18 Conv_18 Conv
     //Attributes
     //  dilations: [1, 1]
-    //  group: 128
+    //  group: 64
     //  kernel_shape: [3, 3]
     //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 355,conv_3.model.0.conv_dw.conv.weight
-    //Outputs: 356
+    //Inputs: 327,615,616
+    //Outputs: 614
     //Shape:
-    //    355: (1, 128, 28, 28)
-    //    conv_3.model.0.conv_dw.conv.weight: (128, 1, 3, 3)
-    //    356: (1, 128, 28, 28)
+    //    327: (1, 64, 80, 80)
+    //    615: (64, 1, 3, 3)
+    //    616: (64,)
+    //    614: (1, 64, 80, 80)
 
-const uint16_t Conv_17_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 128; g++) {
-    for(uint32_t i = g*128/128; i < (g+1)*128/128; i+=1){
-        convolution2d_padding_naive(buffer_355[g*128/128],
-                                    28,
-                                    28,
-                                    buffer_356[i],
-                                    buffer_conv_3_model_0_conv_dw_conv_weight[i*128/128],
+const uint16_t Conv_18_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 64; g++) {
+    for(uint32_t i = g*64/64; i < (g+1)*64/64; i+=1){
+        convolution2d_padding_naive(buffer_327[g*64/64],
+                                    80,
+                                    80,
+                                    buffer_614[i],
+                                    buffer_615[i*64/64],
                                     3,
                                     3,
                                     1,
                                     1,
-                                    Conv_17_padding,
+                                    Conv_18_padding,
                                     
-                                    0
+                                    buffer_616[i]
                                     );
         
     }
 }
 
-    //Layer 18 BatchNormalization_18 BatchNormalization
+    //Layer 19 LeakyRelu_19 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 356,conv_3.model.0.conv_dw.bn.weight,conv_3.model.0.conv_dw.bn.bias,conv_3.model.0.conv_dw.bn.running_mean,conv_3.model.0.conv_dw.bn.running_var
-    //Outputs: 357
+    //Inputs: 614
+    //Outputs: 330
     //Shape:
-    //    356: (1, 128, 28, 28)
-    //    conv_3.model.0.conv_dw.bn.weight: (128,)
-    //    conv_3.model.0.conv_dw.bn.bias: (128,)
-    //    conv_3.model.0.conv_dw.bn.running_mean: (128,)
-    //    conv_3.model.0.conv_dw.bn.running_var: (128,)
-    //    357: (1, 128, 28, 28)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_356[i],
-                              28,
-                              28,
-                              buffer_357[i],
-                              buffer_conv_3_model_0_conv_dw_bn_weight[i],
-                              buffer_conv_3_model_0_conv_dw_bn_bias[i],
-                              buffer_conv_3_model_0_conv_dw_bn_running_mean[i],
-                              buffer_conv_3_model_0_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 19 PRelu_19 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 357,528
-    //Outputs: 359
-    //Shape:
-    //    357: (1, 128, 28, 28)
-    //    528: (128, 1, 1)
-    //    359: (1, 128, 28, 28)
+    //    614: (1, 64, 80, 80)
+    //    330: (1, 64, 80, 80)
+//
+// Created by ali on 15.01.2021.
+//
 
-for (uint32_t i = 0; i < 128; i++) {
-    prelu(buffer_357[i],
-               28,
-               28,
-               buffer_359[i],
-               buffer_528[i]);
+
+for (uint32_t i = 0; i < 64; i++) {
+leaky_relu_naive(buffer_614[i],
+80,
+80,
+buffer_330[i],
+0.10000000149011612);
 }
 
     //Layer 20 Conv_20 Conv
@@ -616,99 +687,134 @@ for (uint32_t i = 0; i < 128; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 359,conv_3.model.0.project.conv.weight
-    //Outputs: 360
+    //Inputs: 330,618,619
+    //Outputs: 617
     //Shape:
-    //    359: (1, 128, 28, 28)
-    //    conv_3.model.0.project.conv.weight: (64, 128, 1, 1)
-    //    360: (1, 64, 28, 28)
+    //    330: (1, 64, 80, 80)
+    //    618: (64, 64, 1, 1)
+    //    619: (64,)
+    //    617: (1, 64, 80, 80)
 
 for(uint32_t g = 0; g < 1; g++) {
     for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
-        convolution2d_naive(buffer_359[g*128/1],
-                            28,
-                            28,
-                            buffer_360[i],
-                            buffer_conv_3_model_0_project_conv_weight[i*128/1],
+        convolution2d_naive(buffer_330[g*64/1],
+                            80,
+                            80,
+                            buffer_617[i],
+                            buffer_618[i*64/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_619[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[28*28];
-            convolution2d_naive(buffer_359[j],
-                                28,
-                                28,
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_naive(buffer_330[j],
+                                80,
+                                80,
                                 temp_buffer,
-                                buffer_conv_3_model_0_project_conv_weight[i*128/1+cnt],
+                                buffer_618[i*64/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_360[i],
+            add_channel2d_naive(buffer_617[i],
                                 temp_buffer,
-                                28,
-                                28);
+                                80,
+                                80);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 21 BatchNormalization_21 BatchNormalization
+    //Layer 21 LeakyRelu_21 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 360,conv_3.model.0.project.bn.weight,conv_3.model.0.project.bn.bias,conv_3.model.0.project.bn.running_mean,conv_3.model.0.project.bn.running_var
-    //Outputs: 361
+    //Inputs: 617
+    //Outputs: 333
     //Shape:
-    //    360: (1, 64, 28, 28)
-    //    conv_3.model.0.project.bn.weight: (64,)
-    //    conv_3.model.0.project.bn.bias: (64,)
-    //    conv_3.model.0.project.bn.running_mean: (64,)
-    //    conv_3.model.0.project.bn.running_var: (64,)
-    //    361: (1, 64, 28, 28)
+    //    617: (1, 64, 80, 80)
+    //    333: (1, 64, 80, 80)
+//
+// Created by ali on 15.01.2021.
+//
+
+
 for (uint32_t i = 0; i < 64; i++) {
-    batch_normalization_naive(buffer_360[i],
-                              28,
-                              28,
-                              buffer_361[i],
-                              buffer_conv_3_model_0_project_bn_weight[i],
-                              buffer_conv_3_model_0_project_bn_bias[i],
-                              buffer_conv_3_model_0_project_bn_running_mean[i],
-                              buffer_conv_3_model_0_project_bn_running_var[i],
-                              9.999999747378752e-06);
+leaky_relu_naive(buffer_617[i],
+80,
+80,
+buffer_333[i],
+0.10000000149011612);
 }
-    //Layer 22 Add_22 Add
+
+    //Layer 22 Conv_22 Conv
     //Attributes
+    //  dilations: [1, 1]
+    //  group: 64
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [2, 2]
     //Parameters
-    //Inputs: 351,361
-    //Outputs: 362
+    //Inputs: 333,621,622
+    //Outputs: 620
     //Shape:
-    //    351: (1, 64, 28, 28)
-    //    361: (1, 64, 28, 28)
-    //    362: (1, 64, 28, 28)
+    //    333: (1, 64, 80, 80)
+    //    621: (64, 1, 3, 3)
+    //    622: (64,)
+    //    620: (1, 64, 40, 40)
 
-    for(uint32_t i = 0; i < 64; i++){
-        memcpy(buffer_362[i],
-               buffer_351[i],
-               28*28*sizeof(fp_t));
+const uint16_t Conv_22_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 64; g++) {
+    for(uint32_t i = g*64/64; i < (g+1)*64/64; i+=1){
+        convolution2d_padding_naive(buffer_333[g*64/64],
+                                    80,
+                                    80,
+                                    buffer_620[i],
+                                    buffer_621[i*64/64],
+                                    3,
+                                    3,
+                                    2,
+                                    2,
+                                    Conv_22_padding,
+                                    
+                                    buffer_622[i]
+                                    );
+        
     }
+}
 
-    for(uint32_t i = 0; i < 64; i++){
-        add_channel2d_naive(buffer_362[i], buffer_361[i], 28, 28);
-    }
+    //Layer 23 LeakyRelu_23 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 620
+    //Outputs: 336
+    //Shape:
+    //    620: (1, 64, 40, 40)
+    //    336: (1, 64, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
 
 
-    //Layer 23 Conv_23 Conv
+for (uint32_t i = 0; i < 64; i++) {
+leaky_relu_naive(buffer_620[i],
+40,
+40,
+buffer_336[i],
+0.10000000149011612);
+}
+
+    //Layer 24 Conv_24 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
@@ -716,93 +822,73 @@ for (uint32_t i = 0; i < 64; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 362,conv_3.model.1.conv.conv.weight
-    //Outputs: 363
+    //Inputs: 336,624,625
+    //Outputs: 623
     //Shape:
-    //    362: (1, 64, 28, 28)
-    //    conv_3.model.1.conv.conv.weight: (128, 64, 1, 1)
-    //    363: (1, 128, 28, 28)
+    //    336: (1, 64, 40, 40)
+    //    624: (128, 64, 1, 1)
+    //    625: (128,)
+    //    623: (1, 128, 40, 40)
 
 for(uint32_t g = 0; g < 1; g++) {
     for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_362[g*64/1],
-                            28,
-                            28,
-                            buffer_363[i],
-                            buffer_conv_3_model_1_conv_conv_weight[i*64/1],
+        convolution2d_naive(buffer_336[g*64/1],
+                            40,
+                            40,
+                            buffer_623[i],
+                            buffer_624[i*64/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_625[i]
                             );
         
         uint32_t cnt = 1;
         for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
-            static fp_t temp_buffer[28*28];
-            convolution2d_naive(buffer_362[j],
-                                28,
-                                28,
+            static fp_t temp_buffer[40*40];
+            convolution2d_naive(buffer_336[j],
+                                40,
+                                40,
                                 temp_buffer,
-                                buffer_conv_3_model_1_conv_conv_weight[i*64/1+cnt],
+                                buffer_624[i*64/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_363[i],
+            add_channel2d_naive(buffer_623[i],
                                 temp_buffer,
-                                28,
-                                28);
+                                40,
+                                40);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 24 BatchNormalization_24 BatchNormalization
+    //Layer 25 LeakyRelu_25 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 363,conv_3.model.1.conv.bn.weight,conv_3.model.1.conv.bn.bias,conv_3.model.1.conv.bn.running_mean,conv_3.model.1.conv.bn.running_var
-    //Outputs: 364
+    //Inputs: 623
+    //Outputs: 339
     //Shape:
-    //    363: (1, 128, 28, 28)
-    //    conv_3.model.1.conv.bn.weight: (128,)
-    //    conv_3.model.1.conv.bn.bias: (128,)
-    //    conv_3.model.1.conv.bn.running_mean: (128,)
-    //    conv_3.model.1.conv.bn.running_var: (128,)
-    //    364: (1, 128, 28, 28)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_363[i],
-                              28,
-                              28,
-                              buffer_364[i],
-                              buffer_conv_3_model_1_conv_bn_weight[i],
-                              buffer_conv_3_model_1_conv_bn_bias[i],
-                              buffer_conv_3_model_1_conv_bn_running_mean[i],
-                              buffer_conv_3_model_1_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 25 PRelu_25 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 364,529
-    //Outputs: 366
-    //Shape:
-    //    364: (1, 128, 28, 28)
-    //    529: (128, 1, 1)
-    //    366: (1, 128, 28, 28)
+    //    623: (1, 128, 40, 40)
+    //    339: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
 
 for (uint32_t i = 0; i < 128; i++) {
-    prelu(buffer_364[i],
-               28,
-               28,
-               buffer_366[i],
-               buffer_529[i]);
+leaky_relu_naive(buffer_623[i],
+40,
+40,
+buffer_339[i],
+0.10000000149011612);
 }
 
     //Layer 26 Conv_26 Conv
@@ -813,77 +899,57 @@ for (uint32_t i = 0; i < 128; i++) {
     //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 366,conv_3.model.1.conv_dw.conv.weight
-    //Outputs: 367
+    //Inputs: 339,627,628
+    //Outputs: 626
     //Shape:
-    //    366: (1, 128, 28, 28)
-    //    conv_3.model.1.conv_dw.conv.weight: (128, 1, 3, 3)
-    //    367: (1, 128, 28, 28)
+    //    339: (1, 128, 40, 40)
+    //    627: (128, 1, 3, 3)
+    //    628: (128,)
+    //    626: (1, 128, 40, 40)
 
 const uint16_t Conv_26_padding[4] = { 1, 1, 1, 1 };
 for(uint32_t g = 0; g < 128; g++) {
     for(uint32_t i = g*128/128; i < (g+1)*128/128; i+=1){
-        convolution2d_padding_naive(buffer_366[g*128/128],
-                                    28,
-                                    28,
-                                    buffer_367[i],
-                                    buffer_conv_3_model_1_conv_dw_conv_weight[i*128/128],
+        convolution2d_padding_naive(buffer_339[g*128/128],
+                                    40,
+                                    40,
+                                    buffer_626[i],
+                                    buffer_627[i*128/128],
                                     3,
                                     3,
                                     1,
                                     1,
                                     Conv_26_padding,
                                     
-                                    0
+                                    buffer_628[i]
                                     );
         
     }
 }
 
-    //Layer 27 BatchNormalization_27 BatchNormalization
+    //Layer 27 LeakyRelu_27 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 367,conv_3.model.1.conv_dw.bn.weight,conv_3.model.1.conv_dw.bn.bias,conv_3.model.1.conv_dw.bn.running_mean,conv_3.model.1.conv_dw.bn.running_var
-    //Outputs: 368
+    //Inputs: 626
+    //Outputs: 342
     //Shape:
-    //    367: (1, 128, 28, 28)
-    //    conv_3.model.1.conv_dw.bn.weight: (128,)
-    //    conv_3.model.1.conv_dw.bn.bias: (128,)
-    //    conv_3.model.1.conv_dw.bn.running_mean: (128,)
-    //    conv_3.model.1.conv_dw.bn.running_var: (128,)
-    //    368: (1, 128, 28, 28)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_367[i],
-                              28,
-                              28,
-                              buffer_368[i],
-                              buffer_conv_3_model_1_conv_dw_bn_weight[i],
-                              buffer_conv_3_model_1_conv_dw_bn_bias[i],
-                              buffer_conv_3_model_1_conv_dw_bn_running_mean[i],
-                              buffer_conv_3_model_1_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 28 PRelu_28 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 368,530
-    //Outputs: 370
-    //Shape:
-    //    368: (1, 128, 28, 28)
-    //    530: (128, 1, 1)
-    //    370: (1, 128, 28, 28)
+    //    626: (1, 128, 40, 40)
+    //    342: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
 
 for (uint32_t i = 0; i < 128; i++) {
-    prelu(buffer_368[i],
-               28,
-               28,
-               buffer_370[i],
-               buffer_530[i]);
+leaky_relu_naive(buffer_626[i],
+40,
+40,
+buffer_342[i],
+0.10000000149011612);
 }
 
-    //Layer 29 Conv_29 Conv
+    //Layer 28 Conv_28 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
@@ -891,97 +957,132 @@ for (uint32_t i = 0; i < 128; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 370,conv_3.model.1.project.conv.weight
-    //Outputs: 371
+    //Inputs: 342,630,631
+    //Outputs: 629
     //Shape:
-    //    370: (1, 128, 28, 28)
-    //    conv_3.model.1.project.conv.weight: (64, 128, 1, 1)
-    //    371: (1, 64, 28, 28)
+    //    342: (1, 128, 40, 40)
+    //    630: (128, 128, 1, 1)
+    //    631: (128,)
+    //    629: (1, 128, 40, 40)
 
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
-        convolution2d_naive(buffer_370[g*128/1],
-                            28,
-                            28,
-                            buffer_371[i],
-                            buffer_conv_3_model_1_project_conv_weight[i*128/1],
+    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
+        convolution2d_naive(buffer_342[g*128/1],
+                            40,
+                            40,
+                            buffer_629[i],
+                            buffer_630[i*128/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_631[i]
                             );
         
         uint32_t cnt = 1;
         for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[28*28];
-            convolution2d_naive(buffer_370[j],
-                                28,
-                                28,
+            static fp_t temp_buffer[40*40];
+            convolution2d_naive(buffer_342[j],
+                                40,
+                                40,
                                 temp_buffer,
-                                buffer_conv_3_model_1_project_conv_weight[i*128/1+cnt],
+                                buffer_630[i*128/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_371[i],
+            add_channel2d_naive(buffer_629[i],
                                 temp_buffer,
-                                28,
-                                28);
+                                40,
+                                40);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 30 BatchNormalization_30 BatchNormalization
+    //Layer 29 LeakyRelu_29 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 371,conv_3.model.1.project.bn.weight,conv_3.model.1.project.bn.bias,conv_3.model.1.project.bn.running_mean,conv_3.model.1.project.bn.running_var
-    //Outputs: 372
+    //Inputs: 629
+    //Outputs: 345
     //Shape:
-    //    371: (1, 64, 28, 28)
-    //    conv_3.model.1.project.bn.weight: (64,)
-    //    conv_3.model.1.project.bn.bias: (64,)
-    //    conv_3.model.1.project.bn.running_mean: (64,)
-    //    conv_3.model.1.project.bn.running_var: (64,)
-    //    372: (1, 64, 28, 28)
-for (uint32_t i = 0; i < 64; i++) {
-    batch_normalization_naive(buffer_371[i],
-                              28,
-                              28,
-                              buffer_372[i],
-                              buffer_conv_3_model_1_project_bn_weight[i],
-                              buffer_conv_3_model_1_project_bn_bias[i],
-                              buffer_conv_3_model_1_project_bn_running_mean[i],
-                              buffer_conv_3_model_1_project_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    629: (1, 128, 40, 40)
+    //    345: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 128; i++) {
+leaky_relu_naive(buffer_629[i],
+40,
+40,
+buffer_345[i],
+0.10000000149011612);
 }
-    //Layer 31 Add_31 Add
+
+    //Layer 30 Conv_30 Conv
     //Attributes
+    //  dilations: [1, 1]
+    //  group: 128
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
     //Parameters
-    //Inputs: 362,372
-    //Outputs: 373
+    //Inputs: 345,633,634
+    //Outputs: 632
     //Shape:
-    //    362: (1, 64, 28, 28)
-    //    372: (1, 64, 28, 28)
-    //    373: (1, 64, 28, 28)
+    //    345: (1, 128, 40, 40)
+    //    633: (128, 1, 3, 3)
+    //    634: (128,)
+    //    632: (1, 128, 40, 40)
 
-    for(uint32_t i = 0; i < 64; i++){
-        memcpy(buffer_373[i],
-               buffer_362[i],
-               28*28*sizeof(fp_t));
+const uint16_t Conv_30_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 128; g++) {
+    for(uint32_t i = g*128/128; i < (g+1)*128/128; i+=1){
+        convolution2d_padding_naive(buffer_345[g*128/128],
+                                    40,
+                                    40,
+                                    buffer_632[i],
+                                    buffer_633[i*128/128],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_30_padding,
+                                    
+                                    buffer_634[i]
+                                    );
+        
     }
+}
 
-    for(uint32_t i = 0; i < 64; i++){
-        add_channel2d_naive(buffer_373[i], buffer_372[i], 28, 28);
-    }
+    //Layer 31 LeakyRelu_31 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 632
+    //Outputs: 348
+    //Shape:
+    //    632: (1, 128, 40, 40)
+    //    348: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
 
+
+for (uint32_t i = 0; i < 128; i++) {
+leaky_relu_naive(buffer_632[i],
+40,
+40,
+buffer_348[i],
+0.10000000149011612);
+}
 
     //Layer 32 Conv_32 Conv
     //Attributes
@@ -991,96 +1092,76 @@ for (uint32_t i = 0; i < 64; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 373,conv_3.model.2.conv.conv.weight
-    //Outputs: 374
+    //Inputs: 348,636,637
+    //Outputs: 635
     //Shape:
-    //    373: (1, 64, 28, 28)
-    //    conv_3.model.2.conv.conv.weight: (128, 64, 1, 1)
-    //    374: (1, 128, 28, 28)
+    //    348: (1, 128, 40, 40)
+    //    636: (128, 128, 1, 1)
+    //    637: (128,)
+    //    635: (1, 128, 40, 40)
 
 for(uint32_t g = 0; g < 1; g++) {
     for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_373[g*64/1],
-                            28,
-                            28,
-                            buffer_374[i],
-                            buffer_conv_3_model_2_conv_conv_weight[i*64/1],
+        convolution2d_naive(buffer_348[g*128/1],
+                            40,
+                            40,
+                            buffer_635[i],
+                            buffer_636[i*128/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_637[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
-            static fp_t temp_buffer[28*28];
-            convolution2d_naive(buffer_373[j],
-                                28,
-                                28,
+        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_naive(buffer_348[j],
+                                40,
+                                40,
                                 temp_buffer,
-                                buffer_conv_3_model_2_conv_conv_weight[i*64/1+cnt],
+                                buffer_636[i*128/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_374[i],
+            add_channel2d_naive(buffer_635[i],
                                 temp_buffer,
-                                28,
-                                28);
+                                40,
+                                40);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 33 BatchNormalization_33 BatchNormalization
+    //Layer 33 LeakyRelu_33 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 374,conv_3.model.2.conv.bn.weight,conv_3.model.2.conv.bn.bias,conv_3.model.2.conv.bn.running_mean,conv_3.model.2.conv.bn.running_var
-    //Outputs: 375
+    //Inputs: 635
+    //Outputs: 351
     //Shape:
-    //    374: (1, 128, 28, 28)
-    //    conv_3.model.2.conv.bn.weight: (128,)
-    //    conv_3.model.2.conv.bn.bias: (128,)
-    //    conv_3.model.2.conv.bn.running_mean: (128,)
-    //    conv_3.model.2.conv.bn.running_var: (128,)
-    //    375: (1, 128, 28, 28)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_374[i],
-                              28,
-                              28,
-                              buffer_375[i],
-                              buffer_conv_3_model_2_conv_bn_weight[i],
-                              buffer_conv_3_model_2_conv_bn_bias[i],
-                              buffer_conv_3_model_2_conv_bn_running_mean[i],
-                              buffer_conv_3_model_2_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 34 PRelu_34 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 375,531
-    //Outputs: 377
-    //Shape:
-    //    375: (1, 128, 28, 28)
-    //    531: (128, 1, 1)
-    //    377: (1, 128, 28, 28)
+    //    635: (1, 128, 40, 40)
+    //    351: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
 
 for (uint32_t i = 0; i < 128; i++) {
-    prelu(buffer_375[i],
-               28,
-               28,
-               buffer_377[i],
-               buffer_531[i]);
+leaky_relu_naive(buffer_635[i],
+40,
+40,
+buffer_351[i],
+0.10000000149011612);
 }
 
-    //Layer 35 Conv_35 Conv
+    //Layer 34 Conv_34 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 128
@@ -1088,177 +1169,192 @@ for (uint32_t i = 0; i < 128; i++) {
     //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 377,conv_3.model.2.conv_dw.conv.weight
-    //Outputs: 378
+    //Inputs: 351,639,640
+    //Outputs: 638
     //Shape:
-    //    377: (1, 128, 28, 28)
-    //    conv_3.model.2.conv_dw.conv.weight: (128, 1, 3, 3)
-    //    378: (1, 128, 28, 28)
+    //    351: (1, 128, 40, 40)
+    //    639: (128, 1, 3, 3)
+    //    640: (128,)
+    //    638: (1, 128, 40, 40)
 
-const uint16_t Conv_35_padding[4] = { 1, 1, 1, 1 };
+const uint16_t Conv_34_padding[4] = { 1, 1, 1, 1 };
 for(uint32_t g = 0; g < 128; g++) {
     for(uint32_t i = g*128/128; i < (g+1)*128/128; i+=1){
-        convolution2d_padding_naive(buffer_377[g*128/128],
-                                    28,
-                                    28,
-                                    buffer_378[i],
-                                    buffer_conv_3_model_2_conv_dw_conv_weight[i*128/128],
+        convolution2d_padding_naive(buffer_351[g*128/128],
+                                    40,
+                                    40,
+                                    buffer_638[i],
+                                    buffer_639[i*128/128],
                                     3,
                                     3,
                                     1,
                                     1,
-                                    Conv_35_padding,
+                                    Conv_34_padding,
                                     
-                                    0
+                                    buffer_640[i]
                                     );
         
     }
 }
 
-    //Layer 36 BatchNormalization_36 BatchNormalization
+    //Layer 35 LeakyRelu_35 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 378,conv_3.model.2.conv_dw.bn.weight,conv_3.model.2.conv_dw.bn.bias,conv_3.model.2.conv_dw.bn.running_mean,conv_3.model.2.conv_dw.bn.running_var
-    //Outputs: 379
+    //Inputs: 638
+    //Outputs: 354
     //Shape:
-    //    378: (1, 128, 28, 28)
-    //    conv_3.model.2.conv_dw.bn.weight: (128,)
-    //    conv_3.model.2.conv_dw.bn.bias: (128,)
-    //    conv_3.model.2.conv_dw.bn.running_mean: (128,)
-    //    conv_3.model.2.conv_dw.bn.running_var: (128,)
-    //    379: (1, 128, 28, 28)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_378[i],
-                              28,
-                              28,
-                              buffer_379[i],
-                              buffer_conv_3_model_2_conv_dw_bn_weight[i],
-                              buffer_conv_3_model_2_conv_dw_bn_bias[i],
-                              buffer_conv_3_model_2_conv_dw_bn_running_mean[i],
-                              buffer_conv_3_model_2_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 37 PRelu_37 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 379,532
-    //Outputs: 381
-    //Shape:
-    //    379: (1, 128, 28, 28)
-    //    532: (128, 1, 1)
-    //    381: (1, 128, 28, 28)
+    //    638: (1, 128, 40, 40)
+    //    354: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
 
 for (uint32_t i = 0; i < 128; i++) {
-    prelu(buffer_379[i],
-               28,
-               28,
-               buffer_381[i],
-               buffer_532[i]);
+leaky_relu_naive(buffer_638[i],
+40,
+40,
+buffer_354[i],
+0.10000000149011612);
+}
+
+    //Layer 36 Conv_36 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [1, 1]
+    //  pads: [0, 0, 0, 0]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 354,642,643
+    //Outputs: 641
+    //Shape:
+    //    354: (1, 128, 40, 40)
+    //    642: (128, 128, 1, 1)
+    //    643: (128,)
+    //    641: (1, 128, 40, 40)
+
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
+        convolution2d_naive(buffer_354[g*128/1],
+                            40,
+                            40,
+                            buffer_641[i],
+                            buffer_642[i*128/1],
+                            1,
+                            1,
+                            1,
+                            1,
+                            
+                            buffer_643[i]
+                            );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_naive(buffer_354[j],
+                                40,
+                                40,
+                                temp_buffer,
+                                buffer_642[i*128/1+cnt],
+                                1,
+                                1,
+                                1,
+                                1,
+                                0.0);
+
+            add_channel2d_naive(buffer_641[i],
+                                temp_buffer,
+                                40,
+                                40);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 37 LeakyRelu_37 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 641
+    //Outputs: 357
+    //Shape:
+    //    641: (1, 128, 40, 40)
+    //    357: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 128; i++) {
+leaky_relu_naive(buffer_641[i],
+40,
+40,
+buffer_357[i],
+0.10000000149011612);
 }
 
     //Layer 38 Conv_38 Conv
     //Attributes
     //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
+    //  group: 128
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 381,conv_3.model.2.project.conv.weight
-    //Outputs: 382
+    //Inputs: 357,645,646
+    //Outputs: 644
     //Shape:
-    //    381: (1, 128, 28, 28)
-    //    conv_3.model.2.project.conv.weight: (64, 128, 1, 1)
-    //    382: (1, 64, 28, 28)
+    //    357: (1, 128, 40, 40)
+    //    645: (128, 1, 3, 3)
+    //    646: (128,)
+    //    644: (1, 128, 40, 40)
 
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
-        convolution2d_naive(buffer_381[g*128/1],
-                            28,
-                            28,
-                            buffer_382[i],
-                            buffer_conv_3_model_2_project_conv_weight[i*128/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[28*28];
-            convolution2d_naive(buffer_381[j],
-                                28,
-                                28,
-                                temp_buffer,
-                                buffer_conv_3_model_2_project_conv_weight[i*128/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_382[i],
-                                temp_buffer,
-                                28,
-                                28);
-            cnt+=1;
-        }
+const uint16_t Conv_38_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 128; g++) {
+    for(uint32_t i = g*128/128; i < (g+1)*128/128; i+=1){
+        convolution2d_padding_naive(buffer_357[g*128/128],
+                                    40,
+                                    40,
+                                    buffer_644[i],
+                                    buffer_645[i*128/128],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_38_padding,
+                                    
+                                    buffer_646[i]
+                                    );
         
     }
 }
 
-    //Layer 39 BatchNormalization_39 BatchNormalization
+    //Layer 39 LeakyRelu_39 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 382,conv_3.model.2.project.bn.weight,conv_3.model.2.project.bn.bias,conv_3.model.2.project.bn.running_mean,conv_3.model.2.project.bn.running_var
-    //Outputs: 383
+    //Inputs: 644
+    //Outputs: 360
     //Shape:
-    //    382: (1, 64, 28, 28)
-    //    conv_3.model.2.project.bn.weight: (64,)
-    //    conv_3.model.2.project.bn.bias: (64,)
-    //    conv_3.model.2.project.bn.running_mean: (64,)
-    //    conv_3.model.2.project.bn.running_var: (64,)
-    //    383: (1, 64, 28, 28)
-for (uint32_t i = 0; i < 64; i++) {
-    batch_normalization_naive(buffer_382[i],
-                              28,
-                              28,
-                              buffer_383[i],
-                              buffer_conv_3_model_2_project_bn_weight[i],
-                              buffer_conv_3_model_2_project_bn_bias[i],
-                              buffer_conv_3_model_2_project_bn_running_mean[i],
-                              buffer_conv_3_model_2_project_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    644: (1, 128, 40, 40)
+    //    360: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 128; i++) {
+leaky_relu_naive(buffer_644[i],
+40,
+40,
+buffer_360[i],
+0.10000000149011612);
 }
-    //Layer 40 Add_40 Add
-    //Attributes
-    //Parameters
-    //Inputs: 373,383
-    //Outputs: 384
-    //Shape:
-    //    373: (1, 64, 28, 28)
-    //    383: (1, 64, 28, 28)
-    //    384: (1, 64, 28, 28)
 
-    for(uint32_t i = 0; i < 64; i++){
-        memcpy(buffer_384[i],
-               buffer_373[i],
-               28*28*sizeof(fp_t));
-    }
-
-    for(uint32_t i = 0; i < 64; i++){
-        add_channel2d_naive(buffer_384[i], buffer_383[i], 28, 28);
-    }
-
-
-    //Layer 41 Conv_41 Conv
+    //Layer 40 Conv_40 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
@@ -1266,96 +1362,76 @@ for (uint32_t i = 0; i < 64; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 384,conv_3.model.3.conv.conv.weight
-    //Outputs: 385
+    //Inputs: 360,648,649
+    //Outputs: 647
     //Shape:
-    //    384: (1, 64, 28, 28)
-    //    conv_3.model.3.conv.conv.weight: (128, 64, 1, 1)
-    //    385: (1, 128, 28, 28)
+    //    360: (1, 128, 40, 40)
+    //    648: (128, 128, 1, 1)
+    //    649: (128,)
+    //    647: (1, 128, 40, 40)
 
 for(uint32_t g = 0; g < 1; g++) {
     for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_384[g*64/1],
-                            28,
-                            28,
-                            buffer_385[i],
-                            buffer_conv_3_model_3_conv_conv_weight[i*64/1],
+        convolution2d_naive(buffer_360[g*128/1],
+                            40,
+                            40,
+                            buffer_647[i],
+                            buffer_648[i*128/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_649[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
-            static fp_t temp_buffer[28*28];
-            convolution2d_naive(buffer_384[j],
-                                28,
-                                28,
+        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_naive(buffer_360[j],
+                                40,
+                                40,
                                 temp_buffer,
-                                buffer_conv_3_model_3_conv_conv_weight[i*64/1+cnt],
+                                buffer_648[i*128/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_385[i],
+            add_channel2d_naive(buffer_647[i],
                                 temp_buffer,
-                                28,
-                                28);
+                                40,
+                                40);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 42 BatchNormalization_42 BatchNormalization
+    //Layer 41 LeakyRelu_41 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 385,conv_3.model.3.conv.bn.weight,conv_3.model.3.conv.bn.bias,conv_3.model.3.conv.bn.running_mean,conv_3.model.3.conv.bn.running_var
-    //Outputs: 386
+    //Inputs: 647
+    //Outputs: 363
     //Shape:
-    //    385: (1, 128, 28, 28)
-    //    conv_3.model.3.conv.bn.weight: (128,)
-    //    conv_3.model.3.conv.bn.bias: (128,)
-    //    conv_3.model.3.conv.bn.running_mean: (128,)
-    //    conv_3.model.3.conv.bn.running_var: (128,)
-    //    386: (1, 128, 28, 28)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_385[i],
-                              28,
-                              28,
-                              buffer_386[i],
-                              buffer_conv_3_model_3_conv_bn_weight[i],
-                              buffer_conv_3_model_3_conv_bn_bias[i],
-                              buffer_conv_3_model_3_conv_bn_running_mean[i],
-                              buffer_conv_3_model_3_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 43 PRelu_43 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 386,533
-    //Outputs: 388
-    //Shape:
-    //    386: (1, 128, 28, 28)
-    //    533: (128, 1, 1)
-    //    388: (1, 128, 28, 28)
+    //    647: (1, 128, 40, 40)
+    //    363: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
 
 for (uint32_t i = 0; i < 128; i++) {
-    prelu(buffer_386[i],
-               28,
-               28,
-               buffer_388[i],
-               buffer_533[i]);
+leaky_relu_naive(buffer_647[i],
+40,
+40,
+buffer_363[i],
+0.10000000149011612);
 }
 
-    //Layer 44 Conv_44 Conv
+    //Layer 42 Conv_42 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 128
@@ -1363,77 +1439,57 @@ for (uint32_t i = 0; i < 128; i++) {
     //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 388,conv_3.model.3.conv_dw.conv.weight
-    //Outputs: 389
+    //Inputs: 363,651,652
+    //Outputs: 650
     //Shape:
-    //    388: (1, 128, 28, 28)
-    //    conv_3.model.3.conv_dw.conv.weight: (128, 1, 3, 3)
-    //    389: (1, 128, 28, 28)
+    //    363: (1, 128, 40, 40)
+    //    651: (128, 1, 3, 3)
+    //    652: (128,)
+    //    650: (1, 128, 40, 40)
 
-const uint16_t Conv_44_padding[4] = { 1, 1, 1, 1 };
+const uint16_t Conv_42_padding[4] = { 1, 1, 1, 1 };
 for(uint32_t g = 0; g < 128; g++) {
     for(uint32_t i = g*128/128; i < (g+1)*128/128; i+=1){
-        convolution2d_padding_naive(buffer_388[g*128/128],
-                                    28,
-                                    28,
-                                    buffer_389[i],
-                                    buffer_conv_3_model_3_conv_dw_conv_weight[i*128/128],
+        convolution2d_padding_naive(buffer_363[g*128/128],
+                                    40,
+                                    40,
+                                    buffer_650[i],
+                                    buffer_651[i*128/128],
                                     3,
                                     3,
                                     1,
                                     1,
-                                    Conv_44_padding,
+                                    Conv_42_padding,
                                     
-                                    0
+                                    buffer_652[i]
                                     );
         
     }
 }
 
-    //Layer 45 BatchNormalization_45 BatchNormalization
+    //Layer 43 LeakyRelu_43 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 389,conv_3.model.3.conv_dw.bn.weight,conv_3.model.3.conv_dw.bn.bias,conv_3.model.3.conv_dw.bn.running_mean,conv_3.model.3.conv_dw.bn.running_var
-    //Outputs: 390
+    //Inputs: 650
+    //Outputs: 366
     //Shape:
-    //    389: (1, 128, 28, 28)
-    //    conv_3.model.3.conv_dw.bn.weight: (128,)
-    //    conv_3.model.3.conv_dw.bn.bias: (128,)
-    //    conv_3.model.3.conv_dw.bn.running_mean: (128,)
-    //    conv_3.model.3.conv_dw.bn.running_var: (128,)
-    //    390: (1, 128, 28, 28)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_389[i],
-                              28,
-                              28,
-                              buffer_390[i],
-                              buffer_conv_3_model_3_conv_dw_bn_weight[i],
-                              buffer_conv_3_model_3_conv_dw_bn_bias[i],
-                              buffer_conv_3_model_3_conv_dw_bn_running_mean[i],
-                              buffer_conv_3_model_3_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 46 PRelu_46 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 390,534
-    //Outputs: 392
-    //Shape:
-    //    390: (1, 128, 28, 28)
-    //    534: (128, 1, 1)
-    //    392: (1, 128, 28, 28)
+    //    650: (1, 128, 40, 40)
+    //    366: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
 
 for (uint32_t i = 0; i < 128; i++) {
-    prelu(buffer_390[i],
-               28,
-               28,
-               buffer_392[i],
-               buffer_534[i]);
+leaky_relu_naive(buffer_650[i],
+40,
+40,
+buffer_366[i],
+0.10000000149011612);
 }
 
-    //Layer 47 Conv_47 Conv
+    //Layer 44 Conv_44 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
@@ -1441,99 +1497,134 @@ for (uint32_t i = 0; i < 128; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 392,conv_3.model.3.project.conv.weight
-    //Outputs: 393
+    //Inputs: 366,654,655
+    //Outputs: 653
     //Shape:
-    //    392: (1, 128, 28, 28)
-    //    conv_3.model.3.project.conv.weight: (64, 128, 1, 1)
-    //    393: (1, 64, 28, 28)
+    //    366: (1, 128, 40, 40)
+    //    654: (128, 128, 1, 1)
+    //    655: (128,)
+    //    653: (1, 128, 40, 40)
 
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
-        convolution2d_naive(buffer_392[g*128/1],
-                            28,
-                            28,
-                            buffer_393[i],
-                            buffer_conv_3_model_3_project_conv_weight[i*128/1],
+    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
+        convolution2d_naive(buffer_366[g*128/1],
+                            40,
+                            40,
+                            buffer_653[i],
+                            buffer_654[i*128/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_655[i]
                             );
         
         uint32_t cnt = 1;
         for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[28*28];
-            convolution2d_naive(buffer_392[j],
-                                28,
-                                28,
+            static fp_t temp_buffer[40*40];
+            convolution2d_naive(buffer_366[j],
+                                40,
+                                40,
                                 temp_buffer,
-                                buffer_conv_3_model_3_project_conv_weight[i*128/1+cnt],
+                                buffer_654[i*128/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_393[i],
+            add_channel2d_naive(buffer_653[i],
                                 temp_buffer,
-                                28,
-                                28);
+                                40,
+                                40);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 48 BatchNormalization_48 BatchNormalization
+    //Layer 45 LeakyRelu_45 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 393,conv_3.model.3.project.bn.weight,conv_3.model.3.project.bn.bias,conv_3.model.3.project.bn.running_mean,conv_3.model.3.project.bn.running_var
-    //Outputs: 394
+    //Inputs: 653
+    //Outputs: 369
     //Shape:
-    //    393: (1, 64, 28, 28)
-    //    conv_3.model.3.project.bn.weight: (64,)
-    //    conv_3.model.3.project.bn.bias: (64,)
-    //    conv_3.model.3.project.bn.running_mean: (64,)
-    //    conv_3.model.3.project.bn.running_var: (64,)
-    //    394: (1, 64, 28, 28)
-for (uint32_t i = 0; i < 64; i++) {
-    batch_normalization_naive(buffer_393[i],
-                              28,
-                              28,
-                              buffer_394[i],
-                              buffer_conv_3_model_3_project_bn_weight[i],
-                              buffer_conv_3_model_3_project_bn_bias[i],
-                              buffer_conv_3_model_3_project_bn_running_mean[i],
-                              buffer_conv_3_model_3_project_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    653: (1, 128, 40, 40)
+    //    369: (1, 128, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 128; i++) {
+leaky_relu_naive(buffer_653[i],
+40,
+40,
+buffer_369[i],
+0.10000000149011612);
 }
-    //Layer 49 Add_49 Add
+
+    //Layer 46 Conv_46 Conv
     //Attributes
+    //  dilations: [1, 1]
+    //  group: 128
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [2, 2]
     //Parameters
-    //Inputs: 384,394
-    //Outputs: 395
+    //Inputs: 369,657,658
+    //Outputs: 656
     //Shape:
-    //    384: (1, 64, 28, 28)
-    //    394: (1, 64, 28, 28)
-    //    395: (1, 64, 28, 28)
+    //    369: (1, 128, 40, 40)
+    //    657: (128, 1, 3, 3)
+    //    658: (128,)
+    //    656: (1, 128, 20, 20)
 
-    for(uint32_t i = 0; i < 64; i++){
-        memcpy(buffer_395[i],
-               buffer_384[i],
-               28*28*sizeof(fp_t));
+const uint16_t Conv_46_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 128; g++) {
+    for(uint32_t i = g*128/128; i < (g+1)*128/128; i+=1){
+        convolution2d_padding_naive(buffer_369[g*128/128],
+                                    40,
+                                    40,
+                                    buffer_656[i],
+                                    buffer_657[i*128/128],
+                                    3,
+                                    3,
+                                    2,
+                                    2,
+                                    Conv_46_padding,
+                                    
+                                    buffer_658[i]
+                                    );
+        
     }
+}
 
-    for(uint32_t i = 0; i < 64; i++){
-        add_channel2d_naive(buffer_395[i], buffer_394[i], 28, 28);
-    }
+    //Layer 47 LeakyRelu_47 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 656
+    //Outputs: 372
+    //Shape:
+    //    656: (1, 128, 20, 20)
+    //    372: (1, 128, 20, 20)
+//
+// Created by ali on 15.01.2021.
+//
 
 
-    //Layer 50 Conv_50 Conv
+for (uint32_t i = 0; i < 128; i++) {
+leaky_relu_naive(buffer_656[i],
+20,
+20,
+buffer_372[i],
+0.10000000149011612);
+}
+
+    //Layer 48 Conv_48 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
@@ -1541,171 +1632,285 @@ for (uint32_t i = 0; i < 64; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 395,conv_34.conv.conv.weight
-    //Outputs: 396
+    //Inputs: 372,660,661
+    //Outputs: 659
     //Shape:
-    //    395: (1, 64, 28, 28)
-    //    conv_34.conv.conv.weight: (256, 64, 1, 1)
-    //    396: (1, 256, 28, 28)
+    //    372: (1, 128, 20, 20)
+    //    660: (256, 128, 1, 1)
+    //    661: (256,)
+    //    659: (1, 256, 20, 20)
 
 for(uint32_t g = 0; g < 1; g++) {
     for(uint32_t i = g*256/1; i < (g+1)*256/1; i+=1){
-        convolution2d_naive(buffer_395[g*64/1],
-                            28,
-                            28,
-                            buffer_396[i],
-                            buffer_conv_34_conv_conv_weight[i*64/1],
+        convolution2d_naive(buffer_372[g*128/1],
+                            20,
+                            20,
+                            buffer_659[i],
+                            buffer_660[i*128/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_661[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
-            static fp_t temp_buffer[28*28];
-            convolution2d_naive(buffer_395[j],
-                                28,
-                                28,
+        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_naive(buffer_372[j],
+                                20,
+                                20,
                                 temp_buffer,
-                                buffer_conv_34_conv_conv_weight[i*64/1+cnt],
+                                buffer_660[i*128/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_396[i],
+            add_channel2d_naive(buffer_659[i],
                                 temp_buffer,
-                                28,
-                                28);
+                                20,
+                                20);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 51 BatchNormalization_51 BatchNormalization
+    //Layer 49 LeakyRelu_49 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 396,conv_34.conv.bn.weight,conv_34.conv.bn.bias,conv_34.conv.bn.running_mean,conv_34.conv.bn.running_var
-    //Outputs: 397
+    //Inputs: 659
+    //Outputs: 375
     //Shape:
-    //    396: (1, 256, 28, 28)
-    //    conv_34.conv.bn.weight: (256,)
-    //    conv_34.conv.bn.bias: (256,)
-    //    conv_34.conv.bn.running_mean: (256,)
-    //    conv_34.conv.bn.running_var: (256,)
-    //    397: (1, 256, 28, 28)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_396[i],
-                              28,
-                              28,
-                              buffer_397[i],
-                              buffer_conv_34_conv_bn_weight[i],
-                              buffer_conv_34_conv_bn_bias[i],
-                              buffer_conv_34_conv_bn_running_mean[i],
-                              buffer_conv_34_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 52 PRelu_52 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 397,535
-    //Outputs: 399
-    //Shape:
-    //    397: (1, 256, 28, 28)
-    //    535: (256, 1, 1)
-    //    399: (1, 256, 28, 28)
+    //    659: (1, 256, 20, 20)
+    //    375: (1, 256, 20, 20)
+//
+// Created by ali on 15.01.2021.
+//
+
 
 for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_397[i],
-               28,
-               28,
-               buffer_399[i],
-               buffer_535[i]);
+leaky_relu_naive(buffer_659[i],
+20,
+20,
+buffer_375[i],
+0.10000000149011612);
 }
 
-    //Layer 53 Conv_53 Conv
+    //Layer 50 Conv_50 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 256
     //  kernel_shape: [3, 3]
     //  pads: [1, 1, 1, 1]
-    //  strides: [2, 2]
+    //  strides: [1, 1]
     //Parameters
-    //Inputs: 399,conv_34.conv_dw.conv.weight
-    //Outputs: 400
+    //Inputs: 375,663,664
+    //Outputs: 662
     //Shape:
-    //    399: (1, 256, 28, 28)
-    //    conv_34.conv_dw.conv.weight: (256, 1, 3, 3)
-    //    400: (1, 256, 14, 14)
+    //    375: (1, 256, 20, 20)
+    //    663: (256, 1, 3, 3)
+    //    664: (256,)
+    //    662: (1, 256, 20, 20)
 
-const uint16_t Conv_53_padding[4] = { 1, 1, 1, 1 };
+const uint16_t Conv_50_padding[4] = { 1, 1, 1, 1 };
 for(uint32_t g = 0; g < 256; g++) {
     for(uint32_t i = g*256/256; i < (g+1)*256/256; i+=1){
-        convolution2d_padding_naive(buffer_399[g*256/256],
-                                    28,
-                                    28,
-                                    buffer_400[i],
-                                    buffer_conv_34_conv_dw_conv_weight[i*256/256],
+        convolution2d_padding_naive(buffer_375[g*256/256],
+                                    20,
+                                    20,
+                                    buffer_662[i],
+                                    buffer_663[i*256/256],
                                     3,
                                     3,
-                                    2,
-                                    2,
-                                    Conv_53_padding,
+                                    1,
+                                    1,
+                                    Conv_50_padding,
                                     
-                                    0
+                                    buffer_664[i]
                                     );
         
     }
 }
 
-    //Layer 54 BatchNormalization_54 BatchNormalization
+    //Layer 51 LeakyRelu_51 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 400,conv_34.conv_dw.bn.weight,conv_34.conv_dw.bn.bias,conv_34.conv_dw.bn.running_mean,conv_34.conv_dw.bn.running_var
-    //Outputs: 401
+    //Inputs: 662
+    //Outputs: 378
     //Shape:
-    //    400: (1, 256, 14, 14)
-    //    conv_34.conv_dw.bn.weight: (256,)
-    //    conv_34.conv_dw.bn.bias: (256,)
-    //    conv_34.conv_dw.bn.running_mean: (256,)
-    //    conv_34.conv_dw.bn.running_var: (256,)
-    //    401: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_400[i],
-                              14,
-                              14,
-                              buffer_401[i],
-                              buffer_conv_34_conv_dw_bn_weight[i],
-                              buffer_conv_34_conv_dw_bn_bias[i],
-                              buffer_conv_34_conv_dw_bn_running_mean[i],
-                              buffer_conv_34_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 55 PRelu_55 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 401,536
-    //Outputs: 403
-    //Shape:
-    //    401: (1, 256, 14, 14)
-    //    536: (256, 1, 1)
-    //    403: (1, 256, 14, 14)
+    //    662: (1, 256, 20, 20)
+    //    378: (1, 256, 20, 20)
+//
+// Created by ali on 15.01.2021.
+//
+
 
 for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_401[i],
-               14,
-               14,
-               buffer_403[i],
-               buffer_536[i]);
+leaky_relu_naive(buffer_662[i],
+20,
+20,
+buffer_378[i],
+0.10000000149011612);
+}
+
+    //Layer 52 Conv_52 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [1, 1]
+    //  pads: [0, 0, 0, 0]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 378,666,667
+    //Outputs: 665
+    //Shape:
+    //    378: (1, 256, 20, 20)
+    //    666: (256, 256, 1, 1)
+    //    667: (256,)
+    //    665: (1, 256, 20, 20)
+
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*256/1; i < (g+1)*256/1; i+=1){
+        convolution2d_naive(buffer_378[g*256/1],
+                            20,
+                            20,
+                            buffer_665[i],
+                            buffer_666[i*256/1],
+                            1,
+                            1,
+                            1,
+                            1,
+                            
+                            buffer_667[i]
+                            );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_naive(buffer_378[j],
+                                20,
+                                20,
+                                temp_buffer,
+                                buffer_666[i*256/1+cnt],
+                                1,
+                                1,
+                                1,
+                                1,
+                                0.0);
+
+            add_channel2d_naive(buffer_665[i],
+                                temp_buffer,
+                                20,
+                                20);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 53 LeakyRelu_53 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 665
+    //Outputs: 381
+    //Shape:
+    //    665: (1, 256, 20, 20)
+    //    381: (1, 256, 20, 20)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 256; i++) {
+leaky_relu_naive(buffer_665[i],
+20,
+20,
+buffer_381[i],
+0.10000000149011612);
+}
+
+    //Layer 54 Conv_54 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [1, 1]
+    //  pads: [0, 0, 0, 0]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 333,669,670
+    //Outputs: 668
+    //Shape:
+    //    333: (1, 64, 80, 80)
+    //    669: (64, 64, 1, 1)
+    //    670: (64,)
+    //    668: (1, 64, 80, 80)
+
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
+        convolution2d_naive(buffer_333[g*64/1],
+                            80,
+                            80,
+                            buffer_668[i],
+                            buffer_669[i*64/1],
+                            1,
+                            1,
+                            1,
+                            1,
+                            
+                            buffer_670[i]
+                            );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_naive(buffer_333[j],
+                                80,
+                                80,
+                                temp_buffer,
+                                buffer_669[i*64/1+cnt],
+                                1,
+                                1,
+                                1,
+                                1,
+                                0.0);
+
+            add_channel2d_naive(buffer_668[i],
+                                temp_buffer,
+                                80,
+                                80);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 55 LeakyRelu_55 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 668
+    //Outputs: 384
+    //Shape:
+    //    668: (1, 64, 80, 80)
+    //    384: (1, 64, 80, 80)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 64; i++) {
+leaky_relu_naive(buffer_668[i],
+80,
+80,
+buffer_384[i],
+0.10000000149011612);
 }
 
     //Layer 56 Conv_56 Conv
@@ -1716,77 +1921,75 @@ for (uint32_t i = 0; i < 256; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 403,conv_34.project.conv.weight
-    //Outputs: 404
+    //Inputs: 369,672,673
+    //Outputs: 671
     //Shape:
-    //    403: (1, 256, 14, 14)
-    //    conv_34.project.conv.weight: (128, 256, 1, 1)
-    //    404: (1, 128, 14, 14)
+    //    369: (1, 128, 40, 40)
+    //    672: (64, 128, 1, 1)
+    //    673: (64,)
+    //    671: (1, 64, 40, 40)
 
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_403[g*256/1],
-                            14,
-                            14,
-                            buffer_404[i],
-                            buffer_conv_34_project_conv_weight[i*256/1],
+    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
+        convolution2d_naive(buffer_369[g*128/1],
+                            40,
+                            40,
+                            buffer_671[i],
+                            buffer_672[i*128/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_673[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_403[j],
-                                14,
-                                14,
+        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_naive(buffer_369[j],
+                                40,
+                                40,
                                 temp_buffer,
-                                buffer_conv_34_project_conv_weight[i*256/1+cnt],
+                                buffer_672[i*128/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_404[i],
+            add_channel2d_naive(buffer_671[i],
                                 temp_buffer,
-                                14,
-                                14);
+                                40,
+                                40);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 57 BatchNormalization_57 BatchNormalization
+    //Layer 57 LeakyRelu_57 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 404,conv_34.project.bn.weight,conv_34.project.bn.bias,conv_34.project.bn.running_mean,conv_34.project.bn.running_var
-    //Outputs: 405
+    //Inputs: 671
+    //Outputs: 387
     //Shape:
-    //    404: (1, 128, 14, 14)
-    //    conv_34.project.bn.weight: (128,)
-    //    conv_34.project.bn.bias: (128,)
-    //    conv_34.project.bn.running_mean: (128,)
-    //    conv_34.project.bn.running_var: (128,)
-    //    405: (1, 128, 14, 14)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_404[i],
-                              14,
-                              14,
-                              buffer_405[i],
-                              buffer_conv_34_project_bn_weight[i],
-                              buffer_conv_34_project_bn_bias[i],
-                              buffer_conv_34_project_bn_running_mean[i],
-                              buffer_conv_34_project_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    671: (1, 64, 40, 40)
+    //    387: (1, 64, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 64; i++) {
+leaky_relu_naive(buffer_671[i],
+40,
+40,
+buffer_387[i],
+0.10000000149011612);
 }
+
     //Layer 58 Conv_58 Conv
     //Attributes
     //  dilations: [1, 1]
@@ -1795,2353 +1998,1765 @@ for (uint32_t i = 0; i < 128; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 405,conv_4.model.0.conv.conv.weight
-    //Outputs: 406
+    //Inputs: 381,675,676
+    //Outputs: 674
     //Shape:
-    //    405: (1, 128, 14, 14)
-    //    conv_4.model.0.conv.conv.weight: (256, 128, 1, 1)
-    //    406: (1, 256, 14, 14)
+    //    381: (1, 256, 20, 20)
+    //    675: (64, 256, 1, 1)
+    //    676: (64,)
+    //    674: (1, 64, 20, 20)
 
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*256/1; i < (g+1)*256/1; i+=1){
-        convolution2d_naive(buffer_405[g*128/1],
-                            14,
-                            14,
-                            buffer_406[i],
-                            buffer_conv_4_model_0_conv_conv_weight[i*128/1],
+    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
+        convolution2d_naive(buffer_381[g*256/1],
+                            20,
+                            20,
+                            buffer_674[i],
+                            buffer_675[i*256/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_676[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_405[j],
-                                14,
-                                14,
+        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_naive(buffer_381[j],
+                                20,
+                                20,
                                 temp_buffer,
-                                buffer_conv_4_model_0_conv_conv_weight[i*128/1+cnt],
+                                buffer_675[i*256/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_406[i],
+            add_channel2d_naive(buffer_674[i],
                                 temp_buffer,
-                                14,
-                                14);
+                                20,
+                                20);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 59 BatchNormalization_59 BatchNormalization
+    //Layer 59 LeakyRelu_59 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 406,conv_4.model.0.conv.bn.weight,conv_4.model.0.conv.bn.bias,conv_4.model.0.conv.bn.running_mean,conv_4.model.0.conv.bn.running_var
+    //Inputs: 674
+    //Outputs: 390
+    //Shape:
+    //    674: (1, 64, 20, 20)
+    //    390: (1, 64, 20, 20)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 64; i++) {
+leaky_relu_naive(buffer_674[i],
+20,
+20,
+buffer_390[i],
+0.10000000149011612);
+}
+
+    //Layer 60 Upsample_76 Upsample
+    //Attributes
+    //  mode: b'nearest'
+    //Parameters
+    //Inputs: 390,400
     //Outputs: 407
     //Shape:
-    //    406: (1, 256, 14, 14)
-    //    conv_4.model.0.conv.bn.weight: (256,)
-    //    conv_4.model.0.conv.bn.bias: (256,)
-    //    conv_4.model.0.conv.bn.running_mean: (256,)
-    //    conv_4.model.0.conv.bn.running_var: (256,)
-    //    407: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_406[i],
-                              14,
-                              14,
-                              buffer_407[i],
-                              buffer_conv_4_model_0_conv_bn_weight[i],
-                              buffer_conv_4_model_0_conv_bn_bias[i],
-                              buffer_conv_4_model_0_conv_bn_running_mean[i],
-                              buffer_conv_4_model_0_conv_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    390: (1, 64, 20, 20)
+    //    400: (2,)
+    //    407: (1, 64, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
+for (uint32_t i = 0; i < 64; i++) {
+upsampling_2D_nearest_neighbour(buffer_390[i],
+40,
+40,
+2.0,
+buffer_407[i]);
 }
-    //Layer 60 PRelu_60 PRelu
+
+
+// upsampling_2D_nearest_neighbour
+    //Layer 61 Add_77 Add
     //Attributes
     //Parameters
-    //Inputs: 407,537
-    //Outputs: 409
+    //Inputs: 387,407
+    //Outputs: 408
     //Shape:
-    //    407: (1, 256, 14, 14)
-    //    537: (256, 1, 1)
-    //    409: (1, 256, 14, 14)
+    //    387: (1, 64, 40, 40)
+    //    407: (1, 64, 40, 40)
+    //    408: (1, 64, 40, 40)
 
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_407[i],
-               14,
-               14,
-               buffer_409[i],
-               buffer_537[i]);
-}
+    for(uint32_t i = 0; i < 64; i++){
+        memcpy(buffer_408[i],
+               buffer_387[i],
+               40*40*sizeof(fp_t));
+    }
 
-    //Layer 61 Conv_61 Conv
+    for(uint32_t i = 0; i < 64; i++){
+        add_channel2d_naive(buffer_408[i], buffer_407[i], 40, 40);
+    }
+
+
+    //Layer 62 Conv_78 Conv
     //Attributes
     //  dilations: [1, 1]
-    //  group: 256
+    //  group: 1
     //  kernel_shape: [3, 3]
     //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 409,conv_4.model.0.conv_dw.conv.weight
-    //Outputs: 410
+    //Inputs: 408,678,679
+    //Outputs: 677
     //Shape:
-    //    409: (1, 256, 14, 14)
-    //    conv_4.model.0.conv_dw.conv.weight: (256, 1, 3, 3)
-    //    410: (1, 256, 14, 14)
+    //    408: (1, 64, 40, 40)
+    //    678: (64, 64, 3, 3)
+    //    679: (64,)
+    //    677: (1, 64, 40, 40)
 
-const uint16_t Conv_61_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 256; g++) {
-    for(uint32_t i = g*256/256; i < (g+1)*256/256; i+=1){
-        convolution2d_padding_naive(buffer_409[g*256/256],
-                                    14,
-                                    14,
-                                    buffer_410[i],
-                                    buffer_conv_4_model_0_conv_dw_conv_weight[i*256/256],
+const uint16_t Conv_78_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
+        convolution2d_padding_naive(buffer_408[g*64/1],
+                                    40,
+                                    40,
+                                    buffer_677[i],
+                                    buffer_678[i*64/1],
                                     3,
                                     3,
                                     1,
                                     1,
-                                    Conv_61_padding,
+                                    Conv_78_padding,
                                     
-                                    0
+                                    buffer_679[i]
                                     );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_padding_naive(buffer_408[j],
+                                        40,
+                                        40,
+                                        temp_buffer,
+                                        buffer_678[i*64/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_78_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_677[i],
+                                temp_buffer,
+                                40,
+                                40);
+            cnt+=1;
+        }
         
     }
 }
 
-    //Layer 62 BatchNormalization_62 BatchNormalization
+    //Layer 63 LeakyRelu_79 LeakyRelu
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 410,conv_4.model.0.conv_dw.bn.weight,conv_4.model.0.conv_dw.bn.bias,conv_4.model.0.conv_dw.bn.running_mean,conv_4.model.0.conv_dw.bn.running_var
+    //Inputs: 677
     //Outputs: 411
     //Shape:
-    //    410: (1, 256, 14, 14)
-    //    conv_4.model.0.conv_dw.bn.weight: (256,)
-    //    conv_4.model.0.conv_dw.bn.bias: (256,)
-    //    conv_4.model.0.conv_dw.bn.running_mean: (256,)
-    //    conv_4.model.0.conv_dw.bn.running_var: (256,)
-    //    411: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_410[i],
-                              14,
-                              14,
-                              buffer_411[i],
-                              buffer_conv_4_model_0_conv_dw_bn_weight[i],
-                              buffer_conv_4_model_0_conv_dw_bn_bias[i],
-                              buffer_conv_4_model_0_conv_dw_bn_running_mean[i],
-                              buffer_conv_4_model_0_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 63 PRelu_63 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 411,538
-    //Outputs: 413
-    //Shape:
-    //    411: (1, 256, 14, 14)
-    //    538: (256, 1, 1)
-    //    413: (1, 256, 14, 14)
+    //    677: (1, 64, 40, 40)
+    //    411: (1, 64, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
 
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_411[i],
-               14,
-               14,
-               buffer_413[i],
-               buffer_538[i]);
+
+for (uint32_t i = 0; i < 64; i++) {
+leaky_relu_naive(buffer_677[i],
+40,
+40,
+buffer_411[i],
+0.10000000149011612);
 }
 
-    //Layer 64 Conv_64 Conv
+    //Layer 64 Upsample_96 Upsample
     //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
+    //  mode: b'nearest'
     //Parameters
-    //Inputs: 413,conv_4.model.0.project.conv.weight
-    //Outputs: 414
-    //Shape:
-    //    413: (1, 256, 14, 14)
-    //    conv_4.model.0.project.conv.weight: (128, 256, 1, 1)
-    //    414: (1, 128, 14, 14)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_413[g*256/1],
-                            14,
-                            14,
-                            buffer_414[i],
-                            buffer_conv_4_model_0_project_conv_weight[i*256/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_413[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_0_project_conv_weight[i*256/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_414[i],
-                                temp_buffer,
-                                14,
-                                14);
-            cnt+=1;
-        }
-        
-    }
-}
-
-    //Layer 65 BatchNormalization_65 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 414,conv_4.model.0.project.bn.weight,conv_4.model.0.project.bn.bias,conv_4.model.0.project.bn.running_mean,conv_4.model.0.project.bn.running_var
-    //Outputs: 415
-    //Shape:
-    //    414: (1, 128, 14, 14)
-    //    conv_4.model.0.project.bn.weight: (128,)
-    //    conv_4.model.0.project.bn.bias: (128,)
-    //    conv_4.model.0.project.bn.running_mean: (128,)
-    //    conv_4.model.0.project.bn.running_var: (128,)
-    //    415: (1, 128, 14, 14)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_414[i],
-                              14,
-                              14,
-                              buffer_415[i],
-                              buffer_conv_4_model_0_project_bn_weight[i],
-                              buffer_conv_4_model_0_project_bn_bias[i],
-                              buffer_conv_4_model_0_project_bn_running_mean[i],
-                              buffer_conv_4_model_0_project_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 66 Add_66 Add
-    //Attributes
-    //Parameters
-    //Inputs: 405,415
-    //Outputs: 416
-    //Shape:
-    //    405: (1, 128, 14, 14)
-    //    415: (1, 128, 14, 14)
-    //    416: (1, 128, 14, 14)
-
-    for(uint32_t i = 0; i < 128; i++){
-        memcpy(buffer_416[i],
-               buffer_405[i],
-               14*14*sizeof(fp_t));
-    }
-
-    for(uint32_t i = 0; i < 128; i++){
-        add_channel2d_naive(buffer_416[i], buffer_415[i], 14, 14);
-    }
-
-
-    //Layer 67 Conv_67 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 416,conv_4.model.1.conv.conv.weight
-    //Outputs: 417
-    //Shape:
-    //    416: (1, 128, 14, 14)
-    //    conv_4.model.1.conv.conv.weight: (256, 128, 1, 1)
-    //    417: (1, 256, 14, 14)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*256/1; i < (g+1)*256/1; i+=1){
-        convolution2d_naive(buffer_416[g*128/1],
-                            14,
-                            14,
-                            buffer_417[i],
-                            buffer_conv_4_model_1_conv_conv_weight[i*128/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_416[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_1_conv_conv_weight[i*128/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_417[i],
-                                temp_buffer,
-                                14,
-                                14);
-            cnt+=1;
-        }
-        
-    }
-}
-
-    //Layer 68 BatchNormalization_68 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 417,conv_4.model.1.conv.bn.weight,conv_4.model.1.conv.bn.bias,conv_4.model.1.conv.bn.running_mean,conv_4.model.1.conv.bn.running_var
-    //Outputs: 418
-    //Shape:
-    //    417: (1, 256, 14, 14)
-    //    conv_4.model.1.conv.bn.weight: (256,)
-    //    conv_4.model.1.conv.bn.bias: (256,)
-    //    conv_4.model.1.conv.bn.running_mean: (256,)
-    //    conv_4.model.1.conv.bn.running_var: (256,)
-    //    418: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_417[i],
-                              14,
-                              14,
-                              buffer_418[i],
-                              buffer_conv_4_model_1_conv_bn_weight[i],
-                              buffer_conv_4_model_1_conv_bn_bias[i],
-                              buffer_conv_4_model_1_conv_bn_running_mean[i],
-                              buffer_conv_4_model_1_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 69 PRelu_69 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 418,539
-    //Outputs: 420
-    //Shape:
-    //    418: (1, 256, 14, 14)
-    //    539: (256, 1, 1)
-    //    420: (1, 256, 14, 14)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_418[i],
-               14,
-               14,
-               buffer_420[i],
-               buffer_539[i]);
-}
-
-    //Layer 70 Conv_70 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 256
-    //  kernel_shape: [3, 3]
-    //  pads: [1, 1, 1, 1]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 420,conv_4.model.1.conv_dw.conv.weight
-    //Outputs: 421
-    //Shape:
-    //    420: (1, 256, 14, 14)
-    //    conv_4.model.1.conv_dw.conv.weight: (256, 1, 3, 3)
-    //    421: (1, 256, 14, 14)
-
-const uint16_t Conv_70_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 256; g++) {
-    for(uint32_t i = g*256/256; i < (g+1)*256/256; i+=1){
-        convolution2d_padding_naive(buffer_420[g*256/256],
-                                    14,
-                                    14,
-                                    buffer_421[i],
-                                    buffer_conv_4_model_1_conv_dw_conv_weight[i*256/256],
-                                    3,
-                                    3,
-                                    1,
-                                    1,
-                                    Conv_70_padding,
-                                    
-                                    0
-                                    );
-        
-    }
-}
-
-    //Layer 71 BatchNormalization_71 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 421,conv_4.model.1.conv_dw.bn.weight,conv_4.model.1.conv_dw.bn.bias,conv_4.model.1.conv_dw.bn.running_mean,conv_4.model.1.conv_dw.bn.running_var
-    //Outputs: 422
-    //Shape:
-    //    421: (1, 256, 14, 14)
-    //    conv_4.model.1.conv_dw.bn.weight: (256,)
-    //    conv_4.model.1.conv_dw.bn.bias: (256,)
-    //    conv_4.model.1.conv_dw.bn.running_mean: (256,)
-    //    conv_4.model.1.conv_dw.bn.running_var: (256,)
-    //    422: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_421[i],
-                              14,
-                              14,
-                              buffer_422[i],
-                              buffer_conv_4_model_1_conv_dw_bn_weight[i],
-                              buffer_conv_4_model_1_conv_dw_bn_bias[i],
-                              buffer_conv_4_model_1_conv_dw_bn_running_mean[i],
-                              buffer_conv_4_model_1_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 72 PRelu_72 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 422,540
-    //Outputs: 424
-    //Shape:
-    //    422: (1, 256, 14, 14)
-    //    540: (256, 1, 1)
-    //    424: (1, 256, 14, 14)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_422[i],
-               14,
-               14,
-               buffer_424[i],
-               buffer_540[i]);
-}
-
-    //Layer 73 Conv_73 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 424,conv_4.model.1.project.conv.weight
-    //Outputs: 425
-    //Shape:
-    //    424: (1, 256, 14, 14)
-    //    conv_4.model.1.project.conv.weight: (128, 256, 1, 1)
-    //    425: (1, 128, 14, 14)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_424[g*256/1],
-                            14,
-                            14,
-                            buffer_425[i],
-                            buffer_conv_4_model_1_project_conv_weight[i*256/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_424[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_1_project_conv_weight[i*256/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_425[i],
-                                temp_buffer,
-                                14,
-                                14);
-            cnt+=1;
-        }
-        
-    }
-}
-
-    //Layer 74 BatchNormalization_74 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 425,conv_4.model.1.project.bn.weight,conv_4.model.1.project.bn.bias,conv_4.model.1.project.bn.running_mean,conv_4.model.1.project.bn.running_var
-    //Outputs: 426
-    //Shape:
-    //    425: (1, 128, 14, 14)
-    //    conv_4.model.1.project.bn.weight: (128,)
-    //    conv_4.model.1.project.bn.bias: (128,)
-    //    conv_4.model.1.project.bn.running_mean: (128,)
-    //    conv_4.model.1.project.bn.running_var: (128,)
-    //    426: (1, 128, 14, 14)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_425[i],
-                              14,
-                              14,
-                              buffer_426[i],
-                              buffer_conv_4_model_1_project_bn_weight[i],
-                              buffer_conv_4_model_1_project_bn_bias[i],
-                              buffer_conv_4_model_1_project_bn_running_mean[i],
-                              buffer_conv_4_model_1_project_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 75 Add_75 Add
-    //Attributes
-    //Parameters
-    //Inputs: 416,426
-    //Outputs: 427
-    //Shape:
-    //    416: (1, 128, 14, 14)
-    //    426: (1, 128, 14, 14)
-    //    427: (1, 128, 14, 14)
-
-    for(uint32_t i = 0; i < 128; i++){
-        memcpy(buffer_427[i],
-               buffer_416[i],
-               14*14*sizeof(fp_t));
-    }
-
-    for(uint32_t i = 0; i < 128; i++){
-        add_channel2d_naive(buffer_427[i], buffer_426[i], 14, 14);
-    }
-
-
-    //Layer 76 Conv_76 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 427,conv_4.model.2.conv.conv.weight
+    //Inputs: 411,421
     //Outputs: 428
     //Shape:
-    //    427: (1, 128, 14, 14)
-    //    conv_4.model.2.conv.conv.weight: (256, 128, 1, 1)
-    //    428: (1, 256, 14, 14)
+    //    411: (1, 64, 40, 40)
+    //    421: (2,)
+    //    428: (1, 64, 80, 80)
+//
+// Created by ali on 15.01.2021.
+//
 
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*256/1; i < (g+1)*256/1; i+=1){
-        convolution2d_naive(buffer_427[g*128/1],
-                            14,
-                            14,
-                            buffer_428[i],
-                            buffer_conv_4_model_2_conv_conv_weight[i*128/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_427[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_2_conv_conv_weight[i*128/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_428[i],
-                                temp_buffer,
-                                14,
-                                14);
-            cnt+=1;
-        }
-        
-    }
+for (uint32_t i = 0; i < 64; i++) {
+upsampling_2D_nearest_neighbour(buffer_411[i],
+80,
+80,
+2.0,
+buffer_428[i]);
 }
 
-    //Layer 77 BatchNormalization_77 BatchNormalization
+
+// upsampling_2D_nearest_neighbour
+    //Layer 65 Add_97 Add
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
     //Parameters
-    //Inputs: 428,conv_4.model.2.conv.bn.weight,conv_4.model.2.conv.bn.bias,conv_4.model.2.conv.bn.running_mean,conv_4.model.2.conv.bn.running_var
+    //Inputs: 384,428
     //Outputs: 429
     //Shape:
-    //    428: (1, 256, 14, 14)
-    //    conv_4.model.2.conv.bn.weight: (256,)
-    //    conv_4.model.2.conv.bn.bias: (256,)
-    //    conv_4.model.2.conv.bn.running_mean: (256,)
-    //    conv_4.model.2.conv.bn.running_var: (256,)
-    //    429: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_428[i],
-                              14,
-                              14,
-                              buffer_429[i],
-                              buffer_conv_4_model_2_conv_bn_weight[i],
-                              buffer_conv_4_model_2_conv_bn_bias[i],
-                              buffer_conv_4_model_2_conv_bn_running_mean[i],
-                              buffer_conv_4_model_2_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 78 PRelu_78 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 429,541
-    //Outputs: 431
-    //Shape:
-    //    429: (1, 256, 14, 14)
-    //    541: (256, 1, 1)
-    //    431: (1, 256, 14, 14)
+    //    384: (1, 64, 80, 80)
+    //    428: (1, 64, 80, 80)
+    //    429: (1, 64, 80, 80)
 
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_429[i],
-               14,
-               14,
-               buffer_431[i],
-               buffer_541[i]);
-}
+    for(uint32_t i = 0; i < 64; i++){
+        memcpy(buffer_429[i],
+               buffer_384[i],
+               80*80*sizeof(fp_t));
+    }
 
-    //Layer 79 Conv_79 Conv
+    for(uint32_t i = 0; i < 64; i++){
+        add_channel2d_naive(buffer_429[i], buffer_428[i], 80, 80);
+    }
+
+
+    //Layer 66 Conv_98 Conv
     //Attributes
     //  dilations: [1, 1]
-    //  group: 256
+    //  group: 1
     //  kernel_shape: [3, 3]
     //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 431,conv_4.model.2.conv_dw.conv.weight
+    //Inputs: 429,681,682
+    //Outputs: 680
+    //Shape:
+    //    429: (1, 64, 80, 80)
+    //    681: (64, 64, 3, 3)
+    //    682: (64,)
+    //    680: (1, 64, 80, 80)
+
+const uint16_t Conv_98_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*64/1; i < (g+1)*64/1; i+=1){
+        convolution2d_padding_naive(buffer_429[g*64/1],
+                                    80,
+                                    80,
+                                    buffer_680[i],
+                                    buffer_681[i*64/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_98_padding,
+                                    
+                                    buffer_682[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_padding_naive(buffer_429[j],
+                                        80,
+                                        80,
+                                        temp_buffer,
+                                        buffer_681[i*64/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_98_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_680[i],
+                                temp_buffer,
+                                80,
+                                80);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 67 LeakyRelu_99 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 680
     //Outputs: 432
     //Shape:
-    //    431: (1, 256, 14, 14)
-    //    conv_4.model.2.conv_dw.conv.weight: (256, 1, 3, 3)
-    //    432: (1, 256, 14, 14)
+    //    680: (1, 64, 80, 80)
+    //    432: (1, 64, 80, 80)
+//
+// Created by ali on 15.01.2021.
+//
 
-const uint16_t Conv_79_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 256; g++) {
-    for(uint32_t i = g*256/256; i < (g+1)*256/256; i+=1){
-        convolution2d_padding_naive(buffer_431[g*256/256],
-                                    14,
-                                    14,
-                                    buffer_432[i],
-                                    buffer_conv_4_model_2_conv_dw_conv_weight[i*256/256],
-                                    3,
-                                    3,
-                                    1,
-                                    1,
-                                    Conv_79_padding,
-                                    
-                                    0
-                                    );
-        
-    }
+
+for (uint32_t i = 0; i < 64; i++) {
+leaky_relu_naive(buffer_680[i],
+80,
+80,
+buffer_432[i],
+0.10000000149011612);
 }
 
-    //Layer 80 BatchNormalization_80 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 432,conv_4.model.2.conv_dw.bn.weight,conv_4.model.2.conv_dw.bn.bias,conv_4.model.2.conv_dw.bn.running_mean,conv_4.model.2.conv_dw.bn.running_var
-    //Outputs: 433
-    //Shape:
-    //    432: (1, 256, 14, 14)
-    //    conv_4.model.2.conv_dw.bn.weight: (256,)
-    //    conv_4.model.2.conv_dw.bn.bias: (256,)
-    //    conv_4.model.2.conv_dw.bn.running_mean: (256,)
-    //    conv_4.model.2.conv_dw.bn.running_var: (256,)
-    //    433: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_432[i],
-                              14,
-                              14,
-                              buffer_433[i],
-                              buffer_conv_4_model_2_conv_dw_bn_weight[i],
-                              buffer_conv_4_model_2_conv_dw_bn_bias[i],
-                              buffer_conv_4_model_2_conv_dw_bn_running_mean[i],
-                              buffer_conv_4_model_2_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 81 PRelu_81 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 433,542
-    //Outputs: 435
-    //Shape:
-    //    433: (1, 256, 14, 14)
-    //    542: (256, 1, 1)
-    //    435: (1, 256, 14, 14)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_433[i],
-               14,
-               14,
-               buffer_435[i],
-               buffer_542[i]);
-}
-
-    //Layer 82 Conv_82 Conv
+    //Layer 68 Conv_100 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 435,conv_4.model.2.project.conv.weight
-    //Outputs: 436
+    //Inputs: 432,684,685
+    //Outputs: 683
     //Shape:
-    //    435: (1, 256, 14, 14)
-    //    conv_4.model.2.project.conv.weight: (128, 256, 1, 1)
-    //    436: (1, 128, 14, 14)
+    //    432: (1, 64, 80, 80)
+    //    684: (32, 64, 3, 3)
+    //    685: (32,)
+    //    683: (1, 32, 80, 80)
 
+const uint16_t Conv_100_padding[4] = { 1, 1, 1, 1 };
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_435[g*256/1],
-                            14,
-                            14,
-                            buffer_436[i],
-                            buffer_conv_4_model_2_project_conv_weight[i*256/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
+    for(uint32_t i = g*32/1; i < (g+1)*32/1; i+=1){
+        convolution2d_padding_naive(buffer_432[g*64/1],
+                                    80,
+                                    80,
+                                    buffer_683[i],
+                                    buffer_684[i*64/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_100_padding,
+                                    
+                                    buffer_685[i]
+                                    );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_435[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_2_project_conv_weight[i*256/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_padding_naive(buffer_432[j],
+                                        80,
+                                        80,
+                                        temp_buffer,
+                                        buffer_684[i*64/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_100_padding,
+                                        0.0);
 
-            add_channel2d_naive(buffer_436[i],
+            add_channel2d_naive(buffer_683[i],
                                 temp_buffer,
-                                14,
-                                14);
+                                80,
+                                80);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 83 BatchNormalization_83 BatchNormalization
+    //Layer 69 Conv_101 Conv
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
     //Parameters
-    //Inputs: 436,conv_4.model.2.project.bn.weight,conv_4.model.2.project.bn.bias,conv_4.model.2.project.bn.running_mean,conv_4.model.2.project.bn.running_var
+    //Inputs: 432,687,688
+    //Outputs: 686
+    //Shape:
+    //    432: (1, 64, 80, 80)
+    //    687: (16, 64, 3, 3)
+    //    688: (16,)
+    //    686: (1, 16, 80, 80)
+
+const uint16_t Conv_101_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_432[g*64/1],
+                                    80,
+                                    80,
+                                    buffer_686[i],
+                                    buffer_687[i*64/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_101_padding,
+                                    
+                                    buffer_688[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_padding_naive(buffer_432[j],
+                                        80,
+                                        80,
+                                        temp_buffer,
+                                        buffer_687[i*64/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_101_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_686[i],
+                                temp_buffer,
+                                80,
+                                80);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 70 LeakyRelu_102 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 686
     //Outputs: 437
     //Shape:
-    //    436: (1, 128, 14, 14)
-    //    conv_4.model.2.project.bn.weight: (128,)
-    //    conv_4.model.2.project.bn.bias: (128,)
-    //    conv_4.model.2.project.bn.running_mean: (128,)
-    //    conv_4.model.2.project.bn.running_var: (128,)
-    //    437: (1, 128, 14, 14)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_436[i],
-                              14,
-                              14,
-                              buffer_437[i],
-                              buffer_conv_4_model_2_project_bn_weight[i],
-                              buffer_conv_4_model_2_project_bn_bias[i],
-                              buffer_conv_4_model_2_project_bn_running_mean[i],
-                              buffer_conv_4_model_2_project_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    686: (1, 16, 80, 80)
+    //    437: (1, 16, 80, 80)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 16; i++) {
+leaky_relu_naive(buffer_686[i],
+80,
+80,
+buffer_437[i],
+0.10000000149011612);
 }
-    //Layer 84 Add_84 Add
-    //Attributes
-    //Parameters
-    //Inputs: 427,437
-    //Outputs: 438
-    //Shape:
-    //    427: (1, 128, 14, 14)
-    //    437: (1, 128, 14, 14)
-    //    438: (1, 128, 14, 14)
 
-    for(uint32_t i = 0; i < 128; i++){
-        memcpy(buffer_438[i],
-               buffer_427[i],
-               14*14*sizeof(fp_t));
-    }
-
-    for(uint32_t i = 0; i < 128; i++){
-        add_channel2d_naive(buffer_438[i], buffer_437[i], 14, 14);
-    }
-
-
-    //Layer 85 Conv_85 Conv
+    //Layer 71 Conv_103 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 438,conv_4.model.3.conv.conv.weight
-    //Outputs: 439
+    //Inputs: 437,690,691
+    //Outputs: 689
     //Shape:
-    //    438: (1, 128, 14, 14)
-    //    conv_4.model.3.conv.conv.weight: (256, 128, 1, 1)
-    //    439: (1, 256, 14, 14)
+    //    437: (1, 16, 80, 80)
+    //    690: (16, 16, 3, 3)
+    //    691: (16,)
+    //    689: (1, 16, 80, 80)
 
+const uint16_t Conv_103_padding[4] = { 1, 1, 1, 1 };
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*256/1; i < (g+1)*256/1; i+=1){
-        convolution2d_naive(buffer_438[g*128/1],
-                            14,
-                            14,
-                            buffer_439[i],
-                            buffer_conv_4_model_3_conv_conv_weight[i*128/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_437[g*16/1],
+                                    80,
+                                    80,
+                                    buffer_689[i],
+                                    buffer_690[i*16/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_103_padding,
+                                    
+                                    buffer_691[i]
+                                    );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_438[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_3_conv_conv_weight[i*128/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
+        for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_padding_naive(buffer_437[j],
+                                        80,
+                                        80,
+                                        temp_buffer,
+                                        buffer_690[i*16/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_103_padding,
+                                        0.0);
 
-            add_channel2d_naive(buffer_439[i],
+            add_channel2d_naive(buffer_689[i],
                                 temp_buffer,
-                                14,
-                                14);
+                                80,
+                                80);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 86 BatchNormalization_86 BatchNormalization
+    //Layer 72 Conv_104 Conv
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
     //Parameters
-    //Inputs: 439,conv_4.model.3.conv.bn.weight,conv_4.model.3.conv.bn.bias,conv_4.model.3.conv.bn.running_mean,conv_4.model.3.conv.bn.running_var
-    //Outputs: 440
+    //Inputs: 437,693,694
+    //Outputs: 692
     //Shape:
-    //    439: (1, 256, 14, 14)
-    //    conv_4.model.3.conv.bn.weight: (256,)
-    //    conv_4.model.3.conv.bn.bias: (256,)
-    //    conv_4.model.3.conv.bn.running_mean: (256,)
-    //    conv_4.model.3.conv.bn.running_var: (256,)
-    //    440: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_439[i],
-                              14,
-                              14,
-                              buffer_440[i],
-                              buffer_conv_4_model_3_conv_bn_weight[i],
-                              buffer_conv_4_model_3_conv_bn_bias[i],
-                              buffer_conv_4_model_3_conv_bn_running_mean[i],
-                              buffer_conv_4_model_3_conv_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    437: (1, 16, 80, 80)
+    //    693: (16, 16, 3, 3)
+    //    694: (16,)
+    //    692: (1, 16, 80, 80)
+
+const uint16_t Conv_104_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_437[g*16/1],
+                                    80,
+                                    80,
+                                    buffer_692[i],
+                                    buffer_693[i*16/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_104_padding,
+                                    
+                                    buffer_694[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_padding_naive(buffer_437[j],
+                                        80,
+                                        80,
+                                        temp_buffer,
+                                        buffer_693[i*16/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_104_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_692[i],
+                                temp_buffer,
+                                80,
+                                80);
+            cnt+=1;
+        }
+        
+    }
 }
-    //Layer 87 PRelu_87 PRelu
+
+    //Layer 73 LeakyRelu_105 LeakyRelu
     //Attributes
+    //  alpha: 0.10000000149011612
     //Parameters
-    //Inputs: 440,543
+    //Inputs: 692
     //Outputs: 442
     //Shape:
-    //    440: (1, 256, 14, 14)
-    //    543: (256, 1, 1)
-    //    442: (1, 256, 14, 14)
+    //    692: (1, 16, 80, 80)
+    //    442: (1, 16, 80, 80)
+//
+// Created by ali on 15.01.2021.
+//
 
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_440[i],
-               14,
-               14,
-               buffer_442[i],
-               buffer_543[i]);
+
+for (uint32_t i = 0; i < 16; i++) {
+leaky_relu_naive(buffer_692[i],
+80,
+80,
+buffer_442[i],
+0.10000000149011612);
 }
 
-    //Layer 88 Conv_88 Conv
+    //Layer 74 Conv_106 Conv
     //Attributes
     //  dilations: [1, 1]
-    //  group: 256
+    //  group: 1
     //  kernel_shape: [3, 3]
     //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 442,conv_4.model.3.conv_dw.conv.weight
-    //Outputs: 443
+    //Inputs: 442,696,697
+    //Outputs: 695
     //Shape:
-    //    442: (1, 256, 14, 14)
-    //    conv_4.model.3.conv_dw.conv.weight: (256, 1, 3, 3)
-    //    443: (1, 256, 14, 14)
-
-const uint16_t Conv_88_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 256; g++) {
-    for(uint32_t i = g*256/256; i < (g+1)*256/256; i+=1){
-        convolution2d_padding_naive(buffer_442[g*256/256],
-                                    14,
-                                    14,
-                                    buffer_443[i],
-                                    buffer_conv_4_model_3_conv_dw_conv_weight[i*256/256],
-                                    3,
-                                    3,
-                                    1,
-                                    1,
-                                    Conv_88_padding,
-                                    
-                                    0
-                                    );
-        
-    }
-}
-
-    //Layer 89 BatchNormalization_89 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 443,conv_4.model.3.conv_dw.bn.weight,conv_4.model.3.conv_dw.bn.bias,conv_4.model.3.conv_dw.bn.running_mean,conv_4.model.3.conv_dw.bn.running_var
-    //Outputs: 444
-    //Shape:
-    //    443: (1, 256, 14, 14)
-    //    conv_4.model.3.conv_dw.bn.weight: (256,)
-    //    conv_4.model.3.conv_dw.bn.bias: (256,)
-    //    conv_4.model.3.conv_dw.bn.running_mean: (256,)
-    //    conv_4.model.3.conv_dw.bn.running_var: (256,)
-    //    444: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_443[i],
-                              14,
-                              14,
-                              buffer_444[i],
-                              buffer_conv_4_model_3_conv_dw_bn_weight[i],
-                              buffer_conv_4_model_3_conv_dw_bn_bias[i],
-                              buffer_conv_4_model_3_conv_dw_bn_running_mean[i],
-                              buffer_conv_4_model_3_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 90 PRelu_90 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 444,544
-    //Outputs: 446
-    //Shape:
-    //    444: (1, 256, 14, 14)
-    //    544: (256, 1, 1)
-    //    446: (1, 256, 14, 14)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_444[i],
-               14,
-               14,
-               buffer_446[i],
-               buffer_544[i]);
-}
-
-    //Layer 91 Conv_91 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 446,conv_4.model.3.project.conv.weight
-    //Outputs: 447
-    //Shape:
-    //    446: (1, 256, 14, 14)
-    //    conv_4.model.3.project.conv.weight: (128, 256, 1, 1)
-    //    447: (1, 128, 14, 14)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_446[g*256/1],
-                            14,
-                            14,
-                            buffer_447[i],
-                            buffer_conv_4_model_3_project_conv_weight[i*256/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_446[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_3_project_conv_weight[i*256/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_447[i],
-                                temp_buffer,
-                                14,
-                                14);
-            cnt+=1;
-        }
-        
-    }
-}
-
-    //Layer 92 BatchNormalization_92 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 447,conv_4.model.3.project.bn.weight,conv_4.model.3.project.bn.bias,conv_4.model.3.project.bn.running_mean,conv_4.model.3.project.bn.running_var
-    //Outputs: 448
-    //Shape:
-    //    447: (1, 128, 14, 14)
-    //    conv_4.model.3.project.bn.weight: (128,)
-    //    conv_4.model.3.project.bn.bias: (128,)
-    //    conv_4.model.3.project.bn.running_mean: (128,)
-    //    conv_4.model.3.project.bn.running_var: (128,)
-    //    448: (1, 128, 14, 14)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_447[i],
-                              14,
-                              14,
-                              buffer_448[i],
-                              buffer_conv_4_model_3_project_bn_weight[i],
-                              buffer_conv_4_model_3_project_bn_bias[i],
-                              buffer_conv_4_model_3_project_bn_running_mean[i],
-                              buffer_conv_4_model_3_project_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 93 Add_93 Add
-    //Attributes
-    //Parameters
-    //Inputs: 438,448
-    //Outputs: 449
-    //Shape:
-    //    438: (1, 128, 14, 14)
-    //    448: (1, 128, 14, 14)
-    //    449: (1, 128, 14, 14)
-
-    for(uint32_t i = 0; i < 128; i++){
-        memcpy(buffer_449[i],
-               buffer_438[i],
-               14*14*sizeof(fp_t));
-    }
-
-    for(uint32_t i = 0; i < 128; i++){
-        add_channel2d_naive(buffer_449[i], buffer_448[i], 14, 14);
-    }
-
-
-    //Layer 94 Conv_94 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 449,conv_4.model.4.conv.conv.weight
-    //Outputs: 450
-    //Shape:
-    //    449: (1, 128, 14, 14)
-    //    conv_4.model.4.conv.conv.weight: (256, 128, 1, 1)
-    //    450: (1, 256, 14, 14)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*256/1; i < (g+1)*256/1; i+=1){
-        convolution2d_naive(buffer_449[g*128/1],
-                            14,
-                            14,
-                            buffer_450[i],
-                            buffer_conv_4_model_4_conv_conv_weight[i*128/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_449[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_4_conv_conv_weight[i*128/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_450[i],
-                                temp_buffer,
-                                14,
-                                14);
-            cnt+=1;
-        }
-        
-    }
-}
-
-    //Layer 95 BatchNormalization_95 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 450,conv_4.model.4.conv.bn.weight,conv_4.model.4.conv.bn.bias,conv_4.model.4.conv.bn.running_mean,conv_4.model.4.conv.bn.running_var
-    //Outputs: 451
-    //Shape:
-    //    450: (1, 256, 14, 14)
-    //    conv_4.model.4.conv.bn.weight: (256,)
-    //    conv_4.model.4.conv.bn.bias: (256,)
-    //    conv_4.model.4.conv.bn.running_mean: (256,)
-    //    conv_4.model.4.conv.bn.running_var: (256,)
-    //    451: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_450[i],
-                              14,
-                              14,
-                              buffer_451[i],
-                              buffer_conv_4_model_4_conv_bn_weight[i],
-                              buffer_conv_4_model_4_conv_bn_bias[i],
-                              buffer_conv_4_model_4_conv_bn_running_mean[i],
-                              buffer_conv_4_model_4_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 96 PRelu_96 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 451,545
-    //Outputs: 453
-    //Shape:
-    //    451: (1, 256, 14, 14)
-    //    545: (256, 1, 1)
-    //    453: (1, 256, 14, 14)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_451[i],
-               14,
-               14,
-               buffer_453[i],
-               buffer_545[i]);
-}
-
-    //Layer 97 Conv_97 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 256
-    //  kernel_shape: [3, 3]
-    //  pads: [1, 1, 1, 1]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 453,conv_4.model.4.conv_dw.conv.weight
-    //Outputs: 454
-    //Shape:
-    //    453: (1, 256, 14, 14)
-    //    conv_4.model.4.conv_dw.conv.weight: (256, 1, 3, 3)
-    //    454: (1, 256, 14, 14)
-
-const uint16_t Conv_97_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 256; g++) {
-    for(uint32_t i = g*256/256; i < (g+1)*256/256; i+=1){
-        convolution2d_padding_naive(buffer_453[g*256/256],
-                                    14,
-                                    14,
-                                    buffer_454[i],
-                                    buffer_conv_4_model_4_conv_dw_conv_weight[i*256/256],
-                                    3,
-                                    3,
-                                    1,
-                                    1,
-                                    Conv_97_padding,
-                                    
-                                    0
-                                    );
-        
-    }
-}
-
-    //Layer 98 BatchNormalization_98 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 454,conv_4.model.4.conv_dw.bn.weight,conv_4.model.4.conv_dw.bn.bias,conv_4.model.4.conv_dw.bn.running_mean,conv_4.model.4.conv_dw.bn.running_var
-    //Outputs: 455
-    //Shape:
-    //    454: (1, 256, 14, 14)
-    //    conv_4.model.4.conv_dw.bn.weight: (256,)
-    //    conv_4.model.4.conv_dw.bn.bias: (256,)
-    //    conv_4.model.4.conv_dw.bn.running_mean: (256,)
-    //    conv_4.model.4.conv_dw.bn.running_var: (256,)
-    //    455: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_454[i],
-                              14,
-                              14,
-                              buffer_455[i],
-                              buffer_conv_4_model_4_conv_dw_bn_weight[i],
-                              buffer_conv_4_model_4_conv_dw_bn_bias[i],
-                              buffer_conv_4_model_4_conv_dw_bn_running_mean[i],
-                              buffer_conv_4_model_4_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 99 PRelu_99 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 455,546
-    //Outputs: 457
-    //Shape:
-    //    455: (1, 256, 14, 14)
-    //    546: (256, 1, 1)
-    //    457: (1, 256, 14, 14)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_455[i],
-               14,
-               14,
-               buffer_457[i],
-               buffer_546[i]);
-}
-
-    //Layer 100 Conv_100 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 457,conv_4.model.4.project.conv.weight
-    //Outputs: 458
-    //Shape:
-    //    457: (1, 256, 14, 14)
-    //    conv_4.model.4.project.conv.weight: (128, 256, 1, 1)
-    //    458: (1, 128, 14, 14)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_457[g*256/1],
-                            14,
-                            14,
-                            buffer_458[i],
-                            buffer_conv_4_model_4_project_conv_weight[i*256/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_457[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_4_project_conv_weight[i*256/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_458[i],
-                                temp_buffer,
-                                14,
-                                14);
-            cnt+=1;
-        }
-        
-    }
-}
-
-    //Layer 101 BatchNormalization_101 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 458,conv_4.model.4.project.bn.weight,conv_4.model.4.project.bn.bias,conv_4.model.4.project.bn.running_mean,conv_4.model.4.project.bn.running_var
-    //Outputs: 459
-    //Shape:
-    //    458: (1, 128, 14, 14)
-    //    conv_4.model.4.project.bn.weight: (128,)
-    //    conv_4.model.4.project.bn.bias: (128,)
-    //    conv_4.model.4.project.bn.running_mean: (128,)
-    //    conv_4.model.4.project.bn.running_var: (128,)
-    //    459: (1, 128, 14, 14)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_458[i],
-                              14,
-                              14,
-                              buffer_459[i],
-                              buffer_conv_4_model_4_project_bn_weight[i],
-                              buffer_conv_4_model_4_project_bn_bias[i],
-                              buffer_conv_4_model_4_project_bn_running_mean[i],
-                              buffer_conv_4_model_4_project_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 102 Add_102 Add
-    //Attributes
-    //Parameters
-    //Inputs: 449,459
-    //Outputs: 460
-    //Shape:
-    //    449: (1, 128, 14, 14)
-    //    459: (1, 128, 14, 14)
-    //    460: (1, 128, 14, 14)
-
-    for(uint32_t i = 0; i < 128; i++){
-        memcpy(buffer_460[i],
-               buffer_449[i],
-               14*14*sizeof(fp_t));
-    }
-
-    for(uint32_t i = 0; i < 128; i++){
-        add_channel2d_naive(buffer_460[i], buffer_459[i], 14, 14);
-    }
-
-
-    //Layer 103 Conv_103 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 460,conv_4.model.5.conv.conv.weight
-    //Outputs: 461
-    //Shape:
-    //    460: (1, 128, 14, 14)
-    //    conv_4.model.5.conv.conv.weight: (256, 128, 1, 1)
-    //    461: (1, 256, 14, 14)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*256/1; i < (g+1)*256/1; i+=1){
-        convolution2d_naive(buffer_460[g*128/1],
-                            14,
-                            14,
-                            buffer_461[i],
-                            buffer_conv_4_model_5_conv_conv_weight[i*128/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_460[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_5_conv_conv_weight[i*128/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_461[i],
-                                temp_buffer,
-                                14,
-                                14);
-            cnt+=1;
-        }
-        
-    }
-}
-
-    //Layer 104 BatchNormalization_104 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 461,conv_4.model.5.conv.bn.weight,conv_4.model.5.conv.bn.bias,conv_4.model.5.conv.bn.running_mean,conv_4.model.5.conv.bn.running_var
-    //Outputs: 462
-    //Shape:
-    //    461: (1, 256, 14, 14)
-    //    conv_4.model.5.conv.bn.weight: (256,)
-    //    conv_4.model.5.conv.bn.bias: (256,)
-    //    conv_4.model.5.conv.bn.running_mean: (256,)
-    //    conv_4.model.5.conv.bn.running_var: (256,)
-    //    462: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_461[i],
-                              14,
-                              14,
-                              buffer_462[i],
-                              buffer_conv_4_model_5_conv_bn_weight[i],
-                              buffer_conv_4_model_5_conv_bn_bias[i],
-                              buffer_conv_4_model_5_conv_bn_running_mean[i],
-                              buffer_conv_4_model_5_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 105 PRelu_105 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 462,547
-    //Outputs: 464
-    //Shape:
-    //    462: (1, 256, 14, 14)
-    //    547: (256, 1, 1)
-    //    464: (1, 256, 14, 14)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_462[i],
-               14,
-               14,
-               buffer_464[i],
-               buffer_547[i]);
-}
-
-    //Layer 106 Conv_106 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 256
-    //  kernel_shape: [3, 3]
-    //  pads: [1, 1, 1, 1]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 464,conv_4.model.5.conv_dw.conv.weight
-    //Outputs: 465
-    //Shape:
-    //    464: (1, 256, 14, 14)
-    //    conv_4.model.5.conv_dw.conv.weight: (256, 1, 3, 3)
-    //    465: (1, 256, 14, 14)
+    //    442: (1, 16, 80, 80)
+    //    696: (16, 16, 3, 3)
+    //    697: (16,)
+    //    695: (1, 16, 80, 80)
 
 const uint16_t Conv_106_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 256; g++) {
-    for(uint32_t i = g*256/256; i < (g+1)*256/256; i+=1){
-        convolution2d_padding_naive(buffer_464[g*256/256],
-                                    14,
-                                    14,
-                                    buffer_465[i],
-                                    buffer_conv_4_model_5_conv_dw_conv_weight[i*256/256],
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_442[g*16/1],
+                                    80,
+                                    80,
+                                    buffer_695[i],
+                                    buffer_696[i*16/1],
                                     3,
                                     3,
                                     1,
                                     1,
                                     Conv_106_padding,
                                     
-                                    0
+                                    buffer_697[i]
                                     );
         
-    }
-}
-
-    //Layer 107 BatchNormalization_107 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 465,conv_4.model.5.conv_dw.bn.weight,conv_4.model.5.conv_dw.bn.bias,conv_4.model.5.conv_dw.bn.running_mean,conv_4.model.5.conv_dw.bn.running_var
-    //Outputs: 466
-    //Shape:
-    //    465: (1, 256, 14, 14)
-    //    conv_4.model.5.conv_dw.bn.weight: (256,)
-    //    conv_4.model.5.conv_dw.bn.bias: (256,)
-    //    conv_4.model.5.conv_dw.bn.running_mean: (256,)
-    //    conv_4.model.5.conv_dw.bn.running_var: (256,)
-    //    466: (1, 256, 14, 14)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_465[i],
-                              14,
-                              14,
-                              buffer_466[i],
-                              buffer_conv_4_model_5_conv_dw_bn_weight[i],
-                              buffer_conv_4_model_5_conv_dw_bn_bias[i],
-                              buffer_conv_4_model_5_conv_dw_bn_running_mean[i],
-                              buffer_conv_4_model_5_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 108 PRelu_108 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 466,548
-    //Outputs: 468
-    //Shape:
-    //    466: (1, 256, 14, 14)
-    //    548: (256, 1, 1)
-    //    468: (1, 256, 14, 14)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_466[i],
-               14,
-               14,
-               buffer_468[i],
-               buffer_548[i]);
-}
-
-    //Layer 109 Conv_109 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 468,conv_4.model.5.project.conv.weight
-    //Outputs: 469
-    //Shape:
-    //    468: (1, 256, 14, 14)
-    //    conv_4.model.5.project.conv.weight: (128, 256, 1, 1)
-    //    469: (1, 128, 14, 14)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_468[g*256/1],
-                            14,
-                            14,
-                            buffer_469[i],
-                            buffer_conv_4_model_5_project_conv_weight[i*256/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
         uint32_t cnt = 1;
-        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_468[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_4_model_5_project_conv_weight[i*256/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
+        for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_padding_naive(buffer_442[j],
+                                        80,
+                                        80,
+                                        temp_buffer,
+                                        buffer_696[i*16/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_106_padding,
+                                        0.0);
 
-            add_channel2d_naive(buffer_469[i],
+            add_channel2d_naive(buffer_695[i],
                                 temp_buffer,
-                                14,
-                                14);
+                                80,
+                                80);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 110 BatchNormalization_110 BatchNormalization
+    //Layer 75 Concat_107 Concat
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  axis: 1
     //Parameters
-    //Inputs: 469,conv_4.model.5.project.bn.weight,conv_4.model.5.project.bn.bias,conv_4.model.5.project.bn.running_mean,conv_4.model.5.project.bn.running_var
-    //Outputs: 470
+    //Inputs: 683,689,695
+    //Outputs: 445
     //Shape:
-    //    469: (1, 128, 14, 14)
-    //    conv_4.model.5.project.bn.weight: (128,)
-    //    conv_4.model.5.project.bn.bias: (128,)
-    //    conv_4.model.5.project.bn.running_mean: (128,)
-    //    conv_4.model.5.project.bn.running_var: (128,)
-    //    470: (1, 128, 14, 14)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_469[i],
-                              14,
-                              14,
-                              buffer_470[i],
-                              buffer_conv_4_model_5_project_bn_weight[i],
-                              buffer_conv_4_model_5_project_bn_bias[i],
-                              buffer_conv_4_model_5_project_bn_running_mean[i],
-                              buffer_conv_4_model_5_project_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    683: (1, 32, 80, 80)
+    //    689: (1, 16, 80, 80)
+    //    695: (1, 16, 80, 80)
+    //    445: (1, 64, 80, 80)
+    fp_t*** inputs_Concat_107 = (fp_t***) malloc(3 * sizeof(fp_t**));
+    inputs_Concat_107[0] = buffer_683;
+    inputs_Concat_107[1] = buffer_689;
+    inputs_Concat_107[2] = buffer_695;
+
+
+    const uint16_t* input_shape_Concat_107[3];
+    uint16_t input_shape_Concat_107_0[3] = { 32, 80, 80 };
+    input_shape_Concat_107[0] = input_shape_Concat_107_0;
+    uint16_t input_shape_Concat_107_1[3] = { 16, 80, 80 };
+    input_shape_Concat_107[1] = input_shape_Concat_107_1;
+    uint16_t input_shape_Concat_107_2[3] = { 16, 80, 80 };
+    input_shape_Concat_107[2] = input_shape_Concat_107_2;
+
+
+    concatenate_naive(inputs_Concat_107, input_shape_Concat_107, 0,
+                      3, buffer_445);
+
+    free(inputs_Concat_107);
+
+    //Layer 76 Relu_108 Relu
+    //Attributes
+    //Parameters
+    //Inputs: 445
+    //Outputs: 446
+    //Shape:
+    //    445: (1, 64, 80, 80)
+    //    446: (1, 64, 80, 80)
+
+for (uint32_t i = 0; i < 64; i++) {
+    relu_naive(buffer_445[i],
+               80,
+               80,
+               buffer_446[i]);
 }
-    //Layer 111 Add_111 Add
-    //Attributes
-    //Parameters
-    //Inputs: 460,470
-    //Outputs: 471
-    //Shape:
-    //    460: (1, 128, 14, 14)
-    //    470: (1, 128, 14, 14)
-    //    471: (1, 128, 14, 14)
 
-    for(uint32_t i = 0; i < 128; i++){
-        memcpy(buffer_471[i],
-               buffer_460[i],
-               14*14*sizeof(fp_t));
-    }
-
-    for(uint32_t i = 0; i < 128; i++){
-        add_channel2d_naive(buffer_471[i], buffer_470[i], 14, 14);
-    }
-
-
-    //Layer 112 Conv_112 Conv
+    //Layer 77 Conv_109 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 471,conv_45.conv.conv.weight
-    //Outputs: 472
-    //Shape:
-    //    471: (1, 128, 14, 14)
-    //    conv_45.conv.conv.weight: (512, 128, 1, 1)
-    //    472: (1, 512, 14, 14)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*512/1; i < (g+1)*512/1; i+=1){
-        convolution2d_naive(buffer_471[g*128/1],
-                            14,
-                            14,
-                            buffer_472[i],
-                            buffer_conv_45_conv_conv_weight[i*128/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[14*14];
-            convolution2d_naive(buffer_471[j],
-                                14,
-                                14,
-                                temp_buffer,
-                                buffer_conv_45_conv_conv_weight[i*128/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_472[i],
-                                temp_buffer,
-                                14,
-                                14);
-            cnt+=1;
-        }
-        
-    }
-}
-
-    //Layer 113 BatchNormalization_113 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 472,conv_45.conv.bn.weight,conv_45.conv.bn.bias,conv_45.conv.bn.running_mean,conv_45.conv.bn.running_var
-    //Outputs: 473
-    //Shape:
-    //    472: (1, 512, 14, 14)
-    //    conv_45.conv.bn.weight: (512,)
-    //    conv_45.conv.bn.bias: (512,)
-    //    conv_45.conv.bn.running_mean: (512,)
-    //    conv_45.conv.bn.running_var: (512,)
-    //    473: (1, 512, 14, 14)
-for (uint32_t i = 0; i < 512; i++) {
-    batch_normalization_naive(buffer_472[i],
-                              14,
-                              14,
-                              buffer_473[i],
-                              buffer_conv_45_conv_bn_weight[i],
-                              buffer_conv_45_conv_bn_bias[i],
-                              buffer_conv_45_conv_bn_running_mean[i],
-                              buffer_conv_45_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 114 PRelu_114 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 473,549
-    //Outputs: 475
-    //Shape:
-    //    473: (1, 512, 14, 14)
-    //    549: (512, 1, 1)
-    //    475: (1, 512, 14, 14)
-
-for (uint32_t i = 0; i < 512; i++) {
-    prelu(buffer_473[i],
-               14,
-               14,
-               buffer_475[i],
-               buffer_549[i]);
-}
-
-    //Layer 115 Conv_115 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 512
     //  kernel_shape: [3, 3]
     //  pads: [1, 1, 1, 1]
-    //  strides: [2, 2]
+    //  strides: [1, 1]
     //Parameters
-    //Inputs: 475,conv_45.conv_dw.conv.weight
-    //Outputs: 476
+    //Inputs: 411,699,700
+    //Outputs: 698
     //Shape:
-    //    475: (1, 512, 14, 14)
-    //    conv_45.conv_dw.conv.weight: (512, 1, 3, 3)
-    //    476: (1, 512, 7, 7)
+    //    411: (1, 64, 40, 40)
+    //    699: (32, 64, 3, 3)
+    //    700: (32,)
+    //    698: (1, 32, 40, 40)
+
+const uint16_t Conv_109_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*32/1; i < (g+1)*32/1; i+=1){
+        convolution2d_padding_naive(buffer_411[g*64/1],
+                                    40,
+                                    40,
+                                    buffer_698[i],
+                                    buffer_699[i*64/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_109_padding,
+                                    
+                                    buffer_700[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_padding_naive(buffer_411[j],
+                                        40,
+                                        40,
+                                        temp_buffer,
+                                        buffer_699[i*64/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_109_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_698[i],
+                                temp_buffer,
+                                40,
+                                40);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 78 Conv_110 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 411,702,703
+    //Outputs: 701
+    //Shape:
+    //    411: (1, 64, 40, 40)
+    //    702: (16, 64, 3, 3)
+    //    703: (16,)
+    //    701: (1, 16, 40, 40)
+
+const uint16_t Conv_110_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_411[g*64/1],
+                                    40,
+                                    40,
+                                    buffer_701[i],
+                                    buffer_702[i*64/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_110_padding,
+                                    
+                                    buffer_703[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_padding_naive(buffer_411[j],
+                                        40,
+                                        40,
+                                        temp_buffer,
+                                        buffer_702[i*64/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_110_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_701[i],
+                                temp_buffer,
+                                40,
+                                40);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 79 LeakyRelu_111 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 701
+    //Outputs: 451
+    //Shape:
+    //    701: (1, 16, 40, 40)
+    //    451: (1, 16, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 16; i++) {
+leaky_relu_naive(buffer_701[i],
+40,
+40,
+buffer_451[i],
+0.10000000149011612);
+}
+
+    //Layer 80 Conv_112 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 451,705,706
+    //Outputs: 704
+    //Shape:
+    //    451: (1, 16, 40, 40)
+    //    705: (16, 16, 3, 3)
+    //    706: (16,)
+    //    704: (1, 16, 40, 40)
+
+const uint16_t Conv_112_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_451[g*16/1],
+                                    40,
+                                    40,
+                                    buffer_704[i],
+                                    buffer_705[i*16/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_112_padding,
+                                    
+                                    buffer_706[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_padding_naive(buffer_451[j],
+                                        40,
+                                        40,
+                                        temp_buffer,
+                                        buffer_705[i*16/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_112_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_704[i],
+                                temp_buffer,
+                                40,
+                                40);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 81 Conv_113 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 451,708,709
+    //Outputs: 707
+    //Shape:
+    //    451: (1, 16, 40, 40)
+    //    708: (16, 16, 3, 3)
+    //    709: (16,)
+    //    707: (1, 16, 40, 40)
+
+const uint16_t Conv_113_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_451[g*16/1],
+                                    40,
+                                    40,
+                                    buffer_707[i],
+                                    buffer_708[i*16/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_113_padding,
+                                    
+                                    buffer_709[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_padding_naive(buffer_451[j],
+                                        40,
+                                        40,
+                                        temp_buffer,
+                                        buffer_708[i*16/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_113_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_707[i],
+                                temp_buffer,
+                                40,
+                                40);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 82 LeakyRelu_114 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 707
+    //Outputs: 456
+    //Shape:
+    //    707: (1, 16, 40, 40)
+    //    456: (1, 16, 40, 40)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 16; i++) {
+leaky_relu_naive(buffer_707[i],
+40,
+40,
+buffer_456[i],
+0.10000000149011612);
+}
+
+    //Layer 83 Conv_115 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 456,711,712
+    //Outputs: 710
+    //Shape:
+    //    456: (1, 16, 40, 40)
+    //    711: (16, 16, 3, 3)
+    //    712: (16,)
+    //    710: (1, 16, 40, 40)
 
 const uint16_t Conv_115_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 512; g++) {
-    for(uint32_t i = g*512/512; i < (g+1)*512/512; i+=1){
-        convolution2d_padding_naive(buffer_475[g*512/512],
-                                    14,
-                                    14,
-                                    buffer_476[i],
-                                    buffer_conv_45_conv_dw_conv_weight[i*512/512],
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_456[g*16/1],
+                                    40,
+                                    40,
+                                    buffer_710[i],
+                                    buffer_711[i*16/1],
                                     3,
                                     3,
-                                    2,
-                                    2,
+                                    1,
+                                    1,
                                     Conv_115_padding,
                                     
-                                    0
+                                    buffer_712[i]
                                     );
         
-    }
-}
-
-    //Layer 116 BatchNormalization_116 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 476,conv_45.conv_dw.bn.weight,conv_45.conv_dw.bn.bias,conv_45.conv_dw.bn.running_mean,conv_45.conv_dw.bn.running_var
-    //Outputs: 477
-    //Shape:
-    //    476: (1, 512, 7, 7)
-    //    conv_45.conv_dw.bn.weight: (512,)
-    //    conv_45.conv_dw.bn.bias: (512,)
-    //    conv_45.conv_dw.bn.running_mean: (512,)
-    //    conv_45.conv_dw.bn.running_var: (512,)
-    //    477: (1, 512, 7, 7)
-for (uint32_t i = 0; i < 512; i++) {
-    batch_normalization_naive(buffer_476[i],
-                              7,
-                              7,
-                              buffer_477[i],
-                              buffer_conv_45_conv_dw_bn_weight[i],
-                              buffer_conv_45_conv_dw_bn_bias[i],
-                              buffer_conv_45_conv_dw_bn_running_mean[i],
-                              buffer_conv_45_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 117 PRelu_117 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 477,550
-    //Outputs: 479
-    //Shape:
-    //    477: (1, 512, 7, 7)
-    //    550: (512, 1, 1)
-    //    479: (1, 512, 7, 7)
-
-for (uint32_t i = 0; i < 512; i++) {
-    prelu(buffer_477[i],
-               7,
-               7,
-               buffer_479[i],
-               buffer_550[i]);
-}
-
-    //Layer 118 Conv_118 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 479,conv_45.project.conv.weight
-    //Outputs: 480
-    //Shape:
-    //    479: (1, 512, 7, 7)
-    //    conv_45.project.conv.weight: (128, 512, 1, 1)
-    //    480: (1, 128, 7, 7)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_479[g*512/1],
-                            7,
-                            7,
-                            buffer_480[i],
-                            buffer_conv_45_project_conv_weight[i*512/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
         uint32_t cnt = 1;
-        for(uint32_t j = g*512/1+1; j < (g+1)*512/1; j+=1){
-            static fp_t temp_buffer[7*7];
-            convolution2d_naive(buffer_479[j],
-                                7,
-                                7,
-                                temp_buffer,
-                                buffer_conv_45_project_conv_weight[i*512/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
+        for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_padding_naive(buffer_456[j],
+                                        40,
+                                        40,
+                                        temp_buffer,
+                                        buffer_711[i*16/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_115_padding,
+                                        0.0);
 
-            add_channel2d_naive(buffer_480[i],
+            add_channel2d_naive(buffer_710[i],
                                 temp_buffer,
-                                7,
-                                7);
+                                40,
+                                40);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 119 BatchNormalization_119 BatchNormalization
+    //Layer 84 Concat_116 Concat
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  axis: 1
     //Parameters
-    //Inputs: 480,conv_45.project.bn.weight,conv_45.project.bn.bias,conv_45.project.bn.running_mean,conv_45.project.bn.running_var
-    //Outputs: 481
+    //Inputs: 698,704,710
+    //Outputs: 459
     //Shape:
-    //    480: (1, 128, 7, 7)
-    //    conv_45.project.bn.weight: (128,)
-    //    conv_45.project.bn.bias: (128,)
-    //    conv_45.project.bn.running_mean: (128,)
-    //    conv_45.project.bn.running_var: (128,)
-    //    481: (1, 128, 7, 7)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_480[i],
-                              7,
-                              7,
-                              buffer_481[i],
-                              buffer_conv_45_project_bn_weight[i],
-                              buffer_conv_45_project_bn_bias[i],
-                              buffer_conv_45_project_bn_running_mean[i],
-                              buffer_conv_45_project_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    698: (1, 32, 40, 40)
+    //    704: (1, 16, 40, 40)
+    //    710: (1, 16, 40, 40)
+    //    459: (1, 64, 40, 40)
+    fp_t*** inputs_Concat_116 = (fp_t***) malloc(3 * sizeof(fp_t**));
+    inputs_Concat_116[0] = buffer_698;
+    inputs_Concat_116[1] = buffer_704;
+    inputs_Concat_116[2] = buffer_710;
+
+
+    const uint16_t* input_shape_Concat_116[3];
+    uint16_t input_shape_Concat_116_0[3] = { 32, 40, 40 };
+    input_shape_Concat_116[0] = input_shape_Concat_116_0;
+    uint16_t input_shape_Concat_116_1[3] = { 16, 40, 40 };
+    input_shape_Concat_116[1] = input_shape_Concat_116_1;
+    uint16_t input_shape_Concat_116_2[3] = { 16, 40, 40 };
+    input_shape_Concat_116[2] = input_shape_Concat_116_2;
+
+
+    concatenate_naive(inputs_Concat_116, input_shape_Concat_116, 0,
+                      3, buffer_459);
+
+    free(inputs_Concat_116);
+
+    //Layer 85 Relu_117 Relu
+    //Attributes
+    //Parameters
+    //Inputs: 459
+    //Outputs: 460
+    //Shape:
+    //    459: (1, 64, 40, 40)
+    //    460: (1, 64, 40, 40)
+
+for (uint32_t i = 0; i < 64; i++) {
+    relu_naive(buffer_459[i],
+               40,
+               40,
+               buffer_460[i]);
 }
-    //Layer 120 Conv_120 Conv
+
+    //Layer 86 Conv_118 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 481,conv_5.model.0.conv.conv.weight
-    //Outputs: 482
-    //Shape:
-    //    481: (1, 128, 7, 7)
-    //    conv_5.model.0.conv.conv.weight: (256, 128, 1, 1)
-    //    482: (1, 256, 7, 7)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*256/1; i < (g+1)*256/1; i+=1){
-        convolution2d_naive(buffer_481[g*128/1],
-                            7,
-                            7,
-                            buffer_482[i],
-                            buffer_conv_5_model_0_conv_conv_weight[i*128/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[7*7];
-            convolution2d_naive(buffer_481[j],
-                                7,
-                                7,
-                                temp_buffer,
-                                buffer_conv_5_model_0_conv_conv_weight[i*128/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_482[i],
-                                temp_buffer,
-                                7,
-                                7);
-            cnt+=1;
-        }
-        
-    }
-}
-
-    //Layer 121 BatchNormalization_121 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 482,conv_5.model.0.conv.bn.weight,conv_5.model.0.conv.bn.bias,conv_5.model.0.conv.bn.running_mean,conv_5.model.0.conv.bn.running_var
-    //Outputs: 483
-    //Shape:
-    //    482: (1, 256, 7, 7)
-    //    conv_5.model.0.conv.bn.weight: (256,)
-    //    conv_5.model.0.conv.bn.bias: (256,)
-    //    conv_5.model.0.conv.bn.running_mean: (256,)
-    //    conv_5.model.0.conv.bn.running_var: (256,)
-    //    483: (1, 256, 7, 7)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_482[i],
-                              7,
-                              7,
-                              buffer_483[i],
-                              buffer_conv_5_model_0_conv_bn_weight[i],
-                              buffer_conv_5_model_0_conv_bn_bias[i],
-                              buffer_conv_5_model_0_conv_bn_running_mean[i],
-                              buffer_conv_5_model_0_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 122 PRelu_122 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 483,551
-    //Outputs: 485
-    //Shape:
-    //    483: (1, 256, 7, 7)
-    //    551: (256, 1, 1)
-    //    485: (1, 256, 7, 7)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_483[i],
-               7,
-               7,
-               buffer_485[i],
-               buffer_551[i]);
-}
-
-    //Layer 123 Conv_123 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 256
     //  kernel_shape: [3, 3]
     //  pads: [1, 1, 1, 1]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 485,conv_5.model.0.conv_dw.conv.weight
+    //Inputs: 390,714,715
+    //Outputs: 713
+    //Shape:
+    //    390: (1, 64, 20, 20)
+    //    714: (32, 64, 3, 3)
+    //    715: (32,)
+    //    713: (1, 32, 20, 20)
+
+const uint16_t Conv_118_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*32/1; i < (g+1)*32/1; i+=1){
+        convolution2d_padding_naive(buffer_390[g*64/1],
+                                    20,
+                                    20,
+                                    buffer_713[i],
+                                    buffer_714[i*64/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_118_padding,
+                                    
+                                    buffer_715[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_padding_naive(buffer_390[j],
+                                        20,
+                                        20,
+                                        temp_buffer,
+                                        buffer_714[i*64/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_118_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_713[i],
+                                temp_buffer,
+                                20,
+                                20);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 87 Conv_119 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 390,717,718
+    //Outputs: 716
+    //Shape:
+    //    390: (1, 64, 20, 20)
+    //    717: (16, 64, 3, 3)
+    //    718: (16,)
+    //    716: (1, 16, 20, 20)
+
+const uint16_t Conv_119_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_390[g*64/1],
+                                    20,
+                                    20,
+                                    buffer_716[i],
+                                    buffer_717[i*64/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_119_padding,
+                                    
+                                    buffer_718[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_padding_naive(buffer_390[j],
+                                        20,
+                                        20,
+                                        temp_buffer,
+                                        buffer_717[i*64/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_119_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_716[i],
+                                temp_buffer,
+                                20,
+                                20);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 88 LeakyRelu_120 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 716
+    //Outputs: 465
+    //Shape:
+    //    716: (1, 16, 20, 20)
+    //    465: (1, 16, 20, 20)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 16; i++) {
+leaky_relu_naive(buffer_716[i],
+20,
+20,
+buffer_465[i],
+0.10000000149011612);
+}
+
+    //Layer 89 Conv_121 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 465,720,721
+    //Outputs: 719
+    //Shape:
+    //    465: (1, 16, 20, 20)
+    //    720: (16, 16, 3, 3)
+    //    721: (16,)
+    //    719: (1, 16, 20, 20)
+
+const uint16_t Conv_121_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_465[g*16/1],
+                                    20,
+                                    20,
+                                    buffer_719[i],
+                                    buffer_720[i*16/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_121_padding,
+                                    
+                                    buffer_721[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_padding_naive(buffer_465[j],
+                                        20,
+                                        20,
+                                        temp_buffer,
+                                        buffer_720[i*16/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_121_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_719[i],
+                                temp_buffer,
+                                20,
+                                20);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 90 Conv_122 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 465,723,724
+    //Outputs: 722
+    //Shape:
+    //    465: (1, 16, 20, 20)
+    //    723: (16, 16, 3, 3)
+    //    724: (16,)
+    //    722: (1, 16, 20, 20)
+
+const uint16_t Conv_122_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_465[g*16/1],
+                                    20,
+                                    20,
+                                    buffer_722[i],
+                                    buffer_723[i*16/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_122_padding,
+                                    
+                                    buffer_724[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_padding_naive(buffer_465[j],
+                                        20,
+                                        20,
+                                        temp_buffer,
+                                        buffer_723[i*16/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_122_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_722[i],
+                                temp_buffer,
+                                20,
+                                20);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 91 LeakyRelu_123 LeakyRelu
+    //Attributes
+    //  alpha: 0.10000000149011612
+    //Parameters
+    //Inputs: 722
+    //Outputs: 470
+    //Shape:
+    //    722: (1, 16, 20, 20)
+    //    470: (1, 16, 20, 20)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+for (uint32_t i = 0; i < 16; i++) {
+leaky_relu_naive(buffer_722[i],
+20,
+20,
+buffer_470[i],
+0.10000000149011612);
+}
+
+    //Layer 92 Conv_124 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [3, 3]
+    //  pads: [1, 1, 1, 1]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 470,726,727
+    //Outputs: 725
+    //Shape:
+    //    470: (1, 16, 20, 20)
+    //    726: (16, 16, 3, 3)
+    //    727: (16,)
+    //    725: (1, 16, 20, 20)
+
+const uint16_t Conv_124_padding[4] = { 1, 1, 1, 1 };
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*16/1; i < (g+1)*16/1; i+=1){
+        convolution2d_padding_naive(buffer_470[g*16/1],
+                                    20,
+                                    20,
+                                    buffer_725[i],
+                                    buffer_726[i*16/1],
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    Conv_124_padding,
+                                    
+                                    buffer_727[i]
+                                    );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_padding_naive(buffer_470[j],
+                                        20,
+                                        20,
+                                        temp_buffer,
+                                        buffer_726[i*16/1+cnt],
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        Conv_124_padding,
+                                        0.0);
+
+            add_channel2d_naive(buffer_725[i],
+                                temp_buffer,
+                                20,
+                                20);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 93 Concat_125 Concat
+    //Attributes
+    //  axis: 1
+    //Parameters
+    //Inputs: 713,719,725
+    //Outputs: 473
+    //Shape:
+    //    713: (1, 32, 20, 20)
+    //    719: (1, 16, 20, 20)
+    //    725: (1, 16, 20, 20)
+    //    473: (1, 64, 20, 20)
+    fp_t*** inputs_Concat_125 = (fp_t***) malloc(3 * sizeof(fp_t**));
+    inputs_Concat_125[0] = buffer_713;
+    inputs_Concat_125[1] = buffer_719;
+    inputs_Concat_125[2] = buffer_725;
+
+
+    const uint16_t* input_shape_Concat_125[3];
+    uint16_t input_shape_Concat_125_0[3] = { 32, 20, 20 };
+    input_shape_Concat_125[0] = input_shape_Concat_125_0;
+    uint16_t input_shape_Concat_125_1[3] = { 16, 20, 20 };
+    input_shape_Concat_125[1] = input_shape_Concat_125_1;
+    uint16_t input_shape_Concat_125_2[3] = { 16, 20, 20 };
+    input_shape_Concat_125[2] = input_shape_Concat_125_2;
+
+
+    concatenate_naive(inputs_Concat_125, input_shape_Concat_125, 0,
+                      3, buffer_473);
+
+    free(inputs_Concat_125);
+
+    //Layer 94 Relu_126 Relu
+    //Attributes
+    //Parameters
+    //Inputs: 473
+    //Outputs: 474
+    //Shape:
+    //    473: (1, 64, 20, 20)
+    //    474: (1, 64, 20, 20)
+
+for (uint32_t i = 0; i < 64; i++) {
+    relu_naive(buffer_473[i],
+               20,
+               20,
+               buffer_474[i]);
+}
+
+    //Layer 95 Conv_127 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [1, 1]
+    //  pads: [0, 0, 0, 0]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 446,289,290
+    //Outputs: 475
+    //Shape:
+    //    446: (1, 64, 80, 80)
+    //    289: (8, 64, 1, 1)
+    //    290: (8,)
+    //    475: (1, 8, 80, 80)
+
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
+        convolution2d_naive(buffer_446[g*64/1],
+                            80,
+                            80,
+                            buffer_475[i],
+                            buffer_289[i*64/1],
+                            1,
+                            1,
+                            1,
+                            1,
+                            
+                            buffer_290[i]
+                            );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_naive(buffer_446[j],
+                                80,
+                                80,
+                                temp_buffer,
+                                buffer_289[i*64/1+cnt],
+                                1,
+                                1,
+                                1,
+                                1,
+                                0.0);
+
+            add_channel2d_naive(buffer_475[i],
+                                temp_buffer,
+                                80,
+                                80);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 96 Transpose_128 Transpose
+    //Attributes
+    //  perm: [0, 2, 3, 1]
+    //Parameters
+    //Inputs: 475
+    //Outputs: 476
+    //Shape:
+    //    475: (1, 8, 80, 80)
+    //    476: (1, 80, 80, 8)
+{
+    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+        for(uint32_t dim1 = 0; dim1 < 8; dim1++)
+            for(uint32_t dim2 = 0; dim2 < 80; dim2++)
+                for(uint32_t dim3 = 0; dim3 < 80; dim3++)
+                    buffer_476[dim2][dim3*8 + dim1] = buffer_475[dim1][dim2*80 + dim3];
+}
+    //Layer 97 Reshape_134 Reshape
+    //Attributes
+    //Parameters
+    //Inputs: 476,485
     //Outputs: 486
     //Shape:
-    //    485: (1, 256, 7, 7)
-    //    conv_5.model.0.conv_dw.conv.weight: (256, 1, 3, 3)
-    //    486: (1, 256, 7, 7)
+    //    476: (1, 80, 80, 8)
+    //    485: (3,)
+    //    486: (1, 12800, 4)
 
-const uint16_t Conv_123_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 256; g++) {
-    for(uint32_t i = g*256/256; i < (g+1)*256/256; i+=1){
-        convolution2d_padding_naive(buffer_485[g*256/256],
-                                    7,
-                                    7,
-                                    buffer_486[i],
-                                    buffer_conv_5_model_0_conv_dw_conv_weight[i*256/256],
-                                    3,
-                                    3,
-                                    1,
-                                    1,
-                                    Conv_123_padding,
-                                    
-                                    0
-                                    );
-        
-    }
+for(uint32_t i = 0; i < 80; i++){
+    memcpy(&buffer_486[i*80*8],
+           buffer_476[i],
+           80*8*sizeof(fp_t));
 }
 
-    //Layer 124 BatchNormalization_124 BatchNormalization
+    //Layer 98 Conv_135 Conv
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [1, 1]
+    //  pads: [0, 0, 0, 0]
+    //  strides: [1, 1]
     //Parameters
-    //Inputs: 486,conv_5.model.0.conv_dw.bn.weight,conv_5.model.0.conv_dw.bn.bias,conv_5.model.0.conv_dw.bn.running_mean,conv_5.model.0.conv_dw.bn.running_var
+    //Inputs: 460,291,292
     //Outputs: 487
     //Shape:
-    //    486: (1, 256, 7, 7)
-    //    conv_5.model.0.conv_dw.bn.weight: (256,)
-    //    conv_5.model.0.conv_dw.bn.bias: (256,)
-    //    conv_5.model.0.conv_dw.bn.running_mean: (256,)
-    //    conv_5.model.0.conv_dw.bn.running_var: (256,)
-    //    487: (1, 256, 7, 7)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_486[i],
-                              7,
-                              7,
-                              buffer_487[i],
-                              buffer_conv_5_model_0_conv_dw_bn_weight[i],
-                              buffer_conv_5_model_0_conv_dw_bn_bias[i],
-                              buffer_conv_5_model_0_conv_dw_bn_running_mean[i],
-                              buffer_conv_5_model_0_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 125 PRelu_125 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 487,552
-    //Outputs: 489
-    //Shape:
-    //    487: (1, 256, 7, 7)
-    //    552: (256, 1, 1)
-    //    489: (1, 256, 7, 7)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_487[i],
-               7,
-               7,
-               buffer_489[i],
-               buffer_552[i]);
-}
-
-    //Layer 126 Conv_126 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 489,conv_5.model.0.project.conv.weight
-    //Outputs: 490
-    //Shape:
-    //    489: (1, 256, 7, 7)
-    //    conv_5.model.0.project.conv.weight: (128, 256, 1, 1)
-    //    490: (1, 128, 7, 7)
+    //    460: (1, 64, 40, 40)
+    //    291: (8, 64, 1, 1)
+    //    292: (8,)
+    //    487: (1, 8, 40, 40)
 
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_489[g*256/1],
-                            7,
-                            7,
-                            buffer_490[i],
-                            buffer_conv_5_model_0_project_conv_weight[i*256/1],
+    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
+        convolution2d_naive(buffer_460[g*64/1],
+                            40,
+                            40,
+                            buffer_487[i],
+                            buffer_291[i*64/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_292[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
-            static fp_t temp_buffer[7*7];
-            convolution2d_naive(buffer_489[j],
-                                7,
-                                7,
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_naive(buffer_460[j],
+                                40,
+                                40,
                                 temp_buffer,
-                                buffer_conv_5_model_0_project_conv_weight[i*256/1+cnt],
+                                buffer_291[i*64/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_490[i],
+            add_channel2d_naive(buffer_487[i],
                                 temp_buffer,
-                                7,
-                                7);
+                                40,
+                                40);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 127 BatchNormalization_127 BatchNormalization
+    //Layer 99 Transpose_136 Transpose
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  perm: [0, 2, 3, 1]
     //Parameters
-    //Inputs: 490,conv_5.model.0.project.bn.weight,conv_5.model.0.project.bn.bias,conv_5.model.0.project.bn.running_mean,conv_5.model.0.project.bn.running_var
-    //Outputs: 491
+    //Inputs: 487
+    //Outputs: 488
     //Shape:
-    //    490: (1, 128, 7, 7)
-    //    conv_5.model.0.project.bn.weight: (128,)
-    //    conv_5.model.0.project.bn.bias: (128,)
-    //    conv_5.model.0.project.bn.running_mean: (128,)
-    //    conv_5.model.0.project.bn.running_var: (128,)
-    //    491: (1, 128, 7, 7)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_490[i],
-                              7,
-                              7,
-                              buffer_491[i],
-                              buffer_conv_5_model_0_project_bn_weight[i],
-                              buffer_conv_5_model_0_project_bn_bias[i],
-                              buffer_conv_5_model_0_project_bn_running_mean[i],
-                              buffer_conv_5_model_0_project_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    487: (1, 8, 40, 40)
+    //    488: (1, 40, 40, 8)
+{
+    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+        for(uint32_t dim1 = 0; dim1 < 8; dim1++)
+            for(uint32_t dim2 = 0; dim2 < 40; dim2++)
+                for(uint32_t dim3 = 0; dim3 < 40; dim3++)
+                    buffer_488[dim2][dim3*8 + dim1] = buffer_487[dim1][dim2*40 + dim3];
 }
-    //Layer 128 Add_128 Add
+    //Layer 100 Reshape_142 Reshape
     //Attributes
     //Parameters
-    //Inputs: 481,491
-    //Outputs: 492
-    //Shape:
-    //    481: (1, 128, 7, 7)
-    //    491: (1, 128, 7, 7)
-    //    492: (1, 128, 7, 7)
-
-    for(uint32_t i = 0; i < 128; i++){
-        memcpy(buffer_492[i],
-               buffer_481[i],
-               7*7*sizeof(fp_t));
-    }
-
-    for(uint32_t i = 0; i < 128; i++){
-        add_channel2d_naive(buffer_492[i], buffer_491[i], 7, 7);
-    }
-
-
-    //Layer 129 Conv_129 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 1
-    //  kernel_shape: [1, 1]
-    //  pads: [0, 0, 0, 0]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 492,conv_5.model.1.conv.conv.weight
-    //Outputs: 493
-    //Shape:
-    //    492: (1, 128, 7, 7)
-    //    conv_5.model.1.conv.conv.weight: (256, 128, 1, 1)
-    //    493: (1, 256, 7, 7)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*256/1; i < (g+1)*256/1; i+=1){
-        convolution2d_naive(buffer_492[g*128/1],
-                            7,
-                            7,
-                            buffer_493[i],
-                            buffer_conv_5_model_1_conv_conv_weight[i*128/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            0
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[7*7];
-            convolution2d_naive(buffer_492[j],
-                                7,
-                                7,
-                                temp_buffer,
-                                buffer_conv_5_model_1_conv_conv_weight[i*128/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_493[i],
-                                temp_buffer,
-                                7,
-                                7);
-            cnt+=1;
-        }
-        
-    }
-}
-
-    //Layer 130 BatchNormalization_130 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 493,conv_5.model.1.conv.bn.weight,conv_5.model.1.conv.bn.bias,conv_5.model.1.conv.bn.running_mean,conv_5.model.1.conv.bn.running_var
-    //Outputs: 494
-    //Shape:
-    //    493: (1, 256, 7, 7)
-    //    conv_5.model.1.conv.bn.weight: (256,)
-    //    conv_5.model.1.conv.bn.bias: (256,)
-    //    conv_5.model.1.conv.bn.running_mean: (256,)
-    //    conv_5.model.1.conv.bn.running_var: (256,)
-    //    494: (1, 256, 7, 7)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_493[i],
-                              7,
-                              7,
-                              buffer_494[i],
-                              buffer_conv_5_model_1_conv_bn_weight[i],
-                              buffer_conv_5_model_1_conv_bn_bias[i],
-                              buffer_conv_5_model_1_conv_bn_running_mean[i],
-                              buffer_conv_5_model_1_conv_bn_running_var[i],
-                              9.999999747378752e-06);
-}
-    //Layer 131 PRelu_131 PRelu
-    //Attributes
-    //Parameters
-    //Inputs: 494,553
-    //Outputs: 496
-    //Shape:
-    //    494: (1, 256, 7, 7)
-    //    553: (256, 1, 1)
-    //    496: (1, 256, 7, 7)
-
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_494[i],
-               7,
-               7,
-               buffer_496[i],
-               buffer_553[i]);
-}
-
-    //Layer 132 Conv_132 Conv
-    //Attributes
-    //  dilations: [1, 1]
-    //  group: 256
-    //  kernel_shape: [3, 3]
-    //  pads: [1, 1, 1, 1]
-    //  strides: [1, 1]
-    //Parameters
-    //Inputs: 496,conv_5.model.1.conv_dw.conv.weight
-    //Outputs: 497
-    //Shape:
-    //    496: (1, 256, 7, 7)
-    //    conv_5.model.1.conv_dw.conv.weight: (256, 1, 3, 3)
-    //    497: (1, 256, 7, 7)
-
-const uint16_t Conv_132_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 256; g++) {
-    for(uint32_t i = g*256/256; i < (g+1)*256/256; i+=1){
-        convolution2d_padding_naive(buffer_496[g*256/256],
-                                    7,
-                                    7,
-                                    buffer_497[i],
-                                    buffer_conv_5_model_1_conv_dw_conv_weight[i*256/256],
-                                    3,
-                                    3,
-                                    1,
-                                    1,
-                                    Conv_132_padding,
-                                    
-                                    0
-                                    );
-        
-    }
-}
-
-    //Layer 133 BatchNormalization_133 BatchNormalization
-    //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
-    //Parameters
-    //Inputs: 497,conv_5.model.1.conv_dw.bn.weight,conv_5.model.1.conv_dw.bn.bias,conv_5.model.1.conv_dw.bn.running_mean,conv_5.model.1.conv_dw.bn.running_var
+    //Inputs: 488,497
     //Outputs: 498
     //Shape:
-    //    497: (1, 256, 7, 7)
-    //    conv_5.model.1.conv_dw.bn.weight: (256,)
-    //    conv_5.model.1.conv_dw.bn.bias: (256,)
-    //    conv_5.model.1.conv_dw.bn.running_mean: (256,)
-    //    conv_5.model.1.conv_dw.bn.running_var: (256,)
-    //    498: (1, 256, 7, 7)
-for (uint32_t i = 0; i < 256; i++) {
-    batch_normalization_naive(buffer_497[i],
-                              7,
-                              7,
-                              buffer_498[i],
-                              buffer_conv_5_model_1_conv_dw_bn_weight[i],
-                              buffer_conv_5_model_1_conv_dw_bn_bias[i],
-                              buffer_conv_5_model_1_conv_dw_bn_running_mean[i],
-                              buffer_conv_5_model_1_conv_dw_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    488: (1, 40, 40, 8)
+    //    497: (3,)
+    //    498: (1, 3200, 4)
+
+for(uint32_t i = 0; i < 40; i++){
+    memcpy(&buffer_498[i*40*8],
+           buffer_488[i],
+           40*8*sizeof(fp_t));
 }
-    //Layer 134 PRelu_134 PRelu
+
+    //Layer 101 Conv_143 Conv
     //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [1, 1]
+    //  pads: [0, 0, 0, 0]
+    //  strides: [1, 1]
     //Parameters
-    //Inputs: 498,554
+    //Inputs: 474,293,294
+    //Outputs: 499
+    //Shape:
+    //    474: (1, 64, 20, 20)
+    //    293: (8, 64, 1, 1)
+    //    294: (8,)
+    //    499: (1, 8, 20, 20)
+
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
+        convolution2d_naive(buffer_474[g*64/1],
+                            20,
+                            20,
+                            buffer_499[i],
+                            buffer_293[i*64/1],
+                            1,
+                            1,
+                            1,
+                            1,
+                            
+                            buffer_294[i]
+                            );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_naive(buffer_474[j],
+                                20,
+                                20,
+                                temp_buffer,
+                                buffer_293[i*64/1+cnt],
+                                1,
+                                1,
+                                1,
+                                1,
+                                0.0);
+
+            add_channel2d_naive(buffer_499[i],
+                                temp_buffer,
+                                20,
+                                20);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 102 Transpose_144 Transpose
+    //Attributes
+    //  perm: [0, 2, 3, 1]
+    //Parameters
+    //Inputs: 499
     //Outputs: 500
     //Shape:
-    //    498: (1, 256, 7, 7)
-    //    554: (256, 1, 1)
-    //    500: (1, 256, 7, 7)
+    //    499: (1, 8, 20, 20)
+    //    500: (1, 20, 20, 8)
+{
+    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+        for(uint32_t dim1 = 0; dim1 < 8; dim1++)
+            for(uint32_t dim2 = 0; dim2 < 20; dim2++)
+                for(uint32_t dim3 = 0; dim3 < 20; dim3++)
+                    buffer_500[dim2][dim3*8 + dim1] = buffer_499[dim1][dim2*20 + dim3];
+}
+    //Layer 103 Reshape_150 Reshape
+    //Attributes
+    //Parameters
+    //Inputs: 500,509
+    //Outputs: 510
+    //Shape:
+    //    500: (1, 20, 20, 8)
+    //    509: (3,)
+    //    510: (1, 800, 4)
 
-for (uint32_t i = 0; i < 256; i++) {
-    prelu(buffer_498[i],
-               7,
-               7,
-               buffer_500[i],
-               buffer_554[i]);
+for(uint32_t i = 0; i < 20; i++){
+    memcpy(&buffer_510[i*20*8],
+           buffer_500[i],
+           20*8*sizeof(fp_t));
 }
 
-    //Layer 135 Conv_135 Conv
+    //Layer 104 Concat_151 Concat2d
+    //Attributes
+    //  axis: 1
+    //Parameters
+    //Inputs: 486,498,510
+    //Outputs: output0
+    //Shape:
+    //    486: (1, 12800, 4)
+    //    498: (1, 3200, 4)
+    //    510: (1, 800, 4)
+    //    output0: (1, 16800, 4)
+//
+// Created by ali on 15.01.2021.
+//
+
+
+    output_Concat_151[0] = buffer_486;
+    output_Concat_151[1] = buffer_498;
+    output_Concat_151[2] = buffer_510;
+
+
+const uint16_t* input_shape_Concat_151[3];
+    uint16_t input_shape_Concat_151_0[2] = { 12800, 4 };
+    input_shape_Concat_151[0] = input_shape_Concat_151_0;
+    uint16_t input_shape_Concat_151_1[2] = { 3200, 4 };
+    input_shape_Concat_151[1] = input_shape_Concat_151_1;
+    uint16_t input_shape_Concat_151_2[2] = { 800, 4 };
+    input_shape_Concat_151[2] = input_shape_Concat_151_2;
+
+
+
+//concatenate_2D_output(inputs_Concat_151, input_shape_Concat_151, 0, 3, output_output0);
+
+//free(inputs_Concat_151);
+
+    //Layer 105 Conv_152 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
@@ -4149,99 +3764,86 @@ for (uint32_t i = 0; i < 256; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 500,conv_5.model.1.project.conv.weight
-    //Outputs: 501
+    //Inputs: 446,283,284
+    //Outputs: 512
     //Shape:
-    //    500: (1, 256, 7, 7)
-    //    conv_5.model.1.project.conv.weight: (128, 256, 1, 1)
-    //    501: (1, 128, 7, 7)
+    //    446: (1, 64, 80, 80)
+    //    283: (4, 64, 1, 1)
+    //    284: (4,)
+    //    512: (1, 4, 80, 80)
 
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*128/1; i < (g+1)*128/1; i+=1){
-        convolution2d_naive(buffer_500[g*256/1],
-                            7,
-                            7,
-                            buffer_501[i],
-                            buffer_conv_5_model_1_project_conv_weight[i*256/1],
+    for(uint32_t i = g*4/1; i < (g+1)*4/1; i+=1){
+        convolution2d_naive(buffer_446[g*64/1],
+                            80,
+                            80,
+                            buffer_512[i],
+                            buffer_283[i*64/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_284[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*256/1+1; j < (g+1)*256/1; j+=1){
-            static fp_t temp_buffer[7*7];
-            convolution2d_naive(buffer_500[j],
-                                7,
-                                7,
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_naive(buffer_446[j],
+                                80,
+                                80,
                                 temp_buffer,
-                                buffer_conv_5_model_1_project_conv_weight[i*256/1+cnt],
+                                buffer_283[i*64/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_501[i],
+            add_channel2d_naive(buffer_512[i],
                                 temp_buffer,
-                                7,
-                                7);
+                                80,
+                                80);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 136 BatchNormalization_136 BatchNormalization
+    //Layer 106 Transpose_153 Transpose
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  perm: [0, 2, 3, 1]
     //Parameters
-    //Inputs: 501,conv_5.model.1.project.bn.weight,conv_5.model.1.project.bn.bias,conv_5.model.1.project.bn.running_mean,conv_5.model.1.project.bn.running_var
-    //Outputs: 502
+    //Inputs: 512
+    //Outputs: 513
     //Shape:
-    //    501: (1, 128, 7, 7)
-    //    conv_5.model.1.project.bn.weight: (128,)
-    //    conv_5.model.1.project.bn.bias: (128,)
-    //    conv_5.model.1.project.bn.running_mean: (128,)
-    //    conv_5.model.1.project.bn.running_var: (128,)
-    //    502: (1, 128, 7, 7)
-for (uint32_t i = 0; i < 128; i++) {
-    batch_normalization_naive(buffer_501[i],
-                              7,
-                              7,
-                              buffer_502[i],
-                              buffer_conv_5_model_1_project_bn_weight[i],
-                              buffer_conv_5_model_1_project_bn_bias[i],
-                              buffer_conv_5_model_1_project_bn_running_mean[i],
-                              buffer_conv_5_model_1_project_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    512: (1, 4, 80, 80)
+    //    513: (1, 80, 80, 4)
+{
+    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+        for(uint32_t dim1 = 0; dim1 < 4; dim1++)
+            for(uint32_t dim2 = 0; dim2 < 80; dim2++)
+                for(uint32_t dim3 = 0; dim3 < 80; dim3++)
+                    buffer_513[dim2][dim3*4 + dim1] = buffer_512[dim1][dim2*80 + dim3];
 }
-    //Layer 137 Add_137 Add
+    //Layer 107 Reshape_159 Reshape
     //Attributes
     //Parameters
-    //Inputs: 492,502
-    //Outputs: 503
+    //Inputs: 513,522
+    //Outputs: 523
     //Shape:
-    //    492: (1, 128, 7, 7)
-    //    502: (1, 128, 7, 7)
-    //    503: (1, 128, 7, 7)
+    //    513: (1, 80, 80, 4)
+    //    522: (3,)
+    //    523: (1, 12800, 2)
 
-    for(uint32_t i = 0; i < 128; i++){
-        memcpy(buffer_503[i],
-               buffer_492[i],
-               7*7*sizeof(fp_t));
-    }
+for(uint32_t i = 0; i < 80; i++){
+    memcpy(&buffer_523[i*80*4],
+           buffer_513[i],
+           80*4*sizeof(fp_t));
+}
 
-    for(uint32_t i = 0; i < 128; i++){
-        add_channel2d_naive(buffer_503[i], buffer_502[i], 7, 7);
-    }
-
-
-    //Layer 138 Conv_138 Conv
+    //Layer 108 Conv_160 Conv
     //Attributes
     //  dilations: [1, 1]
     //  group: 1
@@ -4249,228 +3851,536 @@ for (uint32_t i = 0; i < 128; i++) {
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 503,conv_6_sep.conv.weight
-    //Outputs: 504
+    //Inputs: 460,285,286
+    //Outputs: 524
     //Shape:
-    //    503: (1, 128, 7, 7)
-    //    conv_6_sep.conv.weight: (512, 128, 1, 1)
-    //    504: (1, 512, 7, 7)
+    //    460: (1, 64, 40, 40)
+    //    285: (4, 64, 1, 1)
+    //    286: (4,)
+    //    524: (1, 4, 40, 40)
 
 for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*512/1; i < (g+1)*512/1; i+=1){
-        convolution2d_naive(buffer_503[g*128/1],
-                            7,
-                            7,
-                            buffer_504[i],
-                            buffer_conv_6_sep_conv_weight[i*128/1],
+    for(uint32_t i = g*4/1; i < (g+1)*4/1; i+=1){
+        convolution2d_naive(buffer_460[g*64/1],
+                            40,
+                            40,
+                            buffer_524[i],
+                            buffer_285[i*64/1],
                             1,
                             1,
                             1,
                             1,
                             
-                            0
+                            buffer_286[i]
                             );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*128/1+1; j < (g+1)*128/1; j+=1){
-            static fp_t temp_buffer[7*7];
-            convolution2d_naive(buffer_503[j],
-                                7,
-                                7,
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_naive(buffer_460[j],
+                                40,
+                                40,
                                 temp_buffer,
-                                buffer_conv_6_sep_conv_weight[i*128/1+cnt],
+                                buffer_285[i*64/1+cnt],
                                 1,
                                 1,
                                 1,
                                 1,
                                 0.0);
 
-            add_channel2d_naive(buffer_504[i],
+            add_channel2d_naive(buffer_524[i],
                                 temp_buffer,
-                                7,
-                                7);
+                                40,
+                                40);
             cnt+=1;
         }
         
     }
 }
 
-    //Layer 139 BatchNormalization_139 BatchNormalization
+    //Layer 109 Transpose_161 Transpose
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  perm: [0, 2, 3, 1]
     //Parameters
-    //Inputs: 504,conv_6_sep.bn.weight,conv_6_sep.bn.bias,conv_6_sep.bn.running_mean,conv_6_sep.bn.running_var
-    //Outputs: 505
+    //Inputs: 524
+    //Outputs: 525
     //Shape:
-    //    504: (1, 512, 7, 7)
-    //    conv_6_sep.bn.weight: (512,)
-    //    conv_6_sep.bn.bias: (512,)
-    //    conv_6_sep.bn.running_mean: (512,)
-    //    conv_6_sep.bn.running_var: (512,)
-    //    505: (1, 512, 7, 7)
-for (uint32_t i = 0; i < 512; i++) {
-    batch_normalization_naive(buffer_504[i],
-                              7,
-                              7,
-                              buffer_505[i],
-                              buffer_conv_6_sep_bn_weight[i],
-                              buffer_conv_6_sep_bn_bias[i],
-                              buffer_conv_6_sep_bn_running_mean[i],
-                              buffer_conv_6_sep_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    524: (1, 4, 40, 40)
+    //    525: (1, 40, 40, 4)
+{
+    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+        for(uint32_t dim1 = 0; dim1 < 4; dim1++)
+            for(uint32_t dim2 = 0; dim2 < 40; dim2++)
+                for(uint32_t dim3 = 0; dim3 < 40; dim3++)
+                    buffer_525[dim2][dim3*4 + dim1] = buffer_524[dim1][dim2*40 + dim3];
 }
-    //Layer 140 PRelu_140 PRelu
+    //Layer 110 Reshape_167 Reshape
     //Attributes
     //Parameters
-    //Inputs: 505,555
-    //Outputs: 507
+    //Inputs: 525,534
+    //Outputs: 535
     //Shape:
-    //    505: (1, 512, 7, 7)
-    //    555: (512, 1, 1)
-    //    507: (1, 512, 7, 7)
+    //    525: (1, 40, 40, 4)
+    //    534: (3,)
+    //    535: (1, 3200, 2)
 
-for (uint32_t i = 0; i < 512; i++) {
-    prelu(buffer_505[i],
-               7,
-               7,
-               buffer_507[i],
-               buffer_555[i]);
+for(uint32_t i = 0; i < 40; i++){
+    memcpy(&buffer_535[i*40*4],
+           buffer_525[i],
+           40*4*sizeof(fp_t));
 }
 
-    //Layer 141 Conv_141 Conv
+    //Layer 111 Conv_168 Conv
     //Attributes
     //  dilations: [1, 1]
-    //  group: 512
-    //  kernel_shape: [7, 7]
+    //  group: 1
+    //  kernel_shape: [1, 1]
     //  pads: [0, 0, 0, 0]
     //  strides: [1, 1]
     //Parameters
-    //Inputs: 507,conv_6_dw.conv.weight
-    //Outputs: 508
+    //Inputs: 474,287,288
+    //Outputs: 536
     //Shape:
-    //    507: (1, 512, 7, 7)
-    //    conv_6_dw.conv.weight: (512, 1, 7, 7)
-    //    508: (1, 512, 1, 1)
+    //    474: (1, 64, 20, 20)
+    //    287: (4, 64, 1, 1)
+    //    288: (4,)
+    //    536: (1, 4, 20, 20)
 
-for(uint32_t g = 0; g < 512; g++) {
-    for(uint32_t i = g*512/512; i < (g+1)*512/512; i+=1){
-        convolution2d_naive(buffer_507[g*512/512],
-                            7,
-                            7,
-                            buffer_508[i],
-                            buffer_conv_6_dw_conv_weight[i*512/512],
-                            7,
-                            7,
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*4/1; i < (g+1)*4/1; i+=1){
+        convolution2d_naive(buffer_474[g*64/1],
+                            20,
+                            20,
+                            buffer_536[i],
+                            buffer_287[i*64/1],
+                            1,
+                            1,
                             1,
                             1,
                             
-                            0
+                            buffer_288[i]
                             );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_naive(buffer_474[j],
+                                20,
+                                20,
+                                temp_buffer,
+                                buffer_287[i*64/1+cnt],
+                                1,
+                                1,
+                                1,
+                                1,
+                                0.0);
+
+            add_channel2d_naive(buffer_536[i],
+                                temp_buffer,
+                                20,
+                                20);
+            cnt+=1;
+        }
         
     }
 }
 
-    //Layer 142 BatchNormalization_142 BatchNormalization
+    //Layer 112 Transpose_169 Transpose
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  perm: [0, 2, 3, 1]
     //Parameters
-    //Inputs: 508,conv_6_dw.bn.weight,conv_6_dw.bn.bias,conv_6_dw.bn.running_mean,conv_6_dw.bn.running_var
-    //Outputs: 509
+    //Inputs: 536
+    //Outputs: 537
     //Shape:
-    //    508: (1, 512, 1, 1)
-    //    conv_6_dw.bn.weight: (512,)
-    //    conv_6_dw.bn.bias: (512,)
-    //    conv_6_dw.bn.running_mean: (512,)
-    //    conv_6_dw.bn.running_var: (512,)
-    //    509: (1, 512, 1, 1)
-for (uint32_t i = 0; i < 512; i++) {
-    batch_normalization_naive(buffer_508[i],
-                              1,
-                              1,
-                              buffer_509[i],
-                              buffer_conv_6_dw_bn_weight[i],
-                              buffer_conv_6_dw_bn_bias[i],
-                              buffer_conv_6_dw_bn_running_mean[i],
-                              buffer_conv_6_dw_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    536: (1, 4, 20, 20)
+    //    537: (1, 20, 20, 4)
+{
+    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+        for(uint32_t dim1 = 0; dim1 < 4; dim1++)
+            for(uint32_t dim2 = 0; dim2 < 20; dim2++)
+                for(uint32_t dim3 = 0; dim3 < 20; dim3++)
+                    buffer_537[dim2][dim3*4 + dim1] = buffer_536[dim1][dim2*20 + dim3];
 }
-    //Layer 143 Reshape_148 Reshape
+    //Layer 113 Reshape_175 Reshape
     //Attributes
     //Parameters
-    //Inputs: 509,516
-    //Outputs: 517
+    //Inputs: 537,546
+    //Outputs: 547
     //Shape:
-    //    509: (1, 512, 1, 1)
-    //    516: (2,)
-    //    517: (1, 512)
+    //    537: (1, 20, 20, 4)
+    //    546: (3,)
+    //    547: (1, 800, 2)
 
-for(uint32_t i = 0; i < 512; i++){
-    memcpy(&buffer_517[i*1*1],
-           buffer_509[i],
-           1*1*sizeof(fp_t));
+for(uint32_t i = 0; i < 20; i++){
+    memcpy(&buffer_547[i*20*4],
+           buffer_537[i],
+           20*4*sizeof(fp_t));
 }
 
-    //Layer 144 MatMul_149 MatMul
+    //Layer 114 Concat_176 Concat2d
     //Attributes
+    //  axis: 1
     //Parameters
-    //Inputs: 517,557
-    //Outputs: 519
+    //Inputs: 523,535,547
+    //Outputs: 548
     //Shape:
-    //    517: (1, 512)
-    //    557: (512, 512)
-    //    519: (1, 512)
-fully_connected_naive(buffer_517, 512,
-                      buffer_519, 512,
-                      buffer_557, NULL);
-    //Layer 145 BatchNormalization_150 BatchNormalization1d
+    //    523: (1, 12800, 2)
+    //    535: (1, 3200, 2)
+    //    547: (1, 800, 2)
+    //    548: (1, 16800, 2)
+//
+// Created by ali on 15.01.2021.
+//
+
+fp_t** outputs_Concat_176 = (fp_t**) malloc(3 * sizeof(fp_t*));
+    outputs_Concat_176[0] = buffer_523;
+    outputs_Concat_176[1] = buffer_535;
+    outputs_Concat_176[2] = buffer_547;
+//
+
+const int * input_shape_Concat_176[3];
+    uint16_t input_shape_Concat_176_0[2] = { 12800, 2 };
+    input_shape_Concat_176[0] = input_shape_Concat_176_0;
+    uint16_t input_shape_Concat_176_1[2] = { 3200, 2 };
+    input_shape_Concat_176[1] = input_shape_Concat_176_1;
+    uint16_t input_shape_Concat_176_2[2] = { 800, 2 };
+    input_shape_Concat_176[2] = input_shape_Concat_176_2;
+
+
+//    concatenate_2D_output(outputs_Concat_176, input_shape_Concat_176, 0,
+//3, buffer_548);
+
+//free(inputs_Concat_176);
+
+    //Layer 115 Conv_177 Conv
     //Attributes
-    //  epsilon: 9.999999747378752e-06
-    //  momentum: 0.8999999761581421
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [1, 1]
+    //  pads: [0, 0, 0, 0]
+    //  strides: [1, 1]
     //Parameters
-    //Inputs: 519,bn.weight,bn.bias,bn.running_mean,bn.running_var
-    //Outputs: 520
+    //Inputs: 446,295,296
+    //Outputs: 549
     //Shape:
-    //    519: (1, 512)
-    //    bn.weight: (512,)
-    //    bn.bias: (512,)
-    //    bn.running_mean: (512,)
-    //    bn.running_var: (512,)
-    //    520: (1, 512)
-for (uint32_t i = 0; i < 512; i++) {
-    batch_normalization_naive_1d(buffer_519+i,
-                              buffer_520+i,
-                              buffer_bn_weight[i],
-                              buffer_bn_bias[i],
-                              buffer_bn_running_mean[i],
-                              buffer_bn_running_var[i],
-                              9.999999747378752e-06);
+    //    446: (1, 64, 80, 80)
+    //    295: (20, 64, 1, 1)
+    //    296: (20,)
+    //    549: (1, 20, 80, 80)
+
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*20/1; i < (g+1)*20/1; i+=1){
+        convolution2d_naive(buffer_446[g*64/1],
+                            80,
+                            80,
+                            buffer_549[i],
+                            buffer_295[i*64/1],
+                            1,
+                            1,
+                            1,
+                            1,
+                            
+                            buffer_296[i]
+                            );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[80*80];
+            convolution2d_naive(buffer_446[j],
+                                80,
+                                80,
+                                temp_buffer,
+                                buffer_295[i*64/1+cnt],
+                                1,
+                                1,
+                                1,
+                                1,
+                                0.0);
+
+            add_channel2d_naive(buffer_549[i],
+                                temp_buffer,
+                                80,
+                                80);
+            cnt+=1;
+        }
+        
+    }
 }
-    //Layer 146 ReduceL2_151 ReduceL2
+
+    //Layer 116 Transpose_178 Transpose
     //Attributes
-    //  axes: [1]
-    //  keepdims: 1
+    //  perm: [0, 2, 3, 1]
     //Parameters
-    //Inputs: 520
-    //Outputs: 521
+    //Inputs: 549
+    //Outputs: 550
     //Shape:
-    //    520: (1, 512)
-    //    521: (1, 1)
-
-norm_naive_l2(buffer_520, 512,2, buffer_521);
-
-    //Layer 147 Div_152 Div
-    //Attributes
-    //Parameters
-    //Inputs: 520,521
-    //Outputs: output
-    //Shape:
-    //    520: (1, 512)
-    //    521: (1, 1)
-    //    output: (1, 512)
-
-div_by_scalar(buffer_520, 512, buffer_521, output_output);
-
+    //    549: (1, 20, 80, 80)
+    //    550: (1, 80, 80, 20)
+{
+    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+        for(uint32_t dim1 = 0; dim1 < 20; dim1++)
+            for(uint32_t dim2 = 0; dim2 < 80; dim2++)
+                for(uint32_t dim3 = 0; dim3 < 80; dim3++)
+                    buffer_550[dim2][dim3*20 + dim1] = buffer_549[dim1][dim2*80 + dim3];
 }
+
+    //Layer 118 Conv_185 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [1, 1]
+    //  pads: [0, 0, 0, 0]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 460,297,298
+    //Outputs: 561
+    //Shape:
+    //    460: (1, 64, 40, 40)
+    //    297: (20, 64, 1, 1)
+    //    298: (20,)
+    //    561: (1, 20, 40, 40)
+
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*20/1; i < (g+1)*20/1; i+=1){
+        convolution2d_naive(buffer_460[g*64/1],
+                            40,
+                            40,
+                            buffer_561[i],
+                            buffer_297[i*64/1],
+                            1,
+                            1,
+                            1,
+                            1,
+                            buffer_298[i]
+                            );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[40*40];
+            convolution2d_naive(buffer_460[j],
+                                40,
+                                40,
+                                temp_buffer,
+                                buffer_297[i*64/1+cnt],
+                                1,
+                                1,
+                                1,
+                                1,
+                                0.0);
+
+            add_channel2d_naive(buffer_561[i],
+                                temp_buffer,
+                                40,
+                                40);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 119 Transpose_186 Transpose
+    //Attributes
+    //  perm: [0, 2, 3, 1]
+    //Parameters
+    //Inputs: 561
+    //Outputs: 562
+    //Shape:
+    //    561: (1, 20, 40, 40)
+    //    562: (1, 40, 40, 20)
+{
+    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+        for(uint32_t dim1 = 0; dim1 < 20; dim1++)
+            for(uint32_t dim2 = 0; dim2 < 40; dim2++)
+                for(uint32_t dim3 = 0; dim3 < 40; dim3++)
+                    buffer_562[dim2][dim3*20 + dim1] = buffer_561[dim1][dim2*40 + dim3];
+}
+
+    //Layer 121 Conv_193 Conv
+    //Attributes
+    //  dilations: [1, 1]
+    //  group: 1
+    //  kernel_shape: [1, 1]
+    //  pads: [0, 0, 0, 0]
+    //  strides: [1, 1]
+    //Parameters
+    //Inputs: 474,299,300
+    //Outputs: 573
+    //Shape:
+    //    474: (1, 64, 20, 20)
+    //    299: (20, 64, 1, 1)
+    //    300: (20,)
+    //    573: (1, 20, 20, 20)
+
+for(uint32_t g = 0; g < 1; g++) {
+    for(uint32_t i = g*20/1; i < (g+1)*20/1; i+=1){
+        convolution2d_naive(buffer_474[g*64/1],
+                            20,
+                            20,
+                            buffer_573[i],
+                            buffer_299[i*64/1],
+                            1,
+                            1,
+                            1,
+                            1,
+                            
+                            buffer_300[i]
+                            );
+        
+        uint32_t cnt = 1;
+        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+            static fp_t temp_buffer[20*20];
+            convolution2d_naive(buffer_474[j],
+                                20,
+                                20,
+                                temp_buffer,
+                                buffer_299[i*64/1+cnt],
+                                1,
+                                1,
+                                1,
+                                1,
+                                0.0);
+
+            add_channel2d_naive(buffer_573[i],
+                                temp_buffer,
+                                20,
+                                20);
+            cnt+=1;
+        }
+        
+    }
+}
+
+    //Layer 122 Transpose_194 Transpose
+    //Attributes
+    //  perm: [0, 2, 3, 1]
+    //Parameters
+    //Inputs: 573
+    //Outputs: 574
+    //Shape:
+    //    573: (1, 20, 20, 20)
+    //    574: (1, 20, 20, 20)
+{
+    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+        for(uint32_t dim1 = 0; dim1 < 20; dim1++)
+            for(uint32_t dim2 = 0; dim2 < 20; dim2++)
+                for(uint32_t dim3 = 0; dim3 < 20; dim3++)
+                    buffer_574[dim2][dim3*20 + dim1] = buffer_573[dim1][dim2*20 + dim3];
+}
+
+// -----------------------------------------------------------------
+    //Layer 117 Reshape_184 Reshape
+    //Attributes
+    //Parameters
+    //Inputs: 550,559
+    //Outputs: 560
+    //Shape:
+    //    550: (1, 80, 80, 20)
+    //    559: (3,)
+    //    560: (1, 12800, 10)
+
+    for(uint32_t i = 0; i < 80; i++){
+
+
+        if (i<40)
+            memcpy(&buffer_572[i*40*20],
+                   buffer_562[i],
+                   40*20*sizeof(fp_t));
+        if (i<20)
+            memcpy(&buffer_584[i*20*20],
+                   buffer_574[i],
+                   20*20*sizeof(fp_t));
+
+        memcpy(&buffer_560[i*80*20],
+               buffer_550[i],
+               80*20*sizeof(fp_t));
+
+    }
+
+
+    //Layer 120 Reshape_192 Reshape
+    //Attributes
+    //Parameters
+    //Inputs: 562,571
+    //Outputs: 572
+    //Shape:
+    //    562: (1, 40, 40, 20)
+    //    571: (3,)
+    //    572: (1, 3200, 10)
+
+//    for(uint32_t i = 0; i < 40; i++){
+//        memcpy(&buffer_572[i*40*20],
+//               buffer_562[i],
+//               40*20*sizeof(fp_t));
+//    }
+
+
+    //Layer 123 Reshape_200 Reshape
+    //Attributes
+    //Parameters
+    //Inputs: 574,583
+    //Outputs: 584
+    //Shape:
+    //    574: (1, 20, 20, 20)
+    //    583: (3,)
+    //    584: (1, 800, 10)
+
+//for(uint32_t i = 0; i < 20; i++){
+//    memcpy(&buffer_584[i*20*20],
+//           buffer_574[i],
+//           20*20*sizeof(fp_t));
+//}
+
+    //Layer 124 Concat_201 Concat2d
+    //Attributes
+    //  axis: 1
+    //Parameters
+    //Inputs: 560,572,584
+    //Outputs: 585
+    //Shape:
+    //    560: (1, 12800, 10)
+    //    572: (1, 3200, 10)
+    //    584: (1, 800, 10)
+    //    585: (1, 16800, 10)
+//
+// Created by ali on 15.01.2021.
+//
+
+//fp_t** outputs_Concat_201 = (fp_t**) malloc(3 * sizeof(fp_t*));
+    outputs_Concat_201[0] = buffer_560;
+    outputs_Concat_201[1] = buffer_572;
+    outputs_Concat_201[2] = buffer_584;
+
+
+const uint16_t* input_shape_Concat_201[3];
+    uint16_t input_shape_Concat_201_0[2] = { 12800, 10 };
+    input_shape_Concat_201[0] = input_shape_Concat_201_0;
+    uint16_t input_shape_Concat_201_1[2] = { 3200, 10 };
+    input_shape_Concat_201[1] = input_shape_Concat_201_1;
+    uint16_t input_shape_Concat_201_2[2] = { 800, 10 };
+    input_shape_Concat_201[2] = input_shape_Concat_201_2;
+
+
+//    concatenate_2D_output(inputs_Concat_201, input_shape_Concat_201, 0, 3, output_585);
+
+//free(inputs_Concat_201);
+
+    //Layer 125 Softmax_202 Softmax
+    //Attributes
+    //  axis: 2
+    //Parameters
+    //Inputs: 548
+    //Outputs: 586
+    //Shape:
+    //    548: (1, 16800, 2)
+    //    586: (1, 16800, 2)
+softmax_naive_mbnet(outputs_Concat_176,3, outputs_Conf);
+
+//    for (int i=0; i<3; i++){
+//        free(outputs_Concat_176);
+//    }
+    free(outputs_Concat_176);
+
+
+
+ }
 
