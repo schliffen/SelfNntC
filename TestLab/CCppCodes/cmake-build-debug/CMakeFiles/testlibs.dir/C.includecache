@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.c
+nearestNtest.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.h
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testinclude/nearestNtest.h
+memory.h
+-
+stdlib.h
+-
+../testsrc/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h
+../testsrc/utility_functions.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/utility_functions.h
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/utility_functions.h
+../testsrc/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/testsrc/parameters.h
+math.h
+-
+stdio.h
+-
+stdint.h
+-
+

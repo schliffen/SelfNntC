@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../ai-cnn/parameters.h
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_initialization.c
+Resnet100_network_initialization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_initialization.h
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_initialization.h
+stdlib.h
+-
+stdint.h
+-
+ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/ai-cnn/parameters.h
+

@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -ldl -g   CMakeFiles/testlayers.dir/main.cpp.o  -o testlayers  -Wl,-rpath,/home/ali/Projlab/Nist/SelfNntC/TestLab/CCppCodes/cmake-build-debug libtestlibs.so liblayerlib.so 

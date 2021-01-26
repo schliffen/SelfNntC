@@ -1,1 +1,0 @@
-/usr/bin/g++-7  -std=c++11 -ldl CMakeFiles/newLayerTest.dir/main.cpp.o -o newLayerTest  -Wl,-rpath,/home/ali/ProjLAB/Nist/pico-cnn/newLayerTest/build libtestlibs.so liblibpico-cnn.so 

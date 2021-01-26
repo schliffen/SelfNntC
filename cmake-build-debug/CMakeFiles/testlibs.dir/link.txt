@@ -1,1 +1,0 @@
-/usr/bin/gcc-7 -fPIC -g  -shared -Wl,-soname,libtestlibs.so -o lib/libtestlibs.so CMakeFiles/testlibs.dir/include/test_activation_function.c.o CMakeFiles/testlibs.dir/include/utility_functions.c.o CMakeFiles/testlibs.dir/include/tutils.c.o 
