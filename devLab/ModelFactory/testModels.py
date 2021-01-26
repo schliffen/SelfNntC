@@ -11,7 +11,7 @@ import cv2
 import struct
 
 
-def get_feature_extraction(session):
+def get_feature_extraction(session, input_data):
 
     input_name = session.get_inputs()[0].name
     label_name = session.get_outputs()[0].name
@@ -132,8 +132,8 @@ def get_detector_output(session, input_data):
 
 if __name__ == '__main__':
 
-    w = 640
-    h = 640
+    w = 112
+    h = 112
     c = 3
     ver = 1
     #
@@ -142,7 +142,8 @@ if __name__ == '__main__':
 
     # onnxModelName = "sub_lenet_4.onnx"
     # simponnxmdlName = "sub_mobilefacenet_" + str(ver) +".onnx"
-    simponnxmdlName =  "FaceDetector.onnx"
+    # simponnxmdlName =  "FaceDetector.onnx"
+    simponnxmdlName =  "insight-face-v3.onnx"
     # simponnxmdlName =  "super_resolution.onnx"
     reference_output = "/home/ali/Projlab/Nist/ConversionOutputs/reference_detection_output.bin"
     reference_input = "refInput_"
@@ -163,7 +164,7 @@ if __name__ == '__main__':
     imgPath = "/home/ali/Projlab/Nist/ModelAnalysis/images/S001-02-t10_01.ppm"
     img = np.float32( cv2.imread( imgPath ))
 
-    img -= (104, 117, 123)
+    # img -= (104, 117, 123)
     # input_data = np.expand_dims(img.transpose(2,0,1), axis=0)
     input_data = np.expand_dims(cv2.resize(img, (w, h)).transpose(2,0,1), axis=0)
     #
@@ -181,8 +182,9 @@ if __name__ == '__main__':
 
     session = onnxruntime.InferenceSession(default_model_dir + simponnxmdlName)
 
-    get_detector_output(session, input_data)
+    # get_detector_output(session, input_data)
 
+    get_feature_extraction(session, input_data)
 
 
     print('finished! ')

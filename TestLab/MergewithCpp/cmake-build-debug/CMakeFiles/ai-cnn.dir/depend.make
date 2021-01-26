@@ -79,32 +79,32 @@ CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_initialization.c.o: ../a
 CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_initialization.c.o: ../model/alignment/alignment_network_initialization.c
 CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_initialization.c.o: ../model/alignment/alignment_network_initialization.h
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/ai-cnn.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/io/read_binary_reference_data.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/io/read_binary_weights.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/layers/activation_function.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/layers/batch_normalization.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/layers/concatenate.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/layers/convolution.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/layers/fully_connected.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/layers/math_operations.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/layers/pooling.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/layers/upsampling.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/parameters.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../ai-cnn/utils.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../model/feature/feature_network.c
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../model/feature/feature_network.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../model/feature/feature_network_cleanup.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../model/feature/feature_network_initialization.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/ai-cnn.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/io/read_binary_reference_data.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/io/read_binary_weights.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/layers/activation_function.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/layers/batch_normalization.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/layers/concatenate.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/layers/convolution.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/layers/fully_connected.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/layers/math_operations.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/layers/pooling.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/layers/upsampling.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/parameters.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../ai-cnn/utils.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../model/feature_mobilefacenet/feature_network.c
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../model/feature_mobilefacenet/feature_network.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../model/feature_mobilefacenet/feature_network_cleanup.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../model/feature_mobilefacenet/feature_network_initialization.h
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o: ../ai-cnn/parameters.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o: ../model/feature/feature_network_cleanup.c
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o: ../model/feature/feature_network_cleanup.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o: ../model/feature/feature_network_initialization.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o: ../ai-cnn/parameters.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o: ../model/feature_mobilefacenet/feature_network_cleanup.c
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o: ../model/feature_mobilefacenet/feature_network_cleanup.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o: ../model/feature_mobilefacenet/feature_network_initialization.h
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o: ../ai-cnn/parameters.h
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o: ../model/feature/feature_network_initialization.c
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o: ../model/feature/feature_network_initialization.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o: ../ai-cnn/parameters.h
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o: ../model/feature_mobilefacenet/feature_network_initialization.c
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o: ../model/feature_mobilefacenet/feature_network_initialization.h
 
 CMakeFiles/ai-cnn.dir/include/faceAlignment.cpp.o: ../ai-cnn/ai-cnn.h
 CMakeFiles/ai-cnn.dir/include/faceAlignment.cpp.o: ../ai-cnn/io/read_binary_reference_data.h
@@ -140,9 +140,9 @@ CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../ai-cnn/layers/upsampling.h
 CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../ai-cnn/parameters.h
 CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../ai-cnn/utils.h
 CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../image_tools/read_binary_ref.h
-CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../model/feature/feature_network.h
-CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../model/feature/feature_network_cleanup.h
-CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../model/feature/feature_network_initialization.h
+CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../model/feature_mobilefacenet/feature_network.h
+CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../model/feature_mobilefacenet/feature_network_cleanup.h
+CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../model/feature_mobilefacenet/feature_network_initialization.h
 CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../include/fextractor.cpp
 CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o: ../include/fextractor.h
 

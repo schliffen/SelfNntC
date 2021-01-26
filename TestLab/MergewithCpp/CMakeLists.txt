@@ -68,12 +68,12 @@ set(PICO_CNN_LIBRARY_SRCS
 
 
         # feature network
-        ${PROJECT_SOURCE_DIR}/model/feature/feature_network_initialization.c
-        ${PROJECT_SOURCE_DIR}/model/feature/feature_network_initialization.h
-        ${PROJECT_SOURCE_DIR}/model/feature/feature_network_cleanup.c
-        ${PROJECT_SOURCE_DIR}/model/feature/feature_network_cleanup.h
-        ${PROJECT_SOURCE_DIR}/model/feature/feature_network.c
-        ${PROJECT_SOURCE_DIR}/model/feature/feature_network.h
+        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_initialization.c
+        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_initialization.h
+        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_cleanup.c
+        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_cleanup.h
+        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network.c
+        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network.h
 
         # face alignment
         include/faceAlignment.cpp

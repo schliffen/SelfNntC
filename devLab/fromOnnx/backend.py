@@ -15,6 +15,7 @@ import struct
 
 __author__ = ""
 
+naming_prefix = "Resnet100_"
 
 class BackendRep(backend_base.BackendRep):
     def __init__(self, onnx_model, model_name):
@@ -315,7 +316,7 @@ class BackendRep(backend_base.BackendRep):
         parameter_header = "#ifndef NETWORK_PARAMETERS_H\n"
         parameter_header += "#define NETWORK_PARAMETERS_H\n"
         parameter_header += "#include \"ai-cnn/parameters.h\"\n\n"
-        parameter_code = "#include \"network_parameters.h\"\n\n"
+        parameter_code = "#include \"" + naming_prefix + "network_parameters.h\"\n\n"
         for node in graph.nodes:
             for num, input in enumerate(node.input_tensors):
                 buffer = memory_manager.get_buffer(graph, input)
@@ -324,7 +325,7 @@ class BackendRep(backend_base.BackendRep):
                 if node.op_type == "Gemm":
                     data = data.transpose()
 
-                type_code = "fp_t " + buffer.name + "[]"
+                type_code = "fp_t " + naming_prefix+ buffer.name + "[]"
                 declaration = "// " + str(data.shape) + "\n"
                 declaration += "extern " + type_code + ";"
                 definition = type_code + " = {" + ",".join((str(x) for x in data.flatten())) + "};"
@@ -345,7 +346,7 @@ class BackendRep(backend_base.BackendRep):
         :return:
         """
 
-        ops_to_ignore = ['Reshape', 'Mul' ]
+        ops_to_ignore = ['Reshape', 'Mul', 'PRelu' ] # i included the prelu params in the code directly
 
         buffers_written = []
 
@@ -485,7 +486,7 @@ class BackendRep(backend_base.BackendRep):
         :return:
         """
 
-        ops_to_ignore = ['Reshape', 'Mul', 'Slice']
+        ops_to_ignore = ['Reshape', 'Mul', 'Slice', 'PRelu']
 
         # ops_to_ignore_shape = ['ReduceL2']
 
@@ -496,12 +497,12 @@ class BackendRep(backend_base.BackendRep):
         initialization_header += "#include <stdlib.h>\n"
         initialization_header += "#include <stdint.h>\n"
         initialization_header += "#include \"ai-cnn/parameters.h\"\n\n"
-        initialization_header += "void initialize_network();\n\n"
-        initialization_header += "fp_t*** kernels;\n"
-        initialization_header += "fp_t** biases;\n"
+        initialization_header += "void " + naming_prefix + "initialize_network();\n\n"
+        initialization_header += "fp_t*** " + naming_prefix + "kernels;\n"
+        initialization_header += "fp_t** " +naming_prefix+ "biases;\n"
 
-        initialization_code = "#include \"network_initialization.h\"\n\n"
-        initialization_code += "void initialize_network() {\n\n"
+        initialization_code = "#include \" "+ naming_prefix + "network_initialization.h\"\n\n"
+        initialization_code += "void " +naming_prefix+ "initialize_network() {\n\n"
 
         num_layers = 0
         num_kernels = 0
@@ -523,8 +524,8 @@ class BackendRep(backend_base.BackendRep):
                             num_kernels += 1
 
         """The arrays kernels and biases will be used to pass only two variables to read_binary_weights"""
-        initialization_code += "kernels = (fp_t***) malloc({} * sizeof(fp_t**));\n".format(num_kernels)
-        initialization_code += "biases = (fp_t**) malloc({} * sizeof(fp_t*));\n\n".format(num_biases)
+        initialization_code += naming_prefix + "kernels = (fp_t***) malloc({} * sizeof(fp_t**));\n".format(num_kernels)
+        initialization_code += naming_prefix + "biases = (fp_t**) malloc({} * sizeof(fp_t*));\n\n".format(num_biases)
 
         pos = -1
         pos_kernel = -1
@@ -569,7 +570,7 @@ class BackendRep(backend_base.BackendRep):
                     for i in range(buffer.buffer_depth):
                         data_type += "*"
 
-                    initialization_header += data_type + buffer.name + ";\n"
+                    initialization_header += data_type + naming_prefix +  buffer.name + ";\n"
 
                     initialization_code += "// " + str(buffer.shape) + ""  # TODO maybe we sometimes need \n
 
@@ -595,7 +596,7 @@ class BackendRep(backend_base.BackendRep):
                 for i in range(buffer.buffer_depth):
                     data_type += "*"
 
-                initialization_header += data_type + buffer.name + ";\n"
+                initialization_header += data_type + naming_prefix +  buffer.name + ";\n"
 
                 initialization_code += "// " + str(buffer.shape) + ""  # TODO maybe we sometimes need \n
 
@@ -628,12 +629,12 @@ class BackendRep(backend_base.BackendRep):
         cleanup_header += "#include <stdlib.h>\n"
         cleanup_header += "#include <stdint.h>\n"
         cleanup_header += "#include \"ai-cnn/parameters.h\"\n"
-        cleanup_header += "#include \"network_initialization.h\" \n\n"
-        cleanup_header += "void cleanup_network(); \n\n"
+        cleanup_header += "#include \"" + naming_prefix + "network_initialization.h\" \n\n"
+        cleanup_header += "void " + naming_prefix +"cleanup_network(); \n\n"
         cleanup_header += "#endif //NETWORK_CLEANUP_H\n"
 
-        cleanup_code = "#include \"network_cleanup.h\"\n\n"
-        cleanup_code += "void cleanup_network() {\n"
+        cleanup_code = "#include \"" +naming_prefix+ "network_cleanup.h\"\n\n"
+        cleanup_code += "void " +naming_prefix+ "cleanup_network() {\n"
 
         for num, buffer_id in enumerate(memory_manager.buffers):
             buffer = memory_manager.get_buffer(graph, buffer_id)
@@ -650,14 +651,14 @@ class BackendRep(backend_base.BackendRep):
                 cleanup_code += impl.generate_code()
                 cleanup_code += "\n"
 
-        cleanup_code += "\nfree(kernels);\nfree(biases);\n"
+        cleanup_code += "\nfree(" +naming_prefix+ "kernels);\nfree(" +naming_prefix+ "biases);\n"
 
         cleanup_code += "}\n"
 
         self.cleanup_header = cleanup_header
         self.cleanup_code = cleanup_code
 
-    def _select_implementations(self, graph, constant_states, memory_manager):
+    def _select_implementations(self, graph, constant_states, memory_manager, naming_prefix):
         """
         Function to select the first of possibly multiple implementation candidates
         for a each operation in the ComputeGraph.
@@ -670,7 +671,7 @@ class BackendRep(backend_base.BackendRep):
         for node in graph.nodes:
             choices = []
             for op in OperationRegistry.get_ops(node.op_type):
-                candidate = op.create(node, graph, constant_states, memory_manager)
+                candidate = op.create(node, graph, constant_states, memory_manager, naming_prefix)
                 if candidate is not None:
                     choices.append(candidate)
 
@@ -810,7 +811,7 @@ class BackendRep(backend_base.BackendRep):
         #
         self._generate_network_cleanup(graph, memory_manager)
 
-        implementations = self._select_implementations(graph, constant_states, memory_manager)
+        implementations = self._select_implementations(graph, constant_states, memory_manager, naming_prefix)
         schedule = self._get_schedule(graph, implementations)
         # self._print_live_ranges(schedule)
 
@@ -869,11 +870,11 @@ class BackendRep(backend_base.BackendRep):
                 print("ERROR: Multi-dimensional output is currently not supported.")
                 exit(1)
 
-        network_def = "void network(" + ", ".join(input_defs) + ", " + ", ".join(output_defs) + ")"
+        network_def = "void " +naming_prefix+ "network(" + ", ".join(input_defs) + ", " + ", ".join(output_defs) + ")"
 
         self.network_def = network_def + ";"
 
-        network_code: Text = "#include \"network.h\"\n\n"
+        network_code: Text = "#include  \"" +naming_prefix+ "network.h\"\n\n"
         network_code += network_def+"{\n"
 
         implementation_code = ""
@@ -917,8 +918,8 @@ class BackendRep(backend_base.BackendRep):
         network_header = "#ifndef NETWORK_H\n"
         network_header += "#define NETWORK_H\n\n"
         network_header += "#include \"ai-cnn/parameters.h\"\n"
-        network_header += "#include \"network_initialization.h\"\n"
-        network_header += "#include \"network_cleanup.h\"\n"
+        network_header += "#include \"" +naming_prefix+ "network_initialization.h\"\n"
+        network_header += "#include \"" +naming_prefix+ "network_cleanup.h\"\n"
         network_header += "#include \"ai-cnn/ai-cnn.h\"\n\n"
         network_header += network_def + "; \n\n"
         network_header += "#endif //NETWORK_H\n"
@@ -936,7 +937,7 @@ class BackendRep(backend_base.BackendRep):
         self.makefile += "LDFLAGS = -L../../../ai-cnn\n"
         self.makefile += "LD_LIBS = -ai-cnn -lm\n\n"
         self.makefile += "# list of all generated .c files.\n"
-        self.makefile += "NETWORK_LIST = network_initialization.c network_cleanup.c network.c"
+        self.makefile += "NETWORK_LIST = " +naming_prefix+ "network_initialization.c " +naming_prefix+ "network_cleanup.c " +naming_prefix+ "network.c"
         self.makefile += "\n\ndummy_input: dummy_input.c $(NETWORK_LIST) libai-cnn.a\n\t"
         self.makefile += "$(CC) dummy_input.c $(NETWORK_LIST) -I../../.. $(CFLAGS) $(LDFLAGS) $(LD_LIBS) -o dummy_input"
         self.makefile += "\n\nreference_input: reference_input.c $(NETWORK_LIST) libai-cnn.a\n\t"
@@ -965,25 +966,25 @@ class BackendRep(backend_base.BackendRep):
         except FileExistsError:
             pass
 
-        with open(os.path.join(folder, "network.c"), "w") as f:
+        with open(os.path.join(folder, naming_prefix+ "network.c"), "w") as f:
             f.write(self.network_code)
 
-        with open(os.path.join(folder, "network.h"), "w") as f:
+        with open(os.path.join(folder, naming_prefix+ "network.h"), "w") as f:
             f.write(self.network_header)
 
-        with open(os.path.join(folder, "network_initialization.c"), "w") as f:
+        with open(os.path.join(folder,  naming_prefix+ "network_initialization.c"), "w") as f:
             f.write(self.initialization_code)
 
-        with open(os.path.join(folder, "network_initialization.h"), "w") as f:
+        with open(os.path.join(folder, naming_prefix+ "network_initialization.h"), "w") as f:
             f.write(self.initialization_header)
 
-        with open(os.path.join(folder, "network_cleanup.c"), "w") as f:
+        with open(os.path.join(folder, naming_prefix+ "network_cleanup.c"), "w") as f:
             f.write(self.cleanup_code)
 
-        with open(os.path.join(folder, "network_cleanup.h"), "w") as f:
+        with open(os.path.join(folder, naming_prefix+ "network_cleanup.h"), "w") as f:
             f.write(self.cleanup_header)
 
-        with open(os.path.join(folder, "network.weights.bin"), "wb") as f:
+        with open(os.path.join(folder, naming_prefix+ "network.weights.bin"), "wb") as f:
             for packed_struct in self.packed_file:
                 f.write(packed_struct)
 

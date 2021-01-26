@@ -20,9 +20,9 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment_network.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/alignment/alignment_network.c.o"
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment_network_cleanup.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_cleanup.c.o"
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment_network_initialization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_initialization.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_cleanup.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_initialization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_cleanup.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

@@ -123,7 +123,7 @@ void sigmoid_naive(const fp_t* input_channel, const uint16_t height, const uint1
     #endif
 
     for(i = 0; i < height*width; i++) {
-        output_channel[i] = 1 / (1+expf(- input_channel[i]));
+        output_channel[i] = 1 / (1+std::expf(- input_channel[i]));
         // alternative formula:
         //  output_channel[i] = 0.5 * (1 + tanhf(input_channel[i] / 2));
     }

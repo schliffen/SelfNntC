@@ -97,7 +97,7 @@ int main() {
                 input[c][i] = (fp_t) *(model_input + i*inp_ch + c)  - 117.;
             else
                 input[c][i] = (fp_t) *( model_input + i*inp_ch + 2-c) - 123.;
-            std::cout<< i <<  " : " << input[c][i] << std::endl;
+//            std::cout<< i <<  " : " << input[c][i] << std::endl;
         }
 //        std::cout<<  "0 : " << input[0][i] << std::endl;
 //        std::cout<<  "1 : " << input[1][i] << std::endl;
@@ -115,9 +115,9 @@ int main() {
 //        return -1;
 
 
-    for (int j=0; j< 3; j++)
-        for (int i =0; i<inp_w*inp_h; i++)
-            std::cout<< j << " , "  <<  i <<" input: "<< input[j][i] << std::endl;
+//    for (int j=0; j< 3; j++)
+//        for (int i =0; i<inp_w*inp_h; i++)
+//            std::cout<< j << " , "  <<  i <<" input: "<< input[j][i] << std::endl;
 
 
     // comparing results with the reference output
@@ -137,57 +137,11 @@ int main() {
     fp_t** output_Concat_151 = (fp_t**) malloc(3 * sizeof(fp_t*));
     fp_t** outputs_Concat_201 = (fp_t**) malloc(3 * sizeof(fp_t*));
     fp_t* outputs_Conf = (fp_t*) malloc( alignSize  * sizeof(fp_t*));
+    fp_t face_points[10];
 
     get_face_align.forward(input, output_Concat_151, outputs_Concat_201, outputs_Conf);
 
-
-// controlling facealignment part
-    int32_t gind=0;
-    int out_shape[3] = {12800, 3200, 800};
-    fp_t max_score=0;
-    for (int i=0; i<3; i++){
-        for (int j=0; j< out_shape[i]; j++) {
-//            std:: cout << "conf:  "<<  outputs_Concat_176[i][2*j] << " ,  "<< outputs_Concat_176[i][2*j + 1] << std::endl;
-            std:: cout << "box:  "<<  output_Concat_151[i][4*j] << " ,  "<< output_Concat_151[i][4*j + 1] << std::endl;
-            std:: cout << "lnd:  "<<  outputs_Concat_201[i][10*j] << " ,  "<< outputs_Concat_201[i][10*j + 1] << std::endl;
-            std::cout << gind << " : " << outputs_Conf[gind] << std::endl;
-            if (max_score < outputs_Conf[gind] )
-                max_score =  outputs_Conf[gind];
-            if ( max_score > 0.8)
-                std::cout << "************************* max index: " << gind << std::endl;
-            gind++;
-        }
-//        error += almost_equal( ref_output[i], *output_0[0]++, EPSILON);
-//        std::cout<< i <<" ref <--> model: "<< ref_output[i] << " <--> " << *(output[0][i]-1)<< " deifference: "<< sqrt(error) << std::endl;
-    }
-
-
-    std::cout<< "Finished ! max score: " << max_score << std::endl;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    get_face_align.postprocess_alignment(outputs_Concat_201, outputs_Conf, face_points, inp_w, inp_h);
 
 
 

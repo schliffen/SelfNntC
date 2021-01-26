@@ -272,44 +272,44 @@ CMakeFiles/ai-cnn.dir/model/alignment/alignment_network.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/model/alignment/alignment_network.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment_network.c -o CMakeFiles/ai-cnn.dir/model/alignment/alignment_network.c.s
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o: CMakeFiles/ai-cnn.dir/flags.make
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o: ../model/feature/feature_network_initialization.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_initialization.c
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o: CMakeFiles/ai-cnn.dir/flags.make
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o: ../model/feature_mobilefacenet/feature_network_initialization.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.c
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_initialization.c > CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.i
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.c > CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.i
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_initialization.c -o CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.s
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.c -o CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.s
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o: CMakeFiles/ai-cnn.dir/flags.make
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o: ../model/feature/feature_network_cleanup.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_cleanup.c
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o: CMakeFiles/ai-cnn.dir/flags.make
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o: ../model/feature_mobilefacenet/feature_network_cleanup.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_cleanup.c
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_cleanup.c > CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.i
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_cleanup.c > CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.i
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_cleanup.c -o CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.s
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_cleanup.c -o CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.s
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: CMakeFiles/ai-cnn.dir/flags.make
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o: ../model/feature/feature_network.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network.c
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: CMakeFiles/ai-cnn.dir/flags.make
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o: ../model/feature_mobilefacenet/feature_network.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o   -c /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network.c
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network.c > CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.i
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network.c > CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.i
 
-CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network.c -o CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.s
+CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network.c -o CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.s
 
 CMakeFiles/ai-cnn.dir/include/faceAlignment.cpp.o: CMakeFiles/ai-cnn.dir/flags.make
 CMakeFiles/ai-cnn.dir/include/faceAlignment.cpp.o: ../include/faceAlignment.cpp
@@ -354,9 +354,9 @@ ai__cnn_OBJECTS = \
 "CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_initialization.c.o" \
 "CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_cleanup.c.o" \
 "CMakeFiles/ai-cnn.dir/model/alignment/alignment_network.c.o" \
-"CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o" \
-"CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o" \
-"CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o" \
+"CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o" \
+"CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o" \
+"CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o" \
 "CMakeFiles/ai-cnn.dir/include/faceAlignment.cpp.o" \
 "CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o"
 
@@ -378,9 +378,9 @@ lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_initialization.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_cleanup.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/model/alignment/alignment_network.c.o
-lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o
-lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o
-lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o
+lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o
+lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o
+lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/include/faceAlignment.cpp.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o
 lib/libai-cnn.so: CMakeFiles/ai-cnn.dir/build.make

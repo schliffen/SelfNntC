@@ -305,22 +305,22 @@
 		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment_network_initialization.h">
 			<Option target="ai-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network.c">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network.c">
 			<Option target="ai-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network.h">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network.h">
 			<Option target="ai-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_cleanup.c">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_cleanup.c">
 			<Option target="ai-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_cleanup.h">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_cleanup.h">
 			<Option target="ai-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_initialization.c">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.c">
 			<Option target="ai-cnn"/>
 		</Unit>
-		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature_network_initialization.h">
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.h">
 			<Option target="ai-cnn"/>
 		</Unit>
 		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/CMakeLists.txt">

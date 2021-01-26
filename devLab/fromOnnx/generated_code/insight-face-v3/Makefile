@@ -4,7 +4,7 @@ LDFLAGS = -L../../../ai-cnn
 LD_LIBS = -ai-cnn -lm
 
 # list of all generated .c files.
-NETWORK_LIST = network_initialization.c network_cleanup.c network.c
+NETWORK_LIST = Resnet100_network_initialization.c Resnet100_network_cleanup.c Resnet100_network.c
 
 dummy_input: dummy_input.c $(NETWORK_LIST) libai-cnn.a
 	$(CC) dummy_input.c $(NETWORK_LIST) -I../../.. $(CFLAGS) $(LDFLAGS) $(LD_LIBS) -o dummy_input

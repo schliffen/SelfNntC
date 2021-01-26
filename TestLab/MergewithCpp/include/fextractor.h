@@ -6,9 +6,9 @@
 #define SUBLENET_FEXTRACTOR_H
 
 extern "C" {
-#include "model/feature/feature_network.h"
-#include "model/feature/feature_network_initialization.h"
-#include "model/feature/feature_network_cleanup.h"
+#include "model/feature_mobilefacenet/feature_network.h"
+#include "model/feature_mobilefacenet/feature_network_initialization.h"
+#include "model/feature_mobilefacenet/feature_network_cleanup.h"
 #include "image_tools/read_binary_ref.h"
 
 }

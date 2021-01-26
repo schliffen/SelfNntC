@@ -17,9 +17,9 @@ CMakeFiles/sublenet.dir/main.cpp.o: ../ai-cnn/utils.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../model/alignment/alignment_network.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../model/alignment/alignment_network_cleanup.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../model/alignment/alignment_network_initialization.h
-CMakeFiles/sublenet.dir/main.cpp.o: ../model/feature/feature_network.h
-CMakeFiles/sublenet.dir/main.cpp.o: ../model/feature/feature_network_cleanup.h
-CMakeFiles/sublenet.dir/main.cpp.o: ../model/feature/feature_network_initialization.h
+CMakeFiles/sublenet.dir/main.cpp.o: ../model/feature_mobilefacenet/feature_network.h
+CMakeFiles/sublenet.dir/main.cpp.o: ../model/feature_mobilefacenet/feature_network_cleanup.h
+CMakeFiles/sublenet.dir/main.cpp.o: ../model/feature_mobilefacenet/feature_network_initialization.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../ai-cnn/parameters.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../image_tools/imgUtils.h
 CMakeFiles/sublenet.dir/main.cpp.o: ../image_tools/read_binary_ref.h

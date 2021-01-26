@@ -172,33 +172,33 @@ stdint.h
 ai-cnn/parameters.h
 ../model/alignment/ai-cnn/parameters.h
 
-../model/feature/feature_network.h
+../model/feature_mobilefacenet/feature_network.h
 ai-cnn/parameters.h
-../model/feature/ai-cnn/parameters.h
+../model/feature_mobilefacenet/ai-cnn/parameters.h
 feature_network_initialization.h
-../model/feature/feature_network_initialization.h
+../model/feature_mobilefacenet/feature_network_initialization.h
 feature_network_cleanup.h
-../model/feature/feature_network_cleanup.h
+../model/feature_mobilefacenet/feature_network_cleanup.h
 ai-cnn/ai-cnn.h
-../model/feature/ai-cnn/ai-cnn.h
+../model/feature_mobilefacenet/ai-cnn/ai-cnn.h
 
-../model/feature/feature_network_cleanup.h
+../model/feature_mobilefacenet/feature_network_cleanup.h
 stdlib.h
 -
 stdint.h
 -
 ai-cnn/parameters.h
-../model/feature/ai-cnn/parameters.h
+../model/feature_mobilefacenet/ai-cnn/parameters.h
 feature_network_initialization.h
-../model/feature/feature_network_initialization.h
+../model/feature_mobilefacenet/feature_network_initialization.h
 
-../model/feature/feature_network_initialization.h
+../model/feature_mobilefacenet/feature_network_initialization.h
 stdlib.h
 -
 stdint.h
 -
 ai-cnn/parameters.h
-../model/feature/ai-cnn/parameters.h
+../model/feature_mobilefacenet/ai-cnn/parameters.h
 
 /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/ai-cnn/parameters.h
 
@@ -247,12 +247,12 @@ image_tools/read_binary_ref.h
 /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/image_tools/read_binary_ref.h
 
 /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/fextractor.h
-model/feature/feature_network.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/model/feature/feature_network.h
-model/feature/feature_network_initialization.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/model/feature/feature_network_initialization.h
-model/feature/feature_network_cleanup.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/model/feature/feature_network_cleanup.h
+model/feature_mobilefacenet/feature_network.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/model/feature_mobilefacenet/feature_network.h
+model/feature_mobilefacenet/feature_network_initialization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/model/feature_mobilefacenet/feature_network_initialization.h
+model/feature_mobilefacenet/feature_network_cleanup.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/model/feature_mobilefacenet/feature_network_cleanup.h
 image_tools/read_binary_ref.h
 /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/image_tools/read_binary_ref.h
 

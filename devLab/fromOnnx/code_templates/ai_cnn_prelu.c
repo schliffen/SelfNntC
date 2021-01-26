@@ -4,8 +4,8 @@ for (uint32_t i = 0; i < {{num_input_channels}}; i++) {
                {{input_height}},
                {{input_width}},
                {{output_buffer.name}}[i],
-               {{kernel_buffer.name}}[i]);
+               {{kernel_buffer}});
 }
 {% else %}
-prelu({{input_buffer.name}}, {{input_height}}, {{input_width}}, {{output_buffer.name}}, {{kernel_buffer.name}});
+prelu({{input_buffer.name}}, {{input_height}}, {{input_width}}, {{output_buffer.name}}, {{kernel_buffer}});
 {% endif %}

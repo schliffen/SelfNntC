@@ -16,9 +16,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/ai-cnn.dir/model/alignment/alignment_network.c.o"
   "CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_cleanup.c.o"
   "CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_initialization.c.o"
-  "CMakeFiles/ai-cnn.dir/model/feature/feature_network.c.o"
-  "CMakeFiles/ai-cnn.dir/model/feature/feature_network_cleanup.c.o"
-  "CMakeFiles/ai-cnn.dir/model/feature/feature_network_initialization.c.o"
+  "CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o"
+  "CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o"
+  "CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o"
   "lib/libai-cnn.pdb"
   "lib/libai-cnn.so"
 )
