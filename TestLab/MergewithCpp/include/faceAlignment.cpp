@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <vector>
 #include "faceAlignment.h"
+#include "model/alignment/alignment_network_initialization.h"
 
 
 bool faceAlignment::initialize(char* weights_path) {
@@ -21,9 +22,9 @@ bool faceAlignment::initialize(char* weights_path) {
 };
 
 
-bool faceAlignment::forward(fp_t ** input_input0, fp_t ** inputs_Concat_151, fp_t ** outputs_Concat_201, fp_t *outputs_Conf) {
+bool faceAlignment::forward(fp_t ** input_input0) {
 
-    alignment_network( input_input0, inputs_Concat_151, outputs_Concat_201, outputs_Conf);
+    alignment_network( input_input0);
 
 
     return true;
@@ -35,34 +36,13 @@ bool faceAlignment::clearnetwork() {
 }
 
 
-bool faceAlignment::postprocess_alignment(fp_t **face10_pre, fp_t *outputs_Conf, fp_t face_points[10], int16_t imgWidth, int16_t imgHeight){
+bool faceAlignment::postprocess_alignment( fp_t face_points[10], int16_t imgWidth, int16_t imgHeight){
 
     // controlling facealignment part
     int32_t gind=0;
-    int out_shape[3] = {12800, 3200, 800};
+    int second_index[3] = {80*2, 40*2, 20*2};
+    int first_index[3] = {80, 40, 20};
     fp_t max_score=0;
-    for (int i=0; i<3; i++){
-        for (int j=0; j< out_shape[i]; j++) {
-//            std:: cout << "conf:  "<<  outputs_Concat_176[i][2*j] << " ,  "<< outputs_Concat_176[i][2*j + 1] << std::endl;
-//            std:: cout << "box:  "<<  output_Concat_151[i][4*j] << " ,  "<< output_Concat_151[i][4*j + 1] << std::endl;
-
-            if (max_score < outputs_Conf[gind] ){
-                max_score =  outputs_Conf[gind];
-//              if ( max_score > 0.8)
-                std:: cout << "lnd:  "<<  face10_pre[i][10*j] << " ,  "<< face10_pre[i][10*j + 1] << ", "<< face10_pre[i][10*j + 2] << ", "<< face10_pre[i][10*j + 3] <<
-                           ", "<< face10_pre[i][10*j + 4]<< ", "<< face10_pre[i][10*j + 5]<< ", "<< face10_pre[i][10*j + 6]<< ", "<< face10_pre[i][10*j + 7]
-                           << ", "<< face10_pre[i][10*j + 8] << ", "<< face10_pre[i][10*j + 9]  << std::endl;
-                std::cout << gind << " : " << outputs_Conf[gind] << std::endl;
-
-                std::cout << "************************* max index: " << " score: "<< max_score << " index: "<< gind << std::endl;
-            }
-            gind++;
-        }
-////        error += almost_equal( ref_output[i], *output_0[0]++, EPSILON);
-//        std::cout<< i <<" ref <--> model: "<< ref_output[i] << " <--> " << *(output[0][i]-1)<< " deifference: "<< sqrt(error) << std::endl;
-    }
-    std::cout<< "Finished ! max score: " << max_score << std::endl;
-
 
     // get feature map
     int feature_maps[3][2];
@@ -105,52 +85,197 @@ bool faceAlignment::postprocess_alignment(fp_t **face10_pre, fp_t *outputs_Conf,
     }
     // decoding the anchors
 
-    max_score = 0;
+    float score =0;
+    max_score = 0.8;
     int glob_idx = 0;
-    for (int i=0; i<3;i++){
-        for (int j=0; j<out_shape[i]; j++){
-            float single_landm[10];
-//            std::cout<< face10_pre[i][10*j ] << std::endl;
-            single_landm[0] = (anchors[glob_idx][0] + face10_pre[i][10*j ] * variance[0]* anchors[glob_idx][2]) * imgWidth;
-//            std::cout<< face10_pre[i][10*j +1 ] << std::endl;
-            single_landm[1] = (anchors[glob_idx][1] + face10_pre[i][10*j +1] * variance[0]* anchors[glob_idx][3]) * imgHeight;
-//            std::cout<< face10_pre[i][10*j +2 ] << std::endl;
-            single_landm[2] = (anchors[glob_idx][0] + face10_pre[i][10*j +2] * variance[0]* anchors[glob_idx][2]) * imgWidth;
-//            std::cout<< face10_pre[i][10*j +3 ] << std::endl;
-            single_landm[3] = (anchors[glob_idx][1] + face10_pre[i][10*j +3] * variance[0]* anchors[glob_idx][3])* imgHeight;
-//            std::cout<< face10_pre[i][10*j +4 ] << std::endl;
-            single_landm[4] = (anchors[glob_idx][0] + face10_pre[i][10*j +4] * variance[0]* anchors[glob_idx][2]) * imgWidth;
-//            std::cout<< face10_pre[i][10*j +5 ] << std::endl;
-            single_landm[5] = (anchors[glob_idx][1] + face10_pre[i][10*j +5] * variance[0]* anchors[glob_idx][3])* imgHeight;
-//            std::cout<< face10_pre[i][10*j +6 ] << std::endl;
-            single_landm[6] = (anchors[glob_idx][0] + face10_pre[i][10*j +6] * variance[0]* anchors[glob_idx][2]) * imgWidth;
-//            std::cout<< face10_pre[i][10*j +7 ] << std::endl;
-            single_landm[7] = (anchors[glob_idx][1] + face10_pre[i][10*j +7] * variance[0]* anchors[glob_idx][3])* imgHeight;
-//            std::cout<< face10_pre[i][10*j +8 ] << std::endl;
-            single_landm[8] = (anchors[glob_idx][0] + face10_pre[i][10*j +8] * variance[0]* anchors[glob_idx][2]) * imgWidth;
-//            std::cout<< face10_pre[i][10*j +9 ] << std::endl;
-            single_landm[9] = (anchors[glob_idx][1] + face10_pre[i][10*j +9] * variance[0]* anchors[glob_idx][3])* imgHeight;
 
-            // keep the max score
-            // this is working just optimization is required
-//            landms * scale1 / resize
+    // checking the confidence
 
-            if (outputs_Conf[glob_idx] > max_score) {
-                landms.clear();
-                max_score = outputs_Conf[glob_idx];
-                for (int l = 0; l < 10; l++) {
-                    landms.push_back(single_landm[l]);
-                    std::cout << " l: " << single_landm[l] << " i: " << i << " j: " << j << " glob_idx: " << glob_idx
-                              << " confidence: " << outputs_Conf[glob_idx] << std::endl;
+    for (int i=0; i<3; i++) {
+        for (int ind1 = 0; ind1 < first_index[i]; ind1++) {
+            for (int ind2 = 0; ind2 < second_index[i]; ind2++) {
+
+                float single_landm[10];
+                if (i == 0) {
+
+                    score = expl((long double) buffer_513[ind1][2 * ind2 + 1]) /
+                            (expl((long double) buffer_513[ind1][2 * ind2]) +
+                             expl((long double) buffer_513[ind1][2 * ind2 + 1]));
+
+                    if (score > max_score) {
+
+                        //            std::cout<< face10_pre[i][10*j ] << std::endl;
+                        single_landm[0] = (anchors[glob_idx][0] +
+                                           buffer_550[ind1][10 * ind2] * variance[0] * anchors[glob_idx][2]) * imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +1 ] << std::endl;
+                        single_landm[1] = (anchors[glob_idx][1] +
+                                           buffer_550[ind1][10 * ind2 + 1] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +2 ] << std::endl;
+                        single_landm[2] = (anchors[glob_idx][0] +
+                                           buffer_550[ind1][10 * ind2 + 2] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +3 ] << std::endl;
+                        single_landm[3] = (anchors[glob_idx][1] +
+                                           buffer_550[ind1][10 * ind2 + 3] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +4 ] << std::endl;
+                        single_landm[4] = (anchors[glob_idx][0] +
+                                           buffer_550[ind1][10 * ind2 + 4] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +5 ] << std::endl;
+                        single_landm[5] = (anchors[glob_idx][1] +
+                                           buffer_550[ind1][10 * ind2 + 5] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +6 ] << std::endl;
+                        single_landm[6] = (anchors[glob_idx][0] +
+                                           buffer_550[ind1][10 * ind2 + 6] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +7 ] << std::endl;
+                        single_landm[7] = (anchors[glob_idx][1] +
+                                           buffer_550[ind1][10 * ind2 + 7] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +8 ] << std::endl;
+                        single_landm[8] = (anchors[glob_idx][0] +
+                                           buffer_550[ind1][10 * ind2 + 8] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +9 ] << std::endl;
+                        single_landm[9] = (anchors[glob_idx][1] +
+                                           buffer_550[ind1][10 * ind2 + 9] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+
+                        landms.clear();
+                        max_score = score;
+                        for (int l = 0; l < 10; l++) {
+                            landms.push_back(single_landm[l]);
+                            std::cout << " l: " << single_landm[l] << " glob_idx: "
+                                      << glob_idx
+                                      << " confidence: " << score << std::endl;
+                        }
+                    }
+
+                } else if (i == 1) {
+                    score = expl((long double) buffer_525[ind1][2 * ind2 + 1]) /
+                            (expl((long double) buffer_525[ind1][2 * ind2]) +
+                             expl((long double) buffer_525[ind1][2 * ind2 + 1]));
+                    if (score > max_score) {
+                        single_landm[0] = (anchors[glob_idx][0] +
+                                           buffer_562[ind1][10 * ind2] * variance[0] * anchors[glob_idx][2]) * imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +1 ] << std::endl;
+                        single_landm[1] = (anchors[glob_idx][1] +
+                                           buffer_562[ind1][10 * ind2 + 1] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +2 ] << std::endl;
+                        single_landm[2] = (anchors[glob_idx][0] +
+                                           buffer_562[ind1][10 * ind2 + 2] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +3 ] << std::endl;
+                        single_landm[3] = (anchors[glob_idx][1] +
+                                           buffer_562[ind1][10 * ind2 + 3] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +4 ] << std::endl;
+                        single_landm[4] = (anchors[glob_idx][0] +
+                                           buffer_562[ind1][10 * ind2 + 4] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +5 ] << std::endl;
+                        single_landm[5] = (anchors[glob_idx][1] +
+                                           buffer_562[ind1][10 * ind2 + 5] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +6 ] << std::endl;
+                        single_landm[6] = (anchors[glob_idx][0] +
+                                           buffer_562[ind1][10 * ind2 + 6] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +7 ] << std::endl;
+                        single_landm[7] = (anchors[glob_idx][1] +
+                                           buffer_562[ind1][10 * ind2 + 7] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +8 ] << std::endl;
+                        single_landm[8] = (anchors[glob_idx][0] +
+                                           buffer_562[ind1][10 * ind2 + 8] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +9 ] << std::endl;
+                        single_landm[9] = (anchors[glob_idx][1] +
+                                           buffer_562[ind1][10 * ind2 + 9] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+
+                        landms.clear();
+                        max_score = score;
+                        for (int l = 0; l < 10; l++) {
+                            landms.push_back(single_landm[l]);
+                            std::cout << " l: " << single_landm[l] << " glob_idx: "
+                                      << glob_idx
+                                      << " confidence: " << score << std::endl;
+                        }
+                    }
+
+                } else if (i == 2) {
+                    score = expl((long double) buffer_537[ind1][2 * ind2 + 1]) /
+                            (expl((long double) buffer_537[ind1][2 * ind2]) +
+                             expl((long double) buffer_537[ind1][2 * ind2 + 1]));
+                    if (score > max_score) {
+
+                        single_landm[0] = (anchors[glob_idx][0] +
+                                           buffer_574[ind1][10 * ind2] * variance[0] * anchors[glob_idx][2]) * imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +1 ] << std::endl;
+                        single_landm[1] = (anchors[glob_idx][1] +
+                                           buffer_574[ind1][10 * ind2 + 1] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +2 ] << std::endl;
+                        single_landm[2] = (anchors[glob_idx][0] +
+                                           buffer_574[ind1][10 * ind2 + 2] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +3 ] << std::endl;
+                        single_landm[3] = (anchors[glob_idx][1] +
+                                           buffer_574[ind1][10 * ind2 + 3] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +4 ] << std::endl;
+                        single_landm[4] = (anchors[glob_idx][0] +
+                                           buffer_574[ind1][10 * ind2 + 4] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +5 ] << std::endl;
+                        single_landm[5] = (anchors[glob_idx][1] +
+                                           buffer_574[ind1][10 * ind2 + 5] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +6 ] << std::endl;
+                        single_landm[6] = (anchors[glob_idx][0] +
+                                           buffer_574[ind1][10 * ind2 + 6] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +7 ] << std::endl;
+                        single_landm[7] = (anchors[glob_idx][1] +
+                                           buffer_574[ind1][10 * ind2 + 7] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //            std::cout<< face10_pre[i][10*j +8 ] << std::endl;
+                        single_landm[8] = (anchors[glob_idx][0] +
+                                           buffer_574[ind1][10 * ind2 + 8] * variance[0] * anchors[glob_idx][2]) *
+                                          imgWidth;
+                        //            std::cout<< face10_pre[i][10*j +9 ] << std::endl;
+                        single_landm[9] = (anchors[glob_idx][1] +
+                                           buffer_574[ind1][10 * ind2 + 9] * variance[0] * anchors[glob_idx][3]) *
+                                          imgHeight;
+                        //
+                        landms.clear();
+                        max_score = score;
+                        for (int l = 0; l < 10; l++) {
+                            landms.push_back(single_landm[l]);
+                            std::cout << " l: " << single_landm[l] << " glob_idx: "
+                                      << glob_idx
+                                      << " confidence: " << score << std::endl;
+                        }
+                    }
+
                 }
-            }
-            glob_idx++;
 
+
+                glob_idx++;
+            }
         }
     }
 
 
 
 
+
     return true;
 };
+
+

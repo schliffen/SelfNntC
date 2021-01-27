@@ -1,6 +1,6 @@
 #include "alignment_network.h"
 
-void alignment_network(fp_t **input_input0, fp_t** output_Concat_151, fp_t ** outputs_Concat_201, fp_t *outputs_Conf){
+void alignment_network(fp_t **input_input0 ){
     //Layer 0 Conv_0 Conv
     //Attributes
     //  dilations: [1, 1]
@@ -3108,10 +3108,10 @@ for(uint32_t g = 0; g < 1; g++) {
                                     1,
                                     1,
                                     Conv_118_padding,
-                                    
+
                                     buffer_715[i]
                                     );
-        
+
         uint32_t cnt = 1;
         for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
             static fp_t temp_buffer[20*20];
@@ -3133,7 +3133,7 @@ for(uint32_t g = 0; g < 1; g++) {
                                 20);
             cnt+=1;
         }
-        
+
     }
 }
 
@@ -3166,10 +3166,10 @@ for(uint32_t g = 0; g < 1; g++) {
                                     1,
                                     1,
                                     Conv_119_padding,
-                                    
+
                                     buffer_718[i]
                                     );
-        
+
         uint32_t cnt = 1;
         for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
             static fp_t temp_buffer[20*20];
@@ -3191,7 +3191,7 @@ for(uint32_t g = 0; g < 1; g++) {
                                 20);
             cnt+=1;
         }
-        
+
     }
 }
 
@@ -3246,10 +3246,10 @@ for(uint32_t g = 0; g < 1; g++) {
                                     1,
                                     1,
                                     Conv_121_padding,
-                                    
+
                                     buffer_721[i]
                                     );
-        
+
         uint32_t cnt = 1;
         for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
             static fp_t temp_buffer[20*20];
@@ -3271,7 +3271,7 @@ for(uint32_t g = 0; g < 1; g++) {
                                 20);
             cnt+=1;
         }
-        
+
     }
 }
 
@@ -3304,10 +3304,10 @@ for(uint32_t g = 0; g < 1; g++) {
                                     1,
                                     1,
                                     Conv_122_padding,
-                                    
+
                                     buffer_724[i]
                                     );
-        
+
         uint32_t cnt = 1;
         for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
             static fp_t temp_buffer[20*20];
@@ -3329,7 +3329,7 @@ for(uint32_t g = 0; g < 1; g++) {
                                 20);
             cnt+=1;
         }
-        
+
     }
 }
 
@@ -3384,10 +3384,10 @@ for(uint32_t g = 0; g < 1; g++) {
                                     1,
                                     1,
                                     Conv_124_padding,
-                                    
+
                                     buffer_727[i]
                                     );
-        
+
         uint32_t cnt = 1;
         for(uint32_t j = g*16/1+1; j < (g+1)*16/1; j+=1){
             static fp_t temp_buffer[20*20];
@@ -3409,7 +3409,7 @@ for(uint32_t g = 0; g < 1; g++) {
                                 20);
             cnt+=1;
         }
-        
+
     }
 }
 
@@ -3428,8 +3428,8 @@ for(uint32_t g = 0; g < 1; g++) {
     inputs_Concat_125[0] = buffer_713;
     inputs_Concat_125[1] = buffer_719;
     inputs_Concat_125[2] = buffer_725;
-
-
+//
+//
     const uint16_t* input_shape_Concat_125[3];
     uint16_t input_shape_Concat_125_0[3] = { 32, 20, 20 };
     input_shape_Concat_125[0] = input_shape_Concat_125_0;
@@ -3437,11 +3437,11 @@ for(uint32_t g = 0; g < 1; g++) {
     input_shape_Concat_125[1] = input_shape_Concat_125_1;
     uint16_t input_shape_Concat_125_2[3] = { 16, 20, 20 };
     input_shape_Concat_125[2] = input_shape_Concat_125_2;
-
-
+//
+//
     concatenate_naive(inputs_Concat_125, input_shape_Concat_125, 0,
                       3, buffer_473);
-
+//
     free(inputs_Concat_125);
 
     //Layer 94 Relu_126 Relu
@@ -3476,44 +3476,44 @@ for (uint32_t i = 0; i < 64; i++) {
     //    290: (8,)
     //    475: (1, 8, 80, 80)
 
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
-        convolution2d_naive(buffer_446[g*64/1],
-                            80,
-                            80,
-                            buffer_475[i],
-                            buffer_289[i*64/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            buffer_290[i]
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
-            static fp_t temp_buffer[80*80];
-            convolution2d_naive(buffer_446[j],
-                                80,
-                                80,
-                                temp_buffer,
-                                buffer_289[i*64/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_475[i],
-                                temp_buffer,
-                                80,
-                                80);
-            cnt+=1;
-        }
-        
-    }
-}
+//for(uint32_t g = 0; g < 1; g++) {
+//    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
+//        convolution2d_naive(buffer_446[g*64/1],
+//                            80,
+//                            80,
+//                            buffer_475[i],
+//                            buffer_289[i*64/1],
+//                            1,
+//                            1,
+//                            1,
+//                            1,
+//
+//                            buffer_290[i]
+//                            );
+//
+//        uint32_t cnt = 1;
+//        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+//            static fp_t temp_buffer[80*80];
+//            convolution2d_naive(buffer_446[j],
+//                                80,
+//                                80,
+//                                temp_buffer,
+//                                buffer_289[i*64/1+cnt],
+//                                1,
+//                                1,
+//                                1,
+//                                1,
+//                                0.0);
+//
+//            add_channel2d_naive(buffer_475[i],
+//                                temp_buffer,
+//                                80,
+//                                80);
+//            cnt+=1;
+//        }
+//
+//    }
+//}
 
     //Layer 96 Transpose_128 Transpose
     //Attributes
@@ -3524,13 +3524,13 @@ for(uint32_t g = 0; g < 1; g++) {
     //Shape:
     //    475: (1, 8, 80, 80)
     //    476: (1, 80, 80, 8)
-{
-    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
-        for(uint32_t dim1 = 0; dim1 < 8; dim1++)
-            for(uint32_t dim2 = 0; dim2 < 80; dim2++)
-                for(uint32_t dim3 = 0; dim3 < 80; dim3++)
-                    buffer_476[dim2][dim3*8 + dim1] = buffer_475[dim1][dim2*80 + dim3];
-}
+//{
+//    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+//        for(uint32_t dim1 = 0; dim1 < 8; dim1++)
+//            for(uint32_t dim2 = 0; dim2 < 80; dim2++)
+//                for(uint32_t dim3 = 0; dim3 < 80; dim3++)
+//                    buffer_476[dim2][dim3*8 + dim1] = buffer_475[dim1][dim2*80 + dim3];
+//}
     //Layer 97 Reshape_134 Reshape
     //Attributes
     //Parameters
@@ -3541,11 +3541,11 @@ for(uint32_t g = 0; g < 1; g++) {
     //    485: (3,)
     //    486: (1, 12800, 4)
 
-for(uint32_t i = 0; i < 80; i++){
-    memcpy(&buffer_486[i*80*8],
-           buffer_476[i],
-           80*8*sizeof(fp_t));
-}
+//for(uint32_t i = 0; i < 80; i++){
+//    memcpy(&buffer_486[i*80*8],
+//           buffer_476[i],
+//           80*8*sizeof(fp_t));
+//}
 
     //Layer 98 Conv_135 Conv
     //Attributes
@@ -3562,45 +3562,45 @@ for(uint32_t i = 0; i < 80; i++){
     //    291: (8, 64, 1, 1)
     //    292: (8,)
     //    487: (1, 8, 40, 40)
-
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
-        convolution2d_naive(buffer_460[g*64/1],
-                            40,
-                            40,
-                            buffer_487[i],
-                            buffer_291[i*64/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            buffer_292[i]
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
-            static fp_t temp_buffer[40*40];
-            convolution2d_naive(buffer_460[j],
-                                40,
-                                40,
-                                temp_buffer,
-                                buffer_291[i*64/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_487[i],
-                                temp_buffer,
-                                40,
-                                40);
-            cnt+=1;
-        }
-        
-    }
-}
+//
+//for(uint32_t g = 0; g < 1; g++) {
+//    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
+//        convolution2d_naive(buffer_460[g*64/1],
+//                            40,
+//                            40,
+//                            buffer_487[i],
+//                            buffer_291[i*64/1],
+//                            1,
+//                            1,
+//                            1,
+//                            1,
+//
+//                            buffer_292[i]
+//                            );
+//
+//        uint32_t cnt = 1;
+//        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+//            static fp_t temp_buffer[40*40];
+//            convolution2d_naive(buffer_460[j],
+//                                40,
+//                                40,
+//                                temp_buffer,
+//                                buffer_291[i*64/1+cnt],
+//                                1,
+//                                1,
+//                                1,
+//                                1,
+//                                0.0);
+//
+//            add_channel2d_naive(buffer_487[i],
+//                                temp_buffer,
+//                                40,
+//                                40);
+//            cnt+=1;
+//        }
+//
+//    }
+//}
 
     //Layer 99 Transpose_136 Transpose
     //Attributes
@@ -3611,13 +3611,13 @@ for(uint32_t g = 0; g < 1; g++) {
     //Shape:
     //    487: (1, 8, 40, 40)
     //    488: (1, 40, 40, 8)
-{
-    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
-        for(uint32_t dim1 = 0; dim1 < 8; dim1++)
-            for(uint32_t dim2 = 0; dim2 < 40; dim2++)
-                for(uint32_t dim3 = 0; dim3 < 40; dim3++)
-                    buffer_488[dim2][dim3*8 + dim1] = buffer_487[dim1][dim2*40 + dim3];
-}
+//{
+//    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+//        for(uint32_t dim1 = 0; dim1 < 8; dim1++)
+//            for(uint32_t dim2 = 0; dim2 < 40; dim2++)
+//                for(uint32_t dim3 = 0; dim3 < 40; dim3++)
+//                    buffer_488[dim2][dim3*8 + dim1] = buffer_487[dim1][dim2*40 + dim3];
+//}
     //Layer 100 Reshape_142 Reshape
     //Attributes
     //Parameters
@@ -3628,11 +3628,11 @@ for(uint32_t g = 0; g < 1; g++) {
     //    497: (3,)
     //    498: (1, 3200, 4)
 
-for(uint32_t i = 0; i < 40; i++){
-    memcpy(&buffer_498[i*40*8],
-           buffer_488[i],
-           40*8*sizeof(fp_t));
-}
+//for(uint32_t i = 0; i < 40; i++){
+//    memcpy(&buffer_498[i*40*8],
+//           buffer_488[i],
+//           40*8*sizeof(fp_t));
+//}
 
     //Layer 101 Conv_143 Conv
     //Attributes
@@ -3650,44 +3650,44 @@ for(uint32_t i = 0; i < 40; i++){
     //    294: (8,)
     //    499: (1, 8, 20, 20)
 
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
-        convolution2d_naive(buffer_474[g*64/1],
-                            20,
-                            20,
-                            buffer_499[i],
-                            buffer_293[i*64/1],
-                            1,
-                            1,
-                            1,
-                            1,
-                            
-                            buffer_294[i]
-                            );
-        
-        uint32_t cnt = 1;
-        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
-            static fp_t temp_buffer[20*20];
-            convolution2d_naive(buffer_474[j],
-                                20,
-                                20,
-                                temp_buffer,
-                                buffer_293[i*64/1+cnt],
-                                1,
-                                1,
-                                1,
-                                1,
-                                0.0);
-
-            add_channel2d_naive(buffer_499[i],
-                                temp_buffer,
-                                20,
-                                20);
-            cnt+=1;
-        }
-        
-    }
-}
+//for(uint32_t g = 0; g < 1; g++) {
+//    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
+//        convolution2d_naive(buffer_474[g*64/1],
+//                            20,
+//                            20,
+//                            buffer_499[i],
+//                            buffer_293[i*64/1],
+//                            1,
+//                            1,
+//                            1,
+//                            1,
+//
+//                            buffer_294[i]
+//                            );
+//
+//        uint32_t cnt = 1;
+//        for(uint32_t j = g*64/1+1; j < (g+1)*64/1; j+=1){
+//            static fp_t temp_buffer[20*20];
+//            convolution2d_naive(buffer_474[j],
+//                                20,
+//                                20,
+//                                temp_buffer,
+//                                buffer_293[i*64/1+cnt],
+//                                1,
+//                                1,
+//                                1,
+//                                1,
+//                                0.0);
+//
+//            add_channel2d_naive(buffer_499[i],
+//                                temp_buffer,
+//                                20,
+//                                20);
+//            cnt+=1;
+//        }
+//
+//    }
+//}
 
     //Layer 102 Transpose_144 Transpose
     //Attributes
@@ -3698,13 +3698,13 @@ for(uint32_t g = 0; g < 1; g++) {
     //Shape:
     //    499: (1, 8, 20, 20)
     //    500: (1, 20, 20, 8)
-{
-    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
-        for(uint32_t dim1 = 0; dim1 < 8; dim1++)
-            for(uint32_t dim2 = 0; dim2 < 20; dim2++)
-                for(uint32_t dim3 = 0; dim3 < 20; dim3++)
-                    buffer_500[dim2][dim3*8 + dim1] = buffer_499[dim1][dim2*20 + dim3];
-}
+//{
+//    for(uint32_t dim0 = 0; dim0 < 1; dim0++)
+//        for(uint32_t dim1 = 0; dim1 < 8; dim1++)
+//            for(uint32_t dim2 = 0; dim2 < 20; dim2++)
+//                for(uint32_t dim3 = 0; dim3 < 20; dim3++)
+//                    buffer_500[dim2][dim3*8 + dim1] = buffer_499[dim1][dim2*20 + dim3];
+//}
     //Layer 103 Reshape_150 Reshape
     //Attributes
     //Parameters
@@ -3715,11 +3715,11 @@ for(uint32_t g = 0; g < 1; g++) {
     //    509: (3,)
     //    510: (1, 800, 4)
 
-for(uint32_t i = 0; i < 20; i++){
-    memcpy(&buffer_510[i*20*8],
-           buffer_500[i],
-           20*8*sizeof(fp_t));
-}
+//for(uint32_t i = 0; i < 20; i++){
+//    memcpy(&buffer_510[i*20*8],
+//           buffer_500[i],
+//           20*8*sizeof(fp_t));
+//}
 
     //Layer 104 Concat_151 Concat2d
     //Attributes
@@ -3737,18 +3737,18 @@ for(uint32_t i = 0; i < 20; i++){
 //
 
 
-    output_Concat_151[0] = buffer_486;
-    output_Concat_151[1] = buffer_498;
-    output_Concat_151[2] = buffer_510;
-
-
-const uint16_t* input_shape_Concat_151[3];
-    uint16_t input_shape_Concat_151_0[2] = { 12800, 4 };
-    input_shape_Concat_151[0] = input_shape_Concat_151_0;
-    uint16_t input_shape_Concat_151_1[2] = { 3200, 4 };
-    input_shape_Concat_151[1] = input_shape_Concat_151_1;
-    uint16_t input_shape_Concat_151_2[2] = { 800, 4 };
-    input_shape_Concat_151[2] = input_shape_Concat_151_2;
+//    output_Concat_151[0] = buffer_486;
+//    output_Concat_151[1] = buffer_498;
+//    output_Concat_151[2] = buffer_510;
+//
+//
+//const uint16_t* input_shape_Concat_151[3];
+//    uint16_t input_shape_Concat_151_0[2] = { 12800, 4 };
+//    input_shape_Concat_151[0] = input_shape_Concat_151_0;
+//    uint16_t input_shape_Concat_151_1[2] = { 3200, 4 };
+//    input_shape_Concat_151[1] = input_shape_Concat_151_1;
+//    uint16_t input_shape_Concat_151_2[2] = { 800, 4 };
+//    input_shape_Concat_151[2] = input_shape_Concat_151_2;
 
 
 
@@ -3837,11 +3837,11 @@ for(uint32_t g = 0; g < 1; g++) {
     //    522: (3,)
     //    523: (1, 12800, 2)
 
-for(uint32_t i = 0; i < 80; i++){
-    memcpy(&buffer_523[i*80*4],
-           buffer_513[i],
-           80*4*sizeof(fp_t));
-}
+//for(uint32_t i = 0; i < 80; i++){
+//    memcpy(&buffer_523[i*80*4],
+//           buffer_513[i],
+//           80*4*sizeof(fp_t));
+//}
 
     //Layer 108 Conv_160 Conv
     //Attributes
@@ -3924,11 +3924,11 @@ for(uint32_t g = 0; g < 1; g++) {
     //    534: (3,)
     //    535: (1, 3200, 2)
 
-for(uint32_t i = 0; i < 40; i++){
-    memcpy(&buffer_535[i*40*4],
-           buffer_525[i],
-           40*4*sizeof(fp_t));
-}
+//for(uint32_t i = 0; i < 40; i++){
+//    memcpy(&buffer_535[i*40*4],
+//           buffer_525[i],
+//           40*4*sizeof(fp_t));
+//}
 
     //Layer 111 Conv_168 Conv
     //Attributes
@@ -4011,11 +4011,11 @@ for(uint32_t g = 0; g < 1; g++) {
     //    546: (3,)
     //    547: (1, 800, 2)
 
-for(uint32_t i = 0; i < 20; i++){
-    memcpy(&buffer_547[i*20*4],
-           buffer_537[i],
-           20*4*sizeof(fp_t));
-}
+//for(uint32_t i = 0; i < 20; i++){
+//    memcpy(&buffer_547[i*20*4],
+//           buffer_537[i],
+//           20*4*sizeof(fp_t));
+//}
 
     //Layer 114 Concat_176 Concat2d
     //Attributes
@@ -4032,19 +4032,19 @@ for(uint32_t i = 0; i < 20; i++){
 // Created by ali on 15.01.2021.
 //
 
-fp_t** outputs_Concat_176 = (fp_t**) malloc(3 * sizeof(fp_t*));
-    outputs_Concat_176[0] = buffer_523;
-    outputs_Concat_176[1] = buffer_535;
-    outputs_Concat_176[2] = buffer_547;
+//fp_t** outputs_Concat_176 = (fp_t**) malloc(3 * sizeof(fp_t*));
+//    outputs_Concat_176[0] = buffer_523; <- 513 : 80 x 80 x 4
+//    outputs_Concat_176[1] = buffer_535; <- 525 : 40 x 40 x 4
+//    outputs_Concat_176[2] = buffer_547; <- 537 : 20 x 20 x 4
 //
 
-const int * input_shape_Concat_176[3];
-    uint16_t input_shape_Concat_176_0[2] = { 12800, 2 };
-    input_shape_Concat_176[0] = input_shape_Concat_176_0;
-    uint16_t input_shape_Concat_176_1[2] = { 3200, 2 };
-    input_shape_Concat_176[1] = input_shape_Concat_176_1;
-    uint16_t input_shape_Concat_176_2[2] = { 800, 2 };
-    input_shape_Concat_176[2] = input_shape_Concat_176_2;
+//const int * input_shape_Concat_176[3];
+//    uint16_t input_shape_Concat_176_0[2] = { 12800, 2 };
+//    input_shape_Concat_176[0] = input_shape_Concat_176_0;
+//    uint16_t input_shape_Concat_176_1[2] = { 3200, 2 };
+//    input_shape_Concat_176[1] = input_shape_Concat_176_1;
+//    uint16_t input_shape_Concat_176_2[2] = { 800, 2 };
+//    input_shape_Concat_176[2] = input_shape_Concat_176_2;
 
 
 //    concatenate_2D_output(outputs_Concat_176, input_shape_Concat_176, 0,
@@ -4278,23 +4278,23 @@ for(uint32_t g = 0; g < 1; g++) {
     //    559: (3,)
     //    560: (1, 12800, 10)
 
-    for(uint32_t i = 0; i < 80; i++){
-
-
-        if (i<40)
-            memcpy(&buffer_572[i*40*20],
-                   buffer_562[i],
-                   40*20*sizeof(fp_t));
-        if (i<20)
-            memcpy(&buffer_584[i*20*20],
-                   buffer_574[i],
-                   20*20*sizeof(fp_t));
-
-        memcpy(&buffer_560[i*80*20],
-               buffer_550[i],
-               80*20*sizeof(fp_t));
-
-    }
+//    for(uint32_t i = 0; i < 80; i++){
+//
+//
+//        if (i<40)
+//            memcpy(&buffer_572[i*40*20],
+//                   buffer_562[i],
+//                   40*20*sizeof(fp_t));
+//        if (i<20)
+//            memcpy(&buffer_584[i*20*20],
+//                   buffer_574[i],
+//                   20*20*sizeof(fp_t));
+//
+//        memcpy(&buffer_560[i*80*20],
+//               buffer_550[i],
+//               80*20*sizeof(fp_t));
+//
+//    }
 
 
     //Layer 120 Reshape_192 Reshape
@@ -4346,18 +4346,18 @@ for(uint32_t g = 0; g < 1; g++) {
 //
 
 //fp_t** outputs_Concat_201 = (fp_t**) malloc(3 * sizeof(fp_t*));
-    outputs_Concat_201[0] = buffer_560;
-    outputs_Concat_201[1] = buffer_572;
-    outputs_Concat_201[2] = buffer_584;
+//    outputs_Concat_201[0] = buffer_560;
+//    outputs_Concat_201[1] = buffer_572;
+//    outputs_Concat_201[2] = buffer_584;
 
 
-const uint16_t* input_shape_Concat_201[3];
-    uint16_t input_shape_Concat_201_0[2] = { 12800, 10 };
-    input_shape_Concat_201[0] = input_shape_Concat_201_0;
-    uint16_t input_shape_Concat_201_1[2] = { 3200, 10 };
-    input_shape_Concat_201[1] = input_shape_Concat_201_1;
-    uint16_t input_shape_Concat_201_2[2] = { 800, 10 };
-    input_shape_Concat_201[2] = input_shape_Concat_201_2;
+//const uint16_t* input_shape_Concat_201[3];
+//    uint16_t input_shape_Concat_201_0[2] = { 12800, 10 };
+//    input_shape_Concat_201[0] = input_shape_Concat_201_0;
+//    uint16_t input_shape_Concat_201_1[2] = { 3200, 10 };
+//    input_shape_Concat_201[1] = input_shape_Concat_201_1;
+//    uint16_t input_shape_Concat_201_2[2] = { 800, 10 };
+//    input_shape_Concat_201[2] = input_shape_Concat_201_2;
 
 
 //    concatenate_2D_output(inputs_Concat_201, input_shape_Concat_201, 0, 3, output_585);
@@ -4373,12 +4373,12 @@ const uint16_t* input_shape_Concat_201[3];
     //Shape:
     //    548: (1, 16800, 2)
     //    586: (1, 16800, 2)
-softmax_naive_mbnet(outputs_Concat_176,3, outputs_Conf);
+//softmax_naive_mbnet(outputs_Concat_176,3, outputs_Conf);
 
 //    for (int i=0; i<3; i++){
 //        free(outputs_Concat_176);
 //    }
-    free(outputs_Concat_176);
+//    free(outputs_Concat_176);
 
 
 

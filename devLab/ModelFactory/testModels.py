@@ -113,19 +113,28 @@ def get_detector_output(session, input_data):
     #
     # # appending num channels, height and width
     refoutput_packed_file.append( struct.pack('{}s'.format(len(refoutput_header)), bytes(refoutput_header, "ascii")) )
-    refoutput_packed_file.append( struct.pack( 'i', loc[0].shape[0]))
-    refoutput_packed_file.append( struct.pack( 'i', loc[0].shape[1]))
+    refoutput_packed_file.append( struct.pack( 'i', conf[0].shape[0]))
+    refoutput_packed_file.append( struct.pack( 'i', conf[0].shape[1]))
     # refinput_packed_file.append( struct.pack( 'i', loc.shape[3]))
     #
     #
     # # f = prediction[0].shape
     # # b = struct.pack('f'*len(f), *f)
-    for i in range(loc[0].shape[0]):
-        refoutput_packed_file.append( struct.pack('f'*len(loc[0][i,:]), *loc[0][i,:]) )
+
+    for i in range(conf[0].shape[0]):
+        refoutput_packed_file.append( struct.pack('f'*len(conf[0][i,:]), *conf[0][i,:]) )
     #
-    with open(reference_output, "wb") as file:
+    with open(os.path.join(default_save_dir, reference_output + "conf.bin"), "wb") as file:
         for packed_struct in refoutput_packed_file:
             file.write( packed_struct )
+
+
+    # for i in range(landms[0].shape[0]):
+    #         refoutput_packed_file.append( struct.pack('f'*len(landms[0][i,:]), *landms[0][i,:]) )
+    # #
+    # with open(os.path.join(default_save_dir, reference_output + "landm.bin"), "wb") as file:
+    #     for packed_struct in refoutput_packed_file:
+    #         file.write( packed_struct )
 
 
 
@@ -145,7 +154,7 @@ if __name__ == '__main__':
     simponnxmdlName =  "FaceDetector.onnx"
     # simponnxmdlName =  "insight-face-v3.onnx"
     # simponnxmdlName =  "super_resolution.onnx"
-    reference_output = "/home/ali/Projlab/Nist/ConversionOutputs/reference_detection_output.bin"
+    reference_output = "detection_output_"
     reference_input = "detection_mbnet025_"
 
     # onnx_model = onnx.load( default_model_dir +  onnxModelName )

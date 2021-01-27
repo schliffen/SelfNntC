@@ -11,7 +11,6 @@
 
 extern "C" {
 //#include "model_to_Test/network.h"
-//#include "model_to_Test/network_initialization.h"
 //#include "model_to_Test/network_cleanup.h"
 //#include "ai-cnn/ai-cnn.h"
 #include "image_tools/read_binary_ref.h"
@@ -49,7 +48,9 @@ int main() {
     char alignment_weight_path[1024] = "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment.weights.bin";
     char feature_weights_path[1024] = "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature/feature.weights.bin";
 
-    //    char reference_output_path[1024] = "/home/ali/Projlab/Nist/ConversionOutputs/reference_output.bin";
+    char reference_output_landm[1024] = "/home/ali/Projlab/Nist/ConversionOutputs/detection_output_landm.bin";
+    char reference_output_conf[1024] = "/home/ali/Projlab/Nist/ConversionOutputs/detection_output_conf.bin";
+
     char reference_input_path[1024] = "/home/ali/Projlab/Nist/ConversionOutputs/detection_mbnet025_640_640.bin";
     //    strcpy(weights_path, argv[1]);
     //    char sample_input_path[1024] = "./sub_lenet_001/";
@@ -119,11 +120,11 @@ int main() {
 
 
     // comparing results with the reference output
-//    fp_t* ref_output = (fp_t*) malloc(outputSize*sizeof(fp_t));
+    fp_t* ref_output = (fp_t*) malloc(alignSize*10*sizeof(fp_t));
 
     //     reading reference output from binary file
-//    if(read_binary_reference_output(reference_output_path, &ref_output) != 0)
-//        return -1;
+    if(read_binary_reference_output(reference_output_conf, &ref_output) != 0)
+        return -1;
 
 
     faceAlignment get_face_align;
@@ -132,14 +133,49 @@ int main() {
 
 
     get_face_align.initialize(alignment_weight_path);
-    fp_t** output_Concat_151 = (fp_t**) malloc(3 * sizeof(fp_t*));
-    fp_t** outputs_Concat_201 = (fp_t**) malloc(3 * sizeof(fp_t*));
-    fp_t* outputs_Conf = (fp_t*) malloc( alignSize  * sizeof(fp_t*));
+//    fp_t** output_Concat_151 = (fp_t**) malloc(3 * sizeof(fp_t*));
+//    fp_t** outputs_Concat_201 = (fp_t**) malloc(3 * sizeof(fp_t*));
+//    fp_t* outputs_Conf = (fp_t*) malloc( alignSize  * sizeof(fp_t*));
     fp_t face_points[10];
 
-    get_face_align.forward(input, output_Concat_151, outputs_Concat_201, outputs_Conf);
+    get_face_align.forward(input);
 
-    get_face_align.postprocess_alignment(outputs_Concat_201, outputs_Conf, face_points, inp_w, inp_h);
+    // comparing outputs
+//    int32_t gind=1;
+//    int out_shape[3] = {12800, 3200, 800};
+//    fp_t max_score=0;
+//    float lError = 0;
+//    for (int i=0; i<16800; i++){
+//        std::cout<< " m_out: " <<  outputs_Conf[i]  << " Ref: " << ref_output[2*i+2] << std::endl;
+//                lError += std::abs( outputs_Conf[i] - ref_output[2*i+2] );
+//                if (lError > 1)
+//                    std::cout<< gind << std::endl;
+//                std::cout<< " sub local error: " << std::abs( outputs_Conf[i] - ref_output[2*i+2] ) << std::endl;
+////
+//    }
+
+//    float gError=0;
+//    for (int i=0; i<3; i++){
+//        for (int j=0; j< out_shape[i]; j++) {
+//            float lError = 0;
+//            for (int k=0; k<10; k++){
+//                std::cout<< " m_out: " <<  outputs_Concat_201[i][10*j + k] << " Ref: " << ref_output[gind] << std::endl;
+//                lError += std::abs(outputs_Concat_201[i][10*j + k] - ref_output[gind]);
+//                if (lError > 1)
+//                    std::cout<< gind << std::endl;
+//                std::cout<< " sub local error: " << std::abs(outputs_Concat_201[i][10*j + k] - ref_output[gind]) << std::endl;
+//                gind++;
+//            }
+//            std::cout<< " local error: " << lError << std::endl;
+//            gError += lError/10; // mean error
+//    }
+//    }
+//    std::cout << " gError: " << gError << std::endl;
+
+
+
+
+    get_face_align.postprocess_alignment( face_points, inp_w, inp_h);
 
 
 
@@ -178,16 +214,6 @@ int main() {
     }
 
     free(input);
-    free( outputs_Conf);
-
-    for (int i=0; i<3; i++){
-        free(outputs_Concat_201[i]);
-        free(output_Concat_151[i]);
-//        free(outputs_Concat_201[i]);
-    }
-
-    free(outputs_Concat_201);
-    free(output_Concat_151);
 
 
 //    cleanup_network();

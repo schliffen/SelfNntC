@@ -2133,11 +2133,11 @@ for(uint32_t output = 0; output < 80; output++){
 // Inputs
 // Outputs
 // (1, 12800, 4)
-buffer_486 = (fp_t**) malloc(12800 * sizeof(fp_t*));
-
-for(uint32_t output = 0; output < 12800; output++){
-    buffer_486[output] = (fp_t*) malloc(1*4 * sizeof(fp_t));
-}
+//buffer_486 = (fp_t**) malloc(12800 * sizeof(fp_t*));
+//
+//for(uint32_t output = 0; output < 12800; output++){
+//    buffer_486[output] = (fp_t*) malloc(1*4 * sizeof(fp_t));
+//}
 
 
 

@@ -167,6 +167,8 @@ void softmax_naive_mbnet(const fp_t** input_channel, const uint16_t num_inputs, 
         for (i = 0; i < input_shape[n_in]; i++) {
             denom =  expl((long double) input_channel[n_in][2 * i  +1]) /(expl((long double) input_channel[n_in][2 * i  ]) +  expl((long double) input_channel[n_in][2 * i  +1]));
 //            denominator =exponent_nom; //expl((long double) input_channel[n_in][2 * i 1]);
+            float a = input_channel[n_in][2 * i  ];
+            float b = input_channel[n_in][2 * i + 1];
             output_channel[gind] =  denom;
             gind++;
         }

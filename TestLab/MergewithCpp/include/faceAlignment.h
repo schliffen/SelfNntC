@@ -34,11 +34,11 @@ public:
 
 
     bool initialize(char*);
-    bool forward(fp_t ** input_input0, fp_t ** inputs_Concat_151, fp_t ** outputs_Concat_201, fp_t *outputs_Conf);
+    bool forward(fp_t ** input_input0 );
 
     bool clearnetwork();
 
-    bool postprocess_alignment(fp_t **face10_pre, fp_t *conf, fp_t face_points[10], int16_t imgWidth, int16_t imgHeight);
+    bool postprocess_alignment( fp_t face_points[10], int16_t imgWidth, int16_t imgHeight);
 
 
 

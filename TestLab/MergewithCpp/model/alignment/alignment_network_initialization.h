@@ -883,7 +883,7 @@ fp_t **buffer_476;
 // Inputs
 // Outputs
 // (1, 12800, 4)
-fp_t **buffer_486;
+//fp_t **buffer_486;
 
 
 // Layer: Conv_135, Operation: Conv

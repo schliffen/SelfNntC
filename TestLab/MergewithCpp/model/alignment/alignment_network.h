@@ -6,6 +6,6 @@
 #include "alignment_network_cleanup.h"
 #include "ai-cnn/ai-cnn.h"
 
-void alignment_network(fp_t ** input_input0, fp_t ** inputs_Concat_151, fp_t ** outputs_Concat_201, fp_t *outputs_Conf);
+void alignment_network(fp_t ** input_input0 );
 
 #endif //NETWORK_H

@@ -968,11 +968,11 @@ for(uint32_t i = 0; i < 80; i++){
 
 free(buffer_476);
 
-for(uint32_t i = 0; i < 12800; i++){
-    free(buffer_486[i]);
-}
+//for(uint32_t i = 0; i < 12800; i++){
+//    free(buffer_486[i]);
+//}
 
-free(buffer_486);
+//free(buffer_486);
 
 for(uint32_t i = 0; i < 512; i++){
     free(buffer_291[i]);
