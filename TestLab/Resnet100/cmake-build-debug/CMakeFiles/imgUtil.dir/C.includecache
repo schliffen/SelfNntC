@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/parameters.h
 
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/read_binary_ref.c
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/image_tools/read_binary_ref.c
 read_binary_ref.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/read_binary_ref.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/image_tools/read_binary_ref.h
 
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/read_binary_ref.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/image_tools/read_binary_ref.h
 ../ai-cnn/parameters.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/parameters.h
 stdint.h
 -
 stdio.h

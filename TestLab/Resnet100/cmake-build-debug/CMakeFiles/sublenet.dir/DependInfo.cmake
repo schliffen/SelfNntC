@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/main.cpp" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/sublenet.dir/main.cpp.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/main.cpp" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/sublenet.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -16,9 +16,9 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/DependInfo.cmake"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/imgUtil.dir/DependInfo.cmake"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/netlib.dir/DependInfo.cmake"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/DependInfo.cmake"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/imgUtil.dir/DependInfo.cmake"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/netlib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -1,0 +1,5 @@
+/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/CMakeFiles/ai-cnn.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/CMakeFiles/face_detection.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/CMakeFiles/imgUtil.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/CMakeFiles/edit_cache.dir

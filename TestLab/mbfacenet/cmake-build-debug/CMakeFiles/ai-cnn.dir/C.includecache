@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/mbfacenet/ai-cnn/io/read_binary_weights.c
+read_binary_weights.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/mbfacenet/ai-cnn/io/read_binary_weights.h
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/mbfacenet/ai-cnn/io/read_binary_weights.h
+../parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/mbfacenet/ai-cnn/parameters.h
+stdint.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/mbfacenet/ai-cnn/parameters.h
+

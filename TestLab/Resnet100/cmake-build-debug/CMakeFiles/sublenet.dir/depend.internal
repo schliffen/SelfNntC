@@ -15,10 +15,10 @@ CMakeFiles/sublenet.dir/main.cpp.o
  ../ai-cnn/layers/upsampling.h
  ../ai-cnn/parameters.h
  ../ai-cnn/utils.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/imgUtils.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/read_binary_ref.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/main.cpp
- /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_cleanup.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_initialization.h
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/parameters.h
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/image_tools/imgUtils.h
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/image_tools/read_binary_ref.h
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/main.cpp
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network.h
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_cleanup.h
+ /home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_initialization.h

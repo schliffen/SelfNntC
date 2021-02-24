@@ -79,33 +79,6 @@ CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_initialization.c.o
  ../ai-cnn/parameters.h
  /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment_network_initialization.c
  /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment_network_initialization.h
-CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o
- ../ai-cnn/ai-cnn.h
- ../ai-cnn/io/read_binary_reference_data.h
- ../ai-cnn/io/read_binary_weights.h
- ../ai-cnn/layers/activation_function.h
- ../ai-cnn/layers/batch_normalization.h
- ../ai-cnn/layers/concatenate.h
- ../ai-cnn/layers/convolution.h
- ../ai-cnn/layers/fully_connected.h
- ../ai-cnn/layers/math_operations.h
- ../ai-cnn/layers/pooling.h
- ../ai-cnn/layers/upsampling.h
- ../ai-cnn/parameters.h
- ../ai-cnn/utils.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network.c
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_cleanup.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.h
-CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o
- ../ai-cnn/parameters.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_cleanup.c
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_cleanup.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.h
-CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o
- ../ai-cnn/parameters.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.c
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.h
 CMakeFiles/ai-cnn.dir/include/faceAlignment.cpp.o
  ../ai-cnn/ai-cnn.h
  ../ai-cnn/io/read_binary_reference_data.h
@@ -126,23 +99,3 @@ CMakeFiles/ai-cnn.dir/include/faceAlignment.cpp.o
  ../model/alignment/alignment_network_initialization.h
  /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/faceAlignment.cpp
  /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/faceAlignment.h
-CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o
- ../ai-cnn/ai-cnn.h
- ../ai-cnn/io/read_binary_reference_data.h
- ../ai-cnn/io/read_binary_weights.h
- ../ai-cnn/layers/activation_function.h
- ../ai-cnn/layers/batch_normalization.h
- ../ai-cnn/layers/concatenate.h
- ../ai-cnn/layers/convolution.h
- ../ai-cnn/layers/fully_connected.h
- ../ai-cnn/layers/math_operations.h
- ../ai-cnn/layers/pooling.h
- ../ai-cnn/layers/upsampling.h
- ../ai-cnn/parameters.h
- ../ai-cnn/utils.h
- ../image_tools/read_binary_ref.h
- ../model/feature_mobilefacenet/feature_network.h
- ../model/feature_mobilefacenet/feature_network_cleanup.h
- ../model/feature_mobilefacenet/feature_network_initialization.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/fextractor.cpp
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/fextractor.h

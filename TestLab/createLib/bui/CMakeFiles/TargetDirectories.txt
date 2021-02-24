@@ -1,0 +1,4 @@
+/home/ali/Projlab/Nist/SelfNntC/TestLab/createLib/bui/CMakeFiles/rebuild_cache.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/createLib/bui/CMakeFiles/arealib.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/createLib/bui/CMakeFiles/edit_cache.dir
+/home/ali/Projlab/Nist/SelfNntC/TestLab/createLib/bui/CMakeFiles/createLib.dir

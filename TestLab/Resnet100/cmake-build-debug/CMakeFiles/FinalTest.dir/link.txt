@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/FinalTest.dir/main.cpp.o  -o FinalTest 

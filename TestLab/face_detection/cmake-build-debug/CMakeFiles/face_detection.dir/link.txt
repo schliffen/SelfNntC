@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++14 -ldl -O4 -std=c++14 -m64 -ffast-math -fassociative-math -mfma -ffp-contract=fast -Ofast -O3 -DNDEBUG   CMakeFiles/face_detection.dir/main.cpp.o  -o lib/face_detection  -Wl,-rpath,/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/lib lib/libai-cnn.so lib/libimgUtil.so 

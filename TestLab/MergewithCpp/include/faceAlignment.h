@@ -34,7 +34,8 @@ public:
 
 
     bool initialize(char*);
-    bool forward(fp_t ** input_input0 );
+    //
+    bool forward( unsigned char * input_input0 );
 
     bool clearnetwork();
 

@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/netlib.dir/model_to_Test/Resnet100_network.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_cleanup.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/netlib.dir/model_to_Test/Resnet100_network_cleanup.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_initialization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/netlib.dir/model_to_Test/Resnet100_network_initialization.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/netlib.dir/model_to_Test/Resnet100_network.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_cleanup.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/netlib.dir/model_to_Test/Resnet100_network_cleanup.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_initialization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/netlib.dir/model_to_Test/Resnet100_network_initialization.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

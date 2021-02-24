@@ -144,9 +144,9 @@ string.h
 math.h
 -
 
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/parameters.h
 
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/imgUtils.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/image_tools/imgUtils.h
 iostream
 -
 algorithm
@@ -168,9 +168,9 @@ vector
 math.h
 -
 
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/read_binary_ref.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/image_tools/read_binary_ref.h
 ../ai-cnn/parameters.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/parameters.h
 stdint.h
 -
 stdio.h
@@ -180,7 +180,7 @@ stdlib.h
 string.h
 -
 
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/main.cpp
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/main.cpp
 stdio.h
 -
 stdlib.h
@@ -193,42 +193,44 @@ memory
 -
 fstream
 -
+chrono
+-
 model_to_Test/Resnet100_network.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network.h
 model_to_Test/Resnet100_network_initialization.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_initialization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_initialization.h
 model_to_Test/Resnet100_network_cleanup.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_cleanup.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_cleanup.h
 image_tools/read_binary_ref.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/read_binary_ref.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/image_tools/read_binary_ref.h
 image_tools/imgUtils.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/image_tools/imgUtils.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/image_tools/imgUtils.h
 
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network.h
 ai-cnn/parameters.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/ai-cnn/parameters.h
 Resnet100_network_initialization.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_initialization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_initialization.h
 Resnet100_network_cleanup.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_cleanup.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_cleanup.h
 ai-cnn/ai-cnn.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/ai-cnn/ai-cnn.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/ai-cnn/ai-cnn.h
 
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_cleanup.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_cleanup.h
 stdlib.h
 -
 stdint.h
 -
 ai-cnn/parameters.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/ai-cnn/parameters.h
 Resnet100_network_initialization.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_initialization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_initialization.h
 
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/Resnet100_network_initialization.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/Resnet100_network_initialization.h
 stdlib.h
 -
 stdint.h
 -
 ai-cnn/parameters.h
-/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test/ai-cnn/parameters.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test/ai-cnn/parameters.h
 

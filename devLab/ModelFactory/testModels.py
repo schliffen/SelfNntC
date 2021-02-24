@@ -141,8 +141,8 @@ def get_detector_output(session, input_data):
 
 if __name__ == '__main__':
 
-    w = 640
-    h = 640
+    w = 320 #640
+    h = 320 #640
     c = 3
     ver = 1
     #
@@ -151,11 +151,14 @@ if __name__ == '__main__':
 
     # onnxModelName = "sub_lenet_4.onnx"
     # simponnxmdlName = "sub_mobilefacenet_" + str(ver) +".onnx"
-    simponnxmdlName =  "FaceDetector.onnx"
+    simponnxmdlName =  "mobile025_320.onnx"
     # simponnxmdlName =  "insight-face-v3.onnx"
     # simponnxmdlName =  "super_resolution.onnx"
-    reference_output = "detection_output_"
-    reference_input = "detection_mbnet025_"
+    # reference_output = "detection_output_"
+    # reference_input = "detection_mbnet025_"
+
+    reference_output = "rec_output_320_"
+    reference_input = "rec_mbfc025_320_"
 
     # onnx_model = onnx.load( default_model_dir +  onnxModelName )
     # onnx.checker.check_model(onnx_model)
@@ -170,30 +173,22 @@ if __name__ == '__main__':
     #
     # read reference input
     # ref img path
-    imgPath = "/home/ali/Projlab/Nist/ModelAnalysis/images/S001-02-t10_01.ppm"
-    img = np.float32( cv2.imread( imgPath ))
+    # imgPath = "/home/ali/Projlab/Nist/ProcessedOutputs/croppedFaces/S001-01-t10_01.ppm"
+    imgPath = "/home/ali/Projlab/Nist/ModelAnalysis/images/S001-01-t10_01.ppm"
+    img = np.float32(cv2.resize(  cv2.imread( imgPath ), (w,h) )) #/255
 
-    img -= (104, 117, 123)
+
+    img -= (104, 117, 123) # for detection
+    # img = (img-.5)/.5  # for detection
     # input_data = np.expand_dims(img.transpose(2,0,1), axis=0)
-    input_data = np.expand_dims(cv2.resize(img, (w, h)).transpose(2,0,1), axis=0)
+    input_data = np.expand_dims(img.transpose(2,0,1), axis=0)
     #
-
-    # img = np.random.randn(1,3,112,112)
-
-    # for i in range(img.shape[2]):
-    #     for j in range(img.shape[3]):
-    #         for k in range(img.shape[1]):
-    #             print( img[0][k,j,i])
-
-    # input_data = np.array([[[[1.,2.,1.,0.],[1.,2.,1.,0.],[1.,2.,1.,0.],[1.,2.,1.,0.]], [[1.,2.,1.,0.],[1.,2.,1.,0.],[1.,2.,1.,0.],[1.,2.,1.,0.]], [[1.,2.,1.,0.],[1.,2.,1.,0.],[1.,2.,1.,0.],[1.,2.,1.,0.]]]])
-
-    # input_data = np.random.randn( 1,c,w,h)
 
     session = onnxruntime.InferenceSession(default_model_dir + simponnxmdlName)
 
     get_detector_output(session, input_data)
 
-    get_feature_extraction(session, input_data)
+    # get_feature_extraction(session, input_data)
 
 
     print('finished! ')

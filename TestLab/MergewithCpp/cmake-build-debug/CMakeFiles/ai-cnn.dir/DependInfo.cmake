@@ -20,9 +20,6 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment_network.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/alignment/alignment_network.c.o"
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment_network_cleanup.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_cleanup.c.o"
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/alignment/alignment_network_initialization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_initialization.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_cleanup.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/model/feature_mobilefacenet/feature_network_initialization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -38,7 +35,6 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/faceAlignment.cpp" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/include/faceAlignment.cpp.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/fextractor.cpp" "/home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/cmake-build-debug/CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

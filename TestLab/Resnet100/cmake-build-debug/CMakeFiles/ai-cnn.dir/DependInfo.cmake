@@ -4,18 +4,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/read_binary_reference_data.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/read_binary_weights.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/io/write_float.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/activation_function.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/batch_normalization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/concatenate.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/convolution.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/fully_connected.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/math_operations.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/pooling.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/layers/upsampling.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.o"
-  "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/ai-cnn/utils.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/io/read_binary_reference_data.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_reference_data.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/io/read_binary_weights.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/io/read_binary_weights.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/io/write_float.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/io/write_float.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/layers/activation_function.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/activation_function.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/layers/batch_normalization.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/batch_normalization.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/layers/concatenate.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/concatenate.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/layers/convolution.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/convolution.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/layers/fully_connected.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/fully_connected.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/layers/math_operations.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/math_operations.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/layers/pooling.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/pooling.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/layers/upsampling.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/layers/upsampling.c.o"
+  "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/ai-cnn/utils.c" "/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/CMakeFiles/ai-cnn.dir/ai-cnn/utils.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

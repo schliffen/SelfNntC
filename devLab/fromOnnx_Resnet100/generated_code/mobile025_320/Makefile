@@ -1,0 +1,27 @@
+CC = gcc
+CFLAGS = -Wall -flto -O3 -march=native -DINFO
+LDFLAGS = -L../../../ai-cnn
+LD_LIBS = -ai-cnn -lm
+
+# list of all generated .c files.
+NETWORK_LIST = mbfc025_network_initialization.c mbfc025_network_cleanup.c mbfc025_network.c
+
+dummy_input: dummy_input.c $(NETWORK_LIST) libai-cnn.a
+	$(CC) dummy_input.c $(NETWORK_LIST) -I../../.. $(CFLAGS) $(LDFLAGS) $(LD_LIBS) -o dummy_input
+
+reference_input: reference_input.c $(NETWORK_LIST) libai-cnn.a
+	$(CC) reference_input.c $(NETWORK_LIST) -I../../.. $(CFLAGS) $(LDFLAGS) $(LD_LIBS) -o reference_input
+
+mobile025_320: mobile025_320.c $(NETWORK_LIST) libai-cnn.a
+	$(CC) mobile025_320.c $(NETWORK_LIST) -I../../.. $(CFLAGS) $(LDFLAGS) $(LD_LIBS) -o mobile025_320
+
+all: dummy_input reference_input mobile025_320
+
+.PHONY: clean
+clean:
+	rm -rf mobile025_320 dummy_input reference_input
+
+
+.PHONY: libai-cnn.a
+libai-cnn.a:
+	$(MAKE) -C ../../../ai-cnn

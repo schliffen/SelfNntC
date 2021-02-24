@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -std=c++14 -ldl -O3 -std=c++14 -m64 -ffast-math -fassociative-math -mfma -ffp-contract=fast -Ofast -O3 -DNDEBUG  -shared -Wl,-soname,libimgUtil.so -o lib/libimgUtil.so CMakeFiles/imgUtil.dir/image_tools/imgUtils.cpp.o CMakeFiles/imgUtil.dir/image_tools/read_binary_ref.c.o 

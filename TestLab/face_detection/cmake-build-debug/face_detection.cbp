@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="face_detection"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ai-cnn">
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/lib/libai-cnn.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection"/>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/model"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 ai-cnn"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ai-cnn/fast">
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/lib/libai-cnn.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection"/>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/model"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 ai-cnn/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="face_detection">
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/lib/face_detection" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/lib"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection"/>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/model"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 face_detection"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="face_detection/fast">
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/lib/face_detection" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/lib"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection"/>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/model"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 face_detection/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="imgUtil">
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/lib/libimgUtil.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection"/>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/model"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 imgUtil"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="imgUtil/fast">
+				<Option output="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/lib/libimgUtil.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection"/>
+					<Add directory="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/model"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 imgUtil/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/io/read_binary_reference_data.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/io/read_binary_reference_data.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/io/read_binary_weights.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/io/read_binary_weights.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/io/write_float.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/io/write_float.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/activation_function.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/activation_function.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/batch_normalization.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/batch_normalization.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/concatenate.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/concatenate.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/convolution.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/convolution.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/fully_connected.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/fully_connected.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/math_operations.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/math_operations.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/pooling.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/pooling.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/upsampling.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/layers/upsampling.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/utils.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/ai-cnn/utils.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/image_tools/imgUtils.cpp">
+			<Option target="imgUtil"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/image_tools/imgUtils.h">
+			<Option target="imgUtil"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/image_tools/read_binary_ref.c">
+			<Option target="imgUtil"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/image_tools/read_binary_ref.h">
+			<Option target="imgUtil"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/main.cpp">
+			<Option target="face_detection"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/mobile025_320/mb25_network.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/mobile025_320/mb25_network.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/mobile025_320/mb25_network_cleanup.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/mobile025_320/mb25_network_cleanup.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/mobile025_320/mb25_network_initialization.c">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/mobile025_320/mb25_network_initialization.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/mobile025_320/posprocess.cpp">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/mobile025_320/posprocess.h">
+			<Option target="ai-cnn"/>
+		</Unit>
+		<Unit filename="/home/ali/Projlab/Nist/SelfNntC/TestLab/face_detection/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/createLib/include/area.cpp
+area.h
+/home/ali/Projlab/Nist/SelfNntC/TestLab/createLib/include/area.h
+
+/home/ali/Projlab/Nist/SelfNntC/TestLab/createLib/include/area.h
+

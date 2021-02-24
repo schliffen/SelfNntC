@@ -3,15 +3,15 @@
 
 # compile C with /usr/bin/cc
 # compile CXX with /usr/bin/c++
-C_FLAGS = -g -fPIC  
+C_FLAGS =  -O3 -o4 -Ofast -O3 -DNDEBUG -fPIC  
 
 C_DEFINES = -DimgUtil_EXPORTS
 
-C_INCLUDES = -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test 
+C_INCLUDES = -I/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100 -I/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test 
 
-CXX_FLAGS =  -std=c++11 -ldl -g -fPIC   -std=gnu++11
+CXX_FLAGS =  -std=c++14 -ldl -O4 -std=c++14 -m64 -ffast-math -fassociative-math -mfma -ffp-contract=fast -Ofast -Ofast -fPIC   -std=gnu++14
 
 CXX_DEFINES = -DimgUtil_EXPORTS
 
-CXX_INCLUDES = -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest -I/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/model_to_Test 
+CXX_INCLUDES = -I/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100 -I/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/model_to_Test 
 

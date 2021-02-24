@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -g  -shared -Wl,-soname,libcirlib.so -o libcirlib.so CMakeFiles/cirlib.dir/include/circum.cpp.o 

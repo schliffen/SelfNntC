@@ -1,1 +1,1 @@
-/usr/bin/c++   -std=c++11 -ldl -g   CMakeFiles/sublenet.dir/main.cpp.o  -o lib/sublenet  -Wl,-rpath,/home/ali/Projlab/Nist/SelfNntC/TestLab/FinalTest/cmake-build-debug/lib lib/libai-cnn.so lib/libimgUtil.so lib/libnetlib.so 
+/usr/bin/c++   -std=c++14 -ldl -O4 -std=c++14 -m64 -ffast-math -fassociative-math -mfma -ffp-contract=fast -Ofast -Ofast   CMakeFiles/sublenet.dir/main.cpp.o  -o lib/sublenet  -Wl,-rpath,/home/ali/Projlab/Nist/SelfNntC/TestLab/Resnet100/cmake-build-debug/lib lib/libai-cnn.so lib/libimgUtil.so lib/libnetlib.so 

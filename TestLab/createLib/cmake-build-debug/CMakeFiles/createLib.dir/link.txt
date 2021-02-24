@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/createLib.dir/main.cpp.o  -o createLib  -Wl,-rpath,/home/ali/Projlab/Nist/SelfNntC/TestLab/createLib/cmake-build-debug libarealib.so 

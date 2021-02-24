@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.10)
 project(sublenet)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -68,20 +68,20 @@ set(PICO_CNN_LIBRARY_SRCS
 
 
         # feature network
-        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_initialization.c
-        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_initialization.h
-        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_cleanup.c
-        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_cleanup.h
-        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network.c
-        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network.h
+#        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_initialization.c
+#        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_initialization.h
+#        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_cleanup.c
+#        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network_cleanup.h
+#        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network.c
+#        ${PROJECT_SOURCE_DIR}/model/feature_mobilefacenet/feature_network.h
 
         # face alignment
         include/faceAlignment.cpp
         include/faceAlignment.h
 
         # feature extraction
-        include/fextractor.cpp
-        include/fextractor.h
+#        include/fextractor.cpp
+#        include/fextractor.h
 
 
 

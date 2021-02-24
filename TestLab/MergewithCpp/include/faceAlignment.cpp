@@ -21,8 +21,8 @@ bool faceAlignment::initialize(char* weights_path) {
     }
 };
 
-
-bool faceAlignment::forward(fp_t ** input_input0) {
+//
+bool faceAlignment::forward( unsigned char * input_input0) {
 
     alignment_network( input_input0);
 
@@ -48,7 +48,7 @@ bool faceAlignment::postprocess_alignment( fp_t face_points[10], int16_t imgWidt
     int feature_maps[3][2];
     get_feature_map( imgHeight, imgWidth, feature_maps);
     std::vector<std::vector<float>> anchors;
-    std::vector<float> landms;
+//    std::vector<float> landms;
     std::vector<float> anch;
     for (int16_t k=0; k<3; k++ ) {
         //
@@ -144,10 +144,11 @@ bool faceAlignment::postprocess_alignment( fp_t face_points[10], int16_t imgWidt
                                            buffer_550[ind1][10 * ind2 + 9] * variance[0] * anchors[glob_idx][3]) *
                                           imgHeight;
 
-                        landms.clear();
+//                        landms.clear();
                         max_score = score;
                         for (int l = 0; l < 10; l++) {
-                            landms.push_back(single_landm[l]);
+//                            landms.push_back(single_landm[l]);
+                            face_points[l] = single_landm[l];
                             std::cout << " l: " << single_landm[l] << " glob_idx: "
                                       << glob_idx
                                       << " confidence: " << score << std::endl;
@@ -198,10 +199,11 @@ bool faceAlignment::postprocess_alignment( fp_t face_points[10], int16_t imgWidt
                                            buffer_562[ind1][10 * ind2 + 9] * variance[0] * anchors[glob_idx][3]) *
                                           imgHeight;
 
-                        landms.clear();
+//                        landms.clear();
                         max_score = score;
                         for (int l = 0; l < 10; l++) {
-                            landms.push_back(single_landm[l]);
+//                            landms.push_back(single_landm[l]);
+                            face_points[l] = single_landm[l];
                             std::cout << " l: " << single_landm[l] << " glob_idx: "
                                       << glob_idx
                                       << " confidence: " << score << std::endl;
@@ -253,10 +255,11 @@ bool faceAlignment::postprocess_alignment( fp_t face_points[10], int16_t imgWidt
                                            buffer_574[ind1][10 * ind2 + 9] * variance[0] * anchors[glob_idx][3]) *
                                           imgHeight;
                         //
-                        landms.clear();
+//                        landms.clear();
                         max_score = score;
                         for (int l = 0; l < 10; l++) {
-                            landms.push_back(single_landm[l]);
+//                            landms.push_back(single_landm[l]);
+                            face_points[l] = single_landm[l];
                             std::cout << " l: " << single_landm[l] << " glob_idx: "
                                       << glob_idx
                                       << " confidence: " << score << std::endl;

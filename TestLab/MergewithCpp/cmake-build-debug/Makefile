@@ -574,33 +574,6 @@ include/faceAlignment.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/include/faceAlignment.cpp.s
 .PHONY : include/faceAlignment.cpp.s
 
-include/fextractor.o: include/fextractor.cpp.o
-
-.PHONY : include/fextractor.o
-
-# target to build an object file
-include/fextractor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/include/fextractor.cpp.o
-.PHONY : include/fextractor.cpp.o
-
-include/fextractor.i: include/fextractor.cpp.i
-
-.PHONY : include/fextractor.i
-
-# target to preprocess a source file
-include/fextractor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/include/fextractor.cpp.i
-.PHONY : include/fextractor.cpp.i
-
-include/fextractor.s: include/fextractor.cpp.s
-
-.PHONY : include/fextractor.s
-
-# target to generate assembly for a file
-include/fextractor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/include/fextractor.cpp.s
-.PHONY : include/fextractor.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -709,87 +682,6 @@ model/alignment/alignment_network_initialization.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/model/alignment/alignment_network_initialization.c.s
 .PHONY : model/alignment/alignment_network_initialization.c.s
 
-model/feature_mobilefacenet/feature_network.o: model/feature_mobilefacenet/feature_network.c.o
-
-.PHONY : model/feature_mobilefacenet/feature_network.o
-
-# target to build an object file
-model/feature_mobilefacenet/feature_network.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.o
-.PHONY : model/feature_mobilefacenet/feature_network.c.o
-
-model/feature_mobilefacenet/feature_network.i: model/feature_mobilefacenet/feature_network.c.i
-
-.PHONY : model/feature_mobilefacenet/feature_network.i
-
-# target to preprocess a source file
-model/feature_mobilefacenet/feature_network.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.i
-.PHONY : model/feature_mobilefacenet/feature_network.c.i
-
-model/feature_mobilefacenet/feature_network.s: model/feature_mobilefacenet/feature_network.c.s
-
-.PHONY : model/feature_mobilefacenet/feature_network.s
-
-# target to generate assembly for a file
-model/feature_mobilefacenet/feature_network.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network.c.s
-.PHONY : model/feature_mobilefacenet/feature_network.c.s
-
-model/feature_mobilefacenet/feature_network_cleanup.o: model/feature_mobilefacenet/feature_network_cleanup.c.o
-
-.PHONY : model/feature_mobilefacenet/feature_network_cleanup.o
-
-# target to build an object file
-model/feature_mobilefacenet/feature_network_cleanup.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.o
-.PHONY : model/feature_mobilefacenet/feature_network_cleanup.c.o
-
-model/feature_mobilefacenet/feature_network_cleanup.i: model/feature_mobilefacenet/feature_network_cleanup.c.i
-
-.PHONY : model/feature_mobilefacenet/feature_network_cleanup.i
-
-# target to preprocess a source file
-model/feature_mobilefacenet/feature_network_cleanup.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.i
-.PHONY : model/feature_mobilefacenet/feature_network_cleanup.c.i
-
-model/feature_mobilefacenet/feature_network_cleanup.s: model/feature_mobilefacenet/feature_network_cleanup.c.s
-
-.PHONY : model/feature_mobilefacenet/feature_network_cleanup.s
-
-# target to generate assembly for a file
-model/feature_mobilefacenet/feature_network_cleanup.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_cleanup.c.s
-.PHONY : model/feature_mobilefacenet/feature_network_cleanup.c.s
-
-model/feature_mobilefacenet/feature_network_initialization.o: model/feature_mobilefacenet/feature_network_initialization.c.o
-
-.PHONY : model/feature_mobilefacenet/feature_network_initialization.o
-
-# target to build an object file
-model/feature_mobilefacenet/feature_network_initialization.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.o
-.PHONY : model/feature_mobilefacenet/feature_network_initialization.c.o
-
-model/feature_mobilefacenet/feature_network_initialization.i: model/feature_mobilefacenet/feature_network_initialization.c.i
-
-.PHONY : model/feature_mobilefacenet/feature_network_initialization.i
-
-# target to preprocess a source file
-model/feature_mobilefacenet/feature_network_initialization.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.i
-.PHONY : model/feature_mobilefacenet/feature_network_initialization.c.i
-
-model/feature_mobilefacenet/feature_network_initialization.s: model/feature_mobilefacenet/feature_network_initialization.c.s
-
-.PHONY : model/feature_mobilefacenet/feature_network_initialization.s
-
-# target to generate assembly for a file
-model/feature_mobilefacenet/feature_network_initialization.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ai-cnn.dir/build.make CMakeFiles/ai-cnn.dir/model/feature_mobilefacenet/feature_network_initialization.c.s
-.PHONY : model/feature_mobilefacenet/feature_network_initialization.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -846,9 +738,6 @@ help:
 	@echo "... include/faceAlignment.o"
 	@echo "... include/faceAlignment.i"
 	@echo "... include/faceAlignment.s"
-	@echo "... include/fextractor.o"
-	@echo "... include/fextractor.i"
-	@echo "... include/fextractor.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -861,15 +750,6 @@ help:
 	@echo "... model/alignment/alignment_network_initialization.o"
 	@echo "... model/alignment/alignment_network_initialization.i"
 	@echo "... model/alignment/alignment_network_initialization.s"
-	@echo "... model/feature_mobilefacenet/feature_network.o"
-	@echo "... model/feature_mobilefacenet/feature_network.i"
-	@echo "... model/feature_mobilefacenet/feature_network.s"
-	@echo "... model/feature_mobilefacenet/feature_network_cleanup.o"
-	@echo "... model/feature_mobilefacenet/feature_network_cleanup.i"
-	@echo "... model/feature_mobilefacenet/feature_network_cleanup.s"
-	@echo "... model/feature_mobilefacenet/feature_network_initialization.o"
-	@echo "... model/feature_mobilefacenet/feature_network_initialization.i"
-	@echo "... model/feature_mobilefacenet/feature_network_initialization.s"
 .PHONY : help
 
 

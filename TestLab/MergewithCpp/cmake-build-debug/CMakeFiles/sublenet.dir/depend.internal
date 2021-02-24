@@ -18,12 +18,8 @@ CMakeFiles/sublenet.dir/main.cpp.o
  ../model/alignment/alignment_network.h
  ../model/alignment/alignment_network_cleanup.h
  ../model/alignment/alignment_network_initialization.h
- ../model/feature_mobilefacenet/feature_network.h
- ../model/feature_mobilefacenet/feature_network_cleanup.h
- ../model/feature_mobilefacenet/feature_network_initialization.h
  /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/ai-cnn/parameters.h
  /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/image_tools/imgUtils.h
  /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/image_tools/read_binary_ref.h
  /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/faceAlignment.h
- /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/include/fextractor.h
  /home/ali/Projlab/Nist/SelfNntC/TestLab/MergewithCpp/main.cpp

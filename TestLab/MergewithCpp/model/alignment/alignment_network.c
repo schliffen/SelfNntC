@@ -1,6 +1,6 @@
 #include "alignment_network.h"
-
-void alignment_network(fp_t **input_input0 ){
+//unsigned char *
+void alignment_network( unsigned char * input_input0 ){
     //Layer 0 Conv_0 Conv
     //Attributes
     //  dilations: [1, 1]
@@ -18,9 +18,11 @@ void alignment_network(fp_t **input_input0 ){
     //    587: (1, 8, 320, 320)
 
 const uint16_t Conv_0_padding[4] = { 1, 1, 1, 1 };
-for(uint32_t g = 0; g < 1; g++) {
-    for(uint32_t i = g*8/1; i < (g+1)*8/1; i+=1){
-        convolution2d_padding_naive(input_input0[g*3/1],
+//for(uint32_t g = 0; g < 1; g++) {
+    fp_t ** new_input_channel = (fp_t**) calloc(3, sizeof(fp_t*));
+    extend_2d_input_with_padding_first_layer(input_input0, 640, 640, new_input_channel, Conv_0_padding, 0);
+    for(uint32_t i = 0; i < 8; i+=1){
+        convolution2d_padding_naive_first_layer(new_input_channel[0],
                                     640,
                                     640,
                                     buffer_587[i],
@@ -30,14 +32,13 @@ for(uint32_t g = 0; g < 1; g++) {
                                     2,
                                     2,
                                     Conv_0_padding,
-                                    
                                     buffer_589[i]
                                     );
         
         uint32_t cnt = 1;
-        for(uint32_t j = g*3/1+1; j < (g+1)*3/1; j+=1){
+        for(uint32_t j = 1; j < 3; j+=1){
             static fp_t temp_buffer[320*320];
-            convolution2d_padding_naive(input_input0[j],
+            convolution2d_padding_naive_first_layer(new_input_channel[j],
                                         640,
                                         640,
                                         temp_buffer,
@@ -47,7 +48,8 @@ for(uint32_t g = 0; g < 1; g++) {
                                         2,
                                         2,
                                         Conv_0_padding,
-                                        0.0);
+                                        0.0
+                                        );
 
             add_channel2d_naive(buffer_587[i],
                                 temp_buffer,
@@ -57,7 +59,10 @@ for(uint32_t g = 0; g < 1; g++) {
         }
         
     }
-}
+    for(int i=0; i<3;i++)
+        free(new_input_channel[i]);
+    free(new_input_channel);
+//}
 
     //Layer 1 LeakyRelu_1 LeakyRelu
     //Attributes
@@ -98,23 +103,23 @@ buffer_303[i],
     //    590: (1, 8, 320, 320)
 
 const uint16_t Conv_2_padding[4] = { 1, 1, 1, 1 };
+
 for(uint32_t g = 0; g < 8; g++) {
-    for(uint32_t i = g*8/8; i < (g+1)*8/8; i+=1){
-        convolution2d_padding_naive(buffer_303[g*8/8],
+//    for(uint32_t i = g; i < (g+1); i+=1){
+        convolution2d_padding_naive(buffer_303[g],
                                     320,
                                     320,
-                                    buffer_590[i],
-                                    buffer_591[i*8/8],
+                                    buffer_590[g],
+                                    buffer_591[g],
                                     3,
                                     3,
                                     1,
                                     1,
                                     Conv_2_padding,
-                                    
-                                    buffer_592[i]
+                                    buffer_592[g]
                                     );
         
-    }
+//    }
 }
 
     //Layer 3 LeakyRelu_3 LeakyRelu
